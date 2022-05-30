@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
+  m_Name: 018 Whirlwind
+  m_EditorClassIdentifier: Assembly-CSharp::AttackBase
+  id: 18
+  name: Whirlwind
+  description: "The target is blown away and switched. In the wild, a battle against
+    a single Pok\xE9mon ends."
+  type: 13
+  category: 2
+  pp: 20
+  power: 0
+  accuracy: 0

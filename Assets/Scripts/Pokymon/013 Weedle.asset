@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
+  m_Name: 013 Weedle
+  m_EditorClassIdentifier: 
+  id: 13
+  name: Weedle
+  description: "Weedle is a larval insect Pok\xE9mon with a segmented body ranging
+    in color from yellow to reddish-brown. Each segment of its body is a sphere.
+    It has a bulbous red nose, two small, black eyes on its face and two spherical
+    feet on each body segment. The combination of red and yellow in its color scheme
+    creates a bright warning to predators that it is poisonous. Weedle has a conical,
+    two-inch (five centimeter) venomous stinger on its head and a barbed one on its
+    tail."
+  primaryType: 0
+  secondaryType: 14
+  frontSprite: {fileID: 21300000, guid: 29ab6810e08703b4c9cba275d5667505, type: 3}
+  backSprite: {fileID: 21300000, guid: 98ca999c54c40534c8b3e21e9be7fa21, type: 3}
+  hp: 40
+  attack: 35
+  defense: 30
+  spAttack: 20
+  spDefense: 20
+  speed: 50

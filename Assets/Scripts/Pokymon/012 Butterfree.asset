@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
+  m_Name: 012 Butterfree
+  m_EditorClassIdentifier: 
+  id: 12
+  name: Butterfree
+  description: "Butterfree is an insect Pok\xE9mon which resembles a vaguely anthropomorphic
+    butterfly with a purple body. Unlike true insects, it only has two body segments
+    and four light blue legs. The upper pair of its legs resemble small, three-fingered
+    hands, while the lower pair resembles long, digit-less feet. Butterfree has two
+    black antennae, a light blue snout with two fangs underneath, and large, red
+    compound eyes. Its two pairs of wings are white with black venation. Two oval
+    scales on a female Butterfree's lower wings are black, but they are white on
+    a male."
+  primaryType: 0
+  secondaryType: 7
+  frontSprite: {fileID: 21300000, guid: 18761a4cf373bf24fbcf7daddd4ab38e, type: 3}
+  backSprite: {fileID: 21300000, guid: be155c8877ec37d49aec481521864d46, type: 3}
+  hp: 60
+  attack: 45
+  defense: 50
+  spAttack: 90
+  spDefense: 80
+  speed: 70

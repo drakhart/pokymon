@@ -1,0 +1,1548 @@
+fileFormatVersion: 2
+guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4569441222934119928
+    second: Battle Dialogs_0
+  - first:
+      213: -2273902033480672073
+    second: Battle Dialogs_1
+  - first:
+      213: 7710489646529735848
+    second: Battle Dialogs_2
+  - first:
+      213: 6755059033540245106
+    second: Battle Dialogs_3
+  - first:
+      213: -4034481776416567621
+    second: Battle Dialogs_4
+  - first:
+      213: -345637112620023655
+    second: Battle Dialogs_5
+  - first:
+      213: 6442154203934323410
+    second: Battle Dialogs_6
+  - first:
+      213: -5127750192244831282
+    second: Battle Dialogs_7
+  - first:
+      213: 5013543269821372295
+    second: Battle Dialogs_8
+  - first:
+      213: 8337578029055246145
+    second: Battle Dialogs_9
+  - first:
+      213: -5632662133850770983
+    second: Battle Dialogs_10
+  - first:
+      213: 3618116091162238027
+    second: Battle Dialogs_11
+  - first:
+      213: -2483713655537486596
+    second: Battle Dialogs_12
+  - first:
+      213: 4604302827392469194
+    second: Battle Dialogs_13
+  - first:
+      213: 2131439459367565703
+    second: Battle Dialogs_14
+  - first:
+      213: -5515715947507419129
+    second: Battle Dialogs_15
+  - first:
+      213: -7861238445254930603
+    second: Battle Dialogs_16
+  - first:
+      213: 1267303332448292526
+    second: Battle Dialogs_17
+  - first:
+      213: 19273146183735229
+    second: Battle Dialogs_18
+  - first:
+      213: 1544634667268812972
+    second: Battle Dialogs_19
+  - first:
+      213: -6774157136026333735
+    second: Battle Dialogs_20
+  - first:
+      213: -580451852199212061
+    second: Battle Dialogs_21
+  - first:
+      213: 3475219943807387859
+    second: Battle Dialogs_22
+  - first:
+      213: 4565749862176305517
+    second: Battle Dialogs_23
+  - first:
+      213: 32477915709398781
+    second: Battle Dialogs_24
+  - first:
+      213: 936833750619512452
+    second: Battle Dialogs_25
+  - first:
+      213: 1026759645350759840
+    second: Battle Dialogs_26
+  - first:
+      213: -2826924285822141765
+    second: Battle Dialogs_27
+  - first:
+      213: -3814838995922757185
+    second: Battle Dialogs_28
+  - first:
+      213: -1537490677292359794
+    second: Battle Dialogs_29
+  - first:
+      213: -5535920082684977823
+    second: Battle Dialogs_30
+  - first:
+      213: -3751790469686684338
+    second: Battle Dialogs_31
+  - first:
+      213: 8899786874288782423
+    second: Battle Dialogs_32
+  - first:
+      213: 7596346282526125771
+    second: Battle Dialogs_33
+  - first:
+      213: 2632167963805058164
+    second: Battle Dialogs_34
+  - first:
+      213: 3429209500429736940
+    second: Battle Dialogs_35
+  - first:
+      213: -3015167527223400554
+    second: Battle Dialogs_36
+  - first:
+      213: -9123094682459540631
+    second: Battle Dialogs_37
+  - first:
+      213: -8492231015231438321
+    second: Battle Dialogs_38
+  - first:
+      213: 8546512525635708053
+    second: Battle Dialogs_39
+  - first:
+      213: -3991391345225001105
+    second: Battle Dialogs_40
+  - first:
+      213: 5520830132545439701
+    second: Battle Dialogs_41
+  - first:
+      213: -1010586774876784653
+    second: Battle Dialogs_42
+  - first:
+      213: 6861766161441129415
+    second: Battle Dialogs_43
+  - first:
+      213: -1035581535943842742
+    second: Battle Dialogs_44
+  - first:
+      213: 384589873622239758
+    second: Battle Dialogs_45
+  - first:
+      213: -564515907472990905
+    second: Battle Dialogs_46
+  - first:
+      213: -1393718887910245316
+    second: Battle Dialogs_47
+  - first:
+      213: -4061435161571672117
+    second: Battle Dialogs_48
+  - first:
+      213: 7653639064114744034
+    second: Battle Dialogs_49
+  - first:
+      213: 526868778691360125
+    second: Battle Dialogs_50
+  - first:
+      213: 4683620224542628812
+    second: Battle Dialogs_51
+  - first:
+      213: 2718635826024755552
+    second: Battle Dialogs_52
+  - first:
+      213: 1074210296941620947
+    second: Battle Dialogs_53
+  - first:
+      213: -6630317122164673462
+    second: Battle Dialogs_54
+  - first:
+      213: 1009508645587143185
+    second: Battle Dialogs_55
+  - first:
+      213: 4438785450528085880
+    second: Battle Dialogs_56
+  - first:
+      213: -4977428196795448703
+    second: Battle Dialogs_57
+  - first:
+      213: 1256451752092774703
+    second: Battle Dialogs_58
+  - first:
+      213: -518532394152597956
+    second: Battle Dialogs_59
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Battle Dialogs_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 656
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a3cfcea651690c0800000000000000
+      internalID: -4569441222934119928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_1
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 656
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bc9850f52a7170e0800000000000000
+      internalID: -2273902033480672073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_2
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 656
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ac6bb94b79210b60800000000000000
+      internalID: 7710489646529735848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_3
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 656
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 276b5f2b66acebd50800000000000000
+      internalID: 6755059033540245106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_4
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 656
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbe47ef2334a208c0800000000000000
+      internalID: -4034481776416567621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_5
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 656
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 990871990ec043bf0800000000000000
+      internalID: -345637112620023655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_6
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 584
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d27bc1dd11276950800000000000000
+      internalID: 6442154203934323410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_7
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 584
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb4e4e3e5296d8b0800000000000000
+      internalID: -5127750192244831282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_8
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 584
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 787d0cf7a0fa39540800000000000000
+      internalID: 5013543269821372295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_9
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 584
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f70f40b0705b370800000000000000
+      internalID: 8337578029055246145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_10
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 584
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d1f704e1a3c4d1b0800000000000000
+      internalID: -5632662133850770983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_11
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 584
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c99d15a61263230800000000000000
+      internalID: 3618116091162238027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_12
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 512
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf4b6ede693188dd0800000000000000
+      internalID: -2483713655537486596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_13
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 512
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac80e01e605c5ef30800000000000000
+      internalID: 4604302827392469194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_14
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 512
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 789badb35e4649d10800000000000000
+      internalID: 2131439459367565703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_15
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 512
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 708fcdab19d3473b0800000000000000
+      internalID: -5515715947507419129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_16
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 512
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f8fefd84547e290800000000000000
+      internalID: -7861238445254930603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_17
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 512
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaecf399aad569110800000000000000
+      internalID: 1267303332448292526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_18
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 440
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db75cf703d8744000800000000000000
+      internalID: 19273146183735229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_19
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 440
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca0bf4acb05af6510800000000000000
+      internalID: 1544634667268812972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_20
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 440
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dd097ec9fb5df1a0800000000000000
+      internalID: -6774157136026333735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_21
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 440
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ebc274ad12d1f7f0800000000000000
+      internalID: -580451852199212061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_22
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 440
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d80efa50267a3030800000000000000
+      internalID: 3475219943807387859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_23
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 440
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d61be4c2f4dcc5f30800000000000000
+      internalID: 4565749862176305517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_24
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 368
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfe57e40e72637000800000000000000
+      internalID: 32477915709398781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_25
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 368
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ed547255d400d00800000000000000
+      internalID: 936833750619512452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_26
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 368
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad86da1578cf3e00800000000000000
+      internalID: 1026759645350759840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_27
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 368
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba75a8f65fb4c8d0800000000000000
+      internalID: -2826924285822141765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_28
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 368
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb957b42528fe0bc0800000000000000
+      internalID: -3814838995922757185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_29
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 368
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8f938eff5cb9aae0800000000000000
+      internalID: -1537490677292359794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_30
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 296
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d5c9ee3067c23b0800000000000000
+      internalID: -5535920082684977823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_31
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 296
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4511a61276feebc0800000000000000
+      internalID: -3751790469686684338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_32
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 296
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75cbaa25205628b70800000000000000
+      internalID: 8899786874288782423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_33
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 296
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bce24d062b4ab6960800000000000000
+      internalID: 7596346282526125771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_34
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 296
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47483c731d6578420800000000000000
+      internalID: 2632167963805058164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_35
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 296
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceb52853fdff69f20800000000000000
+      internalID: 3429209500429736940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_36
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 224
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6976e89eb19f726d0800000000000000
+      internalID: -3015167527223400554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_37
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 224
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9637eb7f8b1446180800000000000000
+      internalID: -9123094682459540631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_38
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 224
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f02439aa2e8852a80800000000000000
+      internalID: -8492231015231438321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_39
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 224
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59461f65cdf4b9670800000000000000
+      internalID: 8546512525635708053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_40
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 224
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f679b4408babb98c0800000000000000
+      internalID: -3991391345225001105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_41
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 224
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7c4a341cded9c40800000000000000
+      internalID: 5520830132545439701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_42
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 152
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7f2ccbeaca9f1f0800000000000000
+      internalID: -1010586774876784653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_43
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 152
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c38e78f7f3e93f50800000000000000
+      internalID: 6861766161441129415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_44
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 152
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a442d1e6410e0a1f0800000000000000
+      internalID: -1035581535943842742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_45
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 152
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0a4771d376565500800000000000000
+      internalID: 384589873622239758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_46
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 152
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74dd309e5cf6a28f0800000000000000
+      internalID: -564515907472990905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_47
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 152
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c7b514e0488ace0800000000000000
+      internalID: -1393718887910245316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_48
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 80
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcf3d3c2d32e2a7c0800000000000000
+      internalID: -4061435161571672117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_49
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 80
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eacc979d20373a60800000000000000
+      internalID: 7653639064114744034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_50
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 80
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75742ddc50df4700800000000000000
+      internalID: 526868778691360125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_51
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 80
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccbd2b287cf8ff040800000000000000
+      internalID: 4683620224542628812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_52
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 80
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0613bdb31e88ab520800000000000000
+      internalID: 2718635826024755552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_53
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 80
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dea54bd29c58ee00800000000000000
+      internalID: 1074210296941620947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_54
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 8
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a443f21d4b16cf3a0800000000000000
+      internalID: -6630317122164673462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_55
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 8
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11a48e9b3ce720e00800000000000000
+      internalID: 1009508645587143185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_56
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 8
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87716ec79dbb99d30800000000000000
+      internalID: 4438785450528085880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_57
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 8
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1828ef23d6f9ceab0800000000000000
+      internalID: -4977428196795448703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_58
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 8
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2138e82630df6110800000000000000
+      internalID: 1256451752092774703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle Dialogs_59
+      rect:
+        serializedVersion: 2
+        x: 1328
+        y: 8
+        width: 256
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c36600ae88dcdc8f0800000000000000
+      internalID: -518532394152597956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
