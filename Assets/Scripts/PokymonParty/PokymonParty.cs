@@ -15,10 +15,25 @@ public class PokymonParty : MonoBehaviour
 
     public bool HasAnyPokymonAvailable => AvailablePokymonCount > 0;
 
+    public int PokymonCount => pokymonList.Count;
+
     private void Start() {
         foreach (var pokymon in pokymonList)
         {
             pokymon.InitPokymon();
         }
+    }
+
+    public bool AddPokymon(Pokymon pokymon)
+    {
+        if (PokymonCount < Constants.MAX_PARTY_POKYMON_COUNT)
+        {
+            PokymonList.Add(pokymon);
+
+            return true;
+        }
+
+        // TODO: implement sending pokymon to central storage (Bill's PC)
+        return false;
     }
 }

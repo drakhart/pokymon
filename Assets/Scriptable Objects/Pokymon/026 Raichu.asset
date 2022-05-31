@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
+  m_Name: 026 Raichu
+  m_EditorClassIdentifier: 
+  id: 0
+  name: Raichu
+  description: "Raichu is a bipedal, rodent-like Pok\xE9mon. Raichu is covered in
+    dark orange fur with a white belly. Its bifurcated ears are brown on the outside,
+    yellow on the insides, and end in a distinctive curl. There is a circular yellow
+    marking on each cheek where its electric sacs are, and it has a triangular, dark
+    brown nose. Its arms and feet have patches of brown fur at the end, and the soles
+    of its long feet are tan with a circular orange pad in the center. On its back
+    are two horizontal brown stripes. Its long, thin tail has a lightning bolt-shaped
+    end. This lightning bolt is chipped on females. Raichu exudes a weak electrical
+    charge from all its body and glows slightly in the dark."
+  primaryType: 3
+  secondaryType: 12
+  catchRate: 75
+  frontSprite: {fileID: 21300000, guid: 52bda4bb5df16524c844eb7e1756929f, type: 3}
+  backSprite: {fileID: 21300000, guid: 53e257a4de3963647a5f8ed6b02519d1, type: 3}
+  hp: 60
+  attack: 90
+  defense: 55
+  spAttack: 90
+  spDefense: 80
+  speed: 110
+  learnableMoves: []

@@ -13,7 +13,7 @@ public class PartySelection : MonoBehaviour
 
     public void SetupPartySelection()
     {
-        partyMemberHUDList = GetComponentsInChildren<PartyMemberHUD>();
+        partyMemberHUDList = GetComponentsInChildren<PartyMemberHUD>(true);
     }
 
     public void UpdatePartyData(List<Pokymon> pokymonList)

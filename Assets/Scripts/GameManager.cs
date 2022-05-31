@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
-        playerController.OnPokymonEncountered += StartPokymonBattle;
+        playerController.OnPokymonEncountered += StartWildPokymonBattle;
         battleManager.OnBattleFinish += FinishPokymonBattle;
     }
 
@@ -36,22 +36,27 @@ public class GameManager : MonoBehaviour
         battleManager.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
 
-        if (!hasPlayerWon)
+        if (hasPlayerWon)
+        {
+            // TODO: handle player victory
+        }
+        else
         {
             // TODO: handle player defeat
         }
     }
 
-    private void StartPokymonBattle()
+    private void StartWildPokymonBattle()
     {
         _gameState = GameState.Battle;
 
         var playerParty = playerController.GetComponent<PokymonParty>();
-        var enemyPokymon = FindObjectOfType<PokymonArea>().GetComponent<PokymonArea>().GetRandomWildPokymon();
+        var wildPokymon = FindObjectOfType<PokymonArea>().GetComponent<PokymonArea>().GetRandomWildPokymon();
+        var wildPokymonCopy = new Pokymon(wildPokymon.Base, wildPokymon.Level);
 
         worldCamera.gameObject.SetActive(false);
         battleManager.gameObject.SetActive(true);
-        battleManager.HandleStart(playerParty, enemyPokymon);
+        battleManager.HandleStart(BattleType.WildPokymon, playerParty, wildPokymonCopy);
     }
 }
 

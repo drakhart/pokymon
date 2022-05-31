@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
+  m_Name: 008 Wartortle
+  m_EditorClassIdentifier: 
+  id: 8
+  name: Wartortle
+  description: "Wartortle is a bipedal, indigo reptilian Pok\xE9mon similar to a
+    turtle. It has brown eyes, a dark blue streak on each cheek, and two sharp teeth
+    protruding from its upper jaw. It has three clawed fingers and pointed toes.
+    On each side of its head are feather-like ears covered in pale blue fur. A brown
+    shell with a pale yellow underside encases its body. A thick, white rim separates
+    the upper and lower halves of the shell. An older Wartortle may have scars and
+    algae growing on its shell. Poking out of the bottom of the shell is a thick,
+    wavy tail that also has light blue fur and cannot be fully withdrawn into its
+    shell. Its tail fur will darken with age. Its tail is a popular symbol of longevity
+    and good luck, making this Pok\xE9mon popular with the elderly."
+  primaryType: 18
+  secondaryType: 12
+  catchRate: 45
+  frontSprite: {fileID: 21300000, guid: 5a7ad6d5de8a93c4fbecad25a902fe9b, type: 3}
+  backSprite: {fileID: 21300000, guid: cefcd50677b6f6d42bf3f56d0b4a96f3, type: 3}
+  hp: 59
+  attack: 63
+  defense: 80
+  spAttack: 65
+  spDefense: 80
+  speed: 58
+  learnableMoves: []

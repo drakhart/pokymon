@@ -11,7 +11,10 @@ public class BattleUnit : MonoBehaviour
     public bool IsPlayer => isPlayer;
 
     [SerializeField] private bool isWild;
-    public bool IsWild => isWild;
+    public bool IsWild {
+        get => isWild;
+        set => isWild = value;
+    }
 
     [SerializeField] private BattleUnitHUD hud;
     public BattleUnitHUD HUD => hud;
@@ -30,12 +33,13 @@ public class BattleUnit : MonoBehaviour
         originalPosition = _image.transform.localPosition;
     }
 
-    public void SetupPokemon(Pokymon pokymon)
+    public void SetupPokymon(Pokymon pokymon)
     {
         Pokymon = pokymon;
 
         _image.sprite = IsPlayer ? Pokymon.Base.BackSprite : Pokymon.Base.FrontSprite;
         _image.color = originalColor;
+        _image.transform.localScale = new Vector3(1f, 1f, 1f);
 
         hud.SetPokymonData(Pokymon);
 
@@ -86,5 +90,31 @@ public class BattleUnit : MonoBehaviour
     public void PlaySwitchAnimation()
     {
         _image.transform.DOLocalMoveX(originalPosition.x + (IsPlayer ? -1 : 1) * 400, 1);
+    }
+
+    public IEnumerator PlayCaptureAnimation()
+    {
+        var delay = 0.75f;
+        var seq = DOTween.Sequence();
+
+        seq.Append(_image.DOFade(0, delay));
+        seq.Join(_image.transform.DOScale(new Vector3(0.25f, 0.25f, 1f), delay));
+        seq.Join(_image.transform.DOLocalMoveY(originalPosition.y + 50, delay));
+
+        yield return seq.Play().WaitForCompletion();
+    }
+
+    public IEnumerator PlayEscapeAnimation()
+    {
+        var delay = 0.75f;
+        var seq = DOTween.Sequence();
+
+        _image.transform.localPosition = new Vector3(originalPosition.x, originalPosition.y - 60);
+
+        seq.Append(_image.DOFade(1, delay));
+        seq.Join(_image.transform.DOScale(new Vector3(1f, 1f, 1f), delay));
+        seq.Join(_image.transform.DOLocalJump(originalPosition, 50f, 1, delay));
+
+        yield return seq.Play().WaitForCompletion();
     }
 }
