@@ -9,7 +9,9 @@ Pokymon is a Pokémon-like RPG videogame developed while taking [this Unity cour
 > Pokémon and Pokémon character images & names are trademarks of Nintendo. No copyright or trademark infringement is intended.
 
 ## Screenshots
-![World](Screenshots/world.png) ![Battle](Screenshots/battle.png) ![Party](Screenshots/party.png)
+![World](Screenshots/world.png) &nbsp; ![Battle](Screenshots/battle.png)
+
+![Capture](Screenshots/capture.png) &nbsp; ![Party](Screenshots/party.png)
 
 ## Credits
 
@@ -28,6 +30,8 @@ Pokymon is a Pokémon-like RPG videogame developed while taking [this Unity cour
 - **Pokymon list:** Unknown @ https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_stats_(Generation_VIII-present)
 - **Moves list:** Unknown @ https://bulbapedia.bulbagarden.net/wiki/List_of_moves
 - **Damage formula:** Unknown @ https://bulbapedia.bulbagarden.net/wiki/Damage
+- **Catch rate formula:** Unknown @ https://bulbapedia.bulbagarden.net/wiki/Catch_rate
+- **Run from battle formula:** Unknown @ https://bulbapedia.bulbagarden.net/wiki/Escape
 - **Type effectiveness chart:** Unknown @ https://pokemondb.net/type
 
 ### Code
