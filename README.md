@@ -4,9 +4,12 @@ Pokymon is a Pokémon-like RPG videogame developed while taking [this Unity cour
 
 ## Disclaimers
 
-> This game has been developed for learning purposes only. It doesn't and will never implement all original Pokémon features, characters, scenarios and whatoever.
+> This game has been developed for learning purposes only. It doesn't and will never implement all original Pokémon features, characters, scenarios and whatsoever.
 
 > Pokémon and Pokémon character images & names are trademarks of Nintendo. No copyright or trademark infringement is intended.
+
+## Screenshots
+![World](Screenshots/world.png) ![Battle](Screenshots/battle.png) ![Party](Screenshots/party.png)
 
 ## Credits
 
