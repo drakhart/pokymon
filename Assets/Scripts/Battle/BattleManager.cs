@@ -43,6 +43,7 @@ public class BattleManager : MonoBehaviour
     private int currSelectedMove;
     private int currSelectedPokymon;
     private float timeSinceLastInput;
+    private int escapeAttempts;
 
     public event Action<bool> OnBattleFinish;
 
@@ -50,6 +51,8 @@ public class BattleManager : MonoBehaviour
         this.type = type;
         this.playerParty = playerParty;
         this.enemyPokymon = enemyPokymon;
+
+        escapeAttempts = 0;
 
         StartCoroutine(SetupBattle());
     }
@@ -117,7 +120,7 @@ public class BattleManager : MonoBehaviour
                     break;
 
                 case 3: // Run
-                    OnBattleFinish(false);
+                    PlayerRun();
                     break;
 
                 default:
@@ -146,7 +149,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                currSelectedMove = (currSelectedMove + 2) % 4;
+                currSelectedMove = (currSelectedMove + 2) % Constants.MAX_POKYMON_MOVE_COUNT;
             }
 
             currSelectedMove = Mathf.Clamp(currSelectedMove, 0, playerUnit.Pokymon.Moves.Count - 1);
@@ -316,11 +319,33 @@ public class BattleManager : MonoBehaviour
     private void PlayerSelectInventory()
     {
         // TODO: implement actual inventory and items logic
+        State = BattleState.Busy;
+
         dialogBox.ToggleActionSelector(false);
 
         if (enemyUnit.IsWild)
         {
-            StartCoroutine(ThrowPokyball());
+            StartCoroutine(PerformPokyballThrow());
+        }
+        else
+        {
+            StartCoroutine(ShowLostTurnMessage("You can't catch a trained Pokymon!"));
+        }
+    }
+
+    private void PlayerRun()
+    {
+        State = BattleState.Busy;
+
+        dialogBox.ToggleActionSelector(false);
+
+        if (enemyUnit.IsWild)
+        {
+            StartCoroutine(PerformPlayerRun());
+        }
+        else
+        {
+            StartCoroutine(ShowLostTurnMessage("You can't run from a duel!"));
         }
     }
 
@@ -420,41 +445,7 @@ public class BattleManager : MonoBehaviour
         EnemyMove();
     }
 
-    void CheckForBattleFinish(BattleUnit knockedOutUnit)
-    {
-        if (knockedOutUnit.IsPlayer)
-        {
-            if (playerParty.HasAnyPokymonAvailable)
-            {
-                PlayerSelectParty();
-            }
-            else
-            {
-                FinishBattle(false);
-            }
-        } else {
-            FinishBattle(true);
-        }
-    }
-
-    IEnumerator ShowDamageDescription(DamageDescription desc)
-    {
-        if (desc.Critical > 1f)
-        {
-            yield return dialogBox.SetDialogText("Critical hit!");
-        }
-
-        if (desc.Type > 1f)
-        {
-            yield return dialogBox.SetDialogText("It's super effective!");
-        }
-        else if (desc.Type < 1f)
-        {
-            yield return dialogBox.SetDialogText("It's not very effective...");
-        }
-    }
-
-    IEnumerator ThrowPokyball()
+    IEnumerator PerformPokyballThrow()
     {
         State = BattleState.Busy;
 
@@ -509,5 +500,82 @@ public class BattleManager : MonoBehaviour
             Destroy(pokyballInstance);
             EnemyMove();
         }
+    }
+
+    IEnumerator PerformPlayerRun()
+    {
+        escapeAttempts++;
+
+        var playerSpeed = playerUnit.Pokymon.Speed;
+        var enemySpeed = enemyUnit.Pokymon.Speed;
+
+        if (playerSpeed >= enemySpeed)
+        {
+            yield return ShowPlayerRunSuccessMessage();
+        } else {
+            var escapeOdds = (playerSpeed * 128 / enemySpeed + 30 * escapeAttempts) % 256;
+
+            if (escapeOdds >= 255)
+            {
+                yield return ShowPlayerRunSuccessMessage();
+            }
+            else if (Random.Range(0, 255) < escapeOdds)
+            {
+                yield return ShowPlayerRunSuccessMessage();
+            }
+            else
+            {
+                yield return ShowLostTurnMessage("You didn't manage to escape!");
+            }
+        }
+    }
+
+    void CheckForBattleFinish(BattleUnit knockedOutUnit)
+    {
+        if (knockedOutUnit.IsPlayer)
+        {
+            if (playerParty.HasAnyPokymonAvailable)
+            {
+                PlayerSelectParty();
+            }
+            else
+            {
+                FinishBattle(false);
+            }
+        } else {
+            FinishBattle(true);
+        }
+    }
+
+    IEnumerator ShowDamageDescription(DamageDescription desc)
+    {
+        if (desc.Critical > 1f)
+        {
+            yield return dialogBox.SetDialogText("Critical hit!");
+        }
+
+        if (desc.Type > 1f)
+        {
+            yield return dialogBox.SetDialogText("It's super effective!");
+        }
+        else if (desc.Type < 1f)
+        {
+            yield return dialogBox.SetDialogText("It's not very effective...");
+        }
+    }
+
+    IEnumerator ShowLostTurnMessage(string message)
+    {
+        yield return dialogBox.SetDialogText(message);
+
+        EnemyMove();
+    }
+
+    IEnumerator ShowPlayerRunSuccessMessage()
+    {
+        yield return dialogBox.SetDialogText("You managed to escape.");
+        yield return new WaitForSeconds(2);
+
+        FinishBattle(false);
     }
 }

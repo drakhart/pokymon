@@ -15,7 +15,7 @@ public class PokymonArea : MonoBehaviour
 
     public Pokymon GetRandomWildPokymon()
     {
-        var pokymon = wildPokymonList[Random.Range(0, wildPokymonList.Count - 1)];
+        var pokymon = wildPokymonList[Random.Range(0, wildPokymonList.Count)];
         pokymon.InitPokymon();
 
         return pokymon;

@@ -4,472 +4,472 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 3427114271967980436
-    second: Character_0
+    second: Player_0
   - first:
       213: 8158605244509288230
-    second: Character_1
+    second: Player_1
   - first:
       213: 6184959299203262911
-    second: Character_2
+    second: Player_2
   - first:
       213: 2495864320845663737
-    second: Character_3
+    second: Player_3
   - first:
       213: 6480803066212409350
-    second: Character_4
+    second: Player_4
   - first:
       213: 801598655983992016
-    second: Character_5
+    second: Player_5
   - first:
       213: -4188724102742562465
-    second: Character_6
+    second: Player_6
   - first:
       213: -7635366936938300408
-    second: Character_7
+    second: Player_7
   - first:
       213: 3663873800218158768
-    second: Character_8
+    second: Player_8
   - first:
       213: 1879468920936531165
-    second: Character_9
+    second: Player_9
   - first:
       213: 40843185749886244
-    second: Character_10
+    second: Player_10
   - first:
       213: -5329091641981806550
-    second: Character_11
+    second: Player_11
   - first:
       213: -8425070257221301162
-    second: Character_12
+    second: Player_12
   - first:
       213: -2450611445237265277
-    second: Character_13
+    second: Player_13
   - first:
       213: 6770007078955632491
-    second: Character_14
+    second: Player_14
   - first:
       213: -8123166618883925514
-    second: Character_15
+    second: Player_15
   - first:
       213: 1737412558246731724
-    second: Character_16
+    second: Player_16
   - first:
       213: -7904700090360122693
-    second: Character_17
+    second: Player_17
   - first:
       213: 2250609068651981613
-    second: Character_18
+    second: Player_18
   - first:
       213: -366569187799383193
-    second: Character_19
+    second: Player_19
   - first:
       213: 6378490070600606727
-    second: Character_20
+    second: Player_20
   - first:
       213: 1760990019816550413
-    second: Character_21
+    second: Player_21
   - first:
       213: 5920403861974754022
-    second: Character_22
+    second: Player_22
   - first:
       213: -3892527970579685584
-    second: Character_23
+    second: Player_23
   - first:
       213: 1778907897293836937
-    second: Character_24
+    second: Player_24
   - first:
       213: 347220952276385629
-    second: Character_25
+    second: Player_25
   - first:
       213: 4391028426531969339
-    second: Character_26
+    second: Player_26
   - first:
       213: -8641010753147894659
-    second: Character_27
+    second: Player_27
   - first:
       213: 2251730768788326449
-    second: Character_28
+    second: Player_28
   - first:
       213: 162719226863317155
-    second: Character_29
+    second: Player_29
   - first:
       213: 487846217701087288
-    second: Character_30
+    second: Player_30
   - first:
       213: 6297648057743630840
-    second: Character_31
+    second: Player_31
   - first:
       213: 7743511202351542354
-    second: Character_32
+    second: Player_32
   - first:
       213: 7855441300368428973
-    second: Character_33
+    second: Player_33
   - first:
       213: 7867689754177196569
-    second: Character_34
+    second: Player_34
   - first:
       213: 1189803590093747582
-    second: Character_35
+    second: Player_35
   - first:
       213: -8333661607700831351
-    second: Character_36
+    second: Player_36
   - first:
       213: 2659286222826444281
-    second: Character_37
+    second: Player_37
   - first:
       213: 5935550125356212616
-    second: Character_38
+    second: Player_38
   - first:
       213: -1503538595970970554
-    second: Character_39
+    second: Player_39
   - first:
       213: -3307022154664666310
-    second: Character_40
+    second: Player_40
   - first:
       213: -1968986044435119741
-    second: Character_41
+    second: Player_41
   - first:
       213: 3933308948476326474
-    second: Character_42
+    second: Player_42
   - first:
       213: 8668715722736629152
-    second: Character_43
+    second: Player_43
   - first:
       213: 5997594283234826320
-    second: Character_44
+    second: Player_44
   - first:
       213: -8159883496149072352
-    second: Character_45
+    second: Player_45
   - first:
       213: 82426061317422427
-    second: Character_46
+    second: Player_46
   - first:
       213: -6694658725094661539
-    second: Character_47
+    second: Player_47
   - first:
       213: -9137712581799548032
-    second: Character_48
+    second: Player_48
   - first:
       213: -1307106858290793205
-    second: Character_49
+    second: Player_49
   - first:
       213: 4695645784227870110
-    second: Character_50
+    second: Player_50
   - first:
       213: -4940984025561564272
-    second: Character_51
+    second: Player_51
   - first:
       213: 5087130816270920412
-    second: Character_52
+    second: Player_52
   - first:
       213: 592665941263346177
-    second: Character_53
+    second: Player_53
   - first:
       213: 8202781100932666147
-    second: Character_54
+    second: Player_54
   - first:
       213: -7157023754435722467
-    second: Character_55
+    second: Player_55
   - first:
       213: 7869888866612967700
-    second: Character_56
+    second: Player_56
   - first:
       213: 7177795627376806753
-    second: Character_57
+    second: Player_57
   - first:
       213: -7807264891306347090
-    second: Character_58
+    second: Player_58
   - first:
       213: 926094217002892508
-    second: Character_59
+    second: Player_59
   - first:
       213: 7939121506629780653
-    second: Character_60
+    second: Player_60
   - first:
       213: -154006226611386810
-    second: Character_61
+    second: Player_61
   - first:
       213: -5638898302856167017
-    second: Character_62
+    second: Player_62
   - first:
       213: -5537005245035792594
-    second: Character_63
+    second: Player_63
   - first:
       213: -8458992777402084725
-    second: Character_64
+    second: Player_64
   - first:
       213: 1956400101269269636
-    second: Character_65
+    second: Player_65
   - first:
       213: -5030506231620389267
-    second: Character_66
+    second: Player_66
   - first:
       213: -7779911554219097908
-    second: Character_67
+    second: Player_67
   - first:
       213: -1663632512765135929
-    second: Character_68
+    second: Player_68
   - first:
       213: 1371756691838402362
-    second: Character_69
+    second: Player_69
   - first:
       213: 419509880357639424
-    second: Character_70
+    second: Player_70
   - first:
       213: 8902023644142279924
-    second: Character_71
+    second: Player_71
   - first:
       213: 1103652861032467509
-    second: Character_72
+    second: Player_72
   - first:
       213: 4413641000073982676
-    second: Character_73
+    second: Player_73
   - first:
       213: -8814439084809767835
-    second: Character_74
+    second: Player_74
   - first:
       213: 2742643712698888491
-    second: Character_75
+    second: Player_75
   - first:
       213: 7257821030688514551
-    second: Character_76
+    second: Player_76
   - first:
       213: -1219955350355662014
-    second: Character_77
+    second: Player_77
   - first:
       213: 5885618117751780383
-    second: Character_78
+    second: Player_78
   - first:
       213: -1578094982924671736
-    second: Character_79
+    second: Player_79
   - first:
       213: -1653447138538129410
-    second: Character_80
+    second: Player_80
   - first:
       213: -1191495049462634876
-    second: Character_81
+    second: Player_81
   - first:
       213: 543949736723389990
-    second: Character_82
+    second: Player_82
   - first:
       213: 914160092285659262
-    second: Character_83
+    second: Player_83
   - first:
       213: -7349660160571454996
-    second: Character_84
+    second: Player_84
   - first:
       213: -3037908039922366334
-    second: Character_85
+    second: Player_85
   - first:
       213: -7020746948491566630
-    second: Character_86
+    second: Player_86
   - first:
       213: 107471506012319882
-    second: Character_87
+    second: Player_87
   - first:
       213: 6312303127202949528
-    second: Character_88
+    second: Player_88
   - first:
       213: 7287807371754233222
-    second: Character_89
+    second: Player_89
   - first:
       213: -5311864634216876214
-    second: Character_90
+    second: Player_90
   - first:
       213: -3014046580532964220
-    second: Character_91
+    second: Player_91
   - first:
       213: 7861278318105530111
-    second: Character_92
+    second: Player_92
   - first:
       213: 4916060161558577318
-    second: Character_93
+    second: Player_93
   - first:
       213: -5228588673256174458
-    second: Character_94
+    second: Player_94
   - first:
       213: -906466027370003211
-    second: Character_95
+    second: Player_95
   - first:
       213: 7767476932167453652
-    second: Character_96
+    second: Player_96
   - first:
       213: -5031253088990302192
-    second: Character_97
+    second: Player_97
   - first:
       213: -8888475588482354621
-    second: Character_98
+    second: Player_98
   - first:
       213: -4688166783993219354
-    second: Character_99
+    second: Player_99
   - first:
       213: -1232404555996819827
-    second: Character_100
+    second: Player_100
   - first:
       213: -902266065881139535
-    second: Character_101
+    second: Player_101
   - first:
       213: -7767188801148333810
-    second: Character_102
+    second: Player_102
   - first:
       213: -5690888670728291003
-    second: Character_103
+    second: Player_103
   - first:
       213: 2260266568740184110
-    second: Character_104
+    second: Player_104
   - first:
       213: -8849676663682810812
-    second: Character_105
+    second: Player_105
   - first:
       213: 4520020578314756455
-    second: Character_106
+    second: Player_106
   - first:
       213: 8842459503257729354
-    second: Character_107
+    second: Player_107
   - first:
       213: 6701526335761069014
-    second: Character_108
+    second: Player_108
   - first:
       213: -2396936274652715399
-    second: Character_109
+    second: Player_109
   - first:
       213: -3074817132469694575
-    second: Character_110
+    second: Player_110
   - first:
       213: -3408153332988238210
-    second: Character_111
+    second: Player_111
   - first:
       213: -8295850295116987513
-    second: Character_112
+    second: Player_112
   - first:
       213: 2217404005931304823
-    second: Character_113
+    second: Player_113
   - first:
       213: -818993087269440205
-    second: Character_114
+    second: Player_114
   - first:
       213: -8641402302343707307
-    second: Character_115
+    second: Player_115
   - first:
       213: 2233618323466640304
-    second: Character_116
+    second: Player_116
   - first:
       213: 6415102952215452482
-    second: Character_117
+    second: Player_117
   - first:
       213: 484338839693864500
-    second: Character_118
+    second: Player_118
   - first:
       213: -7435893481081949353
-    second: Character_119
+    second: Player_119
   - first:
       213: 9016780763483858900
-    second: Character_120
+    second: Player_120
   - first:
       213: -3565599871860662066
-    second: Character_121
+    second: Player_121
   - first:
       213: -2839429051668164929
-    second: Character_122
+    second: Player_122
   - first:
       213: 4322507322739231712
-    second: Character_123
+    second: Player_123
   - first:
       213: 1228063507525174715
-    second: Character_124
+    second: Player_124
   - first:
       213: -6324538733279760066
-    second: Character_125
+    second: Player_125
   - first:
       213: 6080704163894060323
-    second: Character_126
+    second: Player_126
   - first:
       213: 1835710647440411114
-    second: Character_127
+    second: Player_127
   - first:
       213: 2503547658142621307
-    second: Character_128
+    second: Player_128
   - first:
       213: 2130607774519369459
-    second: Character_129
+    second: Player_129
   - first:
       213: 7768883755651876925
-    second: Character_130
+    second: Player_130
   - first:
       213: -129840693822575698
-    second: Character_131
+    second: Player_131
   - first:
       213: 4453675792167459771
-    second: Character_132
+    second: Player_132
   - first:
       213: -4092413289829415728
-    second: Character_133
+    second: Player_133
   - first:
       213: -7717253102332659865
-    second: Character_134
+    second: Player_134
   - first:
       213: 3484644583456302474
-    second: Character_135
+    second: Player_135
   - first:
       213: -2312062140090020890
-    second: Character_136
+    second: Player_136
   - first:
       213: -5899667210987286951
-    second: Character_137
+    second: Player_137
   - first:
       213: -1653864171556418201
-    second: Character_138
+    second: Player_138
   - first:
       213: -8199051414864844061
-    second: Character_139
+    second: Player_139
   - first:
       213: -1468295782209400785
-    second: Character_140
+    second: Player_140
   - first:
       213: 6121956673712062368
-    second: Character_141
+    second: Player_141
   - first:
       213: -1019802208932950227
-    second: Character_142
+    second: Player_142
   - first:
       213: 7005334362047346769
-    second: Character_143
+    second: Player_143
   - first:
       213: -1366422057158192623
-    second: Character_144
+    second: Player_144
   - first:
       213: -8845602116347062216
-    second: Character_145
+    second: Player_145
   - first:
       213: -1957217854970477307
-    second: Character_146
+    second: Player_146
   - first:
       213: -3433841316062820268
-    second: Character_147
+    second: Player_147
   - first:
       213: -8225042480154349364
-    second: Character_148
+    second: Player_148
   - first:
       213: 2102494899737326164
-    second: Character_149
+    second: Player_149
   - first:
       213: 5260491608527446971
-    second: Character_150
+    second: Player_150
   - first:
       213: -14002500265199704
-    second: Character_151
+    second: Player_151
   - first:
       213: 1933284815922325251
-    second: Character_152
+    second: Player_152
   - first:
       213: 6022009804708691238
-    second: Character_153
+    second: Player_153
   - first:
       213: -3642180849480867177
-    second: Character_154
+    second: Player_154
   - first:
       213: 4623100486664989912
-    second: Character_155
+    second: Player_155
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -559,7 +559,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character_0
+      name: Player_0
       rect:
         serializedVersion: 2
         x: 0
@@ -580,7 +580,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_1
+      name: Player_1
       rect:
         serializedVersion: 2
         x: 16
@@ -601,7 +601,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_2
+      name: Player_2
       rect:
         serializedVersion: 2
         x: 32
@@ -622,7 +622,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_3
+      name: Player_3
       rect:
         serializedVersion: 2
         x: 48
@@ -643,7 +643,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_4
+      name: Player_4
       rect:
         serializedVersion: 2
         x: 80
@@ -664,7 +664,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_5
+      name: Player_5
       rect:
         serializedVersion: 2
         x: 96
@@ -685,7 +685,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_6
+      name: Player_6
       rect:
         serializedVersion: 2
         x: 112
@@ -706,7 +706,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_7
+      name: Player_7
       rect:
         serializedVersion: 2
         x: 144
@@ -727,7 +727,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_8
+      name: Player_8
       rect:
         serializedVersion: 2
         x: 160
@@ -748,7 +748,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_9
+      name: Player_9
       rect:
         serializedVersion: 2
         x: 176
@@ -769,7 +769,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_10
+      name: Player_10
       rect:
         serializedVersion: 2
         x: 192
@@ -790,7 +790,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_11
+      name: Player_11
       rect:
         serializedVersion: 2
         x: 208
@@ -811,7 +811,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_12
+      name: Player_12
       rect:
         serializedVersion: 2
         x: 224
@@ -832,7 +832,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_13
+      name: Player_13
       rect:
         serializedVersion: 2
         x: 0
@@ -853,7 +853,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_14
+      name: Player_14
       rect:
         serializedVersion: 2
         x: 16
@@ -874,7 +874,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_15
+      name: Player_15
       rect:
         serializedVersion: 2
         x: 32
@@ -895,7 +895,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_16
+      name: Player_16
       rect:
         serializedVersion: 2
         x: 48
@@ -916,7 +916,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_17
+      name: Player_17
       rect:
         serializedVersion: 2
         x: 80
@@ -937,7 +937,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_18
+      name: Player_18
       rect:
         serializedVersion: 2
         x: 96
@@ -958,7 +958,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_19
+      name: Player_19
       rect:
         serializedVersion: 2
         x: 112
@@ -979,7 +979,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_20
+      name: Player_20
       rect:
         serializedVersion: 2
         x: 144
@@ -1000,7 +1000,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_21
+      name: Player_21
       rect:
         serializedVersion: 2
         x: 160
@@ -1021,7 +1021,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_22
+      name: Player_22
       rect:
         serializedVersion: 2
         x: 176
@@ -1042,7 +1042,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_23
+      name: Player_23
       rect:
         serializedVersion: 2
         x: 192
@@ -1063,7 +1063,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_24
+      name: Player_24
       rect:
         serializedVersion: 2
         x: 0
@@ -1084,7 +1084,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_25
+      name: Player_25
       rect:
         serializedVersion: 2
         x: 16
@@ -1105,7 +1105,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_26
+      name: Player_26
       rect:
         serializedVersion: 2
         x: 32
@@ -1126,7 +1126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_27
+      name: Player_27
       rect:
         serializedVersion: 2
         x: 48
@@ -1147,7 +1147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_28
+      name: Player_28
       rect:
         serializedVersion: 2
         x: 80
@@ -1168,7 +1168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_29
+      name: Player_29
       rect:
         serializedVersion: 2
         x: 96
@@ -1189,7 +1189,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_30
+      name: Player_30
       rect:
         serializedVersion: 2
         x: 112
@@ -1210,7 +1210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_31
+      name: Player_31
       rect:
         serializedVersion: 2
         x: 144
@@ -1231,7 +1231,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_32
+      name: Player_32
       rect:
         serializedVersion: 2
         x: 160
@@ -1252,7 +1252,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_33
+      name: Player_33
       rect:
         serializedVersion: 2
         x: 176
@@ -1273,7 +1273,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_34
+      name: Player_34
       rect:
         serializedVersion: 2
         x: 192
@@ -1294,7 +1294,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_35
+      name: Player_35
       rect:
         serializedVersion: 2
         x: 0
@@ -1315,7 +1315,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_36
+      name: Player_36
       rect:
         serializedVersion: 2
         x: 16
@@ -1336,7 +1336,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_37
+      name: Player_37
       rect:
         serializedVersion: 2
         x: 32
@@ -1357,7 +1357,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_38
+      name: Player_38
       rect:
         serializedVersion: 2
         x: 48
@@ -1378,7 +1378,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_39
+      name: Player_39
       rect:
         serializedVersion: 2
         x: 80
@@ -1399,7 +1399,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_40
+      name: Player_40
       rect:
         serializedVersion: 2
         x: 96
@@ -1420,7 +1420,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_41
+      name: Player_41
       rect:
         serializedVersion: 2
         x: 112
@@ -1441,7 +1441,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_42
+      name: Player_42
       rect:
         serializedVersion: 2
         x: 144
@@ -1462,7 +1462,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_43
+      name: Player_43
       rect:
         serializedVersion: 2
         x: 160
@@ -1483,7 +1483,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_44
+      name: Player_44
       rect:
         serializedVersion: 2
         x: 176
@@ -1504,7 +1504,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_45
+      name: Player_45
       rect:
         serializedVersion: 2
         x: 192
@@ -1525,7 +1525,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_46
+      name: Player_46
       rect:
         serializedVersion: 2
         x: 0
@@ -1546,7 +1546,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_47
+      name: Player_47
       rect:
         serializedVersion: 2
         x: 16
@@ -1567,7 +1567,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_48
+      name: Player_48
       rect:
         serializedVersion: 2
         x: 32
@@ -1588,7 +1588,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_49
+      name: Player_49
       rect:
         serializedVersion: 2
         x: 48
@@ -1609,7 +1609,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_50
+      name: Player_50
       rect:
         serializedVersion: 2
         x: 64
@@ -1630,7 +1630,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_51
+      name: Player_51
       rect:
         serializedVersion: 2
         x: 80
@@ -1651,7 +1651,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_52
+      name: Player_52
       rect:
         serializedVersion: 2
         x: 96
@@ -1672,7 +1672,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_53
+      name: Player_53
       rect:
         serializedVersion: 2
         x: 112
@@ -1693,7 +1693,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_54
+      name: Player_54
       rect:
         serializedVersion: 2
         x: 0
@@ -1714,7 +1714,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_55
+      name: Player_55
       rect:
         serializedVersion: 2
         x: 16
@@ -1735,7 +1735,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_56
+      name: Player_56
       rect:
         serializedVersion: 2
         x: 32
@@ -1756,7 +1756,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_57
+      name: Player_57
       rect:
         serializedVersion: 2
         x: 48
@@ -1777,7 +1777,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_58
+      name: Player_58
       rect:
         serializedVersion: 2
         x: 64
@@ -1798,7 +1798,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_59
+      name: Player_59
       rect:
         serializedVersion: 2
         x: 80
@@ -1819,7 +1819,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_60
+      name: Player_60
       rect:
         serializedVersion: 2
         x: 96
@@ -1840,7 +1840,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_61
+      name: Player_61
       rect:
         serializedVersion: 2
         x: 112
@@ -1861,7 +1861,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_62
+      name: Player_62
       rect:
         serializedVersion: 2
         x: 0
@@ -1882,7 +1882,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_63
+      name: Player_63
       rect:
         serializedVersion: 2
         x: 16
@@ -1903,7 +1903,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_64
+      name: Player_64
       rect:
         serializedVersion: 2
         x: 32
@@ -1924,7 +1924,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_65
+      name: Player_65
       rect:
         serializedVersion: 2
         x: 48
@@ -1945,7 +1945,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_66
+      name: Player_66
       rect:
         serializedVersion: 2
         x: 64
@@ -1966,7 +1966,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_67
+      name: Player_67
       rect:
         serializedVersion: 2
         x: 80
@@ -1987,7 +1987,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_68
+      name: Player_68
       rect:
         serializedVersion: 2
         x: 96
@@ -2008,7 +2008,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_69
+      name: Player_69
       rect:
         serializedVersion: 2
         x: 112
@@ -2029,7 +2029,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_70
+      name: Player_70
       rect:
         serializedVersion: 2
         x: 0
@@ -2050,7 +2050,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_71
+      name: Player_71
       rect:
         serializedVersion: 2
         x: 16
@@ -2071,7 +2071,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_72
+      name: Player_72
       rect:
         serializedVersion: 2
         x: 32
@@ -2092,7 +2092,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_73
+      name: Player_73
       rect:
         serializedVersion: 2
         x: 48
@@ -2113,7 +2113,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_74
+      name: Player_74
       rect:
         serializedVersion: 2
         x: 64
@@ -2134,7 +2134,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_75
+      name: Player_75
       rect:
         serializedVersion: 2
         x: 80
@@ -2155,7 +2155,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_76
+      name: Player_76
       rect:
         serializedVersion: 2
         x: 96
@@ -2176,7 +2176,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_77
+      name: Player_77
       rect:
         serializedVersion: 2
         x: 112

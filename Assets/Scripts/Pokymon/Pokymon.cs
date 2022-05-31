@@ -88,7 +88,7 @@ public class Pokymon
 
         if (movesWithAvailablePP.Count > 0)
         {
-            int randId = Random.Range(0, movesWithAvailablePP.Count - 1);
+            int randId = Random.Range(0, movesWithAvailablePP.Count);
 
             return movesWithAvailablePP[randId];
         }
@@ -142,7 +142,7 @@ public class Pokymon
         {
             return new CaptureDescription()
             {
-                ShakeCount = 4,
+                ShakeCount = Constants.MIN_CAPTURE_SHAKE_COUNT,
                 IsCaptured = true,
             };
         }
@@ -151,9 +151,9 @@ public class Pokymon
 
         int shakeCount = 0;
 
-        while (shakeCount < 4)
+        while (shakeCount < Constants.MIN_CAPTURE_SHAKE_COUNT)
         {
-            if (Random.Range(0, 65635) >= b)
+            if (Random.Range(0, 65636) >= b)
             {
                 break;
             }
@@ -166,7 +166,7 @@ public class Pokymon
         return new CaptureDescription()
         {
             ShakeCount = shakeCount,
-            IsCaptured = shakeCount == 4,
+            IsCaptured = shakeCount == Constants.MIN_CAPTURE_SHAKE_COUNT,
         };
     }
 }
