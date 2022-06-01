@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 058 Ice Beam
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 58
-  name: Ice Beam
-  description: 
-  type: 11
-  category: 1
-  pp: 10
-  power: 90
-  accuracy: 100
+  _id: 58
+  _name: Ice Beam
+  _description:
+  _type: 11
+  _category: 1
+  _pp: 10
+  _power: 90
+  _accuracy: 100

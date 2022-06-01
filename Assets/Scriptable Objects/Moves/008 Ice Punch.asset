@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 008 Ice Punch
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 8
-  name: Ice Punch
-  description: The target is punched with an icy fist. This may also leave the target
+  _id: 8
+  _name: Ice Punch
+  _description: The target is punched with an icy fist. This may also leave the target
     frozen.
-  type: 11
-  category: 0
-  pp: 15
-  power: 75
-  accuracy: 100
+  _type: 11
+  _category: 0
+  _pp: 15
+  _power: 75
+  _accuracy: 100

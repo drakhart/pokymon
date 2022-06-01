@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 052 Ember
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 52
-  name: Ember
-  description: 
-  type: 6
-  category: 1
-  pp: 25
-  power: 40
-  accuracy: 100
+  _id: 52
+  _name: Ember
+  _description:
+  _type: 6
+  _category: 1
+  _pp: 25
+  _power: 40
+  _accuracy: 100

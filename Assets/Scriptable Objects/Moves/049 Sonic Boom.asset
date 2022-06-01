@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 049 Sonic Boom
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 49
-  name: Sonic Boom
-  description: 
-  type: 13
-  category: 1
-  pp: 20
-  power: 0
-  accuracy: 90
+  _id: 49
+  _name: Sonic Boom
+  _description:
+  _type: 13
+  _category: 1
+  _pp: 20
+  _power: 0
+  _accuracy: 90

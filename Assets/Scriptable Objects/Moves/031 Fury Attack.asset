@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 031 Fury Attack
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 31
-  name: Fury Attack
-  description: The target is jabbed repeatedly with a horn or beak two to five times
+  _id: 31
+  _name: Fury Attack
+  _description: The target is jabbed repeatedly with a horn or beak two to five times
     in a row.
-  type: 13
-  category: 0
-  pp: 20
-  power: 15
-  accuracy: 85
+  _type: 13
+  _category: 0
+  _pp: 20
+  _power: 15
+  _accuracy: 85

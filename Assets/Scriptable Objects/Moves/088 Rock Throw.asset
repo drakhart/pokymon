@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 088 Rock Throw
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 88
-  name: Rock Throw
-  description: 
-  type: 16
-  category: 0
-  pp: 15
-  power: 50
-  accuracy: 90
+  _id: 88
+  _name: Rock Throw
+  _description:
+  _type: 16
+  _category: 0
+  _pp: 15
+  _power: 50
+  _accuracy: 90

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 041 Twineedle
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 41
-  name: Twineedle
-  description: The user damages the target twice in succession by jabbing it with
+  _id: 41
+  _name: Twineedle
+  _description: The user damages the target twice in succession by jabbing it with
     two spikes. It may also poison the target.
-  type: 0
-  category: 0
-  pp: 20
-  power: 25
-  accuracy: 100
+  _type: 0
+  _category: 0
+  _pp: 20
+  _power: 25
+  _accuracy: 100

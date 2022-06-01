@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 038 Double-Edge
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 38
-  name: Double-Edge
-  description: A reckless, life-risking tackle. It also damages the user by a fairly
+  _id: 38
+  _name: Double-Edge
+  _description: A reckless, life-risking tackle. It also damages the user by a fairly
     large amount, however.
-  type: 13
-  category: 0
-  pp: 15
-  power: 120
-  accuracy: 100
+  _type: 13
+  _category: 0
+  _pp: 15
+  _power: 120
+  _accuracy: 100

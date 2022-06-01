@@ -11,25 +11,25 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 011 Metapod
-  m_EditorClassIdentifier: 
-  id: 11
-  name: Metapod
-  description: "Metapod is an insect Pok\xE9mon that resembles a green chrysalis.
+  m_EditorClassIdentifier:
+  _id: 11
+  _name: Metapod
+  _description: "Metapod is an insect Pok\xE9mon that resembles a green chrysalis.
     Its body is crescent-shaped with several segments making up the lower point.
     The front of Metapod's shell resembles a face with heavy-lidded eyes and a sharply
     pointed nose. The back of its shell consists of several geometrically shaped
     portions and projections."
-  primaryType: 0
-  secondaryType: 12
-  catchRate: 120
-  baseExp: 72
-  growthRate: 2
-  frontSprite: {fileID: 21300000, guid: 005c660c153d53f44890b53d56fdd73a, type: 3}
-  backSprite: {fileID: 21300000, guid: 5ab6131aba7f33b4b9d204365dae78d3, type: 3}
-  hp: 50
-  attack: 20
-  defense: 55
-  spAttack: 25
-  spDefense: 25
-  speed: 30
-  learnableMoves: []
+  _primaryType: 0
+  _secondaryType: 12
+  _catchRate: 120
+  _baseExp: 72
+  _growthRate: 2
+  _frontSprite: {fileID: 21300000, guid: 005c660c153d53f44890b53d56fdd73a, type: 3}
+  _backSprite: {fileID: 21300000, guid: 5ab6131aba7f33b4b9d204365dae78d3, type: 3}
+  _hp: 50
+  _attack: 20
+  _defense: 55
+  _spAttack: 25
+  _spDefense: 25
+  _speed: 30
+  _learnableMoves: []

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 039 Tail Whip
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 39
-  name: Tail Whip
-  description: "The user wags its tail cutely, making opposing Pok\xE9mon less wary
+  _id: 39
+  _name: Tail Whip
+  _description: "The user wags its tail cutely, making opposing Pok\xE9mon less wary
     and lowering their Defense stat."
-  type: 13
-  category: 2
-  pp: 30
-  power: 0
-  accuracy: 100
+  _type: 13
+  _category: 2
+  _pp: 30
+  _power: 0
+  _accuracy: 100

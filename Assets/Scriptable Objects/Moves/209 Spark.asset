@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 209 Spark
-  m_EditorClassIdentifier: 
-  id: 209
-  name: Spark
-  description: 
-  type: 3
-  category: 0
-  pp: 20
-  power: 65
-  accuracy: 100
+  m_EditorClassIdentifier:
+  _id: 209
+  _name: Spark
+  _description:
+  _type: 3
+  _category: 0
+  _pp: 20
+  _power: 65
+  _accuracy: 100

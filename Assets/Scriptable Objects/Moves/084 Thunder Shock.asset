@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 084 Thunder Shock
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 84
-  name: Thunder Shock
-  description: 
-  type: 3
-  category: 1
-  pp: 30
-  power: 40
-  accuracy: 100
+  _id: 84
+  _name: Thunder Shock
+  _description:
+  _type: 3
+  _category: 1
+  _pp: 30
+  _power: 40
+  _accuracy: 100

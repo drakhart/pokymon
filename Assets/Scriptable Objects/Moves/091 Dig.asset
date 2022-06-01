@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 091 Dig
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 91
-  name: Dig
-  description: 
-  type: 10
-  category: 0
-  pp: 10
-  power: 80
-  accuracy: 100
+  _id: 91
+  _name: Dig
+  _description:
+  _type: 10
+  _category: 0
+  _pp: 10
+  _power: 80
+  _accuracy: 100

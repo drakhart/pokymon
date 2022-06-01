@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 077 Poison Powder
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 77
-  name: Poison Powder
-  description: 
-  type: 14
-  category: 2
-  pp: 35
-  power: 0
-  accuracy: 75
+  _id: 77
+  _name: Poison Powder
+  _description:
+  _type: 14
+  _category: 2
+  _pp: 35
+  _power: 0
+  _accuracy: 75

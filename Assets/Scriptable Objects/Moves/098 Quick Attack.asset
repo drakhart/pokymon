@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 098 Quick Attack
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 98
-  name: Quick Attack
-  description: 
-  type: 13
-  category: 0
-  pp: 30
-  power: 40
-  accuracy: 100
+  _id: 98
+  _name: Quick Attack
+  _description:
+  _type: 13
+  _category: 0
+  _pp: 30
+  _power: 40
+  _accuracy: 100

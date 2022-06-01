@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 027 Rolling Kick
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 27
-  name: Rolling Kick
-  description: The user lashes out with a quick, spinning kick. It may also make
+  _id: 27
+  _name: Rolling Kick
+  _description: The user lashes out with a quick, spinning kick. It may also make
     the target flinch.
-  type: 5
-  category: 0
-  pp: 15
-  power: 60
-  accuracy: 85
+  _type: 5
+  _category: 0
+  _pp: 15
+  _power: 60
+  _accuracy: 85

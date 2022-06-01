@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 186 Sweet Kiss
-  m_EditorClassIdentifier: 
-  id: 186
-  name: Sweet Kiss
-  description: 
-  type: 4
-  category: 2
-  pp: 10
-  power: 0
-  accuracy: 75
+  m_EditorClassIdentifier:
+  _id: 186
+  _name: Sweet Kiss
+  _description:
+  _type: 4
+  _category: 2
+  _pp: 10
+  _power: 0
+  _accuracy: 75

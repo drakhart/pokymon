@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 100 Teleport
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 100
-  name: Teleport
-  description: 
-  type: 15
-  category: 2
-  pp: 20
-  power: 0
-  accuracy: 0
+  _id: 100
+  _name: Teleport
+  _description:
+  _type: 15
+  _category: 2
+  _pp: 20
+  _power: 0
+  _accuracy: 0

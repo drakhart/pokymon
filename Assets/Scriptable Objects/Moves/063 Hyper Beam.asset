@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 063 Hyper Beam
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 0
-  name: Hyper Beam
-  description: 
-  type: 13
-  category: 1
-  pp: 5
-  power: 150
-  accuracy: 90
+  _id: 0
+  _name: Hyper Beam
+  _description:
+  _type: 13
+  _category: 1
+  _pp: 5
+  _power: 150
+  _accuracy: 90

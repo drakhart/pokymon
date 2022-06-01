@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 018 Whirlwind
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 18
-  name: Whirlwind
-  description: "The target is blown away and switched. In the wild, a battle against
+  _id: 18
+  _name: Whirlwind
+  _description: "The target is blown away and switched. In the wild, a battle against
     a single Pok\xE9mon ends."
-  type: 13
-  category: 2
-  pp: 20
-  power: 0
-  accuracy: 0
+  _type: 13
+  _category: 2
+  _pp: 20
+  _power: 0
+  _accuracy: 0

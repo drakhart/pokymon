@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 022 Vine Whip
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 22
-  name: Vine Whip
-  description: The target is struck with slender, whiplike vines to inflict damage.
-  type: 9
-  category: 0
-  pp: 25
-  power: 45
-  accuracy: 100
+  _id: 22
+  _name: Vine Whip
+  _description: The target is struck with slender, whiplike vines to inflict damage.
+  _type: 9
+  _category: 0
+  _pp: 25
+  _power: 45
+  _accuracy: 100

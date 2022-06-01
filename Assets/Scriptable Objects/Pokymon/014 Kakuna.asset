@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 014 Kakuna
-  m_EditorClassIdentifier: 
-  id: 14
-  name: Kakuna
-  description: "Kakuna is a yellow, insect cocoon-like Pok\xE9mon. Kakuna has a dome-shaped
+  m_EditorClassIdentifier:
+  _id: 14
+  _name: Kakuna
+  _description: "Kakuna is a yellow, insect cocoon-like Pok\xE9mon. Kakuna has a dome-shaped
     head and black, triangular eyes with glowing white pupils. It has two scythe-like
     arms in the middle of its body. When it comes close to evolving, its body gives
     off heat that makes it warm to the touch. Kakuna remains virtually immobile and
@@ -22,17 +22,17 @@ MonoBehaviour:
     When attacked, however, it can extend its poison barbs. Kakuna nests in temperate
     forests and misty wooded areas. Occasionally, it will also nest at the mouth
     of tunnels and caves, as seen in Pok\xE9mon Snap."
-  primaryType: 0
-  secondaryType: 14
-  catchRate: 120
-  baseExp: 72
-  growthRate: 2
-  frontSprite: {fileID: 21300000, guid: 1e92b6f833770474782ff7167ceac82e, type: 3}
-  backSprite: {fileID: 21300000, guid: 2f654b66bf9d8524f8ec8ce5a1410ff0, type: 3}
-  hp: 45
-  attack: 25
-  defense: 50
-  spAttack: 25
-  spDefense: 25
-  speed: 35
-  learnableMoves: []
+  _primaryType: 0
+  _secondaryType: 14
+  _catchRate: 120
+  _baseExp: 72
+  _growthRate: 2
+  _frontSprite: {fileID: 21300000, guid: 1e92b6f833770474782ff7167ceac82e, type: 3}
+  _backSprite: {fileID: 21300000, guid: 2f654b66bf9d8524f8ec8ce5a1410ff0, type: 3}
+  _hp: 45
+  _attack: 25
+  _defense: 50
+  _spAttack: 25
+  _spDefense: 25
+  _speed: 35
+  _learnableMoves: []

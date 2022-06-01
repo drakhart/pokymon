@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 073 Leech Seed
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 73
-  name: Leech Seed
-  description: 
-  type: 9
-  category: 2
-  pp: 10
-  power: 0
-  accuracy: 90
+  _id: 73
+  _name: Leech Seed
+  _description:
+  _type: 9
+  _category: 2
+  _pp: 10
+  _power: 0
+  _accuracy: 90

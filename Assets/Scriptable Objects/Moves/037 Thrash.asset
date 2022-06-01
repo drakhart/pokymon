@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 037 Thrash
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 37
-  name: Thrash
-  description: The user rampages and attacks for two to three turns. It then becomes
+  _id: 37
+  _name: Thrash
+  _description: The user rampages and attacks for two to three turns. It then becomes
     confused, however.
-  type: 13
-  category: 0
-  pp: 10
-  power: 120
-  accuracy: 100
+  _type: 13
+  _category: 0
+  _pp: 10
+  _power: 120
+  _accuracy: 100

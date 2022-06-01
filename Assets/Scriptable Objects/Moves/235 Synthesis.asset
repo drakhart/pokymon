@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 235 Synthesis
-  m_EditorClassIdentifier: 
-  id: 235
-  name: Synthesis
-  description: 
-  type: 9
-  category: 2
-  pp: 5
-  power: 0
-  accuracy: 0
+  m_EditorClassIdentifier:
+  _id: 235
+  _name: Synthesis
+  _description:
+  _type: 9
+  _category: 2
+  _pp: 5
+  _power: 0
+  _accuracy: 0

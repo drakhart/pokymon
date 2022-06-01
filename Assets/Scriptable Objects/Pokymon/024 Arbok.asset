@@ -11,25 +11,25 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 024 Arbok
-  m_EditorClassIdentifier: 
-  id: 0
-  name: Arbok
-  description: "Arbok is a serpentine Pok\xE9mon that resembles a cobra. It has narrow
+  m_EditorClassIdentifier:
+  _id: 0
+  _name: Arbok
+  _description: "Arbok is a serpentine Pok\xE9mon that resembles a cobra. It has narrow
     eyes and several sharp teeth. Just below its head is a large hood with a face-like
     pattern. This pattern has over 20 possible variations. The pattern typically
     has two red and yellow eyespots outlined in black, a wide black streak resembling
     an upturned mouth, and a black V-shaped stripe above the eyespots."
-  primaryType: 14
-  secondaryType: 12
-  catchRate: 90
-  baseExp: 157
-  growthRate: 2
-  frontSprite: {fileID: 21300000, guid: 0a4906f28c2fd694c8baa2fc52d1ce3d, type: 3}
-  backSprite: {fileID: 21300000, guid: e7086e0310a2e8f4b98cda749116f703, type: 3}
-  hp: 60
-  attack: 95
-  defense: 69
-  spAttack: 65
-  spDefense: 79
-  speed: 80
-  learnableMoves: []
+  _primaryType: 14
+  _secondaryType: 12
+  _catchRate: 90
+  _baseExp: 157
+  _growthRate: 2
+  _frontSprite: {fileID: 21300000, guid: 0a4906f28c2fd694c8baa2fc52d1ce3d, type: 3}
+  _backSprite: {fileID: 21300000, guid: e7086e0310a2e8f4b98cda749116f703, type: 3}
+  _hp: 60
+  _attack: 95
+  _defense: 69
+  _spAttack: 65
+  _spDefense: 79
+  _speed: 80
+  _learnableMoves: []

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 020 Bind
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 20
-  name: Bind
-  description: Things such as long bodies or tentacles are used to bind and squeeze
+  _id: 20
+  _name: Bind
+  _description: Things such as long bodies or tentacles are used to bind and squeeze
     the target for four to five turns.
-  type: 13
-  category: 0
-  pp: 20
-  power: 15
-  accuracy: 85
+  _type: 13
+  _category: 0
+  _pp: 20
+  _power: 15
+  _accuracy: 85

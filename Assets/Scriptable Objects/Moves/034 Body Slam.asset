@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 034 Body Slam
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 34
-  name: Body Slam
-  description: The user drops onto the target with its full body weight. It may also
+  _id: 34
+  _name: Body Slam
+  _description: The user drops onto the target with its full body weight. It may also
     leave the target with paralysis.
-  type: 13
-  category: 0
-  pp: 15
-  power: 85
-  accuracy: 100
+  _type: 13
+  _category: 0
+  _pp: 15
+  _power: 85
+  _accuracy: 100

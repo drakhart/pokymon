@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 099 Rage
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 99
-  name: Rage
-  description: 
-  type: 13
-  category: 0
-  pp: 20
-  power: 20
-  accuracy: 100
+  _id: 99
+  _name: Rage
+  _description:
+  _type: 13
+  _category: 0
+  _pp: 20
+  _power: 20
+  _accuracy: 100

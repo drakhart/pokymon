@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 082 Dragon Rage
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 82
-  name: Dragon Rage
-  description: 
-  type: 2
-  category: 1
-  pp: 10
-  power: 0
-  accuracy: 100
+  _id: 82
+  _name: Dragon Rage
+  _description:
+  _type: 2
+  _category: 1
+  _pp: 10
+  _power: 0
+  _accuracy: 100

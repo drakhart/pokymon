@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 047 Sing
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 47
-  name: Sing
-  description: 
-  type: 13
-  category: 2
-  pp: 15
-  power: 0
-  accuracy: 55
+  _id: 47
+  _name: Sing
+  _description:
+  _type: 13
+  _category: 2
+  _pp: 15
+  _power: 0
+  _accuracy: 55

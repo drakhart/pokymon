@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 015 Cut
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 15
-  name: Cut
-  description: The target is cut with a scythe or a claw. It can also be used to
+  _id: 15
+  _name: Cut
+  _description: The target is cut with a scythe or a claw. It can also be used to
     cut down thin trees.
-  type: 13
-  category: 0
-  pp: 30
-  power: 50
-  accuracy: 95
+  _type: 13
+  _category: 0
+  _pp: 30
+  _power: 50
+  _accuracy: 95

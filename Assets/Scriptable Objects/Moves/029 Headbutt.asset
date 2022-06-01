@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 029 Headbutt
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 29
-  name: Headbutt
-  description: The user sticks out its head and attacks by charging straight into
+  _id: 29
+  _name: Headbutt
+  _description: The user sticks out its head and attacks by charging straight into
     the target. It may also make the target flinch.
-  type: 13
-  category: 0
-  pp: 15
-  power: 70
-  accuracy: 100
+  _type: 13
+  _category: 0
+  _pp: 15
+  _power: 70
+  _accuracy: 100

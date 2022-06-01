@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 053 Flamethrower
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 53
-  name: Flamethrower
-  description: 
-  type: 6
-  category: 1
-  pp: 15
-  power: 90
-  accuracy: 100
+  _id: 53
+  _name: Flamethrower
+  _description:
+  _type: 6
+  _category: 1
+  _pp: 15
+  _power: 90
+  _accuracy: 100

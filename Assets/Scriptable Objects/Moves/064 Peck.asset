@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 064 Peck
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 64
-  name: Peck
-  description: 
-  type: 7
-  category: 0
-  pp: 35
-  power: 35
-  accuracy: 100
+  _id: 64
+  _name: Peck
+  _description:
+  _type: 7
+  _category: 0
+  _pp: 35
+  _power: 35
+  _accuracy: 100

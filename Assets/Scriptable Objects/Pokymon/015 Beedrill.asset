@@ -11,27 +11,27 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 015 Beedrill
-  m_EditorClassIdentifier: 
-  id: 15
-  name: Beedrill
-  description: "Beedrill is an insect Pok\xE9mon which mostly resembles a bipedal,
+  m_EditorClassIdentifier:
+  _id: 15
+  _name: Beedrill
+  _description: "Beedrill is an insect Pok\xE9mon which mostly resembles a bipedal,
     yellow wasp; however, it only has four legs instead of six and lacks pigment
     pits. Beedrill's head is round with a slightly pointed mouth, large, red eyes,
     and black antennae with a sharp bend in the middle. Its forelegs are tipped with
     long, conical stingers. It stands on its other two legs, which are long, segmented,
     and insectoid in shape. Beedrill has two pairs of rounded, veined wings, and
     another stinger on its yellow-and-black striped abdomen."
-  primaryType: 0
-  secondaryType: 14
-  catchRate: 45
-  baseExp: 178
-  growthRate: 2
-  frontSprite: {fileID: 21300000, guid: f73cdfea81cbc934a8b9172865aa1432, type: 3}
-  backSprite: {fileID: 21300000, guid: d7d619bd58ce6fa44bbebd2dc8b59617, type: 3}
-  hp: 65
-  attack: 90
-  defense: 40
-  spAttack: 45
-  spDefense: 80
-  speed: 75
-  learnableMoves: []
+  _primaryType: 0
+  _secondaryType: 14
+  _catchRate: 45
+  _baseExp: 178
+  _growthRate: 2
+  _frontSprite: {fileID: 21300000, guid: f73cdfea81cbc934a8b9172865aa1432, type: 3}
+  _backSprite: {fileID: 21300000, guid: d7d619bd58ce6fa44bbebd2dc8b59617, type: 3}
+  _hp: 65
+  _attack: 90
+  _defense: 40
+  _spAttack: 45
+  _spDefense: 80
+  _speed: 75
+  _learnableMoves: []

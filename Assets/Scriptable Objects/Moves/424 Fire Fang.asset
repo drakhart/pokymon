@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 424 Fire Fang
-  m_EditorClassIdentifier: 
-  id: 424
-  name: Fire Fang
-  description: 
-  type: 6
-  category: 0
-  pp: 15
-  power: 65
-  accuracy: 95
+  m_EditorClassIdentifier:
+  _id: 424
+  _name: Fire Fang
+  _description:
+  _type: 6
+  _category: 0
+  _pp: 15
+  _power: 65
+  _accuracy: 95

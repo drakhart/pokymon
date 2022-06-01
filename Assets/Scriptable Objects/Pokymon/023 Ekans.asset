@@ -11,26 +11,26 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 023 Ekans
-  m_EditorClassIdentifier: 
-  id: 0
-  name: Ekans
-  description: "Ekans is a purple, serpentine Pok\xE9mon. Its eyes, underbelly, the
+  m_EditorClassIdentifier:
+  _id: 0
+  _name: Ekans
+  _description: "Ekans is a purple, serpentine Pok\xE9mon. Its eyes, underbelly, the
     thick stripe around its neck, and rattle are yellow. Ekans has three pairs of
     black lines encircling its body, as well as another line that connects to each
     slit-pupiled eye and curves toward its nose. Its large mouth has a round, pink
     tongue and no visible teeth. While painful, a newborn Ekans's bite is not venomous.
     This Pok\xE9mon grows longer with age."
-  primaryType: 14
-  secondaryType: 12
-  catchRate: 255
-  baseExp: 58
-  growthRate: 2
-  frontSprite: {fileID: 21300000, guid: a77e2064e7ba2bb41972b456c950cf09, type: 3}
-  backSprite: {fileID: 21300000, guid: 7fdfb488a44def04589b3994dfc4d3d1, type: 3}
-  hp: 35
-  attack: 60
-  defense: 44
-  spAttack: 40
-  spDefense: 54
-  speed: 55
-  learnableMoves: []
+  _primaryType: 14
+  _secondaryType: 12
+  _catchRate: 255
+  _baseExp: 58
+  _growthRate: 2
+  _frontSprite: {fileID: 21300000, guid: a77e2064e7ba2bb41972b456c950cf09, type: 3}
+  _backSprite: {fileID: 21300000, guid: 7fdfb488a44def04589b3994dfc4d3d1, type: 3}
+  _hp: 35
+  _attack: 60
+  _defense: 44
+  _spAttack: 40
+  _spDefense: 54
+  _speed: 55
+  _learnableMoves: []

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 061 Bubble Beam
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 61
-  name: Bubble Beam
-  description: 
-  type: 18
-  category: 1
-  pp: 20
-  power: 65
-  accuracy: 100
+  _id: 61
+  _name: Bubble Beam
+  _description:
+  _type: 18
+  _category: 1
+  _pp: 20
+  _power: 65
+  _accuracy: 100

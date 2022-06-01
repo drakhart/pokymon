@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 435 Discharge
-  m_EditorClassIdentifier: 
-  id: 435
-  name: Discharge
-  description: 
-  type: 3
-  category: 1
-  pp: 15
-  power: 80
-  accuracy: 100
+  m_EditorClassIdentifier:
+  _id: 435
+  _name: Discharge
+  _description:
+  _type: 3
+  _category: 1
+  _pp: 15
+  _power: 80
+  _accuracy: 100

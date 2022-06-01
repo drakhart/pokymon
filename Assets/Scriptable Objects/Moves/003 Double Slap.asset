@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 003 Double Slap
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 3
-  name: Double Slap
-  description: The foe is slapped repeatedly, back and forth, two to five times in
+  _id: 3
+  _name: Double Slap
+  _description: The foe is slapped repeatedly, back and forth, two to five times in
     a row.
-  type: 13
-  category: 0
-  pp: 10
-  power: 15
-  accuracy: 85
+  _type: 13
+  _category: 0
+  _pp: 10
+  _power: 15
+  _accuracy: 85

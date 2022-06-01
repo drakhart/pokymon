@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 076 Solar Beam
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 76
-  name: Solar Beam
-  description: 
-  type: 9
-  category: 1
-  pp: 10
-  power: 120
-  accuracy: 100
+  _id: 76
+  _name: Solar Beam
+  _description:
+  _type: 9
+  _category: 1
+  _pp: 10
+  _power: 120
+  _accuracy: 100

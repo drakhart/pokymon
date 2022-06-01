@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 026 Jump Kick
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 26
-  name: Jump Kick
-  description: The user jumps up high, then strikes with a kick. If the kick misses,
+  _id: 26
+  _name: Jump Kick
+  _description: The user jumps up high, then strikes with a kick. If the kick misses,
     the user hurts itself.
-  type: 5
-  category: 0
-  pp: 10
-  power: 100
-  accuracy: 95
+  _type: 5
+  _category: 0
+  _pp: 10
+  _power: 100
+  _accuracy: 95

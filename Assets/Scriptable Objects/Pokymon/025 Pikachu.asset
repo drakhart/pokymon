@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 025 Pikachu
-  m_EditorClassIdentifier: 
-  id: 0
-  name: Pikachu
-  description: "Pikachu is a short, chubby rodent Pok\xE9mon. It is covered in yellow
+  m_EditorClassIdentifier:
+  _id: 0
+  _name: Pikachu
+  _description: "Pikachu is a short, chubby rodent Pok\xE9mon. It is covered in yellow
     fur with two horizontal brown stripes on its back. It has a small mouth, long,
     pointed ears with black tips, and brown eyes. Each cheek is a red circle that
     contains a pouch for electricity storage. It has short forearms with five fingers
@@ -22,20 +22,20 @@ MonoBehaviour:
     bolt-shaped tail is a patch of brown fur. A female will have a V-shaped notch
     at the end of its tail, which looks like the top of a heart. It is classified
     as a quadruped, but it has been known to stand and walk on its hind legs."
-  primaryType: 3
-  secondaryType: 12
-  catchRate: 190
-  baseExp: 112
-  growthRate: 2
-  frontSprite: {fileID: 21300000, guid: 339e96666f05ea9499ddf6679bfcdb55, type: 3}
-  backSprite: {fileID: 21300000, guid: 9b48e7daaeb266e4db21bc3eade18de6, type: 3}
-  hp: 35
-  attack: 55
-  defense: 40
-  spAttack: 50
-  spDefense: 50
-  speed: 90
-  learnableMoves:
+  _primaryType: 3
+  _secondaryType: 12
+  _catchRate: 190
+  _baseExp: 112
+  _growthRate: 2
+  _frontSprite: {fileID: 21300000, guid: 339e96666f05ea9499ddf6679bfcdb55, type: 3}
+  _backSprite: {fileID: 21300000, guid: 9b48e7daaeb266e4db21bc3eade18de6, type: 3}
+  _hp: 35
+  _attack: 55
+  _defense: 40
+  _spAttack: 50
+  _spDefense: 50
+  _speed: 90
+  _learnableMoves:
   - move: {fileID: 11400000, guid: 622a9f2e0b848274abe0f7ec00731364, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 307ef27b715aa9b4f9275a6fed932d53, type: 2}

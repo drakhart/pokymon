@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 092 Toxic
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 92
-  name: Toxic
-  description: 
-  type: 14
-  category: 2
-  pp: 10
-  power: 0
-  accuracy: 90
+  _id: 92
+  _name: Toxic
+  _description:
+  _type: 14
+  _category: 2
+  _pp: 10
+  _power: 0
+  _accuracy: 90

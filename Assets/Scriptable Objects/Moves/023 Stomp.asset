@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 023 Stomp
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 23
-  name: Stomp
-  description: The target is stomped with a big foot. It may also make the target
+  _id: 23
+  _name: Stomp
+  _description: The target is stomped with a big foot. It may also make the target
     flinch.
-  type: 13
-  category: 0
-  pp: 20
-  power: 65
-  accuracy: 100
+  _type: 13
+  _category: 0
+  _pp: 20
+  _power: 65
+  _accuracy: 100

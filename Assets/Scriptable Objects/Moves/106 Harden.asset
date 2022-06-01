@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 106 Harden
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 106
-  name: Harden
-  description: 
-  type: 13
-  category: 2
-  pp: 30
-  power: 0
-  accuracy: 0
+  _id: 106
+  _name: Harden
+  _description:
+  _type: 13
+  _category: 2
+  _pp: 30
+  _power: 0
+  _accuracy: 0

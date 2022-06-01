@@ -11,30 +11,30 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 007 Squirtle
-  m_EditorClassIdentifier: 
-  id: 7
-  name: Squirtle
-  description: "Squirtle is a small reptilian Pok\xE9mon that resembles a light-blue
+  m_EditorClassIdentifier:
+  _id: 7
+  _name: Squirtle
+  _description: "Squirtle is a small reptilian Pok\xE9mon that resembles a light-blue
     turtle. While it typically walks on its two short legs, it has been shown to
     run on all fours in Super Smash Bros. Brawl. It has large, purplish or reddish
     eyes and a slightly hooked upper lip. Each of its hands and feet have three pointed
     digits. The end of its long tail curls inward. Its body is encased by a tough
     shell that forms and hardens after birth. This shell is brown on the top, pale
     yellow on the bottom, and has a thick white ridge between the two halves."
-  primaryType: 18
-  secondaryType: 12
-  catchRate: 45
-  baseExp: 63
-  growthRate: 3
-  frontSprite: {fileID: 21300000, guid: c80e32edf1f094b4cb60e85ba6f01112, type: 3}
-  backSprite: {fileID: 21300000, guid: ca27b4aff8a3bf240bf66fa83e328a93, type: 3}
-  hp: 44
-  attack: 48
-  defense: 65
-  spAttack: 50
-  spDefense: 64
-  speed: 43
-  learnableMoves:
+  _primaryType: 18
+  _secondaryType: 12
+  _catchRate: 45
+  _baseExp: 63
+  _growthRate: 3
+  _frontSprite: {fileID: 21300000, guid: c80e32edf1f094b4cb60e85ba6f01112, type: 3}
+  _backSprite: {fileID: 21300000, guid: ca27b4aff8a3bf240bf66fa83e328a93, type: 3}
+  _hp: 44
+  _attack: 48
+  _defense: 65
+  _spAttack: 50
+  _spDefense: 64
+  _speed: 43
+  _learnableMoves:
   - move: {fileID: 11400000, guid: da9390cdd9b6be040820a4e82c476fe6, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 7d087306c2c7350418178abacaa5c646, type: 2}

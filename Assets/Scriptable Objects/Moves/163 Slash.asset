@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 163 Slash
-  m_EditorClassIdentifier: 
-  id: 163
-  name: Slash
-  description: 
-  type: 13
-  category: 0
-  pp: 20
-  power: 70
-  accuracy: 100
+  m_EditorClassIdentifier:
+  _id: 163
+  _name: Slash
+  _description:
+  _type: 13
+  _category: 0
+  _pp: 20
+  _power: 70
+  _accuracy: 100

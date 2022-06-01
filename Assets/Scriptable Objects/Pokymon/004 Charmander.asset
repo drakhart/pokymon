@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 004 Charmander
-  m_EditorClassIdentifier: 
-  id: 4
-  name: Charmander
-  description: "Charmander is a bipedal, reptilian Pok\xE9mon with a primarily orange
+  m_EditorClassIdentifier:
+  _id: 4
+  _name: Charmander
+  _description: "Charmander is a bipedal, reptilian Pok\xE9mon with a primarily orange
     body and blue eyes. Its underside from the chest down and the soles of its feet
     are cream-colored. It has two small fangs visible in its upper jaw and two smaller
     fangs in its lower jaw. A fire burns at the tip of this Pok\xE9mon's slender
@@ -24,20 +24,20 @@ MonoBehaviour:
     when it is enraged. It is said that Charmander dies if its flame goes out. However,
     if the Pok\xE9mon is healthy, the flame will continue to burn even if it gets
     a bit wet and is said to steam in the rain."
-  primaryType: 6
-  secondaryType: 12
-  catchRate: 45
-  baseExp: 62
-  growthRate: 3
-  frontSprite: {fileID: 21300000, guid: daa3851f5bcd198459bd7aad347d5e44, type: 3}
-  backSprite: {fileID: 21300000, guid: d5a2736241d43f548a7b62ae291d55ab, type: 3}
-  hp: 39
-  attack: 52
-  defense: 43
-  spAttack: 60
-  spDefense: 50
-  speed: 65
-  learnableMoves:
+  _primaryType: 6
+  _secondaryType: 12
+  _catchRate: 45
+  _baseExp: 62
+  _growthRate: 3
+  _frontSprite: {fileID: 21300000, guid: daa3851f5bcd198459bd7aad347d5e44, type: 3}
+  _backSprite: {fileID: 21300000, guid: d5a2736241d43f548a7b62ae291d55ab, type: 3}
+  _hp: 39
+  _attack: 52
+  _defense: 43
+  _spAttack: 60
+  _spDefense: 50
+  _speed: 65
+  _learnableMoves:
   - move: {fileID: 11400000, guid: ae396d958621cee488d18d5ecd6d1845, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 5f63109a314d51a43b2a9d75a61d1c4b, type: 2}

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 040 Poison Sting
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 40
-  name: Poison Sting
-  description: The user stabs the target with a poisonous stinger. This may also
+  _id: 40
+  _name: Poison Sting
+  _description: The user stabs the target with a poisonous stinger. This may also
     poison the target.
-  type: 14
-  category: 0
-  pp: 35
-  power: 15
-  accuracy: 100
+  _type: 14
+  _category: 0
+  _pp: 35
+  _power: 15
+  _accuracy: 100

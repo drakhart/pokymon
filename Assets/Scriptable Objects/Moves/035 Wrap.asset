@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 035 Wrap
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 35
-  name: Wrap
-  description: A long body or vines are used to wrap and squeeze the target for four
+  _id: 35
+  _name: Wrap
+  _description: A long body or vines are used to wrap and squeeze the target for four
     to five turns.
-  type: 13
-  category: 0
-  pp: 20
-  power: 15
-  accuracy: 90
+  _type: 13
+  _category: 0
+  _pp: 20
+  _power: 15
+  _accuracy: 90

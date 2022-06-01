@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 024 Double Kick
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 24
-  name: Double Kick
-  description: The target is quickly kicked twice in succession using both feet.
-  type: 5
-  category: 0
-  pp: 30
-  power: 30
-  accuracy: 100
+  _id: 24
+  _name: Double Kick
+  _description: The target is quickly kicked twice in succession using both feet.
+  _type: 5
+  _category: 0
+  _pp: 30
+  _power: 30
+  _accuracy: 100

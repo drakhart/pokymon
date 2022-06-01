@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 083 Fire Spin
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 83
-  name: Fire Spin
-  description: 
-  type: 6
-  category: 1
-  pp: 15
-  power: 35
-  accuracy: 85
+  _id: 83
+  _name: Fire Spin
+  _description:
+  _type: 6
+  _category: 1
+  _pp: 15
+  _power: 35
+  _accuracy: 85

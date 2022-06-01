@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 036 Take Down
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 36
-  name: Take Down
-  description: A reckless, full-body charge attack for slamming into the target.
+  _id: 36
+  _name: Take Down
+  _description: A reckless, full-body charge attack for slamming into the target.
     It also damages the user a little.
-  type: 13
-  category: 0
-  pp: 20
-  power: 90
-  accuracy: 85
+  _type: 13
+  _category: 0
+  _pp: 20
+  _power: 90
+  _accuracy: 85

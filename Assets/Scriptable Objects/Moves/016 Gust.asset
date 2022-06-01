@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 016 Gust
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 16
-  name: Gust
-  description: A gust of wind is whipped up by wings and launched at the target to
+  _id: 16
+  _name: Gust
+  _description: A gust of wind is whipped up by wings and launched at the target to
     inflict damage.
-  type: 7
-  category: 1
-  pp: 35
-  power: 40
-  accuracy: 100
+  _type: 7
+  _category: 1
+  _pp: 35
+  _power: 40
+  _accuracy: 100

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 089 Earthquake
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 89
-  name: Earthquake
-  description: 
-  type: 10
-  category: 0
-  pp: 10
-  power: 100
-  accuracy: 100
+  _id: 89
+  _name: Earthquake
+  _description:
+  _type: 10
+  _category: 0
+  _pp: 10
+  _power: 100
+  _accuracy: 100

@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 609 Nuzzle
-  m_EditorClassIdentifier: 
-  id: 609
-  name: Nuzzle
-  description: 
-  type: 3
-  category: 0
-  pp: 20
-  power: 20
-  accuracy: 100
+  m_EditorClassIdentifier:
+  _id: 609
+  _name: Nuzzle
+  _description:
+  _type: 3
+  _category: 0
+  _pp: 20
+  _power: 20
+  _accuracy: 100

@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 008 Wartortle
-  m_EditorClassIdentifier: 
-  id: 8
-  name: Wartortle
-  description: "Wartortle is a bipedal, indigo reptilian Pok\xE9mon similar to a
+  m_EditorClassIdentifier:
+  _id: 8
+  _name: Wartortle
+  _description: "Wartortle is a bipedal, indigo reptilian Pok\xE9mon similar to a
     turtle. It has brown eyes, a dark blue streak on each cheek, and two sharp teeth
     protruding from its upper jaw. It has three clawed fingers and pointed toes.
     On each side of its head are feather-like ears covered in pale blue fur. A brown
@@ -24,17 +24,17 @@ MonoBehaviour:
     wavy tail that also has light blue fur and cannot be fully withdrawn into its
     shell. Its tail fur will darken with age. Its tail is a popular symbol of longevity
     and good luck, making this Pok\xE9mon popular with the elderly."
-  primaryType: 18
-  secondaryType: 12
-  catchRate: 45
-  baseExp: 142
-  growthRate: 3
-  frontSprite: {fileID: 21300000, guid: 5a7ad6d5de8a93c4fbecad25a902fe9b, type: 3}
-  backSprite: {fileID: 21300000, guid: cefcd50677b6f6d42bf3f56d0b4a96f3, type: 3}
-  hp: 59
-  attack: 63
-  defense: 80
-  spAttack: 65
-  spDefense: 80
-  speed: 58
-  learnableMoves: []
+  _primaryType: 18
+  _secondaryType: 12
+  _catchRate: 45
+  _baseExp: 142
+  _growthRate: 3
+  _frontSprite: {fileID: 21300000, guid: 5a7ad6d5de8a93c4fbecad25a902fe9b, type: 3}
+  _backSprite: {fileID: 21300000, guid: cefcd50677b6f6d42bf3f56d0b4a96f3, type: 3}
+  _hp: 59
+  _attack: 63
+  _defense: 80
+  _spAttack: 65
+  _spDefense: 80
+  _speed: 58
+  _learnableMoves: []

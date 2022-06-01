@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 004 Comet Punch
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 4
-  name: Comet Punch
-  description: The foe is hit with a flurry of punches that strike two to five times
+  _id: 4
+  _name: Comet Punch
+  _description: The foe is hit with a flurry of punches that strike two to five times
     in a row.
-  type: 13
-  category: 0
-  pp: 15
-  power: 18
-  accuracy: 85
+  _type: 13
+  _category: 0
+  _pp: 15
+  _power: 18
+  _accuracy: 85

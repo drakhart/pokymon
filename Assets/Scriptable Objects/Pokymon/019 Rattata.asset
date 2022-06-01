@@ -11,27 +11,27 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 019 Rattata
-  m_EditorClassIdentifier: 
-  id: 19
-  name: Rattata
-  description: "Rattata is a small, quadrupedal rodent Pok\xE9mon. It has purple
+  m_EditorClassIdentifier:
+  _id: 19
+  _name: Rattata
+  _description: "Rattata is a small, quadrupedal rodent Pok\xE9mon. It has purple
     fur with a cream-colored face, paws, and underbelly. It has narrow eyes containing
     white sclera and pupil with red irises, rounded ears with cream-colored insides,
     and a single whisker on each cheek. Its long tail is tightly curled at the end.
     Its most notable feature is its large teeth. Like most rodents, its teeth grow
     continuously throughout its life and must be worn down by gnawing. A female Rattata
     will have shorter whiskers and lighter fur."
-  primaryType: 13
-  secondaryType: 12
-  catchRate: 255
-  baseExp: 51
-  growthRate: 2
-  frontSprite: {fileID: 21300000, guid: 03619efe910523e46aee4067386ea53d, type: 3}
-  backSprite: {fileID: 21300000, guid: 4eeca0299de8bb44c9d474ca32066a18, type: 3}
-  hp: 30
-  attack: 56
-  defense: 35
-  spAttack: 25
-  spDefense: 35
-  speed: 72
-  learnableMoves: []
+  _primaryType: 13
+  _secondaryType: 12
+  _catchRate: 255
+  _baseExp: 51
+  _growthRate: 2
+  _frontSprite: {fileID: 21300000, guid: 03619efe910523e46aee4067386ea53d, type: 3}
+  _backSprite: {fileID: 21300000, guid: 4eeca0299de8bb44c9d474ca32066a18, type: 3}
+  _hp: 30
+  _attack: 56
+  _defense: 35
+  _spAttack: 25
+  _spDefense: 35
+  _speed: 72
+  _learnableMoves: []

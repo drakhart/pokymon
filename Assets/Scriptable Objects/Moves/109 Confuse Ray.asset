@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 109 Confuse Ray
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 109
-  name: Confuse Ray
-  description: 
-  type: 8
-  category: 2
-  pp: 10
-  power: 0
-  accuracy: 100
+  _id: 109
+  _name: Confuse Ray
+  _description:
+  _type: 8
+  _category: 2
+  _pp: 10
+  _power: 0
+  _accuracy: 100

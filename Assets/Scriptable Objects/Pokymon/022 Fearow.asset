@@ -11,27 +11,27 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 022 Fearow
-  m_EditorClassIdentifier: 
-  id: 0
-  name: Fearow
-  description: "Fearow is a large, mostly brown avian Pok\xE9mon with a vulturine
+  m_EditorClassIdentifier:
+  _id: 0
+  _name: Fearow
+  _description: "Fearow is a large, mostly brown avian Pok\xE9mon with a vulturine
     neck and broad, powerful wings. It has a long, pointed, pink beak and a decorative
     red coxcomb on top of its head. Its narrow eyes have very small pupils and do
     not appear to have colored irises. It has shaggy, feathers at the base of its
     neck and covering the upper portion of its wings. These feathers are cream-colored,
     as are the tips of its flight feathers. Its sharp-clawed talons are pink, with
     three toes pointing forward and one pointing backward."
-  primaryType: 13
-  secondaryType: 7
-  catchRate: 90
-  baseExp: 155
-  growthRate: 2
-  frontSprite: {fileID: 21300000, guid: f8f8315a489e1b84f8dfb065e1d7e77f, type: 3}
-  backSprite: {fileID: 21300000, guid: 49fe9400c2ff8be41bd547b20518017b, type: 3}
-  hp: 65
-  attack: 90
-  defense: 65
-  spAttack: 61
-  spDefense: 61
-  speed: 100
-  learnableMoves: []
+  _primaryType: 13
+  _secondaryType: 7
+  _catchRate: 90
+  _baseExp: 155
+  _growthRate: 2
+  _frontSprite: {fileID: 21300000, guid: f8f8315a489e1b84f8dfb065e1d7e77f, type: 3}
+  _backSprite: {fileID: 21300000, guid: 49fe9400c2ff8be41bd547b20518017b, type: 3}
+  _hp: 65
+  _attack: 90
+  _defense: 65
+  _spAttack: 61
+  _spDefense: 61
+  _speed: 100
+  _learnableMoves: []

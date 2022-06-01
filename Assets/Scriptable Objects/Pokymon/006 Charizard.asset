@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 006 Charizard
-  m_EditorClassIdentifier: 
-  id: 6
-  name: Charizard
-  description: "Charizard is a draconic, bipedal Pok\xE9mon. It is primarily orange
+  m_EditorClassIdentifier:
+  _id: 6
+  _name: Charizard
+  _description: "Charizard is a draconic, bipedal Pok\xE9mon. It is primarily orange
     with a cream underside from the chest to the tip of its tail. It has a long neck,
     small blue eyes, slightly raised nostrils, and two horn-like structures protruding
     from the back of its rectangular head. There are two fangs visible in the upper
@@ -25,17 +25,17 @@ MonoBehaviour:
     and each limb has three white claws. It has stocky legs with cream-colored soles
     on each of its plantigrade feet. The tip of its long, tapering tail burns with
     a sizable flame."
-  primaryType: 6
-  secondaryType: 7
-  catchRate: 45
-  baseExp: 240
-  growthRate: 3
-  frontSprite: {fileID: 21300000, guid: 070f1efa51c8ba9449c27ed7c573deff, type: 3}
-  backSprite: {fileID: 21300000, guid: d79b1a3cf57e1cf47b76bad715ba67f5, type: 3}
-  hp: 78
-  attack: 84
-  defense: 78
-  spAttack: 109
-  spDefense: 85
-  speed: 100
-  learnableMoves: []
+  _primaryType: 6
+  _secondaryType: 7
+  _catchRate: 45
+  _baseExp: 240
+  _growthRate: 3
+  _frontSprite: {fileID: 21300000, guid: 070f1efa51c8ba9449c27ed7c573deff, type: 3}
+  _backSprite: {fileID: 21300000, guid: d79b1a3cf57e1cf47b76bad715ba67f5, type: 3}
+  _hp: 78
+  _attack: 84
+  _defense: 78
+  _spAttack: 109
+  _spDefense: 85
+  _speed: 100
+  _learnableMoves: []

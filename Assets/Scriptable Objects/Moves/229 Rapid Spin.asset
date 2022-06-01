@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 229 Rapid Spin
-  m_EditorClassIdentifier: 
-  id: 229
-  name: Rapid Spin
-  description: 
-  type: 13
-  category: 0
-  pp: 40
-  power: 50
-  accuracy: 100
+  m_EditorClassIdentifier:
+  _id: 229
+  _name: Rapid Spin
+  _description:
+  _type: 13
+  _category: 0
+  _pp: 40
+  _power: 50
+  _accuracy: 100

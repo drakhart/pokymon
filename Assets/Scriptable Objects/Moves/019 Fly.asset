@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 019 Fly
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 19
-  name: Fly
-  description: The user soars, then strikes its target on the second turn. It can
+  _id: 19
+  _name: Fly
+  _description: The user soars, then strikes its target on the second turn. It can
     also be used for flying to any familiar town.
-  type: 7
-  category: 0
-  pp: 15
-  power: 90
-  accuracy: 95
+  _type: 7
+  _category: 0
+  _pp: 15
+  _power: 90
+  _accuracy: 95

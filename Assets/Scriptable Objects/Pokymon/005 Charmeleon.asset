@@ -11,27 +11,27 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 005 Charmeleon
-  m_EditorClassIdentifier: 
-  id: 5
-  name: Charmeleon
-  description: "Charmeleon is a bipedal, reptilian Pok\xE9mon. It has dark red scales
+  m_EditorClassIdentifier:
+  _id: 5
+  _name: Charmeleon
+  _description: "Charmeleon is a bipedal, reptilian Pok\xE9mon. It has dark red scales
     and a cream underside from the chest down. It has blue eyes and a long snout
     with a slightly hooked tip. On the back of its head is a single horn-like protrusion.
     It has relatively long arms with three sharp claws. Its short legs have plantigrade
     feet with three claws and cream-colored soles. The tip of its long, powerful
     tail has a flame burning on it. The temperature rises to unbearable levels if
     Charmeleon swings its tail."
-  primaryType: 6
-  secondaryType: 12
-  catchRate: 45
-  baseExp: 142
-  growthRate: 3
-  frontSprite: {fileID: 21300000, guid: 9a057b37bd01a9a4c906a5e6abc01930, type: 3}
-  backSprite: {fileID: 21300000, guid: 7d1d5959d03a4214aaa7a9bf2e6f4d23, type: 3}
-  hp: 58
-  attack: 64
-  defense: 58
-  spAttack: 80
-  spDefense: 65
-  speed: 80
-  learnableMoves: []
+  _primaryType: 6
+  _secondaryType: 12
+  _catchRate: 45
+  _baseExp: 142
+  _growthRate: 3
+  _frontSprite: {fileID: 21300000, guid: 9a057b37bd01a9a4c906a5e6abc01930, type: 3}
+  _backSprite: {fileID: 21300000, guid: 7d1d5959d03a4214aaa7a9bf2e6f4d23, type: 3}
+  _hp: 58
+  _attack: 64
+  _defense: 58
+  _spAttack: 80
+  _spDefense: 65
+  _speed: 80
+  _learnableMoves: []

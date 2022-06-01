@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 002 Karate Chop
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 2
-  name: Karate Chop
-  description: The foe is attacked with a sharp chop. It has a high critical-hit
+  _id: 2
+  _name: Karate Chop
+  _description: The foe is attacked with a sharp chop. It has a high critical-hit
     ratio.
-  type: 5
-  category: 0
-  pp: 25
-  power: 50
-  accuracy: 100
+  _type: 5
+  _category: 0
+  _pp: 25
+  _power: 50
+  _accuracy: 100

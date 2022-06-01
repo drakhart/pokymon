@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 394 Flare Blitz
-  m_EditorClassIdentifier: 
-  id: 394
-  name: Flare Blitz
-  description: 
-  type: 6
-  category: 0
-  pp: 15
-  power: 120
-  accuracy: 100
+  m_EditorClassIdentifier:
+  _id: 394
+  _name: Flare Blitz
+  _description:
+  _type: 6
+  _category: 0
+  _pp: 15
+  _power: 120
+  _accuracy: 100

@@ -9,26 +9,26 @@ public class MoveBase : ScriptableObject
     [SerializeField] private int id;
     public int ID => id;
 
-    [SerializeField] private string name;
-    public string Name => name;
+    [SerializeField] private string _name;
+    public string Name => _name;
 
-    [TextArea] [SerializeField] private string description;
-    public string Description => description;
+    [TextArea] [SerializeField] private string _description;
+    public string Description => _description;
 
-    [SerializeField] private PokymonType type = PokymonType.Normal;
-    public PokymonType Type => type;
+    [SerializeField] private PokymonType _type = PokymonType.Normal;
+    public PokymonType Type => _type;
 
-    [SerializeField] private MoveCategory category = MoveCategory.Physical;
-    public MoveCategory Category => category;
+    [SerializeField] private MoveCategory _category = MoveCategory.Physical;
+    public MoveCategory Category => _category;
 
-    [SerializeField] private int pp;
-    public int PP => pp;
+    [SerializeField] private int _pp;
+    public int PP => _pp;
 
-    [SerializeField] private int power;
-    public int Power => power;
+    [SerializeField] private int _power;
+    public int Power => _power;
 
-    [SerializeField] private int accuracy;
-    public int Accuracy => accuracy;
+    [SerializeField] private int _accuracy;
+    public int Accuracy => _accuracy;
 }
 
 public enum MoveCategory {

@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 009 Blastoise
-  m_EditorClassIdentifier: 
-  id: 9
-  name: Blastoise
-  description: "Blastoise is a large, bipedal turtle Pok\xE9mon. Its body is blue
+  m_EditorClassIdentifier:
+  _id: 9
+  _name: Blastoise
+  _description: "Blastoise is a large, bipedal turtle Pok\xE9mon. Its body is blue
     and is mostly hidden by its tough, brown shell. This shell has a cream-colored
     underside and a white ridge encircling its arms and separating the upper and
     lower halves. Two powerful water cannons reside at the top of its shell over
@@ -23,17 +23,17 @@ MonoBehaviour:
     lower jaw. Its arms are thick, and it has three claws on each hand. Its feet
     have three claws on the front and one on the back. Poking out of the bottom of
     its shell is a stubby tail."
-  primaryType: 18
-  secondaryType: 12
-  catchRate: 45
-  baseExp: 239
-  growthRate: 3
-  frontSprite: {fileID: 21300000, guid: 22fc636cfada0b646846742dece09145, type: 3}
-  backSprite: {fileID: 21300000, guid: 56d57294739e4a241af271f733963920, type: 3}
-  hp: 79
-  attack: 83
-  defense: 100
-  spAttack: 85
-  spDefense: 105
-  speed: 78
-  learnableMoves: []
+  _primaryType: 18
+  _secondaryType: 12
+  _catchRate: 45
+  _baseExp: 239
+  _growthRate: 3
+  _frontSprite: {fileID: 21300000, guid: 22fc636cfada0b646846742dece09145, type: 3}
+  _backSprite: {fileID: 21300000, guid: 56d57294739e4a241af271f733963920, type: 3}
+  _hp: 79
+  _attack: 83
+  _defense: 100
+  _spAttack: 85
+  _spDefense: 105
+  _speed: 78
+  _learnableMoves: []

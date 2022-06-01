@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 079 Sleep Powder
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 79
-  name: Sleep Powder
-  description: 
-  type: 9
-  category: 2
-  pp: 15
-  power: 0
-  accuracy: 75
+  _id: 79
+  _name: Sleep Powder
+  _description:
+  _type: 9
+  _category: 2
+  _pp: 15
+  _power: 0
+  _accuracy: 75

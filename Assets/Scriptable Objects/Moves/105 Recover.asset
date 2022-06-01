@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 105 Recover
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 105
-  name: Recover
-  description: 
-  type: 13
-  category: 2
-  pp: 10
-  power: 0
-  accuracy: 0
+  _id: 105
+  _name: Recover
+  _description:
+  _type: 13
+  _category: 2
+  _pp: 10
+  _power: 0
+  _accuracy: 0

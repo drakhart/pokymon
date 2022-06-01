@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 080 Petal Dance
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 80
-  name: Petal Dance
-  description: 
-  type: 9
-  category: 1
-  pp: 10
-  power: 120
-  accuracy: 100
+  _id: 80
+  _name: Petal Dance
+  _description:
+  _type: 9
+  _category: 1
+  _pp: 10
+  _power: 120
+  _accuracy: 100

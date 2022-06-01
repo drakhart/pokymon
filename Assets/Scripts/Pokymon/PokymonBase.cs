@@ -7,59 +7,59 @@ using UnityEngine;
 public class PokymonBase : ScriptableObject
 {
     // Basic
-    [SerializeField] private int id;
-    public int ID => id;
+    [SerializeField] private int _id;
+    public int ID => _id;
 
-    [SerializeField] private string name;
-    public string Name => name;
+    [SerializeField] private string _name;
+    public string Name => _name;
 
-    [TextArea] [SerializeField] private string description;
-    public string Description => description;
+    [TextArea] [SerializeField] private string _description;
+    public string Description => _description;
 
-    [SerializeField] private PokymonType primaryType = PokymonType.Normal;
-    public PokymonType PrimaryType => primaryType;
+    [SerializeField] private PokymonType _primaryType = PokymonType.Normal;
+    public PokymonType PrimaryType => _primaryType;
 
-    [SerializeField] private PokymonType secondaryType = PokymonType.None;
-    public PokymonType SecondaryType => secondaryType;
+    [SerializeField] private PokymonType _secondaryType = PokymonType.None;
+    public PokymonType SecondaryType => _secondaryType;
 
-    [SerializeField] private int catchRate;
-    public int CatchRate => catchRate;
+    [SerializeField] private int _catchRate;
+    public int CatchRate => _catchRate;
 
-    [SerializeField] private int baseExp;
-    public int BaseExp => baseExp;
+    [SerializeField] private int _baseExp;
+    public int BaseExp => _baseExp;
 
-    [SerializeField] private PokymonGrowthRate growthRate = PokymonGrowthRate.MediumSlow;
-    public PokymonGrowthRate GrowthRate => growthRate;
+    [SerializeField] private PokymonGrowthRate _growthRate = PokymonGrowthRate.MediumSlow;
+    public PokymonGrowthRate GrowthRate => _growthRate;
 
     // Sprites
-    [SerializeField] private Sprite frontSprite;
-    public Sprite FrontSprite => frontSprite;
+    [SerializeField] private Sprite _frontSprite;
+    public Sprite FrontSprite => _frontSprite;
 
-    [SerializeField] private Sprite backSprite;
-    public Sprite BackSprite => backSprite;
+    [SerializeField] private Sprite _backSprite;
+    public Sprite BackSprite => _backSprite;
 
     // Stats
-    [SerializeField] private int hp;
-    public int HP => hp;
+    [SerializeField] private int _hp;
+    public int HP => _hp;
 
-    [SerializeField] private int attack;
-    public int Attack => attack;
+    [SerializeField] private int _attack;
+    public int Attack => _attack;
 
-    [SerializeField] private int defense;
-    public int Defense => defense;
+    [SerializeField] private int _defense;
+    public int Defense => _defense;
 
-    [SerializeField] private int spAttack;
-    public int SpAttack => spAttack;
+    [SerializeField] private int _spAttack;
+    public int SpAttack => _spAttack;
 
-    [SerializeField] private int spDefense;
-    public int SpDefense => spDefense;
+    [SerializeField] private int _spDefense;
+    public int SpDefense => _spDefense;
 
-    [SerializeField] private int speed;
-    public int Speed => speed;
+    [SerializeField] private int _speed;
+    public int Speed => _speed;
 
     // Moves
-    [SerializeField] private List<LearnableMove> learnableMoves;
-    public List<LearnableMove> LearnableMoves => learnableMoves;
+    [SerializeField] private List<LearnableMove> _learnableMoves;
+    public List<LearnableMove> LearnableMoves => _learnableMoves;
 }
 
 public enum PokymonType

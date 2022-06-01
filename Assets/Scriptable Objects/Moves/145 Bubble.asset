@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 145 Bubble
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 145
-  name: Bubble
-  description: 
-  type: 18
-  category: 1
-  pp: 30
-  power: 40
-  accuracy: 100
+  _id: 145
+  _name: Bubble
+  _description:
+  _type: 18
+  _category: 1
+  _pp: 30
+  _power: 40
+  _accuracy: 100

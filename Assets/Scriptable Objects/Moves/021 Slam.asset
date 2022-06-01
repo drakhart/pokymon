@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 021 Slam
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 21
-  name: Slam
-  description: The target is slammed with a long tail, vines, etc., to inflict damage.
-  type: 13
-  category: 0
-  pp: 20
-  power: 80
-  accuracy: 75
+  _id: 21
+  _name: Slam
+  _description: The target is slammed with a long tail, vines, etc., to inflict damage.
+  _type: 13
+  _category: 0
+  _pp: 20
+  _power: 80
+  _accuracy: 75

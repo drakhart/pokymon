@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 402 Seed Bomb
-  m_EditorClassIdentifier: 
-  id: 402
-  name: Seed Bomb
-  description: 
-  type: 9
-  category: 0
-  pp: 15
-  power: 80
-  accuracy: 100
+  m_EditorClassIdentifier:
+  _id: 402
+  _name: Seed Bomb
+  _description:
+  _type: 9
+  _category: 0
+  _pp: 15
+  _power: 80
+  _accuracy: 100

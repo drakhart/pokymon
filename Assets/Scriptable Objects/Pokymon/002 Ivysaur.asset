@@ -11,26 +11,26 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29b60aed116706e44b78a709b8b8fa88, type: 3}
   m_Name: 002 Ivysaur
-  m_EditorClassIdentifier: 
-  id: 2
-  name: Ivysaur
-  description: "Ivysaur is a quadrupedal amphibian Pok\xE9mon that has blue-green
+  m_EditorClassIdentifier:
+  _id: 2
+  _name: Ivysaur
+  _description: "Ivysaur is a quadrupedal amphibian Pok\xE9mon that has blue-green
     skin with darker patches. On top of its head are pointed ears with black insides
     and it has narrow red eyes. Ivysaur has a short, rounded snout with a wide mouth
     and two pointed teeth in its upper jaw. Each of its feet has three claws on them.
     The bulb on its back has bloomed into a large pink bud. A short brown trunk surrounded
     by leafy green fronds supports the bud."
-  primaryType: 9
-  secondaryType: 14
-  catchRate: 45
-  baseExp: 142
-  growthRate: 3
-  frontSprite: {fileID: 21300000, guid: 4c829bd77fcd1d444b1ccfaa4bef4322, type: 3}
-  backSprite: {fileID: 21300000, guid: 1b26fcd5b83eb84439a93183b0cf1567, type: 3}
-  hp: 60
-  attack: 62
-  defense: 63
-  spAttack: 80
-  spDefense: 80
-  speed: 60
-  learnableMoves: []
+  _primaryType: 9
+  _secondaryType: 14
+  _catchRate: 45
+  _baseExp: 142
+  _growthRate: 3
+  _frontSprite: {fileID: 21300000, guid: 4c829bd77fcd1d444b1ccfaa4bef4322, type: 3}
+  _backSprite: {fileID: 21300000, guid: 1b26fcd5b83eb84439a93183b0cf1567, type: 3}
+  _hp: 60
+  _attack: 62
+  _defense: 63
+  _spAttack: 80
+  _spDefense: 80
+  _speed: 60
+  _learnableMoves: []

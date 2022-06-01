@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e9f84ee3f76fa48b96942cd0732436, type: 3}
   m_Name: 101 Night Shade
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
-  id: 101
-  name: Night Shade
-  description: 
-  type: 8
-  category: 1
-  pp: 15
-  power: 0
-  accuracy: 100
+  _id: 101
+  _name: Night Shade
+  _description:
+  _type: 8
+  _category: 1
+  _pp: 15
+  _power: 0
+  _accuracy: 100
