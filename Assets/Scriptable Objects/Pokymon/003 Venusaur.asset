@@ -24,6 +24,8 @@ MonoBehaviour:
   primaryType: 9
   secondaryType: 14
   catchRate: 45
+  baseExp: 236
+  growthRate: 3
   frontSprite: {fileID: 21300000, guid: 777049b88e6be3049a48fcef9c7408ce, type: 3}
   backSprite: {fileID: 21300000, guid: 6e27ec0deceda1541a4ca362058db888, type: 3}
   hp: 80

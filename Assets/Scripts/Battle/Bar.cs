@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Bar : MonoBehaviour
 {
+    private Image _image;
+
     public Color BarColor
     {
         get
@@ -25,8 +27,6 @@ public class Bar : MonoBehaviour
             }
         }
     }
-
-    private Image _image;
 
     private void Awake() {
         _image = GetComponent<Image>();

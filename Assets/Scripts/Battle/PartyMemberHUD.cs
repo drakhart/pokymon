@@ -21,7 +21,7 @@ public class PartyMemberHUD : MonoBehaviour
     {
         _pokymon = pokymon;
 
-        pokymonName.text = _pokymon.Base.Name;
+        pokymonName.text = _pokymon.Name;
         pokymonLevel.text = $"Lvl {_pokymon.Level}";
         pokymonType.text = GetPokymonType();
         healthText.text = $"{_pokymon.HP}/{_pokymon.MaxHP}";

@@ -16,7 +16,7 @@ public class BattleUnitHUD : MonoBehaviour
     {
         _pokymon = pokymon;
 
-        pokymonName.text = pokymon.Base.Name;
+        pokymonName.text = pokymon.Name;
         pokymonLevel.text = $"Lvl {pokymon.Level}";
         UpdatePokymonData();
     }

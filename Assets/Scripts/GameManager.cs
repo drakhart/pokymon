@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlayerController playerController;
-    [SerializeField] private BattleManager battleManager;
-    [SerializeField] private Camera worldCamera;
+    [SerializeField] private BattleManager _battleManager;
+    [SerializeField] private Camera _worldCamera;
+    [SerializeField] private PlayerController _playerController;
 
     private GameState _gameState;
 
@@ -15,17 +15,17 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
-        playerController.OnPokymonEncountered += StartWildPokymonBattle;
-        battleManager.OnBattleFinish += FinishPokymonBattle;
+        _playerController.OnPokymonEncountered += StartWildPokymonBattle;
+        _battleManager.OnBattleFinish += FinishPokymonBattle;
     }
 
     private void Update() {
         if (_gameState == GameState.World)
         {
-            playerController.HandleUpdate();
+            _playerController.HandleUpdate();
         } else if (_gameState == GameState.Battle)
         {
-            battleManager.HandleUpdate();
+            _battleManager.HandleUpdate();
         }
     }
 
@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
     {
         _gameState = GameState.World;
 
-        battleManager.gameObject.SetActive(false);
-        worldCamera.gameObject.SetActive(true);
+        _battleManager.gameObject.SetActive(false);
+        _worldCamera.gameObject.SetActive(true);
 
         if (hasPlayerWon)
         {
@@ -50,13 +50,13 @@ public class GameManager : MonoBehaviour
     {
         _gameState = GameState.Battle;
 
-        var playerParty = playerController.GetComponent<PokymonParty>();
+        var playerParty = _playerController.GetComponent<PokymonParty>();
         var wildPokymon = FindObjectOfType<PokymonArea>().GetComponent<PokymonArea>().GetRandomWildPokymon();
-        var wildPokymonCopy = new Pokymon(wildPokymon.Base, wildPokymon.Level);
+        var wildPokymonCopy = new Pokymon(wildPokymon.Base, wildPokymon.Level, true);
 
-        worldCamera.gameObject.SetActive(false);
-        battleManager.gameObject.SetActive(true);
-        battleManager.HandleStart(BattleType.WildPokymon, playerParty, wildPokymonCopy);
+        _worldCamera.gameObject.SetActive(false);
+        _battleManager.gameObject.SetActive(true);
+        _battleManager.HandleStart(BattleType.WildPokymon, playerParty, wildPokymonCopy);
     }
 }
 

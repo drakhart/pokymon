@@ -5,38 +5,35 @@ using UnityEngine.UI;
 
 public class BattleDialogBox : MonoBehaviour
 {
-    [SerializeField] private Text dialogText;
+    [SerializeField] private GameObject _actionSelector;
+    [SerializeField] private List<Text> _actionTexts;
+    [SerializeField] private Text _dialogText;
+    [SerializeField] private GameObject _moveDetails;
+    [SerializeField] private GameObject _moveSelector;
+    [SerializeField] private List<Text> _moveTexts;
+    [SerializeField] private Text _ppText;
+    [SerializeField] private Text _typeText;
 
-    [SerializeField] private GameObject actionSelector;
-    [SerializeField] private GameObject moveSelector;
-    [SerializeField] private GameObject moveDetails;
+    [SerializeField] private float _dialogCharsPerSec = 30f;
+    [SerializeField] private float _dialogPauseSecs = 1f;
 
-    [SerializeField] private List<Text> actionTexts;
-    [SerializeField] private List<Text> moveTexts;
-    [SerializeField] private Text ppText;
-    [SerializeField] private Text typeText;
-
-    public float charactersPerSecond = 30f;
-
-    public float timeToWaitAfterDialog = 1f;
-
-    public Color selectedColor = Color.blue;
-    public Color defaultColor = Color.black;
-    public Color warningColor = Color.red;
+    [SerializeField] private Color _selectedColor = Color.blue;
+    [SerializeField] private Color _defaultColor = Color.black;
+    [SerializeField] private Color _warningColor = Color.red;
 
     public void SelectAction(int selectedAction)
     {
-        for (int i = 0; i < actionTexts.Count; i++)
+        for (int i = 0; i < _actionTexts.Count; i++)
         {
-            actionTexts[i].color = i == selectedAction ? selectedColor : defaultColor;
+            _actionTexts[i].color = i == selectedAction ? _selectedColor : _defaultColor;
         }
     }
 
     public void SelectMove(int selectedMove)
     {
-        for (int i = 0; i < moveTexts.Count; i++)
+        for (int i = 0; i < _moveTexts.Count; i++)
         {
-            moveTexts[i].color = i == selectedMove ? selectedColor : defaultColor;
+            _moveTexts[i].color = i == selectedMove ? _selectedColor : _defaultColor;
         }
     }
 
@@ -48,46 +45,46 @@ public class BattleDialogBox : MonoBehaviour
 
     public void SetMoveDetails(Move move)
     {
-        ppText.color = move.HasAvailablePP ? defaultColor : warningColor;
-        ppText.text = $"PP {move.PP}/{move.Base.PP}";
-        typeText.text = move.Base.Type.ToString();
+        _ppText.color = move.HasAvailablePP ? _defaultColor : _warningColor;
+        _ppText.text = $"PP {move.PP}/{move.Base.PP}";
+        _typeText.text = move.Base.Type.ToString();
     }
 
     public void SetMoveTexts(List<Move> moves)
     {
-        for (int i = 0; i < moveTexts.Count; i++)
+        for (int i = 0; i < _moveTexts.Count; i++)
         {
-            moveTexts[i].text = i < moves.Count ? moves[i].Base.Name : "---";
+            _moveTexts[i].text = i < moves.Count ? moves[i].Base.Name : "---";
         }
-    }
-
-    public void ToggleDialogText(bool active)
-    {
-        dialogText.enabled = active;
     }
 
     public void ToggleActionSelector(bool active)
     {
-        actionSelector.SetActive(active);
+        _actionSelector.SetActive(active);
+    }
+
+    public void ToggleDialogText(bool active)
+    {
+        _dialogText.enabled = active;
     }
 
     public void ToggleMoveSelector(bool active)
     {
-        moveSelector.SetActive(active);
-        moveDetails.SetActive(active);
+        _moveSelector.SetActive(active);
+        _moveDetails.SetActive(active);
     }
 
     private IEnumerator WriteText(string message)
     {
-        dialogText.text = "";
+        _dialogText.text = "";
 
         foreach (var character in message)
         {
-            dialogText.text += character;
+            _dialogText.text += character;
 
-            yield return new WaitForSecondsRealtime(1 / charactersPerSecond);
+            yield return new WaitForSecondsRealtime(1 / _dialogCharsPerSec);
         }
 
-        yield return new WaitForSecondsRealtime(timeToWaitAfterDialog);
+        yield return new WaitForSecondsRealtime(_dialogPauseSecs);
     }
 }

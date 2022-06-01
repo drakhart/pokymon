@@ -28,6 +28,13 @@ public class Pokymon
     [SerializeField] private int _level;
     public int Level => _level;
 
+    [SerializeField] private int _exp;
+    public int Exp
+    {
+        get => _exp;
+        set => _exp = value;
+    }
+
     private int _hp;
     public int HP
     {
@@ -35,10 +42,22 @@ public class Pokymon
         set => _hp = value;
     }
 
-    private List<Move> _moves;
-    public List<Move> Moves{
-        get => _moves;
-        set => _moves = value;
+    private List<Move> _moveList;
+    public List<Move> MoveList{
+        get => _moveList;
+        set => _moveList = value;
+    }
+
+    private bool _isWild;
+    public bool IsWild
+    {
+        get => _isWild;
+        set => _isWild = value;
+    }
+
+    public string Name
+    {
+        get => _isWild ? $"Wild {_base.Name}" : _base.Name;
     }
 
     public int MaxHP => Mathf.FloorToInt(2 * _base.HP * _level / 100) + _level + 10;
@@ -55,10 +74,11 @@ public class Pokymon
 
     public bool IsKnockedOut => HP <= 0;
 
-    public Pokymon(PokymonBase pBase, int pLevel)
+    public Pokymon(PokymonBase pBase, int pLevel, bool isWild)
     {
         _base = pBase;
         _level = pLevel;
+        _isWild = isWild;
 
         InitPokymon();
     }
@@ -66,17 +86,17 @@ public class Pokymon
     public void InitPokymon()
     {
         _hp = MaxHP;
-        _moves = new List<Move>();
+        _moveList = new List<Move>();
 
         foreach (LearnableMove learnableMove in _base.LearnableMoves)
         {
             if (learnableMove.Level <= _level)
             {
-                _moves.Add(new Move(learnableMove.Move));
+                _moveList.Add(new Move(learnableMove.Move));
             }
 
             // TODO: improve starting moves list
-            if (_moves.Count >= Constants.MAX_POKYMON_MOVE_COUNT) {
+            if (_moveList.Count >= Constants.MAX_POKYMON_MOVE_COUNT) {
                 break;
             }
         }
@@ -84,7 +104,7 @@ public class Pokymon
 
     public Move GetRandomAvailableMove()
     {
-        var movesWithAvailablePP = Moves.Where(m => m.HasAvailablePP).ToList();
+        var movesWithAvailablePP = MoveList.Where(m => m.HasAvailablePP).ToList();
 
         if (movesWithAvailablePP.Count > 0)
         {
@@ -115,8 +135,8 @@ public class Pokymon
 
         float criticalMultiplier = IsDamageCritical() ? 2f : 1f;
         float randomMultiplier = Random.Range(0.85f, 1f);
-        float primaryTypeEffectivenessMultiplier = TypeMatrix.GetTypeEffectivenessMultiplier(move.Base.Type, _base.PrimaryType);
-        float secondaryTypeEffectivenessMultiplier = TypeMatrix.GetTypeEffectivenessMultiplier(move.Base.Type, _base.SecondaryType);
+        float primaryTypeEffectivenessMultiplier = PokymonTypeMatrix.GetTypeEffectivenessMultiplier(move.Base.Type, _base.PrimaryType);
+        float secondaryTypeEffectivenessMultiplier = PokymonTypeMatrix.GetTypeEffectivenessMultiplier(move.Base.Type, _base.SecondaryType);
         float typeEffectivenessMultiplier = primaryTypeEffectivenessMultiplier * secondaryTypeEffectivenessMultiplier;
 
         int totalDamage = Mathf.FloorToInt(baseDamage * criticalMultiplier * randomMultiplier * typeEffectivenessMultiplier);
@@ -168,5 +188,12 @@ public class Pokymon
             ShakeCount = shakeCount,
             IsCaptured = shakeCount == Constants.MIN_CAPTURE_SHAKE_COUNT,
         };
+    }
+
+    public int GetKnockOutExp()
+    {
+        float multiplier = _isWild ? 1f : 1.5f;
+
+        return (int)(_base.BaseExp * _level * multiplier / 7);
     }
 }

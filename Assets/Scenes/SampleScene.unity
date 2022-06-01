@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 471407412}
   - component: {fileID: 471407415}
   m_Layer: 7
-  m_Name: Pokymon Area (Lvl 3-7) (Bulbasaur, Squirtle)
+  m_Name: Pokymon Area (Lvl 3-7) (Bulbasaur)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2326,15 +2326,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31189a14f6c033844a86457597b4743b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wildPokymonList:
+  _wildPokymonList:
   - _base: {fileID: 11400000, guid: 23a5e6c69c472ff41ad33c4f0937e64b, type: 2}
     _level: 3
+    _exp: 0
   - _base: {fileID: 11400000, guid: 23a5e6c69c472ff41ad33c4f0937e64b, type: 2}
     _level: 5
+    _exp: 0
   - _base: {fileID: 11400000, guid: 23a5e6c69c472ff41ad33c4f0937e64b, type: 2}
     _level: 7
-  - _base: {fileID: 11400000, guid: d86fc2f6b154ca049b506424057a147b, type: 2}
-    _level: 5
+    _exp: 0
 --- !u!1 &498077491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,7 +2393,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4569441222934119928, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
+  m_Sprite: {fileID: -4061435161571672117, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3119,9 +3120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2074d1cab20c75943b796bc98300566d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 1017574660}
-  battleManager: {fileID: 2059353625}
-  worldCamera: {fileID: 519420031}
+  _battleManager: {fileID: 2059353625}
+  _worldCamera: {fileID: 519420031}
+  _playerController: {fileID: 1017574660}
 --- !u!4 &837627176
 Transform:
   m_ObjectHideFlags: 0
@@ -3662,13 +3663,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7450f65d9d81b9a449d236e4082bcb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  solidObjectsLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  pokymonLayer:
+  PokymonLayer:
     serializedVersion: 2
     m_Bits: 128
+  SolidObjectsLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  Speed: 3
 --- !u!95 &1017574661
 Animator:
   serializedVersion: 3
@@ -3700,15 +3701,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f679628fc0344246828231dca033e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pokymonList:
+  _pokymonList:
   - _base: {fileID: 11400000, guid: 9119f75102a0f8e4cbe051a14e1d3043, type: 2}
     _level: 7
+    _exp: 0
   - _base: {fileID: 11400000, guid: 23a5e6c69c472ff41ad33c4f0937e64b, type: 2}
-    _level: 9
+    _level: 7
+    _exp: 0
   - _base: {fileID: 11400000, guid: d86fc2f6b154ca049b506424057a147b, type: 2}
-    _level: 6
+    _level: 7
+    _exp: 0
   - _base: {fileID: 11400000, guid: afbd1f28943050a4db3cdb437398f144, type: 2}
     _level: 7
+    _exp: 0
 --- !u!1 &1032696414
 GameObject:
   m_ObjectHideFlags: 0
@@ -97467,7 +97472,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4604302827392469194, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
+  m_Sprite: {fileID: -2273902033480672073, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -97514,7 +97519,7 @@ GameObject:
   - component: {fileID: 1735711384}
   - component: {fileID: 1735711383}
   m_Layer: 0
-  m_Name: Enemy Pokymon
+  m_Name: Enemy Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97552,11 +97557,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  isWild: 0
   hud: {fileID: 2077311988}
   Pokymon:
     _base: {fileID: 0}
     _level: 0
+    _exp: 0
 --- !u!114 &1735711384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97608,7 +97613,7 @@ GameObject:
   - component: {fileID: 1750624337}
   - component: {fileID: 1750624339}
   m_Layer: 0
-  m_Name: Player Pokymon
+  m_Name: Player Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97684,11 +97689,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
-  isWild: 0
   hud: {fileID: 1721360798}
   Pokymon:
     _base: {fileID: 0}
     _level: 0
+    _exp: 0
 --- !u!1 &1754980235
 GameObject:
   m_ObjectHideFlags: 0
@@ -98122,13 +98127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8174c2f3ee30a4588c8583d4736b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUnit: {fileID: 1750624339}
-  enemyUnit: {fileID: 1735711383}
-  dialogBox: {fileID: 2123265229}
-  partySelection: {fileID: 1329438160}
-  pokyball: {fileID: 1142114737241939724, guid: ef7ec8edb7036d441865835f7596427f, type: 3}
-  timeBetweenInputs: 0.25
-  State: 0
+  _dialogBox: {fileID: 2123265229}
+  _partySelection: {fileID: 1329438160}
+  _enemyUnit: {fileID: 1735711383}
+  _playerUnit: {fileID: 1750624339}
+  _pokyball: {fileID: 1142114737241939724, guid: ef7ec8edb7036d441865835f7596427f, type: 3}
+  _inputDelaySecs: 0.25
 --- !u!1 &2065290940
 GameObject:
   m_ObjectHideFlags: 0
@@ -98412,7 +98416,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2131439459367565703, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
+  m_Sprite: {fileID: 7710489646529735848, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -98680,27 +98684,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e11219bf30836488535e81436c97a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogText: {fileID: 124842938}
-  actionSelector: {fileID: 1766430350}
-  moveSelector: {fileID: 1142447165}
-  moveDetails: {fileID: 1919310042}
-  actionTexts:
+  _actionSelector: {fileID: 1766430350}
+  _actionTexts:
   - {fileID: 1982426465}
   - {fileID: 873263303}
   - {fileID: 616176817}
   - {fileID: 1754980237}
-  moveTexts:
+  _dialogText: {fileID: 124842938}
+  _moveDetails: {fileID: 1919310042}
+  _moveSelector: {fileID: 1142447165}
+  _moveTexts:
   - {fileID: 2065290942}
   - {fileID: 975969173}
   - {fileID: 383907508}
   - {fileID: 273868217}
-  ppText: {fileID: 1304714534}
-  typeText: {fileID: 1032696416}
-  charactersPerSecond: 30
-  timeToWaitAfterDialog: 1
-  selectedColor: {r: 0, g: 0, b: 1, a: 1}
-  defaultColor: {r: 0, g: 0, b: 0, a: 1}
-  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  _ppText: {fileID: 1304714534}
+  _typeText: {fileID: 1032696416}
+  _dialogCharsPerSec: 30
+  _dialogPauseSecs: 1
+  _selectedColor: {r: 0, g: 0, b: 1, a: 1}
+  _defaultColor: {r: 0, g: 0, b: 0, a: 1}
+  _warningColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &2460386866152244533
 PrefabInstance:
   m_ObjectHideFlags: 0

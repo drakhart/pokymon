@@ -10,12 +10,6 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] private bool isPlayer;
     public bool IsPlayer => isPlayer;
 
-    [SerializeField] private bool isWild;
-    public bool IsWild {
-        get => isWild;
-        set => isWild = value;
-    }
-
     [SerializeField] private BattleUnitHUD hud;
     public BattleUnitHUD HUD => hud;
 

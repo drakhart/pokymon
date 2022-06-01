@@ -22,7 +22,7 @@ public class Move
 
     public Move(MoveBase mBase)
     {
-        _base = mBase;
-        _pp = mBase.PP;
+        this._base = mBase;
+        this._pp = mBase.PP;
     }
 }

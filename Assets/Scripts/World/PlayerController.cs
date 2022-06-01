@@ -7,15 +7,13 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
-    private bool isMoving;
-
-    public float speed;
-
-    private Vector2 input;
-
     private Animator _animator;
+    private Vector2 _input;
+    private bool _isMoving;
 
-    public LayerMask solidObjectsLayer, pokymonLayer;
+    public LayerMask PokymonLayer;
+    public LayerMask SolidObjectsLayer;
+    public float Speed;
 
     public event Action OnPokymonEncountered;
 
@@ -24,24 +22,24 @@ public class PlayerController : MonoBehaviour
     }
 
     public void HandleUpdate() {
-        if (!isMoving)
+        if (!_isMoving)
         {
-            input.x = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
-            input.y = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
+            _input.x = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
+            _input.y = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
 
-            if (input.x != 0)
+            if (_input.x != 0)
             {
-                input.y = 0;
+                _input.y = 0;
             }
 
-            if (input != Vector2.zero)
+            if (_input != Vector2.zero)
             {
-                _animator.SetFloat("Move X", input.x);
-                _animator.SetFloat("Move Y", input.y);
+                _animator.SetFloat("Move X", _input.x);
+                _animator.SetFloat("Move Y", _input.y);
 
                 var target = transform.position;
-                target.x += input.x;
-                target.y += input.y;
+                target.x += _input.x;
+                target.y += _input.y;
 
                 if (IsTargetWalkable(target))
                 {
@@ -52,14 +50,14 @@ public class PlayerController : MonoBehaviour
     }
 
     private void LateUpdate() {
-        _animator.SetBool("Is Moving", isMoving);
+        _animator.SetBool("Is Moving", _isMoving);
     }
 
     private bool IsPokymonEncountered()
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.25f, pokymonLayer) != null)
+        if (Physics2D.OverlapCircle(transform.position, 0.25f, PokymonLayer) != null)
         {
-            if (Random.Range(0, 100) < 10)
+            if (Random.Range(0, 100) < Constants.POKEMON_ENCOUNTER_ODDS)
             {
                 return true;
             }
@@ -70,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsTargetWalkable(Vector3 target)
     {
-        if (Physics2D.OverlapCircle(target, 0.25f, solidObjectsLayer) != null)
+        if (Physics2D.OverlapCircle(target, 0.25f, SolidObjectsLayer) != null)
         {
             return false;
         }
@@ -80,17 +78,17 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MoveTowards(Vector3 destination)
     {
-        isMoving = true;
+        _isMoving = true;
 
         while (Vector3.Distance(transform.position, destination) > Mathf.Epsilon)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
 
             yield return null;
         }
 
         transform.position = destination;
-        isMoving = false;
+        _isMoving = false;
 
         if (IsPokymonEncountered())
         {

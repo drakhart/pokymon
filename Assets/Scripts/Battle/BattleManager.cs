@@ -27,38 +27,45 @@ public enum BattleState
 
 public class BattleManager : MonoBehaviour
 {
-    [SerializeField] private BattleUnit playerUnit;
-    [SerializeField] private BattleUnit enemyUnit;
-    [SerializeField] private BattleDialogBox dialogBox;
-    [SerializeField] private PartySelection partySelection;
-    [SerializeField] private GameObject pokyball;
-    [SerializeField] private float timeBetweenInputs = 0.25f;
+    [SerializeField] private BattleDialogBox _dialogBox;
+    [SerializeField] private PartySelection _partySelection;
 
-    public BattleState State;
+    [SerializeField] private BattleUnit _enemyUnit;
+    [SerializeField] private BattleUnit _playerUnit;
+    [SerializeField] private GameObject _pokyball;
 
-    private BattleType type;
-    private PokymonParty playerParty;
-    private Pokymon enemyPokymon;
-    private int currSelectedAction;
-    private int currSelectedMove;
-    private int currSelectedPokymon;
-    private float timeSinceLastInput;
-    private int escapeAttempts;
+    [SerializeField] private float _inputDelaySecs = 0.25f;
+
+    private BattleState _battleState;
+    private BattleType _battleType;
+    private PokymonParty _playerParty;
+    private int _currSelectedAction;
+    private int _currSelectedMove;
+    private int _currSelectedPokymon;
+    private float _timeSinceLastInput;
+    private int _escapeAttempts;
 
     public event Action<bool> OnBattleFinish;
 
     public void HandleStart(BattleType type, PokymonParty playerParty, Pokymon enemyPokymon) {
-        this.type = type;
-        this.playerParty = playerParty;
-        this.enemyPokymon = enemyPokymon;
+        this._battleType = type;
+        this._playerParty = playerParty;
 
-        escapeAttempts = 0;
+        _battleState = BattleState.StartBattle;
+
+        _escapeAttempts = 0;
+
+        _partySelection.SetupPartySelection();
+        SetupPlayerPokymon(_playerParty.FirstAvailablePokymon);
+
+        _enemyUnit.Pokymon = enemyPokymon;
+        _enemyUnit.SetupPokymon(_enemyUnit.Pokymon);
 
         StartCoroutine(SetupBattle());
     }
 
     public void HandleUpdate() {
-        switch (State)
+        switch (_battleState)
         {
             case BattleState.PlayerSelectAction:
                 HandlePlayerActionSelection();
@@ -79,33 +86,33 @@ public class BattleManager : MonoBehaviour
 
     private void HandlePlayerActionSelection()
     {
-        if (Time.time < timeSinceLastInput + timeBetweenInputs)
+        if (Time.time < _timeSinceLastInput + _inputDelaySecs)
         {
             return;
         }
 
         if (Input.anyKey || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
-            timeSinceLastInput = Time.time;
+            _timeSinceLastInput = Time.time;
         }
 
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             if (Input.GetAxis("Horizontal") != 0)
             {
-                currSelectedAction = (currSelectedAction + 1) % 2 + (currSelectedAction >= 2 ? 2 : 0);
+                _currSelectedAction = (_currSelectedAction + 1) % 2 + (_currSelectedAction >= 2 ? 2 : 0);
             }
             else
             {
-                currSelectedAction = (currSelectedAction + 2) % 4;
+                _currSelectedAction = (_currSelectedAction + 2) % 4;
             }
 
-            dialogBox.SelectAction(currSelectedAction);
+            _dialogBox.SelectAction(_currSelectedAction);
         }
 
         if (Input.GetButtonDown("Submit"))
         {
-            switch (currSelectedAction)
+            switch (_currSelectedAction)
             {
                 case 0: // Fight
                     PlayerSelectMove();
@@ -131,31 +138,31 @@ public class BattleManager : MonoBehaviour
 
     private void HandlePlayerMoveSelection()
     {
-        if (Time.time < timeSinceLastInput + timeBetweenInputs)
+        if (Time.time < _timeSinceLastInput + _inputDelaySecs)
         {
             return;
         }
 
         if (Input.anyKey || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
-            timeSinceLastInput = Time.time;
+            _timeSinceLastInput = Time.time;
         }
 
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             if (Input.GetAxis("Horizontal") != 0)
             {
-                currSelectedMove = (currSelectedMove + 1) % 2 + (currSelectedMove >= 2 ? 2 : 0);
+                _currSelectedMove = (_currSelectedMove + 1) % 2 + (_currSelectedMove >= 2 ? 2 : 0);
             }
             else
             {
-                currSelectedMove = (currSelectedMove + 2) % Constants.MAX_POKYMON_MOVE_COUNT;
+                _currSelectedMove = (_currSelectedMove + 2) % Constants.MAX_POKYMON_MOVE_COUNT;
             }
 
-            currSelectedMove = Mathf.Clamp(currSelectedMove, 0, playerUnit.Pokymon.Moves.Count - 1);
+            _currSelectedMove = Mathf.Clamp(_currSelectedMove, 0, _playerUnit.Pokymon.MoveList.Count - 1);
 
-            dialogBox.SelectMove(currSelectedMove);
-            dialogBox.SetMoveDetails(playerUnit.Pokymon.Moves[currSelectedMove]);
+            _dialogBox.SelectMove(_currSelectedMove);
+            _dialogBox.SetMoveDetails(_playerUnit.Pokymon.MoveList[_currSelectedMove]);
         }
 
         if (Input.GetButtonDown("Submit"))
@@ -171,46 +178,46 @@ public class BattleManager : MonoBehaviour
 
     private void HandlePartySelection()
     {
-        if (Time.time < timeSinceLastInput + timeBetweenInputs)
+        if (Time.time < _timeSinceLastInput + _inputDelaySecs)
         {
             return;
         }
 
         if (Input.anyKey || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
-            timeSinceLastInput = Time.time;
+            _timeSinceLastInput = Time.time;
         }
 
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             if (Input.GetAxis("Horizontal") != 0)
             {
-                currSelectedPokymon = (currSelectedPokymon + 1) % 2 + 2 * (int)(currSelectedPokymon / 2);
+                _currSelectedPokymon = (_currSelectedPokymon + 1) % 2 + 2 * (int)(_currSelectedPokymon / 2);
             }
             else
             {
-                currSelectedPokymon = (currSelectedPokymon + (Input.GetAxis("Vertical") < 0 ? 2 : playerParty.PokymonCount - 2 + playerParty.PokymonCount % 2))
-                    % (playerParty.PokymonCount % 2 == 0 ? playerParty.PokymonCount : playerParty.PokymonCount + 1);
+                _currSelectedPokymon = (_currSelectedPokymon + (Input.GetAxis("Vertical") < 0 ? 2 : _playerParty.PokymonCount - 2 + _playerParty.PokymonCount % 2))
+                    % (_playerParty.PokymonCount % 2 == 0 ? _playerParty.PokymonCount : _playerParty.PokymonCount + 1);
             }
 
-            currSelectedPokymon = Mathf.Clamp(currSelectedPokymon, 0, playerParty.PokymonCount - 1);
+            _currSelectedPokymon = Mathf.Clamp(_currSelectedPokymon, 0, _playerParty.PokymonCount - 1);
 
-            partySelection.SelectPokymon(currSelectedPokymon);
+            _partySelection.SelectPokymon(_currSelectedPokymon);
         }
 
         if (Input.GetButtonDown("Submit"))
         {
-            var nextPlayerPokymon = playerParty.PokymonList[currSelectedPokymon];
+            var nextPlayerPokymon = _playerParty.PokymonList[_currSelectedPokymon];
 
             if (nextPlayerPokymon.IsKnockedOut)
             {
-                partySelection.SetDialogText("You can't choose a knocked out Pokymon.");
+                _partySelection.SetDialogText("You can't choose a knocked out Pokymon.");
 
                 return;
             }
-            else if (nextPlayerPokymon == playerUnit.Pokymon)
+            else if (nextPlayerPokymon == _playerUnit.Pokymon)
             {
-                partySelection.SetDialogText("You can't choose the Pokymon currently in battle.");
+                _partySelection.SetDialogText("You can't choose the Pokymon currently in battle.");
 
                 return;
             }
@@ -226,25 +233,14 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator SetupBattle()
     {
-        State = BattleState.StartBattle;
-
-        partySelection.SetupPartySelection();
-
-        SetupPlayerPokymon(playerParty.FirstAvailablePokymon);
-
-        enemyUnit.Pokymon = enemyPokymon;
-        enemyUnit.SetupPokymon(enemyUnit.Pokymon);
-
-        if (type == BattleType.WildPokymon)
+        if (_battleType == BattleType.WildPokymon)
         {
-            enemyUnit.IsWild = true;
-
-            yield return dialogBox.SetDialogText($"{GetUnitName(enemyUnit)} appears!");
+            yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} appears!");
         }
 
-        if (playerUnit.Pokymon.Speed < enemyUnit.Pokymon.Speed)
+        if (_playerUnit.Pokymon.Speed < _enemyUnit.Pokymon.Speed)
         {
-            yield return dialogBox.SetDialogText($"{GetUnitName(enemyUnit)} is fast!");
+            yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} is fast!");
 
             EnemyMove();
         }
@@ -256,74 +252,62 @@ public class BattleManager : MonoBehaviour
 
     private void SetupPlayerPokymon(Pokymon playerPokymon)
     {
-        playerUnit.Pokymon = playerPokymon;
+        _playerUnit.Pokymon = playerPokymon;
 
-        playerUnit.SetupPokymon(playerUnit.Pokymon);
-        dialogBox.SetMoveTexts(playerUnit.Pokymon.Moves);
+        _playerUnit.SetupPokymon(_playerUnit.Pokymon);
+        _dialogBox.SetMoveTexts(_playerUnit.Pokymon.MoveList);
     }
 
     private void FinishBattle(bool hasPlayerWon)
     {
-        State = BattleState.FinishBattle;
+        _battleState = BattleState.FinishBattle;
 
         OnBattleFinish(hasPlayerWon);
     }
 
-    private string GetUnitName(BattleUnit unit)
-    {
-        var name = unit.Pokymon.Base.Name;
-
-        if (unit.IsWild)
-        {
-            return $"Wild {name}";
-        }
-
-        return name;
-    }
-
     private void PlayerSelectAction()
     {
-        State = BattleState.PlayerSelectAction;
-        currSelectedAction = 0;
+        _battleState = BattleState.PlayerSelectAction;
+        _currSelectedAction = 0;
 
-        partySelection.gameObject.SetActive(false);
-        dialogBox.ToggleMoveSelector(false);
-        dialogBox.SetDialogText($"What will {GetUnitName(playerUnit)} do?");
-        dialogBox.ToggleDialogText(true);
-        dialogBox.SelectAction(currSelectedAction);
-        dialogBox.ToggleActionSelector(true);
+        _partySelection.gameObject.SetActive(false);
+        _dialogBox.ToggleMoveSelector(false);
+        _dialogBox.SetDialogText($"What will {_playerUnit.Pokymon.Name} do?");
+        _dialogBox.ToggleDialogText(true);
+        _dialogBox.SelectAction(_currSelectedAction);
+        _dialogBox.ToggleActionSelector(true);
     }
 
     private void PlayerSelectMove()
     {
-        State = BattleState.PlayerSelectMove;
-        currSelectedMove = 0;
+        _battleState = BattleState.PlayerSelectMove;
+        _currSelectedMove = 0;
 
-        dialogBox.ToggleDialogText(false);
-        dialogBox.ToggleActionSelector(false);
-        dialogBox.SelectMove(currSelectedMove);
-        dialogBox.SetMoveDetails(playerUnit.Pokymon.Moves[currSelectedMove]);
-        dialogBox.ToggleMoveSelector(true);
+        _dialogBox.ToggleDialogText(false);
+        _dialogBox.ToggleActionSelector(false);
+        _dialogBox.SelectMove(_currSelectedMove);
+        _dialogBox.SetMoveDetails(_playerUnit.Pokymon.MoveList[_currSelectedMove]);
+        _dialogBox.ToggleMoveSelector(true);
     }
 
     private void PlayerSelectParty()
     {
-        State = BattleState.PlayerSelectParty;
-        currSelectedPokymon = 0;
+        _battleState = BattleState.PlayerSelectParty;
+        _currSelectedPokymon = 0;
 
-        partySelection.gameObject.SetActive(true);
-        partySelection.UpdatePartyData(playerParty.PokymonList);
-        partySelection.SelectPokymon(currSelectedPokymon);
+        _partySelection.gameObject.SetActive(true);
+        _partySelection.UpdatePartyData(_playerParty.PokymonList);
+        _partySelection.SelectPokymon(_currSelectedPokymon);
     }
 
     private void PlayerSelectInventory()
     {
         // TODO: implement actual inventory and items logic
-        State = BattleState.Busy;
+        _battleState = BattleState.Busy;
 
-        dialogBox.ToggleActionSelector(false);
+        _dialogBox.ToggleActionSelector(false);
 
-        if (enemyUnit.IsWild)
+        if (_battleType == BattleType.WildPokymon)
         {
             StartCoroutine(PerformPokyballThrow());
         }
@@ -335,11 +319,11 @@ public class BattleManager : MonoBehaviour
 
     private void PlayerRun()
     {
-        State = BattleState.Busy;
+        _battleState = BattleState.Busy;
 
-        dialogBox.ToggleActionSelector(false);
+        _dialogBox.ToggleActionSelector(false);
 
-        if (enemyUnit.IsWild)
+        if (_battleType == BattleType.WildPokymon)
         {
             StartCoroutine(PerformPlayerRun());
         }
@@ -351,35 +335,35 @@ public class BattleManager : MonoBehaviour
 
     private void EnemyMove()
     {
-        dialogBox.ToggleDialogText(true);
+        _dialogBox.ToggleDialogText(true);
 
-        var move = enemyUnit.Pokymon.GetRandomAvailableMove();
+        var move = _enemyUnit.Pokymon.GetRandomAvailableMove();
 
         StartCoroutine(PerformEnemyMove(move));
     }
 
     private void PlayerMove()
     {
-        var move = playerUnit.Pokymon.Moves[currSelectedMove];
+        var move = _playerUnit.Pokymon.MoveList[_currSelectedMove];
 
         if (!move.HasAvailablePP)
         {
             return;
         }
 
-        dialogBox.ToggleMoveSelector(false);
-        dialogBox.ToggleDialogText(true);
+        _dialogBox.ToggleMoveSelector(false);
+        _dialogBox.ToggleDialogText(true);
 
         StartCoroutine(PerformPlayerMove(move));
     }
 
     IEnumerator PerformEnemyMove(Move move)
     {
-        State = BattleState.PerformEnemyMove;
+        _battleState = BattleState.PerformEnemyMove;
 
-        yield return PerformMove(enemyUnit, playerUnit, move);
+        yield return PerformMove(_enemyUnit, _playerUnit, move);
 
-        if (State == BattleState.PerformEnemyMove)
+        if (_battleState == BattleState.PerformEnemyMove)
         {
             PlayerSelectAction();
         }
@@ -387,11 +371,11 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PerformPlayerMove(Move move)
     {
-        State = BattleState.PerformPlayerMove;
+        _battleState = BattleState.PerformPlayerMove;
 
-        yield return PerformMove(playerUnit, enemyUnit, move);
+        yield return PerformMove(_playerUnit, _enemyUnit, move);
 
-        if (State == BattleState.PerformPlayerMove)
+        if (_battleState == BattleState.PerformPlayerMove)
         {
             EnemyMove();
         }
@@ -401,7 +385,7 @@ public class BattleManager : MonoBehaviour
     {
         move.PP--;
 
-        yield return dialogBox.SetDialogText($"{GetUnitName(source)} used {move.Base.Name}.");
+        yield return _dialogBox.SetDialogText($"{source.Pokymon.Name} used {move.Base.Name}.");
 
         source.PlayPhysicalMoveAnimation();
         target.PlayReceiveDamageAnimation();
@@ -413,79 +397,95 @@ public class BattleManager : MonoBehaviour
 
         if (damageDescription.IsKnockedOut)
         {
-            yield return dialogBox.SetDialogText($"{GetUnitName(target)} got knocked out!");
-
-            target.PlayKnockedOutAnimation();
-
-            yield return new WaitForSecondsRealtime(2);
-
-            CheckForBattleFinish(target);
+            yield return PerformKnockOut(target);
         }
+    }
+
+    IEnumerator PerformKnockOut(BattleUnit battleUnit)
+    {
+        yield return _dialogBox.SetDialogText($"{battleUnit.Pokymon.Name} got knocked out!");
+
+        battleUnit.PlayKnockedOutAnimation();
+
+        yield return new WaitForSecondsRealtime(2);
+
+        if (!battleUnit.IsPlayer)
+        {
+            // +EXP
+            int exp = battleUnit.Pokymon.GetKnockOutExp();
+
+            // Check new level
+        }
+
+        CheckForBattleFinish(battleUnit);
     }
 
     IEnumerator PerformPokymonSwitch(Pokymon nextPlayerPokymon)
     {
-        State = BattleState.Busy;
+        _battleState = BattleState.Busy;
 
-        partySelection.gameObject.SetActive(false);
-        dialogBox.ToggleActionSelector(false);
-        dialogBox.ToggleDialogText(true);
+        _partySelection.gameObject.SetActive(false);
+        _dialogBox.ToggleActionSelector(false);
+        _dialogBox.ToggleDialogText(true);
 
-        if (!playerUnit.Pokymon.IsKnockedOut)
+        if (!_playerUnit.Pokymon.IsKnockedOut)
         {
-            playerUnit.PlaySwitchAnimation();
+            _playerUnit.PlaySwitchAnimation();
 
-            yield return dialogBox.SetDialogText($"Come back, {GetUnitName(playerUnit)}!");
+            yield return _dialogBox.SetDialogText($"Come back, {_playerUnit.Pokymon.Name}!");
         }
 
         SetupPlayerPokymon(nextPlayerPokymon);
 
-        yield return dialogBox.SetDialogText($"I choose you, {GetUnitName(playerUnit)}!");
+        yield return _dialogBox.SetDialogText($"I choose you, {_playerUnit.Pokymon.Name}!");
 
         EnemyMove();
     }
 
     IEnumerator PerformPokyballThrow()
     {
-        State = BattleState.Busy;
+        _battleState = BattleState.Busy;
 
-        yield return dialogBox.SetDialogText($"You threw a {pokyball.name}...");
+        yield return _dialogBox.SetDialogText($"You threw a {_pokyball.name}...");
 
-        var pokyballInstance = Instantiate(pokyball, playerUnit.transform.position - new Vector3(3, 0), Quaternion.identity);
-
+        var pokyballInstance = Instantiate(_pokyball, _playerUnit.transform.position - new Vector3(3, 1), Quaternion.identity);
         var pokyballSprite = pokyballInstance.GetComponent<SpriteRenderer>();
+        pokyballSprite.transform.localScale = new Vector3(2f, 2f, 2f);
+
+        var throwSeq = DOTween.Sequence();
+        throwSeq.Append(pokyballSprite.transform.DOLocalJump(_enemyUnit.transform.position + new Vector3(0, 1f), 2.25f, 1, 0.75f));
+        throwSeq.Join(pokyballSprite.transform.DORotate(new Vector3(1, 1, -1 * 360), 0.75f, RotateMode.FastBeyond360).SetEase(Ease.Linear));
+        throwSeq.Join(pokyballSprite.transform.DOScale(new Vector3(1f, 1f, 1f), 0.75f));
+        yield return throwSeq.Play().WaitForCompletion();
+
+        yield return _enemyUnit.PlayCaptureAnimation();
+
         yield return pokyballSprite.transform
-            .DOLocalJump(enemyUnit.transform.position + new Vector3(0, 1f), 2.25f, 1, 0.75f)
+            .DOLocalJump(_enemyUnit.transform.position - new Vector3(0, 2.15f), 0.5f, 2, 0.75f)
             .WaitForCompletion();
 
-        yield return enemyUnit.PlayCaptureAnimation();
-
-        yield return pokyballSprite.transform
-            .DOLocalJump(enemyUnit.transform.position - new Vector3(0, 2.15f), 0.5f, 2, 0.75f)
-            .WaitForCompletion();
-
-        var captureDescription = enemyUnit.Pokymon.ReceiveCaptureAttempt();
+        var captureDescription = _enemyUnit.Pokymon.ReceiveCaptureAttempt();
 
         for (var i = 0; i < Mathf.Max(captureDescription.ShakeCount, 1); i++)
         {
-            yield return new WaitForSecondsRealtime(0.5f);
+            yield return new WaitForSecondsRealtime(0.75f);
             yield return pokyballSprite.transform.DOPunchRotation(new Vector3(0, 0, 15), 0.6f).WaitForCompletion();
         }
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.75f);
 
         if (captureDescription.IsCaptured)
         {
-            yield return dialogBox.SetDialogText($"{GetUnitName(enemyUnit)} caught!");
+            yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} caught!");
             yield return pokyballSprite.DOFade(0, 1f).WaitForCompletion();
 
-            if (playerParty.AddPokymon(enemyUnit.Pokymon))
+            if (_playerParty.AddPokymon(_enemyUnit.Pokymon))
             {
-                yield return dialogBox.SetDialogText($"{GetUnitName(enemyUnit)} added to party.");
+                yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} added to party.");
             }
             else
             {
-                yield return dialogBox.SetDialogText($"{GetUnitName(enemyUnit)} sent to Bill's PC.");
+                yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} sent to Bill's PC.");
             }
 
             Destroy(pokyballInstance);
@@ -493,9 +493,13 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            yield return pokyballSprite.DOFade(0, 1f);
-            yield return enemyUnit.PlayEscapeAnimation();
-            yield return dialogBox.SetDialogText($"{GetUnitName(enemyUnit)} escaped!");
+            var destroySeq = DOTween.Sequence();
+            destroySeq.Append(pokyballSprite.DOFade(0, 1.5f));
+            destroySeq.Join(pokyballSprite.transform.DOLocalJump(_enemyUnit.transform.position + new Vector3(4f, -2.15f), 1.5f, 3, 1.5f));
+            yield return destroySeq.Play();
+
+            yield return _enemyUnit.PlayEscapeAnimation();
+            yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} escaped!");
 
             Destroy(pokyballInstance);
             EnemyMove();
@@ -504,16 +508,16 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PerformPlayerRun()
     {
-        escapeAttempts++;
+        _escapeAttempts++;
 
-        var playerSpeed = playerUnit.Pokymon.Speed;
-        var enemySpeed = enemyUnit.Pokymon.Speed;
+        var playerSpeed = _playerUnit.Pokymon.Speed;
+        var enemySpeed = _enemyUnit.Pokymon.Speed;
 
         if (playerSpeed >= enemySpeed)
         {
             yield return ShowPlayerRunSuccessMessage();
         } else {
-            var escapeOdds = (playerSpeed * 128 / enemySpeed + 30 * escapeAttempts) % 256;
+            var escapeOdds = (playerSpeed * 128 / enemySpeed + 30 * _escapeAttempts) % 256;
 
             if (escapeOdds >= 255)
             {
@@ -525,7 +529,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                yield return ShowLostTurnMessage("You didn't manage to escape!");
+                yield return ShowLostTurnMessage("You couldn't run away!");
             }
         }
     }
@@ -534,7 +538,7 @@ public class BattleManager : MonoBehaviour
     {
         if (knockedOutUnit.IsPlayer)
         {
-            if (playerParty.HasAnyPokymonAvailable)
+            if (_playerParty.HasAnyPokymonAvailable)
             {
                 PlayerSelectParty();
             }
@@ -551,29 +555,29 @@ public class BattleManager : MonoBehaviour
     {
         if (desc.Critical > 1f)
         {
-            yield return dialogBox.SetDialogText("Critical hit!");
+            yield return _dialogBox.SetDialogText("Critical hit!");
         }
 
         if (desc.Type > 1f)
         {
-            yield return dialogBox.SetDialogText("It's super effective!");
+            yield return _dialogBox.SetDialogText("It's super effective!");
         }
         else if (desc.Type < 1f)
         {
-            yield return dialogBox.SetDialogText("It's not very effective...");
+            yield return _dialogBox.SetDialogText("It's not very effective...");
         }
     }
 
     IEnumerator ShowLostTurnMessage(string message)
     {
-        yield return dialogBox.SetDialogText(message);
+        yield return _dialogBox.SetDialogText(message);
 
         EnemyMove();
     }
 
     IEnumerator ShowPlayerRunSuccessMessage()
     {
-        yield return dialogBox.SetDialogText("You managed to escape.");
+        yield return _dialogBox.SetDialogText("You managed to run away...");
         yield return new WaitForSeconds(2);
 
         FinishBattle(false);

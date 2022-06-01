@@ -5,20 +5,19 @@ using UnityEngine;
 
 public class PokymonParty : MonoBehaviour
 {
-    [SerializeField] List<Pokymon> pokymonList;
+    [SerializeField] List<Pokymon> _pokymonList;
+    public List<Pokymon> PokymonList => _pokymonList;
 
-    public List<Pokymon> PokymonList => pokymonList;
+    public Pokymon FirstAvailablePokymon => _pokymonList.Where(p => !p.IsKnockedOut).FirstOrDefault();
 
-    public Pokymon FirstAvailablePokymon => pokymonList.Where(p => !p.IsKnockedOut).FirstOrDefault();
-
-    public int AvailablePokymonCount => pokymonList.Count(p => !p.IsKnockedOut);
+    public int AvailablePokymonCount => _pokymonList.Count(p => !p.IsKnockedOut);
 
     public bool HasAnyPokymonAvailable => AvailablePokymonCount > 0;
 
-    public int PokymonCount => pokymonList.Count;
+    public int PokymonCount => _pokymonList.Count;
 
     private void Start() {
-        foreach (var pokymon in pokymonList)
+        foreach (var pokymon in _pokymonList)
         {
             pokymon.InitPokymon();
         }
@@ -28,6 +27,7 @@ public class PokymonParty : MonoBehaviour
     {
         if (PokymonCount < Constants.MAX_PARTY_POKYMON_COUNT)
         {
+            pokymon.IsWild = false;
             PokymonList.Add(pokymon);
 
             return true;

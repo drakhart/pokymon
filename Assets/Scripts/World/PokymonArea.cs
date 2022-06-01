@@ -5,17 +5,12 @@ using Random = UnityEngine.Random;
 
 public class PokymonArea : MonoBehaviour
 {
-    [SerializeField] List<Pokymon> wildPokymonList;
-
-    public List<Pokymon> WildPokymonList
-    {
-        get => wildPokymonList;
-        set => wildPokymonList = value;
-    }
+    [SerializeField] private List<Pokymon> _wildPokymonList;
+    public List<Pokymon> WildPokymonList => _wildPokymonList;
 
     public Pokymon GetRandomWildPokymon()
     {
-        var pokymon = wildPokymonList[Random.Range(0, wildPokymonList.Count)];
+        var pokymon = _wildPokymonList[Random.Range(0, _wildPokymonList.Count)];
         pokymon.InitPokymon();
 
         return pokymon;

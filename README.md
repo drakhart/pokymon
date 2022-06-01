@@ -32,6 +32,7 @@ Pokymon is a Pokémon-like RPG videogame developed while taking [this Unity cour
 - **Damage formula:** Unknown @ https://bulbapedia.bulbagarden.net/wiki/Damage
 - **Catch rate formula:** Unknown @ https://bulbapedia.bulbagarden.net/wiki/Catch_rate
 - **Run from battle formula:** Unknown @ https://bulbapedia.bulbagarden.net/wiki/Escape
+- **Experience formulas:** Unknown @ https://bulbapedia.bulbagarden.net/wiki/Experience
 - **Type effectiveness chart:** Unknown @ https://pokemondb.net/type
 
 ### Code
