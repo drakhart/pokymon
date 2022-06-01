@@ -410,10 +410,15 @@ public class BattleManager : MonoBehaviour
 
         if (!battleUnit.IsPlayer)
         {
-            // +EXP
-            int exp = battleUnit.Pokymon.GetKnockOutExp();
+            int earnedExp = battleUnit.Pokymon.GetKnockOutExp();
 
-            // Check new level
+            _playerUnit.Pokymon.Exp += earnedExp;
+
+            yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} earned {earnedExp} Exp");
+
+            yield return new WaitForSecondsRealtime(1);
+
+            // TODO: check level up
         }
 
         CheckForBattleFinish(battleUnit);

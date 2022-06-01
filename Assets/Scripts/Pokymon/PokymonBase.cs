@@ -60,6 +60,58 @@ public class PokymonBase : ScriptableObject
     // Moves
     [SerializeField] private List<LearnableMove> _learnableMoves;
     public List<LearnableMove> LearnableMoves => _learnableMoves;
+
+    public int GetLevelRequiredExp(int level)
+    {
+        switch (_growthRate)
+        {
+            case PokymonGrowthRate.Erratic:
+                if (level < 50)
+                {
+                    return (int)(Mathf.Pow(level, 3) * (100 - level) / 50);
+                }
+                else if (level < 68)
+                {
+                    return (int)(Mathf.Pow(level, 3) * (150 - level) / 100);
+                }
+                else if (level < 98)
+                {
+                    return (int)(Mathf.Pow(level, 3) * (int)((1911 - 10 * level) / 3) / 500);
+                }
+                else
+                {
+                    return (int)(Mathf.Pow(level, 3) * (160 - level) / 100);;
+                }
+
+            case PokymonGrowthRate.Fast:
+                return (int)(4 * Mathf.Pow(level, 3) / 5);
+
+            case PokymonGrowthRate.MediumFast:
+                return (int)Mathf.Pow(level, 3);
+
+            case PokymonGrowthRate.MediumSlow:
+                return (int)(6 * Mathf.Pow(level, 3) / 5 - 15 * Mathf.Pow(level, 2) + 100 * level - 140);
+
+            case PokymonGrowthRate.Slow:
+                return (int)(5 * Mathf.Pow(level, 3) / 4);
+
+            case PokymonGrowthRate.Fluctuating:
+                if (level < 15)
+                {
+                    return (int)(Mathf.Pow(level, 3) * ((int)((level + 1) / 3) + 24) / 50);
+                }
+                else if (level < 36)
+                {
+                    return (int)(Mathf.Pow(level, 3) * (level + 14) / 50);
+                }
+                else
+                {
+                    return (int)(Mathf.Pow(level, 3) * ((int)(level / 2) + 32) / 50);
+                }
+        }
+
+        return -1;
+    }
 }
 
 public enum PokymonType

@@ -86,6 +86,7 @@ public class Pokymon
     public void InitPokymon()
     {
         _hp = MaxHP;
+        _exp = Base.GetLevelRequiredExp(_level);
         _moveList = new List<Move>();
 
         foreach (LearnableMove learnableMove in _base.LearnableMoves)
