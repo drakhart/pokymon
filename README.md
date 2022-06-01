@@ -37,4 +37,5 @@ Pokymon is a Pokémon-like RPG videogame developed while taking [this Unity cour
 
 ### Code
 - **Main source:** Joanby AKA Juan Gabriel Gomila @ https://github.com/joanby/curso-unity-2021
+- **DOTween 2D animation engine:** Daniele Giardini AKA DEMIGIANT @ https://demigiant.com/plugins/dotween/index.php
 - **My personal touch:** Brian Baidal AKA Drakhart @ Right here
