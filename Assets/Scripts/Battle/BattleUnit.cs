@@ -25,10 +25,8 @@ public class BattleUnit : MonoBehaviour
         _originalPosition = _image.transform.localPosition;
     }
 
-    public void SetupPokymon(Pokymon pokymon)
+    public void SetupPokymon()
     {
-        Pokymon = pokymon;
-
         _image.sprite = IsPlayer ? Pokymon.Base.BackSprite : Pokymon.Base.FrontSprite;
         _image.color = _originalColor;
         _image.transform.localScale = new Vector3(1f, 1f, 1f);

@@ -58,7 +58,7 @@ public class BattleManager : MonoBehaviour
         SetupPlayerPokymon(_playerParty.FirstAvailablePokymon);
 
         _enemyUnit.Pokymon = enemyPokymon;
-        _enemyUnit.SetupPokymon(_enemyUnit.Pokymon);
+        _enemyUnit.SetupPokymon();
 
         StartCoroutine(SetupBattle());
     }
@@ -252,8 +252,8 @@ public class BattleManager : MonoBehaviour
     private void SetupPlayerPokymon(Pokymon playerPokymon)
     {
         _playerUnit.Pokymon = playerPokymon;
+        _playerUnit.SetupPokymon();
 
-        _playerUnit.SetupPokymon(_playerUnit.Pokymon);
         _dialogBox.SetMoveTexts(_playerUnit.Pokymon.MoveList);
     }
 
