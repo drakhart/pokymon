@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class BattleUnitHUD : MonoBehaviour
 {
-    public Text pokymonName;
-    public Text pokymonLevel;
-    public Text healthText;
-    public Bar healthBar;
+    [SerializeField] private Bar _hpBar;
+    [SerializeField] private Text _hpText;
+    [SerializeField] private Text _pokymonLevelText;
+    [SerializeField] private Text _pokymonNameText;
 
     private Pokymon _pokymon;
 
@@ -16,8 +16,8 @@ public class BattleUnitHUD : MonoBehaviour
     {
         _pokymon = pokymon;
 
-        pokymonName.text = pokymon.Name;
-        pokymonLevel.text = $"Lvl {pokymon.Level}";
+        _pokymonNameText.text = pokymon.Name;
+        _pokymonLevelText.text = $"Lvl {pokymon.Level}";
         UpdatePokymonData();
     }
 
@@ -28,7 +28,7 @@ public class BattleUnitHUD : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthBar.SetLength(_pokymon.HP / (float)_pokymon.MaxHP);
+        _hpBar.SetLength(_pokymon.HP / (float)_pokymon.MaxHP);
     }
 
     public void UpdatePokymonData(int damage = 0)
@@ -48,11 +48,11 @@ public class BattleUnitHUD : MonoBehaviour
             currentHealthNormalized -= updateQuantity * Time.deltaTime;
             int currentHealth = Mathf.Max((int)(currentHealthNormalized * _pokymon.MaxHP), _pokymon.HP);
 
-            healthText.text = $"{currentHealth}/{_pokymon.MaxHP}";
+            _hpText.text = $"{currentHealth}/{_pokymon.MaxHP}";
 
             yield return null;
         }
 
-        healthText.text = $"{_pokymon.HP}/{_pokymon.MaxHP}";
+        _hpText.text = $"{_pokymon.HP}/{_pokymon.MaxHP}";
     }
 }

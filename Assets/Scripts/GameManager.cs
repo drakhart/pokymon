@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private BattleManager _battleManager;
-    [SerializeField] private Camera _worldCamera;
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private Camera _worldCamera;
 
     private GameState _gameState;
 

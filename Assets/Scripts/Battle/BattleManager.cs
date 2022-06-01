@@ -48,11 +48,10 @@ public class BattleManager : MonoBehaviour
     public event Action<bool> OnBattleFinish;
 
     public void HandleStart(BattleType type, PokymonParty playerParty, Pokymon enemyPokymon) {
-        this._battleType = type;
-        this._playerParty = playerParty;
+        _battleType = type;
+        _playerParty = playerParty;
 
         _battleState = BattleState.StartBattle;
-
         _escapeAttempts = 0;
 
         _partySelection.SetupPartySelection();

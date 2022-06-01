@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 public class PokymonArea : MonoBehaviour
 {
     [SerializeField] private List<Pokymon> _wildPokymonList;
-    public List<Pokymon> WildPokymonList => _wildPokymonList;
 
     public Pokymon GetRandomWildPokymon()
     {

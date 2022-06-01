@@ -871,7 +871,7 @@ GameObject:
   - component: {fileID: 456290182}
   - component: {fileID: 456290181}
   m_Layer: 0
-  m_Name: Pokymon Level
+  m_Name: Pokymon Level Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2329,13 +2329,10 @@ MonoBehaviour:
   _wildPokymonList:
   - _base: {fileID: 11400000, guid: 23a5e6c69c472ff41ad33c4f0937e64b, type: 2}
     _level: 3
-    _exp: 0
   - _base: {fileID: 11400000, guid: 23a5e6c69c472ff41ad33c4f0937e64b, type: 2}
     _level: 5
-    _exp: 0
   - _base: {fileID: 11400000, guid: 23a5e6c69c472ff41ad33c4f0937e64b, type: 2}
     _level: 7
-    _exp: 0
 --- !u!1 &498077491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,7 +2503,7 @@ GameObject:
   - component: {fileID: 573462187}
   - component: {fileID: 573462186}
   m_Layer: 0
-  m_Name: HP Number
+  m_Name: HP Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2585,7 +2582,7 @@ GameObject:
   - component: {fileID: 582718164}
   - component: {fileID: 582718163}
   m_Layer: 0
-  m_Name: Pokymon Name
+  m_Name: Pokymon Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2891,7 +2888,7 @@ GameObject:
   - component: {fileID: 721775778}
   - component: {fileID: 721775777}
   m_Layer: 0
-  m_Name: HP Number
+  m_Name: HP Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3121,8 +3118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battleManager: {fileID: 2059353625}
-  _worldCamera: {fileID: 519420031}
   _playerController: {fileID: 1017574660}
+  _worldCamera: {fileID: 519420031}
 --- !u!4 &837627176
 Transform:
   m_ObjectHideFlags: 0
@@ -3663,13 +3660,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7450f65d9d81b9a449d236e4082bcb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PokymonLayer:
+  _pokymonAreaLayers:
     serializedVersion: 2
     m_Bits: 128
-  SolidObjectsLayer:
+  _solidObjectsLayers:
     serializedVersion: 2
     m_Bits: 64
-  Speed: 3
+  _speed: 3
 --- !u!95 &1017574661
 Animator:
   serializedVersion: 3
@@ -3704,16 +3701,12 @@ MonoBehaviour:
   _pokymonList:
   - _base: {fileID: 11400000, guid: 9119f75102a0f8e4cbe051a14e1d3043, type: 2}
     _level: 7
-    _exp: 0
   - _base: {fileID: 11400000, guid: 23a5e6c69c472ff41ad33c4f0937e64b, type: 2}
     _level: 7
-    _exp: 0
   - _base: {fileID: 11400000, guid: d86fc2f6b154ca049b506424057a147b, type: 2}
     _level: 7
-    _exp: 0
   - _base: {fileID: 11400000, guid: afbd1f28943050a4db3cdb437398f144, type: 2}
     _level: 7
-    _exp: 0
 --- !u!1 &1032696414
 GameObject:
   m_ObjectHideFlags: 0
@@ -95289,7 +95282,7 @@ GameObject:
   - component: {fileID: 1243260333}
   - component: {fileID: 1243260332}
   m_Layer: 0
-  m_Name: Pokymon Name
+  m_Name: Pokymon Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95466,7 +95459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2fe1602189c89478d765ffc18e632b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogText: {fileID: 10132464}
+  _dialogText: {fileID: 10132464}
 --- !u!224 &1329438161
 RectTransform:
   m_ObjectHideFlags: 0
@@ -96789,7 +96782,7 @@ GameObject:
   - component: {fileID: 1452450245}
   - component: {fileID: 1452450244}
   m_Layer: 0
-  m_Name: Pokymon Level
+  m_Name: Pokymon Level Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97502,10 +97495,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efd47ed371ce73489553de6121abba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pokymonName: {fileID: 1243260332}
-  pokymonLevel: {fileID: 456290181}
-  healthText: {fileID: 721775777}
-  healthBar: {fileID: 1342849972}
+  _hpBar: {fileID: 1342849972}
+  _hpText: {fileID: 721775777}
+  _pokymonLevelText: {fileID: 456290181}
+  _pokymonNameText: {fileID: 1243260332}
 --- !u!1 &1735711381
 GameObject:
   m_ObjectHideFlags: 0
@@ -97556,12 +97549,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c2b5d4f7cb467439f20dc7b50d4e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 0
-  hud: {fileID: 2077311988}
+  _hud: {fileID: 2077311988}
+  _isPlayer: 0
   Pokymon:
     _base: {fileID: 0}
     _level: 0
-    _exp: 0
 --- !u!114 &1735711384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97688,12 +97680,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c2b5d4f7cb467439f20dc7b50d4e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 1
-  hud: {fileID: 1721360798}
+  _hud: {fileID: 1721360798}
+  _isPlayer: 1
   Pokymon:
     _base: {fileID: 0}
     _level: 0
-    _exp: 0
 --- !u!1 &1754980235
 GameObject:
   m_ObjectHideFlags: 0
@@ -98392,10 +98383,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efd47ed371ce73489553de6121abba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pokymonName: {fileID: 582718163}
-  pokymonLevel: {fileID: 1452450244}
-  healthText: {fileID: 573462186}
-  healthBar: {fileID: 964903924}
+  _hpBar: {fileID: 964903924}
+  _hpText: {fileID: 573462186}
+  _pokymonLevelText: {fileID: 1452450244}
+  _pokymonNameText: {fileID: 582718163}
 --- !u!114 &2077311989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98702,8 +98693,8 @@ MonoBehaviour:
   _typeText: {fileID: 1032696416}
   _dialogCharsPerSec: 30
   _dialogPauseSecs: 1
-  _selectedColor: {r: 0, g: 0, b: 1, a: 1}
   _defaultColor: {r: 0, g: 0, b: 0, a: 1}
+  _selectedColor: {r: 0, g: 0, b: 1, a: 1}
   _warningColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &2460386866152244533
 PrefabInstance:

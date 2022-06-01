@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class PartyMemberHUD : MonoBehaviour
 {
-    public Text pokymonName;
-    public Text pokymonLevel;
-    public Text pokymonType;
-    public Text healthText;
-    public Bar healthBar;
-    public Image pokymonImage;
+    [SerializeField] private Bar _hpBar;
+    [SerializeField] private Text _hpText;
+    [SerializeField] private Text _pokymonLevelText;
+    [SerializeField] private Text _pokymonNameText;
+    [SerializeField] private Text _pokymonTypeText;
+    [SerializeField] private Image _pokymonImage;
 
-    [SerializeField] private Color selectedColor = Color.blue;
-    [SerializeField] private Color defaultColor = Color.black;
+    [SerializeField] private Color _defaultColor = Color.black;
+    [SerializeField] private Color _selectedColor = Color.blue;
 
     private Pokymon _pokymon;
 
@@ -21,12 +21,12 @@ public class PartyMemberHUD : MonoBehaviour
     {
         _pokymon = pokymon;
 
-        pokymonName.text = _pokymon.Name;
-        pokymonLevel.text = $"Lvl {_pokymon.Level}";
-        pokymonType.text = GetPokymonType();
-        healthText.text = $"{_pokymon.HP}/{_pokymon.MaxHP}";
-        healthBar.SetLength(_pokymon.HP / (float)_pokymon.MaxHP);
-        pokymonImage.sprite = _pokymon.Base.FrontSprite;
+        _pokymonNameText.text = _pokymon.Name;
+        _pokymonLevelText.text = $"Lvl {_pokymon.Level}";
+        _pokymonTypeText.text = GetPokymonType();
+        _hpText.text = $"{_pokymon.HP}/{_pokymon.MaxHP}";
+        _hpBar.SetLength(_pokymon.HP / (float)_pokymon.MaxHP);
+        _pokymonImage.sprite = _pokymon.Base.FrontSprite;
     }
 
     private string GetPokymonType()
@@ -41,6 +41,6 @@ public class PartyMemberHUD : MonoBehaviour
 
     public void SetSelectedPokymon(bool selected)
     {
-        pokymonName.color = selected ? selectedColor : defaultColor;
+        _pokymonNameText.color = selected ? _selectedColor : _defaultColor;
     }
 }

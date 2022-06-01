@@ -28,7 +28,7 @@ public class Pokymon
     [SerializeField] private int _level;
     public int Level => _level;
 
-    [SerializeField] private int _exp;
+    private int _exp;
     public int Exp
     {
         get => _exp;

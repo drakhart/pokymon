@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class PartySelection : MonoBehaviour
 {
-    [SerializeField] private Text dialogText;
+    [SerializeField] private Text _dialogText;
 
     private PartyMemberHUD[] _partyMemberHUDList;
-
     private List<Pokymon> _pokymonList;
 
     public void SetupPartySelection()
@@ -18,9 +17,8 @@ public class PartySelection : MonoBehaviour
 
     public void UpdatePartyData(List<Pokymon> pokymonList)
     {
-        this._pokymonList = pokymonList;
-
-        dialogText.text = "Choose a Pokymon.";
+        _pokymonList = pokymonList;
+        _dialogText.text = "Choose a Pokymon.";
 
         for (var i = 0; i < _partyMemberHUDList.Length; i++)
         {
@@ -46,6 +44,6 @@ public class PartySelection : MonoBehaviour
 
     public void SetDialogText(string message)
     {
-        dialogText.text = message;
+        _dialogText.text = message;
     }
 }

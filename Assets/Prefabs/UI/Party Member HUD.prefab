@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 8847881716241593793}
   - component: {fileID: 5022145629666801646}
   m_Layer: 0
-  m_Name: Pokymon Level
+  m_Name: Pokymon Level Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 5845936439615277320}
   - component: {fileID: 3906476043872182534}
   m_Layer: 0
-  m_Name: Pokymon Type
+  m_Name: Pokymon Type Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,14 +417,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f078426aae5a3b543a624c3d4b580020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pokymonName: {fileID: 6153389247816501192}
-  pokymonLevel: {fileID: 5022145629666801646}
-  pokymonType: {fileID: 3906476043872182534}
-  healthText: {fileID: 1577063736480457348}
-  healthBar: {fileID: 8745727888992383230}
-  pokymonImage: {fileID: 2637164533820356751}
-  selectedColor: {r: 0, g: 0, b: 1, a: 1}
-  defaultColor: {r: 0, g: 0, b: 0, a: 1}
+  _hpBar: {fileID: 8745727888992383230}
+  _hpText: {fileID: 1577063736480457348}
+  _pokymonLevelText: {fileID: 5022145629666801646}
+  _pokymonNameText: {fileID: 6153389247816501192}
+  _pokymonTypeText: {fileID: 3906476043872182534}
+  _pokymonImage: {fileID: 2637164533820356751}
+  _defaultColor: {r: 0, g: 0, b: 0, a: 1}
+  _selectedColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &5142711162868674874
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 8022534557290053648}
   - component: {fileID: 6153389247816501192}
   m_Layer: 0
-  m_Name: Pokymon Name
+  m_Name: Pokymon Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 7713369519414820486}
   - component: {fileID: 1577063736480457348}
   m_Layer: 0
-  m_Name: HP Number
+  m_Name: HP Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

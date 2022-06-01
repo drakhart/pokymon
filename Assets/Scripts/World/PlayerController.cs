@@ -7,13 +7,13 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private LayerMask _pokymonAreaLayers;
+    [SerializeField] private LayerMask _solidObjectsLayers;
+    [SerializeField] private float _speed;
+
     private Animator _animator;
     private Vector2 _input;
     private bool _isMoving;
-
-    public LayerMask PokymonLayer;
-    public LayerMask SolidObjectsLayer;
-    public float Speed;
 
     public event Action OnPokymonEncountered;
 
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsPokymonEncountered()
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.25f, PokymonLayer) != null)
+        if (Physics2D.OverlapCircle(transform.position, 0.25f, _pokymonAreaLayers) != null)
         {
             if (Random.Range(0, 100) < Constants.POKEMON_ENCOUNTER_ODDS)
             {
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsTargetWalkable(Vector3 target)
     {
-        if (Physics2D.OverlapCircle(target, 0.25f, SolidObjectsLayer) != null)
+        if (Physics2D.OverlapCircle(target, 0.25f, _solidObjectsLayers) != null)
         {
             return false;
         }
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
         while (Vector3.Distance(transform.position, destination) > Mathf.Epsilon)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, destination, _speed * Time.deltaTime);
 
             yield return null;
         }

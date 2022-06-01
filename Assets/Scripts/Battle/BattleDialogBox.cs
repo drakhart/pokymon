@@ -17,8 +17,8 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] private float _dialogCharsPerSec = 30f;
     [SerializeField] private float _dialogPauseSecs = 1f;
 
-    [SerializeField] private Color _selectedColor = Color.blue;
     [SerializeField] private Color _defaultColor = Color.black;
+    [SerializeField] private Color _selectedColor = Color.blue;
     [SerializeField] private Color _warningColor = Color.red;
 
     public void SelectAction(int selectedAction)
