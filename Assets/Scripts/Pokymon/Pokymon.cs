@@ -104,7 +104,7 @@ public class Pokymon
         {
             if (learnableMove.Level <= _level)
             {
-                _moveList.Add(new Move(learnableMove.Move));
+                _moveList.Add(new Move(learnableMove.Base));
             }
 
             // TODO: improve starting moves list
@@ -278,7 +278,7 @@ public class Pokymon
             return false;
         }
 
-        _moveList.Add(new Move(learnableMove.Move));
+        _moveList.Add(new Move(learnableMove.Base));
 
         return true;
     }

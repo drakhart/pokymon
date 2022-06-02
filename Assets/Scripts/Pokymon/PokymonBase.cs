@@ -163,9 +163,9 @@ public class PokymonTypeColor
 [Serializable]
 public class LearnableMove
 {
-    [SerializeField] private MoveBase move;
-    public MoveBase Move => move;
+    [SerializeField] private MoveBase _base;
+    public MoveBase Base => _base;
 
-    [SerializeField] private int level;
-    public int Level => level;
+    [SerializeField] private int _level;
+    public int Level => _level;
 }

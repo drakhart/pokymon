@@ -465,11 +465,11 @@ public class BattleManager : MonoBehaviour
                         _playerUnit.Pokymon.LearnMove(_learnableMove);
                         _dialogBox.SetMoveTexts(_playerUnit.Pokymon.MoveList);
 
-                        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} learned {_learnableMove.Move.Name}!");
+                        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} learned {_learnableMove.Base.Name}!");
                     }
                     else
                     {
-                        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} tried to learn {_learnableMove.Move.Name}, but it can't learn more than {Constants.MAX_POKYMON_MOVE_COUNT} moves!");
+                        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} tried to learn {_learnableMove.Base.Name}, but it can't learn more than {Constants.MAX_POKYMON_MOVE_COUNT} moves!");
 
                         PlayerSelectForgetMove();
 
@@ -605,16 +605,16 @@ public class BattleManager : MonoBehaviour
     {
         if (selectedMove == Constants.MAX_POKYMON_MOVE_COUNT)
         {
-            yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} didn't learn {_learnableMove.Move.Name}.");
+            yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} didn't learn {_learnableMove.Base.Name}.");
         }
         else
         {
             var oldMove = _playerUnit.Pokymon.MoveList[selectedMove];
 
             yield return _dialogBox.SetDialogText($"1, 2, and... ... ... Poof! {_playerUnit.Pokymon.Name} forgot {oldMove.Base.Name}.");
-            yield return _dialogBox.SetDialogText($"And... {_playerUnit.Pokymon.Name} learned {_learnableMove.Move.Name}.");
+            yield return _dialogBox.SetDialogText($"And... {_playerUnit.Pokymon.Name} learned {_learnableMove.Base.Name}.");
 
-            _playerUnit.Pokymon.MoveList[selectedMove] = new Move(_learnableMove.Move);
+            _playerUnit.Pokymon.MoveList[selectedMove] = new Move(_learnableMove.Base);
         }
 
         _learnableMove = null;

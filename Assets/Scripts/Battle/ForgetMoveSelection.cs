@@ -14,7 +14,7 @@ public class ForgetMoveSelection : MonoBehaviour
 
     private int _currSelectedMove;
 
-    public void SetMoveTexts(List<Move> moveList, LearnableMove newMove)
+    public void SetMoveTexts(List<Move> moveList, LearnableMove learnableMove)
     {
         _currSelectedMove = 0;
 
@@ -23,7 +23,7 @@ public class ForgetMoveSelection : MonoBehaviour
             _moveTextList[i].text = moveList[i].Base.Name;
         }
 
-        _moveTextList[_moveTextList.Length - 1].text = $"{newMove.Move.Name} (New)";
+        _moveTextList[_moveTextList.Length - 1].text = $"{learnableMove.Base.Name} (New)";
 
         UpdateSelectedMove();
     }
