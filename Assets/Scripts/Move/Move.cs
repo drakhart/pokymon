@@ -15,10 +15,8 @@ public class Move
     public int PP
     {
         get => _pp;
-        set => _pp = value;
+        set => _pp = Mathf.Clamp(value, 0, MaxPP);
     }
-
-    public bool HasAvailablePP => _pp > 0;
 
     public Move(MoveBase mBase)
     {
@@ -26,4 +24,8 @@ public class Move
 
         _pp = _base.PP;
     }
+
+    public int MaxPP => _base.PP;
+
+    public bool HasAvailablePP => _pp > 0;
 }

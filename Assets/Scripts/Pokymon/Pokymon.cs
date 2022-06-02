@@ -39,7 +39,7 @@ public class Pokymon
     public int HP
     {
         get => _hp;
-        set => _hp = value;
+        set => _hp = Mathf.Clamp(value, 0, MaxHP);
     }
 
     private List<Move> _moveList;
@@ -77,6 +77,10 @@ public class Pokymon
 
     public int KnockOutExp => (int)(_base.BaseExp * _level * (_isWild ? 1f : 1.5f) / 7);
 
+    public int MoveCount => _moveList.Count;
+
+    public bool HasFreeMoveSlot => MoveCount < Constants.MAX_POKYMON_MOVE_COUNT;
+
     public float NormalizedExp => Mathf.Clamp01((_exp - CurrentLevelExp) / (float)(NextLevelExp - CurrentLevelExp));
 
     public float NormalizedHP => _hp / (float)MaxHP;
@@ -104,7 +108,7 @@ public class Pokymon
             }
 
             // TODO: improve starting moves list
-            if (_moveList.Count >= Constants.MAX_POKYMON_MOVE_COUNT) {
+            if (!HasFreeMoveSlot) {
                 break;
             }
         }
@@ -250,7 +254,7 @@ public class Pokymon
         return false;
     }
 
-    public bool NeedsToLevelUp()
+    public bool LevelUp()
     {
         if (_exp > NextLevelExp)
         {
@@ -263,5 +267,19 @@ public class Pokymon
         }
 
         return false;
+    }
+
+    public LearnableMove LearnableMove => _base.LearnableMoves.Where(lm => lm.Level == _level).FirstOrDefault();
+
+    public bool LearnMove(LearnableMove learnableMove)
+    {
+        if (!HasFreeMoveSlot)
+        {
+            return false;
+        }
+
+        _moveList.Add(new Move(learnableMove.Move));
+
+        return true;
     }
 }

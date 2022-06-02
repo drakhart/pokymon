@@ -51,7 +51,7 @@ public class BattleDialogBox : MonoBehaviour
     public void SetMoveDetails(Move move)
     {
         _ppText.color = move.HasAvailablePP ? _defaultColor : _warningColor;
-        _ppText.text = $"PP {move.PP}/{move.Base.PP}";
+        _ppText.text = $"PP {move.PP}/{move.MaxPP}";
         _typeText.text = move.Base.Type.ToString();
     }
 

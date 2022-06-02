@@ -158,7 +158,7 @@ public class BattleManager : MonoBehaviour
                 _currSelectedMove = (_currSelectedMove + 2) % Constants.MAX_POKYMON_MOVE_COUNT;
             }
 
-            _currSelectedMove = Mathf.Clamp(_currSelectedMove, 0, _playerUnit.Pokymon.MoveList.Count - 1);
+            _currSelectedMove = Mathf.Clamp(_currSelectedMove, 0, _playerUnit.Pokymon.MoveCount - 1);
 
             _dialogBox.SelectMove(_currSelectedMove);
             _dialogBox.SetMoveDetails(_playerUnit.Pokymon.MoveList[_currSelectedMove]);
@@ -448,7 +448,7 @@ public class BattleManager : MonoBehaviour
 
             yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} earned {earnedExp} EXP.");
 
-            while (_playerUnit.Pokymon.NeedsToLevelUp())
+            while (_playerUnit.Pokymon.LevelUp())
             {
                 _playerUnit.HUD.UpdateExpBarAnimated(true);
                 _playerUnit.HUD.UpdateHPTextAnimated(prevHp);
@@ -456,6 +456,24 @@ public class BattleManager : MonoBehaviour
                 _playerUnit.HUD.UpdateLevelText();
 
                 yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} leveled up!");
+
+                // TODO: try to learn new move
+                var learnableMove = _playerUnit.Pokymon.LearnableMove;
+
+                if (learnableMove != null)
+                {
+                    if (_playerUnit.Pokymon.HasFreeMoveSlot)
+                    {
+                        _playerUnit.Pokymon.LearnMove(learnableMove);
+                        _dialogBox.SetMoveTexts(_playerUnit.Pokymon.MoveList);
+
+                        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} learned {learnableMove.Move.Name}!");
+                    }
+                    else
+                    {
+                        // TODO: forget move
+                    }
+                }
 
                 prevHp = _playerUnit.Pokymon.HP;
             }
