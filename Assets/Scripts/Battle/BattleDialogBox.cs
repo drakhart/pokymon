@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BattleDialogBox : MonoBehaviour
 {
@@ -14,12 +15,14 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] private Text _ppText;
     [SerializeField] private Text _typeText;
 
-    [SerializeField] private float _dialogCharsPerSec = 30f;
     [SerializeField] private float _dialogPauseSecs = 1f;
+    [SerializeField] private float _dialogSpeed = 30f;
 
     [SerializeField] private Color _defaultColor = Color.black;
     [SerializeField] private Color _selectedColor = Color.blue;
     [SerializeField] private Color _warningColor = Color.red;
+
+    private Tween _dialogTextTween;
 
     public void SelectAction(int selectedAction)
     {
@@ -39,8 +42,10 @@ public class BattleDialogBox : MonoBehaviour
 
     public Coroutine SetDialogText(string message)
     {
+        _dialogTextTween.Kill();
         StopAllCoroutines();
-        return StartCoroutine(WriteText(message));
+
+        return StartCoroutine(AnimateDialogText(message));
     }
 
     public void SetMoveDetails(Move move)
@@ -74,17 +79,14 @@ public class BattleDialogBox : MonoBehaviour
         _moveDetails.SetActive(active);
     }
 
-    private IEnumerator WriteText(string message)
+    private IEnumerator AnimateDialogText(string message)
     {
         _dialogText.text = "";
 
-        foreach (var character in message)
-        {
-            _dialogText.text += character;
+        _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)
+            .SetEase(Ease.Linear);
 
-            yield return new WaitForSecondsRealtime(1 / _dialogCharsPerSec);
-        }
-
+        yield return _dialogTextTween.WaitForCompletion();
         yield return new WaitForSecondsRealtime(_dialogPauseSecs);
     }
 }

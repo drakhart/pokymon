@@ -391,7 +391,9 @@ public class BattleManager : MonoBehaviour
 
         var damageDescription = target.Pokymon.ReceiveDamage(source.Pokymon, move);
 
-        target.HUD.UpdatePokymonData(damageDescription.Damage);
+        target.HUD.UpdateHPTextAnimated(damageDescription.Damage);
+        yield return target.HUD.UpdateHPBarAnimated();
+
         yield return ShowDamageDescription(damageDescription);
 
         if (damageDescription.IsKnockedOut)
@@ -406,7 +408,7 @@ public class BattleManager : MonoBehaviour
 
         battleUnit.PlayKnockedOutAnimation();
 
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(2f);
 
         if (!battleUnit.IsPlayer)
         {
@@ -414,9 +416,11 @@ public class BattleManager : MonoBehaviour
 
             _playerUnit.Pokymon.Exp += earnedExp;
 
-            yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} earned {earnedExp} Exp");
+            _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} earned {earnedExp} Exp");
 
-            yield return new WaitForSecondsRealtime(1);
+            yield return _playerUnit.HUD.UpdateExpBarAnimated();
+
+            yield return new WaitForSecondsRealtime(1f);
 
             // TODO: check level up
         }
@@ -441,7 +445,10 @@ public class BattleManager : MonoBehaviour
 
         SetupPlayerPokymon(nextPlayerPokymon);
 
-        yield return _dialogBox.SetDialogText($"I choose you, {_playerUnit.Pokymon.Name}!");
+        yield return _dialogBox.SetDialogText(_playerParty.AvailablePokymonCount == 1
+            ? $"You're my only hope, {_playerUnit.Pokymon.Name}!"
+            : $"I choose you, {_playerUnit.Pokymon.Name}!"
+        );
 
         EnemyMove();
     }
@@ -544,7 +551,14 @@ public class BattleManager : MonoBehaviour
         {
             if (_playerParty.HasAnyPokymonAvailable)
             {
-                PlayerSelectParty();
+                if (_playerParty.AvailablePokymonCount == 1)
+                {
+                    StartCoroutine(PerformPokymonSwitch(_playerParty.FirstAvailablePokymon));
+                }
+                else
+                {
+                    PlayerSelectParty();
+                }
             }
             else
             {
@@ -582,7 +596,7 @@ public class BattleManager : MonoBehaviour
     IEnumerator ShowPlayerRunSuccessMessage()
     {
         yield return _dialogBox.SetDialogText("You managed to run away...");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSecondsRealtime(1f);
 
         FinishBattle(false);
     }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PartyMemberHUD : MonoBehaviour
 {
+    [SerializeField] private Bar _expBar;
     [SerializeField] private Bar _hpBar;
     [SerializeField] private Text _hpText;
     [SerializeField] private Text _pokymonLevelText;
@@ -24,8 +25,9 @@ public class PartyMemberHUD : MonoBehaviour
         _pokymonNameText.text = _pokymon.Name;
         _pokymonLevelText.text = $"Lvl {_pokymon.Level}";
         _pokymonTypeText.text = GetPokymonType();
+        _expBar.SetScale(GetNormalizedExp());
+        _hpBar.SetScale(_pokymon.HP / (float)_pokymon.MaxHP);
         _hpText.text = $"{_pokymon.HP}/{_pokymon.MaxHP}";
-        _hpBar.SetLength(_pokymon.HP / (float)_pokymon.MaxHP);
         _pokymonImage.sprite = _pokymon.Base.FrontSprite;
     }
 
@@ -42,5 +44,14 @@ public class PartyMemberHUD : MonoBehaviour
     public void SetSelectedPokymon(bool selected)
     {
         _pokymonNameText.color = selected ? _selectedColor : _defaultColor;
+    }
+
+    private float GetNormalizedExp()
+    {
+        int currentLevelExp = _pokymon.Base.GetLevelRequiredExp(_pokymon.Level);
+        int nextLevelExp = _pokymon.Base.GetLevelRequiredExp(_pokymon.Level + 1);
+        float normalizedExp = (_pokymon.Exp - currentLevelExp) / (float)(nextLevelExp - currentLevelExp);
+
+        return Mathf.Clamp01(normalizedExp);
     }
 }

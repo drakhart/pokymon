@@ -48,11 +48,20 @@ public class GameManager : MonoBehaviour
 
     private void StartWildPokymonBattle()
     {
-        _gameState = GameState.Battle;
-
         var playerParty = _playerController.GetComponent<PokymonParty>();
+
+        if (!playerParty.HasAnyPokymonAvailable)
+        {
+            // TODO: implement no available pokymon behavior
+            print("There are no pokymon left to fight the enemy!");
+
+            return;
+        }
+
         var wildPokymon = FindObjectOfType<PokymonArea>().GetComponent<PokymonArea>().GetRandomWildPokymon();
         var wildPokymonCopy = new Pokymon(wildPokymon.Base, wildPokymon.Level, true);
+
+        _gameState = GameState.Battle;
 
         _worldCamera.gameObject.SetActive(false);
         _battleManager.gameObject.SetActive(true);

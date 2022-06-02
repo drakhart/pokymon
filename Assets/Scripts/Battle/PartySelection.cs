@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PartySelection : MonoBehaviour
 {
+    [SerializeField] private float _dialogSpeed = 45f;
     [SerializeField] private Text _dialogText;
 
+    private Tween _dialogTextTween;
     private PartyMemberHUD[] _partyMemberHUDList;
     private List<Pokymon> _pokymonList;
 
@@ -18,7 +21,8 @@ public class PartySelection : MonoBehaviour
     public void UpdatePartyData(List<Pokymon> pokymonList)
     {
         _pokymonList = pokymonList;
-        _dialogText.text = "Choose a Pokymon.";
+
+        SetDialogText("Choose a Pokymon.");
 
         for (var i = 0; i < _partyMemberHUDList.Length; i++)
         {
@@ -44,6 +48,11 @@ public class PartySelection : MonoBehaviour
 
     public void SetDialogText(string message)
     {
-        _dialogText.text = message;
+        _dialogTextTween.Kill();
+
+        _dialogText.text = "";
+
+        _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)
+            .SetEase(Ease.Linear);
     }
 }
