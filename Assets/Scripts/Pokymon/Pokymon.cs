@@ -61,17 +61,17 @@ public class Pokymon
 
     public int NextLevelExp => CalculateLevelExperience(_level + 1);
 
-    public int MaxHP => Mathf.FloorToInt(2 * _base.HP * _level / 100) + _level + 10;
+    public int MaxHP => (int)(2 * _base.HP * _level / 100) + _level + 10;
 
-    public int Attack => Mathf.FloorToInt(2 * _base.Attack * _level / 100) + _level + 5;
+    public int Attack => (int)(2 * _base.Attack * _level / 100) + _level + 5;
 
-    public int Defense => Mathf.FloorToInt(2 * _base.Defense * _level / 100) + _level + 5;
+    public int Defense => (int)(2 * _base.Defense * _level / 100) + _level + 5;
 
-    public int SpAttack => Mathf.FloorToInt(2 * _base.SpAttack * _level / 100) + _level + 5;
+    public int SpAttack => (int)(2 * _base.SpAttack * _level / 100) + _level + 5;
 
-    public int SpDefense => Mathf.FloorToInt(2 * _base.SpDefense * _level / 100) + _level + 5;
+    public int SpDefense => (int)(2 * _base.SpDefense * _level / 100) + _level + 5;
 
-    public int Speed => Mathf.FloorToInt(2 * _base.Speed * _level / 100) + _level + 5;
+    public int Speed => (int)(2 * _base.Speed * _level / 100) + _level + 5;
 
     public bool IsKnockedOut => HP <= 0;
 
@@ -163,7 +163,7 @@ public class Pokymon
         float secondaryTypeEffectivenessMultiplier = PokymonTypeMatrix.GetTypeEffectivenessMultiplier(move.Base.Type, _base.SecondaryType);
         float typeEffectivenessMultiplier = primaryTypeEffectivenessMultiplier * secondaryTypeEffectivenessMultiplier;
 
-        int totalDamage = Mathf.FloorToInt(baseDamage * criticalMultiplier * randomMultiplier * typeEffectivenessMultiplier);
+        int totalDamage = (int)(baseDamage * criticalMultiplier * randomMultiplier * typeEffectivenessMultiplier);
         totalDamage = Mathf.Min(totalDamage, HP);
 
         HP -= totalDamage;

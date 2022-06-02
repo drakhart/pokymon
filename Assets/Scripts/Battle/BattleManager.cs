@@ -20,6 +20,7 @@ public enum BattleState
     PlayerSelectMove,
     PlayerSelectParty,
     PlayerSelectInventory,
+    PlayerSelectForgetMove,
     PerformEnemyMove,
     PerformPlayerMove,
     Busy,
@@ -29,12 +30,11 @@ public class BattleManager : MonoBehaviour
 {
     [SerializeField] private BattleDialogBox _dialogBox;
     [SerializeField] private PartySelection _partySelection;
+    [SerializeField] private ForgetMoveSelection _forgetMoveSelection;
 
     [SerializeField] private BattleUnit _enemyUnit;
     [SerializeField] private BattleUnit _playerUnit;
     [SerializeField] private GameObject _pokyball;
-
-    [SerializeField] private float _inputDelaySecs = 0.25f;
 
     private BattleState _battleState;
     private BattleType _battleType;
@@ -42,7 +42,8 @@ public class BattleManager : MonoBehaviour
     private int _currSelectedAction;
     private int _currSelectedMove;
     private int _currSelectedPokymon;
-    private float _timeSinceLastInput;
+    private float _lastInputTime;
+    private LearnableMove _learnableMove;
     private int _escapeAttempts;
 
     public event Action<bool> OnBattleFinish;
@@ -64,6 +65,16 @@ public class BattleManager : MonoBehaviour
     }
 
     public void HandleUpdate() {
+        if (Time.time < _lastInputTime + Constants.INPUT_DELAY_SECS)
+        {
+            return;
+        }
+
+        if (Input.anyKey || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            _lastInputTime = Time.time;
+        }
+
         switch (_battleState)
         {
             case BattleState.PlayerSelectAction:
@@ -78,6 +89,14 @@ public class BattleManager : MonoBehaviour
                 HandlePartySelection();
                 break;
 
+            case BattleState.PlayerSelectForgetMove:
+                _forgetMoveSelection.HandlePlayerSelectForgetMove((selectedMove) => {
+                    _forgetMoveSelection.gameObject.SetActive(false);
+
+                    StartCoroutine(PerformForgetMove(selectedMove));
+                });
+                break;
+
             default:
                 break;
         }
@@ -85,16 +104,6 @@ public class BattleManager : MonoBehaviour
 
     private void HandlePlayerActionSelection()
     {
-        if (Time.time < _timeSinceLastInput + _inputDelaySecs)
-        {
-            return;
-        }
-
-        if (Input.anyKey || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-        {
-            _timeSinceLastInput = Time.time;
-        }
-
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             if (Input.GetAxis("Horizontal") != 0)
@@ -137,16 +146,6 @@ public class BattleManager : MonoBehaviour
 
     private void HandlePlayerMoveSelection()
     {
-        if (Time.time < _timeSinceLastInput + _inputDelaySecs)
-        {
-            return;
-        }
-
-        if (Input.anyKey || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-        {
-            _timeSinceLastInput = Time.time;
-        }
-
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             if (Input.GetAxis("Horizontal") != 0)
@@ -177,16 +176,6 @@ public class BattleManager : MonoBehaviour
 
     private void HandlePartySelection()
     {
-        if (Time.time < _timeSinceLastInput + _inputDelaySecs)
-        {
-            return;
-        }
-
-        if (Input.anyKey || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-        {
-            _timeSinceLastInput = Time.time;
-        }
-
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             if (Input.GetAxis("Horizontal") != 0)
@@ -340,6 +329,16 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    private void PlayerSelectForgetMove()
+    {
+        _battleState = BattleState.PlayerSelectForgetMove;
+
+        _dialogBox.SetDialogText($"What move should {_playerUnit.Pokymon.Name} forget?");
+
+        _forgetMoveSelection.gameObject.SetActive(true);
+        _forgetMoveSelection.SetMoveTexts(_playerUnit.Pokymon.MoveList, _learnableMove);
+    }
+
     private void PlayerRun()
     {
         _battleState = BattleState.Busy;
@@ -352,7 +351,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ShowLostTurnMessage("You can't run from a duel!"));
+            StartCoroutine(ShowLostTurnMessage("You can't run away from a duel!"));
         }
     }
 
@@ -457,21 +456,24 @@ public class BattleManager : MonoBehaviour
 
                 yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} leveled up!");
 
-                // TODO: try to learn new move
-                var learnableMove = _playerUnit.Pokymon.LearnableMove;
+                _learnableMove = _playerUnit.Pokymon.LearnableMove;
 
-                if (learnableMove != null)
+                if (_learnableMove != null)
                 {
                     if (_playerUnit.Pokymon.HasFreeMoveSlot)
                     {
-                        _playerUnit.Pokymon.LearnMove(learnableMove);
+                        _playerUnit.Pokymon.LearnMove(_learnableMove);
                         _dialogBox.SetMoveTexts(_playerUnit.Pokymon.MoveList);
 
-                        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} learned {learnableMove.Move.Name}!");
+                        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} learned {_learnableMove.Move.Name}!");
                     }
                     else
                     {
-                        // TODO: forget move
+                        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} tried to learn {_learnableMove.Move.Name}, but it can't learn more than {Constants.MAX_POKYMON_MOVE_COUNT} moves!");
+
+                        PlayerSelectForgetMove();
+
+                        yield return new WaitUntil(() => _battleState != BattleState.PlayerSelectForgetMove);
                     }
                 }
 
@@ -597,6 +599,26 @@ public class BattleManager : MonoBehaviour
                 yield return ShowLostTurnMessage("You couldn't run away!");
             }
         }
+    }
+
+    IEnumerator PerformForgetMove(int selectedMove)
+    {
+        if (selectedMove == Constants.MAX_POKYMON_MOVE_COUNT)
+        {
+            yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} didn't learn {_learnableMove.Move.Name}.");
+        }
+        else
+        {
+            var oldMove = _playerUnit.Pokymon.MoveList[selectedMove];
+
+            yield return _dialogBox.SetDialogText($"1, 2, and... ... ... Poof! {_playerUnit.Pokymon.Name} forgot {oldMove.Base.Name}.");
+            yield return _dialogBox.SetDialogText($"And... {_playerUnit.Pokymon.Name} learned {_learnableMove.Move.Name}.");
+
+            _playerUnit.Pokymon.MoveList[selectedMove] = new Move(_learnableMove.Move);
+        }
+
+        _learnableMove = null;
+        _battleState = BattleState.PerformPlayerMove;
     }
 
     IEnumerator ShowDamageDescription(DamageDescription desc)
