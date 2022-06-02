@@ -257,6 +257,30 @@ public class BattleManager : MonoBehaviour
         _dialogBox.SetMoveTexts(_playerUnit.Pokymon.MoveList);
     }
 
+    void CheckForBattleFinish(BattleUnit knockedOutUnit)
+    {
+        if (knockedOutUnit.IsPlayer)
+        {
+            if (_playerParty.HasAnyPokymonAvailable)
+            {
+                if (_playerParty.AvailablePokymonCount == 1)
+                {
+                    StartCoroutine(PerformPokymonSwitch(_playerParty.FirstAvailablePokymon));
+                }
+                else
+                {
+                    PlayerSelectParty();
+                }
+            }
+            else
+            {
+                FinishBattle(false);
+            }
+        } else {
+            FinishBattle(true);
+        }
+    }
+
     private void FinishBattle(bool hasPlayerWon)
     {
         _battleState = BattleState.FinishBattle;
@@ -389,7 +413,7 @@ public class BattleManager : MonoBehaviour
         source.PlayPhysicalMoveAnimation();
         target.PlayReceiveDamageAnimation();
 
-        var damageDescription = target.Pokymon.ReceiveDamage(source.Pokymon, move);
+        var damageDescription = target.Pokymon.CalculateDamage(source.Pokymon, move);
 
         target.HUD.UpdateHPTextAnimated(damageDescription.Damage);
         yield return target.HUD.UpdateHPBarAnimated();
@@ -412,7 +436,7 @@ public class BattleManager : MonoBehaviour
 
         if (!battleUnit.IsPlayer)
         {
-            int earnedExp = battleUnit.Pokymon.GetKnockOutExp();
+            int earnedExp = battleUnit.Pokymon.KnockOutExp;
 
             _playerUnit.Pokymon.Exp += earnedExp;
 
@@ -475,7 +499,7 @@ public class BattleManager : MonoBehaviour
             .DOLocalJump(_enemyUnit.transform.position - new Vector3(0, 2.15f), 0.5f, 2, 0.75f)
             .WaitForCompletion();
 
-        var captureDescription = _enemyUnit.Pokymon.ReceiveCaptureAttempt();
+        var captureDescription = _enemyUnit.Pokymon.CalculateCapture();
 
         for (var i = 0; i < Mathf.Max(captureDescription.ShakeCount, 1); i++)
         {
@@ -542,30 +566,6 @@ public class BattleManager : MonoBehaviour
             {
                 yield return ShowLostTurnMessage("You couldn't run away!");
             }
-        }
-    }
-
-    void CheckForBattleFinish(BattleUnit knockedOutUnit)
-    {
-        if (knockedOutUnit.IsPlayer)
-        {
-            if (_playerParty.HasAnyPokymonAvailable)
-            {
-                if (_playerParty.AvailablePokymonCount == 1)
-                {
-                    StartCoroutine(PerformPokymonSwitch(_playerParty.FirstAvailablePokymon));
-                }
-                else
-                {
-                    PlayerSelectParty();
-                }
-            }
-            else
-            {
-                FinishBattle(false);
-            }
-        } else {
-            FinishBattle(true);
         }
     }
 

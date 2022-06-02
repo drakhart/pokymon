@@ -29,7 +29,7 @@ public class BattleUnitHUD : MonoBehaviour
     {
         if (_expBar != null)
         {
-            _expBar.SetScale(GetNormalizedExp());
+            _expBar.SetScale(_pokymon.NormalizedExp);
         }
     }
 
@@ -37,7 +37,7 @@ public class BattleUnitHUD : MonoBehaviour
     {
         if (_expBar != null)
         {
-            return _expBar.SetScaleAnimated(GetNormalizedExp());
+            return _expBar.SetScaleAnimated(_pokymon.NormalizedExp);
         }
 
         return new YieldInstruction();
@@ -45,12 +45,12 @@ public class BattleUnitHUD : MonoBehaviour
 
     public void UpdateHPBar()
     {
-        _hpBar.SetScale(_pokymon.HP / (float)_pokymon.MaxHP);
+        _hpBar.SetScale(_pokymon.NormalizedHP);
     }
 
     public YieldInstruction UpdateHPBarAnimated()
     {
-        return _hpBar.SetScaleAnimated(_pokymon.HP / (float)_pokymon.MaxHP);
+        return _hpBar.SetScaleAnimated(_pokymon.NormalizedHP);
     }
 
     public void UpdateHPText()
@@ -65,14 +65,5 @@ public class BattleUnitHUD : MonoBehaviour
         return DOTween.To(() => currentHP, x => currentHP = x, _pokymon.HP, 1f).OnUpdate(() => {
             _hpText.text = $"{currentHP}/{_pokymon.MaxHP}";
         }).WaitForCompletion();
-    }
-
-    private float GetNormalizedExp()
-    {
-        int currentLevelExp = _pokymon.Base.GetLevelRequiredExp(_pokymon.Level);
-        int nextLevelExp = _pokymon.Base.GetLevelRequiredExp(_pokymon.Level + 1);
-        float normalizedExp = (_pokymon.Exp - currentLevelExp) / (float)(nextLevelExp - currentLevelExp);
-
-        return Mathf.Clamp01(normalizedExp);
     }
 }

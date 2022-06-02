@@ -55,10 +55,11 @@ public class Pokymon
         set => _isWild = value;
     }
 
-    public string Name
-    {
-        get => _isWild ? $"Wild {_base.Name}" : _base.Name;
-    }
+    public string Name => _isWild ? $"Wild {_base.Name}" : _base.Name;
+
+    public int CurrentLevelExp => CalculateLevelExperience(_level);
+
+    public int NextLevelExp => CalculateLevelExperience(_level + 1);
 
     public int MaxHP => Mathf.FloorToInt(2 * _base.HP * _level / 100) + _level + 10;
 
@@ -74,6 +75,12 @@ public class Pokymon
 
     public bool IsKnockedOut => HP <= 0;
 
+    public int KnockOutExp => (int)(_base.BaseExp * _level * (_isWild ? 1f : 1.5f) / 7);
+
+    public float NormalizedExp => Mathf.Clamp01((_exp - CurrentLevelExp) / (float)(NextLevelExp - CurrentLevelExp));
+
+    public float NormalizedHP => _hp / (float)MaxHP;
+
     public Pokymon(PokymonBase pBase, int pLevel, bool isWild)
     {
         _base = pBase;
@@ -86,7 +93,7 @@ public class Pokymon
     public void InitPokymon()
     {
         _hp = MaxHP;
-        _exp = Base.GetLevelRequiredExp(_level);
+        _exp = CurrentLevelExp;
         _moveList = new List<Move>();
 
         foreach (LearnableMove learnableMove in _base.LearnableMoves)
@@ -103,58 +110,7 @@ public class Pokymon
         }
     }
 
-    public Move GetRandomAvailableMove()
-    {
-        var movesWithAvailablePP = MoveList.Where(m => m.HasAvailablePP).ToList();
-
-        if (movesWithAvailablePP.Count > 0)
-        {
-            int randId = Random.Range(0, movesWithAvailablePP.Count);
-
-            return movesWithAvailablePP[randId];
-        }
-
-        // TODO: implement basic combat move if there are no available moves
-        return null;
-    }
-
-    private bool IsDamageCritical()
-    {
-        if (Random.Range(0f, 100f) < 8f)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    public DamageDescription ReceiveDamage(Pokymon attacker, Move move)
-    {
-        int attack = move.Base.Category == MoveCategory.Special ? attacker.SpAttack : attacker.Attack;
-        int defense = move.Base.Category == MoveCategory.Special ? SpDefense : Defense;
-        float baseDamage = ((2 * attacker.Level / 5f + 2) * move.Base.Power * (attack / (float)defense)) / 50f + 2;
-
-        float criticalMultiplier = IsDamageCritical() ? 2f : 1f;
-        float randomMultiplier = Random.Range(0.85f, 1f);
-        float primaryTypeEffectivenessMultiplier = PokymonTypeMatrix.GetTypeEffectivenessMultiplier(move.Base.Type, _base.PrimaryType);
-        float secondaryTypeEffectivenessMultiplier = PokymonTypeMatrix.GetTypeEffectivenessMultiplier(move.Base.Type, _base.SecondaryType);
-        float typeEffectivenessMultiplier = primaryTypeEffectivenessMultiplier * secondaryTypeEffectivenessMultiplier;
-
-        int totalDamage = Mathf.FloorToInt(baseDamage * criticalMultiplier * randomMultiplier * typeEffectivenessMultiplier);
-        totalDamage = Mathf.Min(totalDamage, HP);
-
-        HP -= totalDamage;
-
-        return new DamageDescription()
-        {
-            Critical = criticalMultiplier,
-            Damage = totalDamage,
-            IsKnockedOut = IsKnockedOut,
-            Type = typeEffectivenessMultiplier,
-        };
-    }
-
-    public CaptureDescription ReceiveCaptureAttempt(float pokyballBonus = 1f)
+    public CaptureDescription CalculateCapture(float pokyballBonus = 1f)
     {
         float statusBonus = 1f; // TODO: implement actual statuses and their capture bonus
         float a = (3 * MaxHP - 2 * HP) * _base.CatchRate * pokyballBonus * statusBonus / (3 * MaxHP);
@@ -191,10 +147,106 @@ public class Pokymon
         };
     }
 
-    public int GetKnockOutExp()
+    public DamageDescription CalculateDamage(Pokymon attacker, Move move)
     {
-        float multiplier = _isWild ? 1f : 1.5f;
+        int attack = move.Base.Category == MoveCategory.Special ? attacker.SpAttack : attacker.Attack;
+        int defense = move.Base.Category == MoveCategory.Special ? SpDefense : Defense;
+        float baseDamage = ((2 * attacker.Level / 5f + 2) * move.Base.Power * (attack / (float)defense)) / 50f + 2;
 
-        return (int)(_base.BaseExp * _level * multiplier / 7);
+        float criticalMultiplier = IsDamageCritical() ? 2f : 1f;
+        float randomMultiplier = Random.Range(0.85f, 1f);
+        float primaryTypeEffectivenessMultiplier = PokymonTypeMatrix.GetTypeEffectivenessMultiplier(move.Base.Type, _base.PrimaryType);
+        float secondaryTypeEffectivenessMultiplier = PokymonTypeMatrix.GetTypeEffectivenessMultiplier(move.Base.Type, _base.SecondaryType);
+        float typeEffectivenessMultiplier = primaryTypeEffectivenessMultiplier * secondaryTypeEffectivenessMultiplier;
+
+        int totalDamage = Mathf.FloorToInt(baseDamage * criticalMultiplier * randomMultiplier * typeEffectivenessMultiplier);
+        totalDamage = Mathf.Min(totalDamage, HP);
+
+        HP -= totalDamage;
+
+        return new DamageDescription()
+        {
+            Critical = criticalMultiplier,
+            Damage = totalDamage,
+            IsKnockedOut = IsKnockedOut,
+            Type = typeEffectivenessMultiplier,
+        };
+    }
+
+    public int CalculateLevelExperience(int level)
+    {
+        switch (_base.GrowthRate)
+        {
+            case PokymonGrowthRate.Erratic:
+                if (level < 50)
+                {
+                    return (int)(Mathf.Pow(level, 3) * (100 - level) / 50);
+                }
+                else if (level < 68)
+                {
+                    return (int)(Mathf.Pow(level, 3) * (150 - level) / 100);
+                }
+                else if (level < 98)
+                {
+                    return (int)(Mathf.Pow(level, 3) * (int)((1911 - 10 * level) / 3) / 500);
+                }
+                else
+                {
+                    return (int)(Mathf.Pow(level, 3) * (160 - level) / 100);;
+                }
+
+            case PokymonGrowthRate.Fast:
+                return (int)(4 * Mathf.Pow(level, 3) / 5);
+
+            case PokymonGrowthRate.MediumFast:
+                return (int)Mathf.Pow(level, 3);
+
+            case PokymonGrowthRate.MediumSlow:
+                return (int)(6 * Mathf.Pow(level, 3) / 5 - 15 * Mathf.Pow(level, 2) + 100 * level - 140);
+
+            case PokymonGrowthRate.Slow:
+                return (int)(5 * Mathf.Pow(level, 3) / 4);
+
+            case PokymonGrowthRate.Fluctuating:
+                if (level < 15)
+                {
+                    return (int)(Mathf.Pow(level, 3) * ((int)((level + 1) / 3) + 24) / 50);
+                }
+                else if (level < 36)
+                {
+                    return (int)(Mathf.Pow(level, 3) * (level + 14) / 50);
+                }
+                else
+                {
+                    return (int)(Mathf.Pow(level, 3) * ((int)(level / 2) + 32) / 50);
+                }
+        }
+
+        return -1;
+    }
+
+    public Move GetRandomAvailableMove()
+    {
+        var movesWithAvailablePP = MoveList.Where(m => m.HasAvailablePP).ToList();
+
+        if (movesWithAvailablePP.Count > 0)
+        {
+            int randId = Random.Range(0, movesWithAvailablePP.Count);
+
+            return movesWithAvailablePP[randId];
+        }
+
+        // TODO: implement basic combat move if there are no available moves
+        return null;
+    }
+
+    private bool IsDamageCritical()
+    {
+        if (Random.Range(0f, 100f) < Constants.CRITICAL_HIT_ODDS)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
