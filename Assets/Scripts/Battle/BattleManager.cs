@@ -413,14 +413,15 @@ public class BattleManager : MonoBehaviour
         source.PlayPhysicalMoveAnimation();
         target.PlayReceiveDamageAnimation();
 
-        var damageDescription = target.Pokymon.CalculateDamage(source.Pokymon, move);
+        var damageDesc = target.Pokymon.CalculateDamage(source.Pokymon, move);
 
-        target.HUD.UpdateHPTextAnimated(damageDescription.Damage);
-        yield return target.HUD.UpdateHPBarAnimated();
+        target.HUD.UpdateHPTextAnimated(target.Pokymon.HP + damageDesc.HP);
+        target.HUD.UpdateHPBarAnimated();
 
-        yield return ShowDamageDescription(damageDescription);
+        yield return _dialogBox.SetDialogText($"{target.Pokymon.Name} took {damageDesc.HP} HP damage.");
+        yield return ShowDamageDescription(damageDesc);
 
-        if (damageDescription.IsKnockedOut)
+        if (damageDesc.IsKnockedOut)
         {
             yield return PerformKnockOut(target);
         }
@@ -428,25 +429,36 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PerformKnockOut(BattleUnit battleUnit)
     {
-        yield return _dialogBox.SetDialogText($"{battleUnit.Pokymon.Name} got knocked out!");
-
         battleUnit.PlayKnockedOutAnimation();
 
-        yield return new WaitForSecondsRealtime(2f);
+        yield return _dialogBox.SetDialogText($"{battleUnit.Pokymon.Name} got knocked out!");
+
+        if (battleUnit.IsPlayer)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+        }
 
         if (!battleUnit.IsPlayer)
         {
-            int earnedExp = battleUnit.Pokymon.KnockOutExp;
+            var prevHp = _playerUnit.Pokymon.HP;
+            var earnedExp = battleUnit.Pokymon.KnockOutExp;
 
             _playerUnit.Pokymon.Exp += earnedExp;
+            _playerUnit.HUD.UpdateExpBarAnimated();
 
-            _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} earned {earnedExp} Exp");
+            yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} earned {earnedExp} EXP.");
 
-            yield return _playerUnit.HUD.UpdateExpBarAnimated();
+            while (_playerUnit.Pokymon.NeedsToLevelUp())
+            {
+                _playerUnit.HUD.UpdateExpBarAnimated(true);
+                _playerUnit.HUD.UpdateHPTextAnimated(prevHp);
+                _playerUnit.HUD.UpdateHPBarAnimated();
+                _playerUnit.HUD.UpdateLevelText();
 
-            yield return new WaitForSecondsRealtime(1f);
+                yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} leveled up!");
 
-            // TODO: check level up
+                prevHp = _playerUnit.Pokymon.HP;
+            }
         }
 
         CheckForBattleFinish(battleUnit);
@@ -596,7 +608,6 @@ public class BattleManager : MonoBehaviour
     IEnumerator ShowPlayerRunSuccessMessage()
     {
         yield return _dialogBox.SetDialogText("You managed to run away...");
-        yield return new WaitForSecondsRealtime(1f);
 
         FinishBattle(false);
     }

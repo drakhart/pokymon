@@ -18,8 +18,8 @@ public class BattleUnitHUD : MonoBehaviour
     {
         _pokymon = pokymon;
 
-        _pokymonNameText.text = pokymon.Name;
-        _pokymonLevelText.text = $"Lvl {pokymon.Level}";
+        _pokymonNameText.text = _pokymon.Name;
+        UpdateLevelText();
         UpdateExpBar();
         UpdateHPBar();
         UpdateHPText();
@@ -33,10 +33,15 @@ public class BattleUnitHUD : MonoBehaviour
         }
     }
 
-    public YieldInstruction UpdateExpBarAnimated()
+    public YieldInstruction UpdateExpBarAnimated(bool startFromZero = false)
     {
         if (_expBar != null)
         {
+            if (startFromZero)
+            {
+                _expBar.SetScale(0f);
+            }
+
             return _expBar.SetScaleAnimated(_pokymon.NormalizedExp);
         }
 
@@ -58,12 +63,15 @@ public class BattleUnitHUD : MonoBehaviour
         _hpText.text = $"{_pokymon.HP}/{_pokymon.MaxHP}";
     }
 
-    public YieldInstruction UpdateHPTextAnimated(int damage)
+    public YieldInstruction UpdateHPTextAnimated(int prevHP)
     {
-        int currentHP = _pokymon.HP + damage;
-
-        return DOTween.To(() => currentHP, x => currentHP = x, _pokymon.HP, 1f).OnUpdate(() => {
-            _hpText.text = $"{currentHP}/{_pokymon.MaxHP}";
+        return DOTween.To(() => prevHP, x => prevHP = x, _pokymon.HP, 1f).OnUpdate(() => {
+            _hpText.text = $"{prevHP}/{_pokymon.MaxHP}";
         }).WaitForCompletion();
+    }
+
+    public void UpdateLevelText()
+    {
+        _pokymonLevelText.text = $"Lvl {_pokymon.Level}";
     }
 }

@@ -14,7 +14,7 @@ public struct CaptureDescription
 public struct DamageDescription
 {
     public float Critical { get; set; }
-    public int Damage { get; set; }
+    public int HP { get; set; }
     public bool IsKnockedOut { get; set; }
     public float Type { get; set; }
 }
@@ -167,7 +167,7 @@ public class Pokymon
         return new DamageDescription()
         {
             Critical = criticalMultiplier,
-            Damage = totalDamage,
+            HP = totalDamage,
             IsKnockedOut = IsKnockedOut,
             Type = typeEffectivenessMultiplier,
         };
@@ -244,6 +244,21 @@ public class Pokymon
     {
         if (Random.Range(0f, 100f) < Constants.CRITICAL_HIT_ODDS)
         {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool NeedsToLevelUp()
+    {
+        if (_exp > NextLevelExp)
+        {
+            int prevMaxHp = MaxHP;
+
+            _level++;
+            _hp += MaxHP - prevMaxHp;
+
             return true;
         }
 
