@@ -36,6 +36,10 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private BattleUnit _playerUnit;
     [SerializeField] private GameObject _pokyball;
 
+    [SerializeField] private AudioClip _knockOutSFX;
+    [SerializeField] private AudioClip _levelUpSFX;
+    [SerializeField] private AudioClip _moveSFX;
+
     private BattleState _battleState;
     private BattleType _battleType;
     private PokymonParty _playerParty;
@@ -333,7 +337,7 @@ public class BattleManager : MonoBehaviour
     {
         _battleState = BattleState.PlayerSelectForgetMove;
 
-        _dialogBox.SetDialogText($"What move should {_playerUnit.Pokymon.Name} forget?");
+        _dialogBox.SetDialogText($"Which move should {_playerUnit.Pokymon.Name} forget?");
 
         _forgetMoveSelection.gameObject.SetActive(true);
         _forgetMoveSelection.SetMoveTexts(_playerUnit.Pokymon.MoveList, _learnableMove);
@@ -409,6 +413,8 @@ public class BattleManager : MonoBehaviour
 
         yield return _dialogBox.SetDialogText($"{source.Pokymon.Name} used {move.Base.Name}.");
 
+        SoundManager.SharedInstance.PlaySFX(_moveSFX);
+
         source.PlayPhysicalMoveAnimation();
         target.PlayReceiveDamageAnimation();
 
@@ -428,6 +434,8 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PerformKnockOut(BattleUnit battleUnit)
     {
+        SoundManager.SharedInstance.PlaySFX(_knockOutSFX);
+
         battleUnit.PlayKnockedOutAnimation();
 
         yield return _dialogBox.SetDialogText($"{battleUnit.Pokymon.Name} got knocked out!");
@@ -449,6 +457,8 @@ public class BattleManager : MonoBehaviour
 
             while (_playerUnit.Pokymon.LevelUp())
             {
+                SoundManager.SharedInstance.PlaySFX(_levelUpSFX);
+
                 _playerUnit.HUD.UpdateExpBarAnimated(true);
                 _playerUnit.HUD.UpdateHPTextAnimated(prevHp);
                 _playerUnit.HUD.UpdateHPBarAnimated();

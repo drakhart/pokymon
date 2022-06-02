@@ -65,9 +65,11 @@ public class BattleUnitHUD : MonoBehaviour
 
     public YieldInstruction UpdateHPTextAnimated(int prevHP)
     {
-        return DOTween.To(() => prevHP, x => prevHP = x, _pokymon.HP, 1f).OnUpdate(() => {
-            _hpText.text = $"{prevHP}/{_pokymon.MaxHP}";
-        }).WaitForCompletion();
+        return DOTween.To(() => prevHP, x => prevHP = x, _pokymon.HP, 1f)
+            .OnUpdate(() => {
+                _hpText.text = $"{prevHP}/{_pokymon.MaxHP}";
+            })
+            .WaitForCompletion();
     }
 
     public void UpdateLevelText()

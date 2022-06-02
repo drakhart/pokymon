@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BattleManager _battleManager;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private Camera _worldCamera;
+    [SerializeField] private AudioClip _battleMusic;
+    [SerializeField] private AudioClip _worldMusic;
 
     private GameState _gameState;
 
@@ -15,6 +17,11 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
+        if (_gameState == GameState.World)
+        {
+            SoundManager.SharedInstance.PlayMusic(_worldMusic);
+        }
+
         _playerController.OnPokymonEncountered += StartWildPokymonBattle;
         _battleManager.OnBattleFinish += FinishPokymonBattle;
     }
@@ -44,6 +51,8 @@ public class GameManager : MonoBehaviour
         {
             // TODO: handle player defeat
         }
+
+        SoundManager.SharedInstance.PlayMusic(_worldMusic);
     }
 
     private void StartWildPokymonBattle()
@@ -66,6 +75,8 @@ public class GameManager : MonoBehaviour
         _worldCamera.gameObject.SetActive(false);
         _battleManager.gameObject.SetActive(true);
         _battleManager.HandleStart(BattleType.WildPokymon, playerParty, wildPokymonCopy);
+
+        SoundManager.SharedInstance.PlayMusic(_battleMusic);
     }
 }
 
