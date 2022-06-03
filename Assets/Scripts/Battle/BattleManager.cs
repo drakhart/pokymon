@@ -36,9 +36,20 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private BattleUnit _playerUnit;
     [SerializeField] private GameObject _pokyball;
 
+    [SerializeField] private AudioClip _battleStartSFX;
+    [SerializeField] private AudioClip _damageSFX;
+    [SerializeField] private AudioClip _forgetMoveSFX;
     [SerializeField] private AudioClip _knockOutSFX;
+    [SerializeField] private AudioClip _learnMoveSFX;
     [SerializeField] private AudioClip _levelUpSFX;
-    [SerializeField] private AudioClip _moveSFX;
+    [SerializeField] private AudioClip _physicalMoveSFX;
+    [SerializeField] private AudioClip _pokyballCaptureSFX;
+    [SerializeField] private AudioClip _pokyballEscapeSFX;
+    [SerializeField] private AudioClip _pokyballShakeSFX;
+    [SerializeField] private AudioClip _pokyballThrowSFX;
+    [SerializeField] private AudioClip _uiCancelSFX;
+    [SerializeField] private AudioClip _uiMoveSFX;
+    [SerializeField] private AudioClip _uiSubmitSFX;
 
     private BattleState _battleState;
     private BattleType _battleType;
@@ -65,6 +76,8 @@ public class BattleManager : MonoBehaviour
         _enemyUnit.Pokymon = enemyPokymon;
         _enemyUnit.SetupPokymon();
 
+        AudioManager.SharedInstance.PlaySFX(_battleStartSFX);
+
         StartCoroutine(SetupBattle());
     }
 
@@ -77,32 +90,48 @@ public class BattleManager : MonoBehaviour
         if (Input.anyKey || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             _lastInputTime = Time.time;
-        }
 
-        switch (_battleState)
-        {
-            case BattleState.PlayerSelectAction:
-                HandlePlayerActionSelection();
-                break;
+            if (_battleState == BattleState.PlayerSelectAction || _battleState == BattleState.PlayerSelectMove || _battleState == BattleState.PlayerSelectParty || _battleState == BattleState.PlayerSelectForgetMove)
+            {
+                if (Input.GetButtonDown("Submit"))
+                {
+                    AudioManager.SharedInstance.PlaySFX(_uiSubmitSFX);
+                }
+                else if (Input.GetButtonDown("Cancel"))
+                {
+                    AudioManager.SharedInstance.PlaySFX(_uiCancelSFX);
+                }
+                else if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+                {
+                    AudioManager.SharedInstance.PlaySFX(_uiMoveSFX);
+                }
 
-            case BattleState.PlayerSelectMove:
-                HandlePlayerMoveSelection();
-                break;
+                switch (_battleState)
+                {
+                    case BattleState.PlayerSelectAction:
+                        HandlePlayerActionSelection();
+                        break;
 
-            case BattleState.PlayerSelectParty:
-                HandlePartySelection();
-                break;
+                    case BattleState.PlayerSelectMove:
+                        HandlePlayerMoveSelection();
+                        break;
 
-            case BattleState.PlayerSelectForgetMove:
-                _forgetMoveSelection.HandlePlayerSelectForgetMove((selectedMove) => {
-                    _forgetMoveSelection.gameObject.SetActive(false);
+                    case BattleState.PlayerSelectParty:
+                        HandlePartySelection();
+                        break;
 
-                    StartCoroutine(PerformForgetMove(selectedMove));
-                });
-                break;
+                    case BattleState.PlayerSelectForgetMove:
+                        _forgetMoveSelection.HandlePlayerSelectForgetMove((selectedMove) => {
+                            _forgetMoveSelection.gameObject.SetActive(false);
 
-            default:
-                break;
+                            StartCoroutine(PerformForgetMove(selectedMove));
+                        });
+                        break;
+
+                    default:
+                        break;
+                }
+            }
         }
     }
 
@@ -411,15 +440,16 @@ public class BattleManager : MonoBehaviour
     {
         move.PP--;
 
-        yield return _dialogBox.SetDialogText($"{source.Pokymon.Name} used {move.Base.Name}.");
-
-        SoundManager.SharedInstance.PlaySFX(_moveSFX);
+        AudioManager.SharedInstance.PlaySFX(_physicalMoveSFX);
 
         source.PlayPhysicalMoveAnimation();
         target.PlayReceiveDamageAnimation();
 
-        var damageDesc = target.Pokymon.CalculateDamage(source.Pokymon, move);
+        yield return _dialogBox.SetDialogText($"{source.Pokymon.Name} used {move.Base.Name}.");
 
+        AudioManager.SharedInstance.PlaySFX(_damageSFX);
+
+        var damageDesc = target.Pokymon.CalculateDamage(source.Pokymon, move);
         target.HUD.UpdateHPTextAnimated(target.Pokymon.HP + damageDesc.HP);
         target.HUD.UpdateHPBarAnimated();
 
@@ -434,7 +464,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PerformKnockOut(BattleUnit battleUnit)
     {
-        SoundManager.SharedInstance.PlaySFX(_knockOutSFX);
+        AudioManager.SharedInstance.PlaySFX(_knockOutSFX);
 
         battleUnit.PlayKnockedOutAnimation();
 
@@ -457,7 +487,7 @@ public class BattleManager : MonoBehaviour
 
             while (_playerUnit.Pokymon.LevelUp())
             {
-                SoundManager.SharedInstance.PlaySFX(_levelUpSFX);
+                AudioManager.SharedInstance.PlaySFX(_levelUpSFX);
 
                 _playerUnit.HUD.UpdateExpBarAnimated(true);
                 _playerUnit.HUD.UpdateHPTextAnimated(prevHp);
@@ -474,6 +504,8 @@ public class BattleManager : MonoBehaviour
                     {
                         _playerUnit.Pokymon.LearnMove(_learnableMove);
                         _dialogBox.SetMoveTexts(_playerUnit.Pokymon.MoveList);
+
+                        AudioManager.SharedInstance.PlaySFX(_learnMoveSFX);
 
                         yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} learned {_learnableMove.Base.Name}!");
                     }
@@ -523,7 +555,9 @@ public class BattleManager : MonoBehaviour
     {
         _battleState = BattleState.Busy;
 
-        yield return _dialogBox.SetDialogText($"You threw a {_pokyball.name}...");
+        _dialogBox.SetDialogText($"You threw a {_pokyball.name}...");
+
+        AudioManager.SharedInstance.PlaySFX(_pokyballThrowSFX);
 
         var pokyballInstance = Instantiate(_pokyball, _playerUnit.transform.position - new Vector3(3, 1), Quaternion.identity);
         var pokyballSprite = pokyballInstance.GetComponent<SpriteRenderer>();
@@ -546,6 +580,9 @@ public class BattleManager : MonoBehaviour
         for (var i = 0; i < Mathf.Max(captureDescription.ShakeCount, 1); i++)
         {
             yield return new WaitForSecondsRealtime(0.75f);
+
+            AudioManager.SharedInstance.PlaySFX(_pokyballShakeSFX);
+
             yield return pokyballSprite.transform.DOPunchRotation(new Vector3(0, 0, 15), 0.6f).WaitForCompletion();
         }
 
@@ -553,6 +590,8 @@ public class BattleManager : MonoBehaviour
 
         if (captureDescription.IsCaptured)
         {
+            AudioManager.SharedInstance.PlaySFX(_pokyballCaptureSFX);
+
             yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} caught!");
             yield return pokyballSprite.DOFade(0, 1f).WaitForCompletion();
 
@@ -570,6 +609,8 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+            AudioManager.SharedInstance.PlaySFX(_pokyballEscapeSFX);
+
             var destroySeq = DOTween.Sequence();
             destroySeq.Append(pokyballSprite.DOFade(0, 1.5f));
             destroySeq.Join(pokyballSprite.transform.DOLocalJump(_enemyUnit.transform.position + new Vector3(4f, -2.15f), 1.5f, 3, 1.5f));
@@ -621,7 +662,12 @@ public class BattleManager : MonoBehaviour
         {
             var oldMove = _playerUnit.Pokymon.MoveList[selectedMove];
 
+            AudioManager.SharedInstance.PlaySFX(_forgetMoveSFX);
+
             yield return _dialogBox.SetDialogText($"1, 2, and... ... ... Poof! {_playerUnit.Pokymon.Name} forgot {oldMove.Base.Name}.");
+
+            AudioManager.SharedInstance.PlaySFX(_learnMoveSFX);
+
             yield return _dialogBox.SetDialogText($"And... {_playerUnit.Pokymon.Name} learned {_learnableMove.Base.Name}.");
 
             _playerUnit.Pokymon.MoveList[selectedMove] = new Move(_learnableMove.Base);

@@ -9,7 +9,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private LayerMask _pokymonAreaLayers;
     [SerializeField] private LayerMask _solidObjectsLayers;
+
     [SerializeField] private float _speed;
+
+    [SerializeField] private AudioClip _stepsSFX;
 
     private Animator _animator;
     private Vector2 _input;
@@ -79,6 +82,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator MoveTowards(Vector3 destination)
     {
         _isMoving = true;
+
+        AudioManager.SharedInstance.PlaySFX(_stepsSFX);
 
         while (Vector3.Distance(transform.position, destination) > Mathf.Epsilon)
         {

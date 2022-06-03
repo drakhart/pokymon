@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private void Start() {
         if (_gameState == GameState.World)
         {
-            SoundManager.SharedInstance.PlayMusic(_worldMusic);
+            AudioManager.SharedInstance.PlayMusic(_worldMusic);
         }
 
         _playerController.OnPokymonEncountered += StartWildPokymonBattle;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
             // TODO: handle player defeat
         }
 
-        SoundManager.SharedInstance.PlayMusic(_worldMusic);
+        AudioManager.SharedInstance.PlayMusic(_worldMusic);
     }
 
     private void StartWildPokymonBattle()
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         _battleManager.gameObject.SetActive(true);
         _battleManager.HandleStart(BattleType.WildPokymon, playerParty, wildPokymonCopy);
 
-        SoundManager.SharedInstance.PlayMusic(_battleMusic);
+        AudioManager.SharedInstance.PlayMusic(_battleMusic);
     }
 }
 

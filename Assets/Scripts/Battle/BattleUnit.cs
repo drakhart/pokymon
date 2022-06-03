@@ -53,7 +53,7 @@ public class BattleUnit : MonoBehaviour
         seq.Play();
     }
 
-    public void PlayReceiveDamageAnimation()
+    public YieldInstruction PlayReceiveDamageAnimation()
     {
         var delay = 0.1f;
         var seq = DOTween.Sequence();
@@ -68,7 +68,7 @@ public class BattleUnit : MonoBehaviour
 
         seq.Append(_image.DOColor(_originalColor, delay));
 
-        seq.Play();
+        return seq.Play().WaitForCompletion();
     }
 
     public void PlaySetupAnimation()

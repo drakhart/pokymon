@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SoundManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource _sfxSource;
     [SerializeField] AudioSource _musicSource;
-    [SerializeField] float _minRandomPitch;
-    [SerializeField] float _maxRandomPitch;
 
-    public static SoundManager SharedInstance;
+    public static AudioManager SharedInstance;
 
     private void Awake() {
         if (SharedInstance == null)
@@ -19,7 +17,7 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            print("There's more than one SoundManager instance!");
+            print("There's more than one AudioManager instance!");
 
             Destroy(gameObject);
         }
@@ -29,9 +27,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
-        _sfxSource.Stop();
-        _sfxSource.clip = clip;
-        _sfxSource.Play();
+        _sfxSource.PlayOneShot(clip);
     }
 
     public void PlayMusic(AudioClip clip)
@@ -39,15 +35,5 @@ public class SoundManager : MonoBehaviour
         _musicSource.Stop();
         _musicSource.clip = clip;
         _musicSource.Play();
-    }
-
-    public void PlayRandomSFX(params AudioClip[] clips)
-    {
-        var index = Random.Range(0, clips.Length);
-        var pitch = Random.Range(_minRandomPitch, _maxRandomPitch);
-
-        _sfxSource.pitch = pitch;
-
-        PlaySFX(clips[index]);
     }
 }

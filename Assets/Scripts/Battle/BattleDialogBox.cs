@@ -15,6 +15,7 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] private Text _ppText;
     [SerializeField] private Text _typeText;
 
+    [SerializeField] private AudioClip _dialogSFX;
     [SerializeField] private float _dialogPauseSecs = 1f;
     [SerializeField] private float _dialogSpeed = 30f;
 
@@ -84,6 +85,12 @@ public class BattleDialogBox : MonoBehaviour
         _dialogText.text = "";
 
         _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)
+            .OnUpdate(() => {
+                if (_dialogText.text.Length % 2 ==0 )
+                {
+                    AudioManager.SharedInstance.PlaySFX(_dialogSFX);
+                }
+            })
             .SetEase(Ease.Linear);
 
         yield return _dialogTextTween.WaitForCompletion();
