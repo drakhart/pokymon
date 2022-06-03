@@ -26,7 +26,7 @@ Pokymon is a Pokémon-like RPG videogame developed while taking [this Unity cour
 ### Sound
 - **World music:** Vinicius Nipote AKA TFSui @ https://assetstore.unity.com/packages/audio/music/toon-adventure-soundtrack-60684
 - **Battle music:** Vinicius Nipote AKA TFSui @ https://assetstore.unity.com/packages/audio/music/toon-battle-soundtrack-60676
-- **Battle SFX:** Little Robot Sound Factory @ https://assetstore.unity.com/packages/audio/sound-fx/8-bit-sfx-32831
+- **Battle SFX:** Juhani Junkala AKA SubspaceAudio @ https://opengameart.org/content/512-sound-effects-8-bit-style
 
 ### Data
 - **Pokymon list:** Unknown @ https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_stats_(Generation_VIII-present)
