@@ -86,7 +86,7 @@ public class BattleDialogBox : MonoBehaviour
 
         _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)
             .OnUpdate(() => {
-                if (_dialogText.text.Length % 2 ==0 )
+                if (_dialogText.text.Length % 2 == 0)
                 {
                     AudioManager.SharedInstance.PlaySFX(_dialogSFX);
                 }
