@@ -24,7 +24,8 @@ Pokymon is a Pokémon-like RPG videogame developed while taking [this Unity cour
 - **Font:** Ingo Zimmermann AKA ingoFonts @ https://www.dafont.com/es/depixel.font
 
 ### Sound
-- **World & battle music:** Vinicius Nipote AKA TFSui @ https://assetstore.unity.com/packages/audio/music/toon-adventure-soundtrack-60684
+- **World music:** Vinicius Nipote AKA TFSui @ https://assetstore.unity.com/packages/audio/music/toon-adventure-soundtrack-60684
+- **Battle music:** Vinicius Nipote AKA TFSui @ https://assetstore.unity.com/packages/audio/music/toon-battle-soundtrack-60676
 - **Battle SFX:** Little Robot Sound Factory @ https://assetstore.unity.com/packages/audio/sound-fx/8-bit-sfx-32831
 
 ### Data
