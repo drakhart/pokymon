@@ -6,7 +6,8 @@ using DG.Tweening;
 
 public class PartySelection : MonoBehaviour
 {
-    [SerializeField] private float _dialogSpeed = 45f;
+    [SerializeField] private AudioClip _dialogSFX;
+    [SerializeField] private float _dialogSpeed = 30f;
     [SerializeField] private Text _dialogText;
 
     private Tween _dialogTextTween;
@@ -53,6 +54,12 @@ public class PartySelection : MonoBehaviour
         _dialogText.text = "";
 
         _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)
-            .SetEase(Ease.Linear);
+            .SetEase(Ease.Linear)
+            .OnUpdate(() => {
+                if ((int)(_dialogText.text.Length % (_dialogSpeed / 15)) == 0)
+                {
+                    AudioManager.SharedInstance.PlaySFX(_dialogSFX);
+                }
+            });
     }
 }

@@ -85,13 +85,13 @@ public class BattleDialogBox : MonoBehaviour
         _dialogText.text = "";
 
         _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)
+            .SetEase(Ease.Linear)
             .OnUpdate(() => {
-                if (_dialogText.text.Length % 2 == 0)
+                if ((int)(_dialogText.text.Length % (_dialogSpeed / 15)) == 0)
                 {
                     AudioManager.SharedInstance.PlaySFX(_dialogSFX);
                 }
-            })
-            .SetEase(Ease.Linear);
+            });
 
         yield return _dialogTextTween.WaitForCompletion();
         yield return new WaitForSecondsRealtime(_dialogPauseSecs);
