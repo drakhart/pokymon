@@ -10,23 +10,14 @@ public class PartyMemberHUD : MonoBehaviour
     [SerializeField] private Text _hpText;
     [SerializeField] private Text _pokymonLevelText;
     [SerializeField] private Text _pokymonNameText;
-    [SerializeField] private Text _pokymonTypeText;
+    [SerializeField] private Text _pokymonPrimaryTypeText;
+    [SerializeField] private Text _pokymonSecondaryTypeText;
     [SerializeField] private Image _pokymonImage;
 
-    [SerializeField] private Color _defaultColor = Color.black;
-    [SerializeField] private Color _selectedColor = Color.blue;
+    [SerializeField] private Sprite _defaultSprite;
+    [SerializeField] private Sprite _selectedSprite;
 
     private Pokymon _pokymon;
-
-    private string GetPokymonType()
-    {
-        if (_pokymon.Base.SecondaryType == PokymonType.None)
-        {
-            return _pokymon.Base.PrimaryType.ToString();
-        }
-
-        return $"{_pokymon.Base.PrimaryType} & {_pokymon.Base.SecondaryType}";
-    }
 
     public void SetPokymonData(Pokymon pokymon)
     {
@@ -34,15 +25,29 @@ public class PartyMemberHUD : MonoBehaviour
 
         _pokymonNameText.text = _pokymon.Name;
         _pokymonLevelText.text = $"Lvl {_pokymon.Level}";
-        _pokymonTypeText.text = GetPokymonType();
+        _pokymonPrimaryTypeText.text = _pokymon.Base.PrimaryType.ToString();
+        _pokymonPrimaryTypeText.color = ColorManager.SharedInstance.PokymonType(_pokymon.Base.PrimaryType);
         _expBar.SetScale(_pokymon.NormalizedExp);
         _hpBar.SetScale(_pokymon.NormalizedHP);
         _hpText.text = $"{_pokymon.HP}/{_pokymon.MaxHP}";
         _pokymonImage.sprite = _pokymon.Base.FrontSprite;
+
+        SetSecondaryType();
     }
 
     public void SetSelectedPokymon(bool selected)
     {
-        _pokymonNameText.color = selected ? _selectedColor : _defaultColor;
+        gameObject.GetComponent<Image>().sprite = selected ? _selectedSprite : _defaultSprite;
+        _pokymonNameText.color = selected
+            ? ColorManager.SharedInstance.Selected
+            : ColorManager.SharedInstance.Default;
+    }
+
+    public void SetSecondaryType()
+    {
+        var active = _pokymon.Base.SecondaryType != PokymonType.None;
+        _pokymonSecondaryTypeText.gameObject.SetActive(active);
+        _pokymonSecondaryTypeText.text = _pokymon.Base.SecondaryType.ToString();
+        _pokymonSecondaryTypeText.color = ColorManager.SharedInstance.PokymonType(_pokymon.Base.SecondaryType);
     }
 }

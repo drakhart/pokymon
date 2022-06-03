@@ -14,15 +14,15 @@ public class Bar : MonoBehaviour
     {
         if (finalScale <= 0.15)
         {
-            return new Color32(0xDE, 0x52, 0x3A, 0xFF);
+            return ColorManager.SharedInstance.BarLow;
         }
         else if (finalScale <= 0.5f)
         {
-            return new Color32(0xE4, 0x92, 0x27, 0xFF);
+            return ColorManager.SharedInstance.BarMedium;
         }
         else
         {
-            return new Color32(0x45, 0xA0, 0x4E, 0xFF);
+            return ColorManager.SharedInstance.BarHigh;
         }
     }
 

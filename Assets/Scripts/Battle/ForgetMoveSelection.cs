@@ -9,9 +9,6 @@ public class ForgetMoveSelection : MonoBehaviour
 {
     [SerializeField] private Text[] _moveTextList;
 
-    [SerializeField] private Color _defaultColor = Color.black;
-    [SerializeField] private Color _selectedColor = Color.blue;
-
     private int _currSelectedMove;
 
     public void SetMoveTexts(List<Move> moveList, LearnableMove learnableMove)
@@ -48,7 +45,9 @@ public class ForgetMoveSelection : MonoBehaviour
     {
         for (var i = 0; i < _moveTextList.Length; i++)
         {
-            _moveTextList[i].color = i == _currSelectedMove ? _selectedColor : _defaultColor;
+            _moveTextList[i].color = i == _currSelectedMove
+                ? ColorManager.SharedInstance.Selected
+                : ColorManager.SharedInstance.Default;
         }
     }
 }

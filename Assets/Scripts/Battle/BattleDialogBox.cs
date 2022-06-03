@@ -19,17 +19,15 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] private float _dialogPauseSecs = 1f;
     [SerializeField] private float _dialogSpeed = 30f;
 
-    [SerializeField] private Color _defaultColor = Color.black;
-    [SerializeField] private Color _selectedColor = Color.blue;
-    [SerializeField] private Color _warningColor = Color.red;
-
     private Tween _dialogTextTween;
 
     public void SelectAction(int selectedAction)
     {
         for (int i = 0; i < _actionTexts.Count; i++)
         {
-            _actionTexts[i].color = i == selectedAction ? _selectedColor : _defaultColor;
+            _actionTexts[i].color = i == selectedAction
+                ? ColorManager.SharedInstance.Selected
+                : ColorManager.SharedInstance.Default;
         }
     }
 
@@ -37,7 +35,9 @@ public class BattleDialogBox : MonoBehaviour
     {
         for (int i = 0; i < _moveTexts.Count; i++)
         {
-            _moveTexts[i].color = i == selectedMove ? _selectedColor : _defaultColor;
+            _moveTexts[i].color = i == selectedMove
+                ? ColorManager.SharedInstance.Selected
+                : ColorManager.SharedInstance.Default;
         }
     }
 
@@ -51,9 +51,12 @@ public class BattleDialogBox : MonoBehaviour
 
     public void SetMoveDetails(Move move)
     {
-        _ppText.color = move.HasAvailablePP ? _defaultColor : _warningColor;
+        _ppText.color = move.HasAvailablePP
+            ? ColorManager.SharedInstance.Default
+            : ColorManager.SharedInstance.Warning;
         _ppText.text = $"PP {move.PP}/{move.MaxPP}";
         _typeText.text = move.Base.Type.ToString();
+        _typeText.color = ColorManager.SharedInstance.PokymonType(move.Base.Type);
     }
 
     public void SetMoveTexts(List<Move> moves)
