@@ -6,8 +6,8 @@ using UnityEngine;
 public class MoveBase : ScriptableObject
 {
     // Basic
-    [SerializeField] private int id;
-    public int ID => id;
+    [SerializeField] private int _id;
+    public int ID => _id;
 
     [SerializeField] private string _name;
     public string Name => _name;
