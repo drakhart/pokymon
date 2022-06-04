@@ -46,8 +46,8 @@ public class ForgetMoveSelection : MonoBehaviour
         for (var i = 0; i < _moveTextList.Length; i++)
         {
             _moveTextList[i].color = i == _currSelectedMove
-                ? ColorManager.SharedInstance.Selected
-                : ColorManager.SharedInstance.Default;
+                ? ColorManager.SharedInstance.SelectedText
+                : ColorManager.SharedInstance.DefaultText;
         }
     }
 }

@@ -5,23 +5,29 @@ using UnityEngine;
 public class ColorManager : MonoBehaviour
 {
 
-    [SerializeField] private Color _barHigh;
-    public Color BarHigh => _barHigh;
+    [SerializeField] private Color _defaultText;
+    public Color DefaultText => _defaultText;
 
-    [SerializeField] private Color _barMedium;
-    public Color BarMedium => _barMedium;
+    [SerializeField] private Color _selectedText;
+    public Color SelectedText => _selectedText;
 
-    [SerializeField] private Color _barLow;
-    public Color BarLow => _barLow;
+    [SerializeField] private Color _highBar;
+    public Color HighBar => _highBar;
 
-    [SerializeField] private Color _default;
-    public Color Default => _default;
+    [SerializeField] private Color _mediumBar;
+    public Color MediumBar => _mediumBar;
 
-    [SerializeField] private Color _selected;
-    public Color Selected => _selected;
+    [SerializeField] private Color _lowBar;
+    public Color LowBar => _lowBar;
 
-    [SerializeField] private Color _warning;
-    public Color Warning => _warning;
+    [SerializeField] private Color _highPP;
+    public Color HighPP => _highPP;
+
+    [SerializeField] private Color _mediumPP;
+    public Color MediumPP => _mediumPP;
+
+    [SerializeField] private Color _lowPP;
+    public Color LowPP => _lowPP;
 
     private Color[] _typeColors =
     {

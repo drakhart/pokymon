@@ -6,23 +6,25 @@ using DG.Tweening;
 
 public class Bar : MonoBehaviour
 {
-    [SerializeField] private bool _hasFixedColor;
+    [SerializeField] private bool _hasFixedColor = false;
+    [SerializeField] private float _highThreshold = 0.5f;
+    [SerializeField] private float _lowThreshold = 0.15f;
 
     private Image _image;
 
-    public Color GetBarColor(float finalScale)
+    public Color BarColor(float finalScale)
     {
-        if (finalScale <= 0.15)
+        if (finalScale <= _lowThreshold)
         {
-            return ColorManager.SharedInstance.BarLow;
+            return ColorManager.SharedInstance.LowBar;
         }
-        else if (finalScale <= 0.5f)
+        else if (finalScale > _highThreshold)
         {
-            return ColorManager.SharedInstance.BarMedium;
+            return ColorManager.SharedInstance.HighBar;
         }
         else
         {
-            return ColorManager.SharedInstance.BarHigh;
+            return ColorManager.SharedInstance.MediumBar;
         }
     }
 
@@ -36,7 +38,7 @@ public class Bar : MonoBehaviour
 
         if (!_hasFixedColor)
         {
-            _image.color = GetBarColor(finalScale);
+            _image.color = BarColor(finalScale);
         }
     }
 
@@ -47,7 +49,7 @@ public class Bar : MonoBehaviour
 
         if (!_hasFixedColor)
         {
-            seq.Join(GetComponent<Image>().DOColor(GetBarColor(finalScale), 1f));
+            seq.Join(GetComponent<Image>().DOColor(BarColor(finalScale), 1f));
         }
 
         return seq.Play().WaitForCompletion();

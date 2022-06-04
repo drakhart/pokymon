@@ -28,4 +28,6 @@ public class Move
     public int MaxPP => _base.PP;
 
     public bool HasAvailablePP => _pp > 0;
+
+    public float NormalizedPP => _pp / (float)MaxPP;
 }

@@ -39,8 +39,8 @@ public class PartyMemberHUD : MonoBehaviour
     {
         gameObject.GetComponent<Image>().sprite = selected ? _selectedSprite : _defaultSprite;
         _pokymonNameText.color = selected
-            ? ColorManager.SharedInstance.Selected
-            : ColorManager.SharedInstance.Default;
+            ? ColorManager.SharedInstance.SelectedText
+            : ColorManager.SharedInstance.DefaultText;
     }
 
     public void SetSecondaryType()

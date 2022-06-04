@@ -19,6 +19,10 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] private float _dialogPauseSecs = 1f;
     [SerializeField] private float _dialogSpeed = 30f;
 
+    [SerializeField] private float _highPPThreshold = 0.5f;
+    [SerializeField] private float _lowPPThreshold = 0.20f;
+
+
     private Tween _dialogTextTween;
 
     public void SelectAction(int selectedAction)
@@ -26,8 +30,8 @@ public class BattleDialogBox : MonoBehaviour
         for (int i = 0; i < _actionTexts.Count; i++)
         {
             _actionTexts[i].color = i == selectedAction
-                ? ColorManager.SharedInstance.Selected
-                : ColorManager.SharedInstance.Default;
+                ? ColorManager.SharedInstance.SelectedText
+                : ColorManager.SharedInstance.DefaultText;
         }
     }
 
@@ -36,8 +40,8 @@ public class BattleDialogBox : MonoBehaviour
         for (int i = 0; i < _moveTexts.Count; i++)
         {
             _moveTexts[i].color = i == selectedMove
-                ? ColorManager.SharedInstance.Selected
-                : ColorManager.SharedInstance.Default;
+                ? ColorManager.SharedInstance.SelectedText
+                : ColorManager.SharedInstance.DefaultText;
         }
     }
 
@@ -50,9 +54,7 @@ public class BattleDialogBox : MonoBehaviour
 
     public void SetMoveDetails(Move move)
     {
-        _ppText.color = move.HasAvailablePP
-            ? ColorManager.SharedInstance.Default
-            : ColorManager.SharedInstance.Warning;
+        _ppText.color = PPColor(move.NormalizedPP);
         _ppText.text = $"PP {move.PP}/{move.MaxPP}";
         _typeText.text = move.Base.Type.ToString();
         _typeText.color = ColorManager.SharedInstance.PokymonType(move.Base.Type);
@@ -80,6 +82,22 @@ public class BattleDialogBox : MonoBehaviour
     {
         _moveSelector.SetActive(active);
         _moveDetails.SetActive(active);
+    }
+
+    public Color PPColor(float scale)
+    {
+        if (scale <= _lowPPThreshold)
+        {
+            return ColorManager.SharedInstance.LowPP;
+        }
+        else if (scale > _highPPThreshold)
+        {
+            return ColorManager.SharedInstance.HighPP;
+        }
+        else
+        {
+            return ColorManager.SharedInstance.MediumPP;
+        }
     }
 
     private IEnumerator AnimateDialogText(string message)
