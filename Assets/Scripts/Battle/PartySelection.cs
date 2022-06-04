@@ -49,16 +49,18 @@ public class PartySelection : MonoBehaviour
 
     public void SetDialogText(string message)
     {
+        var lastSoundTime = Time.time;
+
         _dialogTextTween.Kill();
 
         _dialogText.text = "";
-
         _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)
             .SetEase(Ease.Linear)
             .OnUpdate(() => {
-                if ((int)(_dialogText.text.Length % (_dialogSpeed / 15)) == 0)
+                if (Time.time > lastSoundTime + _dialogSFX.length)
                 {
                     AudioManager.SharedInstance.PlaySFX(_dialogSFX);
+                    lastSoundTime = Time.time;
                 }
             });
     }

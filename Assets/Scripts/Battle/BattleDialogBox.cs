@@ -44,7 +44,6 @@ public class BattleDialogBox : MonoBehaviour
     public Coroutine SetDialogText(string message)
     {
         _dialogTextTween.Kill();
-        StopAllCoroutines();
 
         return StartCoroutine(AnimateDialogText(message));
     }
@@ -85,14 +84,16 @@ public class BattleDialogBox : MonoBehaviour
 
     private IEnumerator AnimateDialogText(string message)
     {
-        _dialogText.text = "";
+        var lastSoundTime = Time.time;
 
+        _dialogText.text = "";
         _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)
             .SetEase(Ease.Linear)
             .OnUpdate(() => {
-                if ((int)(_dialogText.text.Length % (_dialogSpeed / 15)) == 0)
+                if (Time.time > lastSoundTime + _dialogSFX.length)
                 {
                     AudioManager.SharedInstance.PlaySFX(_dialogSFX);
+                    lastSoundTime = Time.time;
                 }
             });
 
