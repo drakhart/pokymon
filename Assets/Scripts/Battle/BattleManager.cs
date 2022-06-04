@@ -47,6 +47,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private AudioClip _pokyballEscapeSFX;
     [SerializeField] private AudioClip _pokyballShakeSFX;
     [SerializeField] private AudioClip _pokyballThrowSFX;
+    [SerializeField] private AudioClip _statusMoveNegative;
+    [SerializeField] private AudioClip _statusMovePositive;
     [SerializeField] private AudioClip _uiCancelSFX;
     [SerializeField] private AudioClip _uiMoveSFX;
     [SerializeField] private AudioClip _uiSubmitSFX;
@@ -482,6 +484,10 @@ public class BattleManager : MonoBehaviour
         {
             // TODO: check if move ID has a custom effect (i.e. 18, 46, 47, 48, 50, 54, 73, 77, 78, 79, 86, 92, 95, 100, 102, 105, 109, 113, 114, 115, 116, 118, 182, 186, 235, 240, 388...)
             source.PlayStatusMoveAnimation();
+
+            AudioManager.SharedInstance.PlaySFX(statusMoveEffect.StageModifier > 0
+                ? _statusMovePositive
+                : _statusMoveNegative);
 
             switch (statusMoveEffect.Target)
             {

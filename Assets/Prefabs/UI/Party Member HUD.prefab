@@ -89,6 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hasFixedColor: 0
+  _highThreshold: 0.5
+  _lowThreshold: 0.15
 --- !u!1 &190757721102543738
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +511,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2273902033480672073, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
+  m_Sprite: {fileID: -4569441222934119928, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -539,8 +541,8 @@ MonoBehaviour:
   _pokymonPrimaryTypeText: {fileID: 3906476043872182534}
   _pokymonSecondaryTypeText: {fileID: 7083211220829260169}
   _pokymonImage: {fileID: 2637164533820356751}
-  _defaultSprite: {fileID: -2273902033480672073, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
-  _selectedSprite: {fileID: 6755059033540245106, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
+  _defaultSprite: {fileID: -4569441222934119928, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
+  _selectedSprite: {fileID: -2273902033480672073, guid: d1fbdf21b73b6ab4abd7c8b5d620a0b8, type: 3}
 --- !u!1 &5142711162868674874
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +711,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hasFixedColor: 1
+  _highThreshold: 0.5
+  _lowThreshold: 0.15
 --- !u!1 &6646629400234653752
 GameObject:
   m_ObjectHideFlags: 0
