@@ -18,6 +18,10 @@ MonoBehaviour:
     and lowering their Defense stat."
   _type: 13
   _category: 2
+  _statusMoveEffectList:
+  - _target: 1
+    _stat: 2
+    _stageModifier: -1
   _pp: 30
   _power: 0
   _accuracy: 100

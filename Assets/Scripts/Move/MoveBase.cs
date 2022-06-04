@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,9 @@ public class MoveBase : ScriptableObject
     [SerializeField] private MoveCategory _category = MoveCategory.Physical;
     public MoveCategory Category => _category;
 
+    [SerializeField] private List<StatusMoveEffect> _statusMoveEffectList;
+    public List<StatusMoveEffect> StatusMoveEffectList => _statusMoveEffectList;
+
     [SerializeField] private int _pp;
     public int PP => _pp;
 
@@ -35,4 +39,23 @@ public enum MoveCategory {
     Physical,
     Special,
     Status,
+}
+
+public enum StatusMoveTarget {
+    Ally,
+    Foe,
+    Self,
+}
+
+[Serializable]
+public class StatusMoveEffect
+{
+    [SerializeField] private StatusMoveTarget _target = StatusMoveTarget.Foe;
+    public StatusMoveTarget Target => _target;
+
+    [SerializeField] private PokymonStat _stat;
+    public PokymonStat Stat => _stat;
+
+    [SerializeField] private int _stageModifier = -1;
+    public int StageModifier => _stageModifier;
 }

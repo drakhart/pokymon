@@ -53,12 +53,12 @@ public class BattleUnit : MonoBehaviour
         seq.Play();
     }
 
-    public YieldInstruction PlayReceiveDamageAnimation()
+    public YieldInstruction PlayReceivePhysicalMoveAnimation(PokymonType moveType)
     {
         var delay = 0.1f;
         var seq = DOTween.Sequence();
 
-        seq.Append(_image.DOColor(Color.gray, delay));
+        seq.Append(_image.DOColor(ColorManager.SharedInstance.PokymonType(moveType), delay));
 
         for (var i = 0; i < 2; i++)
         {
@@ -67,6 +67,25 @@ public class BattleUnit : MonoBehaviour
         }
 
         seq.Append(_image.DOColor(_originalColor, delay));
+
+        return seq.Play().WaitForCompletion();
+    }
+
+    public void PlayStatusMoveAnimation()
+    {
+        _image.transform.DOPunchScale(new Vector3(0, 0.1f), 1.2f);
+    }
+
+    public YieldInstruction PlayReceiveStatusMoveAnimation(PokymonType moveType)
+    {
+        var delay = 0.3f;
+        var seq = DOTween.Sequence();
+
+        for (var i = 0; i < 2; i++)
+        {
+            seq.Append(_image.DOColor(ColorManager.SharedInstance.PokymonType(moveType), delay));
+            seq.Append(_image.DOColor(_originalColor, delay));
+        }
 
         return seq.Play().WaitForCompletion();
     }
@@ -82,7 +101,7 @@ public class BattleUnit : MonoBehaviour
         _image.transform.DOLocalMoveX(_originalPosition.x + (IsPlayer ? -1 : 1) * 400, 1);
     }
 
-    public IEnumerator PlayCaptureAnimation()
+    public YieldInstruction PlayCaptureAnimation()
     {
         var delay = 0.75f;
         var seq = DOTween.Sequence();
@@ -91,10 +110,10 @@ public class BattleUnit : MonoBehaviour
         seq.Join(_image.transform.DOScale(new Vector3(0.25f, 0.25f, 1f), delay));
         seq.Join(_image.transform.DOLocalMoveY(_originalPosition.y + 50, delay));
 
-        yield return seq.Play().WaitForCompletion();
+        return seq.Play().WaitForCompletion();
     }
 
-    public IEnumerator PlayEscapeAnimation()
+    public YieldInstruction PlayEscapeAnimation()
     {
         var delay = 0.75f;
         var seq = DOTween.Sequence();
@@ -105,6 +124,6 @@ public class BattleUnit : MonoBehaviour
         seq.Join(_image.transform.DOScale(new Vector3(1f, 1f, 1f), delay));
         seq.Join(_image.transform.DOLocalJump(_originalPosition, 50f, 1, delay));
 
-        yield return seq.Play().WaitForCompletion();
+        return seq.Play().WaitForCompletion();
     }
 }

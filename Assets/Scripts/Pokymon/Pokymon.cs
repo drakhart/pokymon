@@ -55,6 +55,12 @@ public class Pokymon
         set => _isWild = value;
     }
 
+    private Dictionary<PokymonStat, int> _statList;
+    public Dictionary<PokymonStat, int> StatList => _statList;
+
+    private Dictionary<PokymonStat, int> _statStageList;
+    public Dictionary<PokymonStat, int> StatStageList => _statStageList;
+
     public string Name => _isWild ? $"Wild {_base.Name}" : _base.Name;
 
     public int CurrentLevelExp => CalculateLevelExperience(_level);
@@ -63,15 +69,15 @@ public class Pokymon
 
     public int MaxHP => (int)(2 * _base.HP * _level / 100) + _level + 10;
 
-    public int Attack => (int)(2 * _base.Attack * _level / 100) + _level + 5;
+    public int Attack => GetStat(PokymonStat.Attack);
 
-    public int Defense => (int)(2 * _base.Defense * _level / 100) + _level + 5;
+    public int Defense => GetStat(PokymonStat.Defense);
 
-    public int SpAttack => (int)(2 * _base.SpAttack * _level / 100) + _level + 5;
+    public int SpAttack => GetStat(PokymonStat.SpAttack);
 
-    public int SpDefense => (int)(2 * _base.SpDefense * _level / 100) + _level + 5;
+    public int SpDefense => GetStat(PokymonStat.SpDefense);
 
-    public int Speed => (int)(2 * _base.Speed * _level / 100) + _level + 5;
+    public int Speed => GetStat(PokymonStat.Speed);
 
     public bool IsKnockedOut => HP <= 0;
 
@@ -84,6 +90,8 @@ public class Pokymon
     public float NormalizedExp => Mathf.Clamp01((_exp - CurrentLevelExp) / (float)(NextLevelExp - CurrentLevelExp));
 
     public float NormalizedHP => _hp / (float)MaxHP;
+
+    public LearnableMove LearnableMove => _base.LearnableMoves.Where(lm => lm.Level == _level).FirstOrDefault();
 
     public Pokymon(PokymonBase pBase, int pLevel, bool isWild)
     {
@@ -100,6 +108,9 @@ public class Pokymon
         _exp = CurrentLevelExp;
         _moveList = new List<Move>();
 
+        InitStatStages();
+        InitStats();
+
         foreach (LearnableMove learnableMove in _base.LearnableMoves)
         {
             if (learnableMove.Level <= _level)
@@ -112,6 +123,32 @@ public class Pokymon
                 break;
             }
         }
+    }
+
+    private void InitStats()
+    {
+        _statList = new Dictionary<PokymonStat, int>();
+        _statList.Add(PokymonStat.Accuracy, 1); // TODO: calculate actual accuracy
+        _statList.Add(PokymonStat.Attack, (int)(2 * _base.Attack * _level / 100) + _level + 5);
+        _statList.Add(PokymonStat.Defense, (int)(2 * _base.Defense * _level / 100) + _level + 5);
+        _statList.Add(PokymonStat.Evasion, 1); // TODO: calculate actual evasion
+        _statList.Add(PokymonStat.SpAttack, (int)(2 * _base.SpAttack * _level / 100) + _level + 5);
+        _statList.Add(PokymonStat.SpDefense, (int)(2 * _base.SpDefense * _level / 100) + _level + 5);
+        _statList.Add(PokymonStat.Speed, (int)(2 * _base.Speed * _level / 100) + _level + 5);
+    }
+
+    private void InitStatStages()
+    {
+        _statStageList = new Dictionary<PokymonStat, int>()
+        {
+            { PokymonStat.Accuracy, 0 },
+            { PokymonStat.Attack, 0 },
+            { PokymonStat.Defense, 0 },
+            { PokymonStat.Evasion, 0 },
+            { PokymonStat.SpAttack, 0 },
+            { PokymonStat.SpDefense, 0 },
+            { PokymonStat.Speed, 0 },
+        };
     }
 
     public CaptureDescription CalculateCapture(float pokyballBonus = 1f)
@@ -153,8 +190,8 @@ public class Pokymon
 
     public DamageDescription CalculateDamage(Pokymon attacker, Move move)
     {
-        int attack = move.Base.Category == MoveCategory.Special ? attacker.SpAttack : attacker.Attack;
-        int defense = move.Base.Category == MoveCategory.Special ? SpDefense : Defense;
+        int attack = move.IsSpecialMove ? attacker.SpAttack : attacker.Attack;
+        int defense = move.IsSpecialMove ? SpDefense : Defense;
         float baseDamage = ((2 * attacker.Level / 5f + 2) * move.Base.Power * (attack / (float)defense)) / 50f + 2;
 
         float criticalMultiplier = IsDamageCritical() ? 2f : 1f;
@@ -244,6 +281,23 @@ public class Pokymon
         return null;
     }
 
+    private int GetStat(PokymonStat stat)
+    {
+        int statBase = _statList[stat];
+        int statStage = _statStageList[stat];
+        float multiplier = 1 + Math.Abs(statStage) / 2.0f;
+
+        return statStage >= 0 ? (int)(statBase * multiplier) : (int)(statBase / multiplier);
+    }
+
+    public void ModifyStatStage(PokymonStat stat, int stageModifier)
+    {
+        _statStageList[stat] = Mathf.Clamp(_statStageList[stat] + stageModifier,
+            Constants.MIN_STAT_STAGE,
+            Constants.MAX_STAT_STAGE
+        );
+    }
+
     private bool IsDamageCritical()
     {
         if (Random.Range(0f, 100f) < Constants.CRITICAL_HIT_ODDS)
@@ -263,13 +317,13 @@ public class Pokymon
             _level++;
             _hp += MaxHP - prevMaxHp;
 
+            InitStats();
+
             return true;
         }
 
         return false;
     }
-
-    public LearnableMove LearnableMove => _base.LearnableMoves.Where(lm => lm.Level == _level).FirstOrDefault();
 
     public bool LearnMove(LearnableMove learnableMove)
     {

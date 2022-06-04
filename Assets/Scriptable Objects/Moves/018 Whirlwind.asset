@@ -18,6 +18,7 @@ MonoBehaviour:
     a single Pok\xE9mon ends."
   _type: 13
   _category: 2
+  _statusMoveEffectList: []
   _pp: 20
   _power: 0
   _accuracy: 0

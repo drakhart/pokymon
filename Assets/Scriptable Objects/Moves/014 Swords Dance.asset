@@ -18,6 +18,10 @@ MonoBehaviour:
     the user's Attack stat.
   _type: 13
   _category: 2
+  _statusMoveEffectList:
+  - _target: 2
+    _stat: 1
+    _stageModifier: 2
   _pp: 20
   _power: 0
   _accuracy: 0

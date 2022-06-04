@@ -30,4 +30,10 @@ public class Move
     public bool HasAvailablePP => _pp > 0;
 
     public float NormalizedPP => _pp / (float)MaxPP;
+
+    public bool IsPhysicalMove => _base.Category == MoveCategory.Physical;
+
+    public bool IsSpecialMove => _base.Category == MoveCategory.Special;
+
+    public bool IsStatusMove => _base.Category == MoveCategory.Status;
 }

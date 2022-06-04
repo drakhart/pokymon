@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
   _id: 106
   _name: Harden
-  _description:
+  _description: 
   _type: 13
   _category: 2
+  _statusMoveEffectList:
+  - _target: 2
+    _stat: 2
+    _stageModifier: 1
   _pp: 30
   _power: 0
   _accuracy: 0

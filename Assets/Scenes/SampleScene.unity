@@ -2613,12 +2613,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b4202a559400940baabb39e9d86e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _barHigh: {r: 0, g: 0.6313726, b: 0.3019608, a: 1}
-  _barMedium: {r: 0.8207547, g: 0.6065705, b: 0.15873085, a: 1}
-  _barLow: {r: 0.8018868, g: 0.2557692, b: 0.19290671, a: 1}
-  _default: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  _selected: {r: 0, g: 0.49803922, b: 1, a: 1}
-  _warning: {r: 0.7169812, g: 0.18792945, b: 0.064257726, a: 1}
+  _defaultText: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  _selectedText: {r: 0, g: 0.49803922, b: 1, a: 1}
+  _highBar: {r: 0, g: 0.6313726, b: 0.3019608, a: 1}
+  _mediumBar: {r: 0.81960785, g: 0.60784316, b: 0.15686275, a: 1}
+  _lowBar: {r: 0.8, g: 0.25490198, b: 0.19215687, a: 1}
+  _highPP: {r: 0.7647059, g: 0.7647059, b: 0.7647059, a: 1}
+  _mediumPP: {r: 0.79607844, g: 0.6627451, b: 0.08235294, a: 1}
+  _lowPP: {r: 0.8509804, g: 0.21568628, b: 0.15686275, a: 1}
 --- !u!4 &499019668
 Transform:
   m_ObjectHideFlags: 0
@@ -3537,6 +3539,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hasFixedColor: 0
+  _highThreshold: 0.5
+  _lowThreshold: 0.15
 --- !u!114 &964903925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95857,6 +95861,7 @@ GameObject:
   - component: {fileID: 1304714533}
   - component: {fileID: 1304714535}
   - component: {fileID: 1304714534}
+  - component: {fileID: 1304714536}
   m_Layer: 0
   m_Name: PP Text
   m_TagString: Untagged
@@ -95925,6 +95930,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304714532}
   m_CullTransparentMesh: 1
+--- !u!114 &1304714536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304714532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1329438159
 GameObject:
   m_ObjectHideFlags: 0
@@ -96107,6 +96127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hasFixedColor: 0
+  _highThreshold: 0.5
+  _lowThreshold: 0.15
 --- !u!1 &1349825221
 GameObject:
   m_ObjectHideFlags: 0
@@ -97201,6 +97223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hasFixedColor: 1
+  _highThreshold: 0.5
+  _lowThreshold: 0.15
 --- !u!1 &1424284688
 GameObject:
   m_ObjectHideFlags: 0
@@ -99524,6 +99548,8 @@ MonoBehaviour:
   _dialogSFX: {fileID: 8300000, guid: 12b0bffb4c6078c4e853a5d1bceb15c7, type: 3}
   _dialogPauseSecs: 1
   _dialogSpeed: 25
+  _highPPThreshold: 0.5
+  _lowPPThreshold: 0.2
 --- !u!1001 &2460386866152244533
 PrefabInstance:
   m_ObjectHideFlags: 0

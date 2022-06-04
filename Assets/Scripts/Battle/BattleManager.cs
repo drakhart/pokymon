@@ -440,12 +440,31 @@ public class BattleManager : MonoBehaviour
     {
         move.PP--;
 
+        yield return _dialogBox.SetDialogText($"{source.Pokymon.Name} used {move.Base.Name}.");
+
+        if (move.IsStatusMove)
+        {
+            yield return PerformStatusMove(source, target, move);
+        }
+        else
+        {
+            yield return PerformPhysicalMove(source, target, move);
+        }
+
+        if (target.Pokymon.IsKnockedOut)
+        {
+            yield return PerformKnockOut(target);
+        } else {
+            yield return null;
+        }
+    }
+
+    IEnumerator PerformPhysicalMove(BattleUnit source, BattleUnit target, Move move)
+    {
         AudioManager.SharedInstance.PlaySFX(_physicalMoveSFX);
 
         source.PlayPhysicalMoveAnimation();
-        target.PlayReceiveDamageAnimation();
-
-        yield return _dialogBox.SetDialogText($"{source.Pokymon.Name} used {move.Base.Name}.");
+        yield return target.PlayReceivePhysicalMoveAnimation(move.Base.Type);
 
         AudioManager.SharedInstance.PlaySFX(_damageSFX);
 
@@ -455,10 +474,30 @@ public class BattleManager : MonoBehaviour
 
         yield return _dialogBox.SetDialogText($"{target.Pokymon.Name} took {damageDesc.HP} HP damage.");
         yield return ShowDamageDescription(damageDesc);
+    }
 
-        if (damageDesc.IsKnockedOut)
+    IEnumerator PerformStatusMove(BattleUnit source, BattleUnit target, Move move)
+    {
+        foreach (var statusMoveEffect in move.Base.StatusMoveEffectList)
         {
-            yield return PerformKnockOut(target);
+            // TODO: check if move ID has a custom effect (i.e. 18, 46, 47, 48, 50, 54, 73, 77, 78, 79, 86, 92, 95, 100, 102, 105, 109, 113, 114, 115, 116, 118, 182, 186, 235, 240, 388...)
+            source.PlayStatusMoveAnimation();
+
+            switch (statusMoveEffect.Target)
+            {
+                case StatusMoveTarget.Self:
+                    source.Pokymon.ModifyStatStage(statusMoveEffect.Stat, statusMoveEffect.StageModifier);
+                    yield return source.PlayReceiveStatusMoveAnimation(move.Base.Type);
+                    break;
+
+                case StatusMoveTarget.Foe:
+                    target.Pokymon.ModifyStatStage(statusMoveEffect.Stat, statusMoveEffect.StageModifier);
+                    yield return target.PlayReceiveStatusMoveAnimation(move.Base.Type);
+                    break;
+
+                case StatusMoveTarget.Ally:
+                    break;
+            }
         }
     }
 
