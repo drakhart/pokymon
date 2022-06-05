@@ -512,8 +512,16 @@ public class BattleManager : MonoBehaviour
                     break;
             }
 
-            effectTarget.Pokymon.ModifyStatStage(stat, modifier);
-            modifiedStatQueue.Enqueue($"{effectTarget.Pokymon.Name} {stat.ToString()} was modified to {effectTarget.Pokymon.GetStatStage(stat)}.");
+            var incOrDec = modifier > 0 ? "increased" : "decreased";
+            var modified = effectTarget.Pokymon.ModifyStatStage(stat, modifier);
+
+            if (!modified)
+            {
+                incOrDec = modifier > 0 ? "already at its maximum" : "already at its minimum";
+            }
+
+            modifiedStatQueue.Enqueue($"{effectTarget.Pokymon.Name} {stat.ToString()} was {incOrDec}.");
+
             yield return effectTarget.PlayReceiveStatusMoveAnimation(move.Base.Type);
         }
 

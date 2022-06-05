@@ -305,12 +305,16 @@ public class Pokymon
         return _statStageList[stat];
     }
 
-    public void ModifyStatStage(PokymonStat stat, int stageModifier)
+    public bool ModifyStatStage(PokymonStat stat, int stageModifier)
     {
+        var prevStage = _statStageList[stat];
+
         _statStageList[stat] = Mathf.Clamp(_statStageList[stat] + stageModifier,
             Constants.MIN_STAT_STAGE,
             Constants.MAX_STAT_STAGE
         );
+
+        return _statStageList[stat] != prevStage ? true : false;
     }
 
     public bool LevelUp()
