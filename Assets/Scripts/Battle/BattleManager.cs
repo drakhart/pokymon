@@ -240,7 +240,7 @@ public class BattleManager : MonoBehaviour
             yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} appears!");
         }
 
-        yield return CheckForFasterPokymon();
+        yield return ChooseNextTurn();
     }
 
     private void SetupPlayerPokymon(Pokymon playerPokymon)
@@ -251,7 +251,7 @@ public class BattleManager : MonoBehaviour
         _dialogBox.SetMoveTexts(_playerUnit.Pokymon.MoveList);
     }
 
-    private IEnumerator CheckForFasterPokymon()
+    private IEnumerator ChooseNextTurn()
     {
         if (_playerUnit.Pokymon.Speed < _enemyUnit.Pokymon.Speed)
         {
@@ -602,8 +602,12 @@ public class BattleManager : MonoBehaviour
         _dialogBox.ToggleActionSelector(false);
         _dialogBox.ToggleDialogText(true);
 
+        var isCurrentPokymonKnockedOut = true;
+
         if (!_playerUnit.Pokymon.IsKnockedOut)
         {
+            isCurrentPokymonKnockedOut = false;
+
             _playerUnit.PlaySwitchAnimation();
 
             yield return _dialogBox.SetDialogText($"Come back, {_playerUnit.Pokymon.Name}!");
@@ -616,7 +620,14 @@ public class BattleManager : MonoBehaviour
             : $"I choose you, {_playerUnit.Pokymon.Name}!"
         );
 
-        CheckForFasterPokymon();
+        if (isCurrentPokymonKnockedOut)
+        {
+            yield return ChooseNextTurn();
+        }
+        else
+        {
+            EnemyMove();
+        }
     }
 
     private IEnumerator PerformPokyballThrow()
