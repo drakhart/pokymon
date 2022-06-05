@@ -84,7 +84,7 @@ public class BattleDialogBox : MonoBehaviour
         _moveDetails.SetActive(active);
     }
 
-    public Color PPColor(float scale)
+    private Color PPColor(float scale)
     {
         if (scale <= _lowPPThreshold)
         {

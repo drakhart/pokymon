@@ -224,7 +224,7 @@ public class Pokymon
         return false;
     }
 
-    public int CalculateLevelExperience(int level)
+    private int CalculateLevelExperience(int level)
     {
         switch (_base.GrowthRate)
         {

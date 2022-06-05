@@ -43,7 +43,7 @@ public class PartyMemberHUD : MonoBehaviour
             : ColorManager.SharedInstance.DefaultText;
     }
 
-    public void SetSecondaryType()
+    private void SetSecondaryType()
     {
         var active = _pokymon.Base.SecondaryType != PokymonType.None;
         _pokymonSecondaryTypeText.gameObject.SetActive(active);

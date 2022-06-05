@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 0.25f, _pokymonAreaLayers) != null)
         {
-            if (Random.Range(0, 100) < Constants.POKEMON_ENCOUNTER_ODDS)
+            if (Random.Range(0, 100) < Constants.POKYMON_ENCOUNTER_ODDS)
             {
                 return true;
             }
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
-    IEnumerator MoveTowards(Vector3 destination)
+    private IEnumerator MoveTowards(Vector3 destination)
     {
         _isMoving = true;
 

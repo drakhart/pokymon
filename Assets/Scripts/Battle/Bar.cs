@@ -12,7 +12,7 @@ public class Bar : MonoBehaviour
 
     private Image _image;
 
-    public Color BarColor(float finalScale)
+    private Color BarColor(float finalScale)
     {
         if (finalScale <= _lowThreshold)
         {

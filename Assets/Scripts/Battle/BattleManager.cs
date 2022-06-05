@@ -5,27 +5,6 @@ using UnityEngine;
 using DG.Tweening;
 using Random = UnityEngine.Random;
 
-public enum BattleType
-{
-    WildPokymon,
-    PokymonTrainer,
-    GymLeader,
-}
-
-public enum BattleState
-{
-    StartBattle,
-    FinishBattle,
-    PlayerSelectAction,
-    PlayerSelectMove,
-    PlayerSelectParty,
-    PlayerSelectInventory,
-    PlayerSelectForgetMove,
-    PerformEnemyMove,
-    PerformPlayerMove,
-    Busy,
-}
-
 public class BattleManager : MonoBehaviour
 {
     [SerializeField] private BattleDialogBox _dialogBox;
@@ -254,23 +233,14 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public IEnumerator SetupBattle()
+    private IEnumerator SetupBattle()
     {
         if (_battleType == BattleType.WildPokymon)
         {
             yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} appears!");
         }
 
-        if (_playerUnit.Pokymon.Speed < _enemyUnit.Pokymon.Speed)
-        {
-            yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} is fast!");
-
-            EnemyMove();
-        }
-        else
-        {
-            PlayerSelectAction();
-        }
+        yield return CheckForFasterPokymon();
     }
 
     private void SetupPlayerPokymon(Pokymon playerPokymon)
@@ -281,7 +251,21 @@ public class BattleManager : MonoBehaviour
         _dialogBox.SetMoveTexts(_playerUnit.Pokymon.MoveList);
     }
 
-    void CheckForBattleFinish(BattleUnit knockedOutUnit)
+    private IEnumerator CheckForFasterPokymon()
+    {
+        if (_playerUnit.Pokymon.Speed < _enemyUnit.Pokymon.Speed)
+        {
+            yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} is faster!");
+
+            EnemyMove();
+        }
+        else
+        {
+            PlayerSelectAction();
+        }
+    }
+
+    private void CheckForBattleFinish(BattleUnit knockedOutUnit)
     {
         if (knockedOutUnit.IsPlayer)
         {
@@ -416,7 +400,7 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(PerformPlayerMove(move));
     }
 
-    IEnumerator PerformEnemyMove(Move move)
+    private IEnumerator PerformEnemyMove(Move move)
     {
         _battleState = BattleState.PerformEnemyMove;
 
@@ -428,7 +412,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator PerformPlayerMove(Move move)
+    private IEnumerator PerformPlayerMove(Move move)
     {
         _battleState = BattleState.PerformPlayerMove;
 
@@ -440,7 +424,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator PerformMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
+    private IEnumerator PerformMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
         move.PP--;
 
@@ -463,7 +447,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator PerformPhysicalMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
+    private IEnumerator PerformPhysicalMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
         AudioManager.SharedInstance.PlaySFX(_physicalMoveSFX);
 
@@ -480,7 +464,7 @@ public class BattleManager : MonoBehaviour
         yield return ShowDamageDescription(damageDesc);
     }
 
-    IEnumerator ShowDamageDescription(DamageDescription desc)
+    private IEnumerator ShowDamageDescription(DamageDescription desc)
     {
         if (desc.Critical > 1f)
         {
@@ -497,7 +481,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator PerformStatusMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
+    private IEnumerator PerformStatusMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
         var modifiedStatQueue = new Queue<string>();
 
@@ -536,7 +520,7 @@ public class BattleManager : MonoBehaviour
         yield return ShowStatusMoveEffectMessages(modifiedStatQueue);
     }
 
-    IEnumerator ShowStatusMoveEffectMessages(Queue<string> messages)
+    private IEnumerator ShowStatusMoveEffectMessages(Queue<string> messages)
     {
         while (messages.Count > 0)
         {
@@ -546,7 +530,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator PerformKnockOut(BattleUnit battleUnit)
+    private IEnumerator PerformKnockOut(BattleUnit battleUnit)
     {
         AudioManager.SharedInstance.PlaySFX(_knockOutSFX);
 
@@ -610,7 +594,7 @@ public class BattleManager : MonoBehaviour
         CheckForBattleFinish(battleUnit);
     }
 
-    IEnumerator PerformPokymonSwitch(Pokymon nextPlayerPokymon)
+    private IEnumerator PerformPokymonSwitch(Pokymon nextPlayerPokymon)
     {
         _battleState = BattleState.Busy;
 
@@ -632,10 +616,10 @@ public class BattleManager : MonoBehaviour
             : $"I choose you, {_playerUnit.Pokymon.Name}!"
         );
 
-        EnemyMove();
+        CheckForFasterPokymon();
     }
 
-    IEnumerator PerformPokyballThrow()
+    private IEnumerator PerformPokyballThrow()
     {
         _battleState = BattleState.Busy;
 
@@ -708,7 +692,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator PerformPlayerRun()
+    private IEnumerator PerformPlayerRun()
     {
         _escapeAttempts++;
 
@@ -736,7 +720,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator PerformForgetMove(int selectedMove)
+    private IEnumerator PerformForgetMove(int selectedMove)
     {
         if (selectedMove == Constants.MAX_POKYMON_MOVE_COUNT)
         {
@@ -761,17 +745,38 @@ public class BattleManager : MonoBehaviour
         _battleState = BattleState.PerformPlayerMove;
     }
 
-    IEnumerator ShowLostTurnMessage(string message)
+    private IEnumerator ShowLostTurnMessage(string message)
     {
         yield return _dialogBox.SetDialogText(message);
 
         EnemyMove();
     }
 
-    IEnumerator ShowPlayerRunSuccessMessage()
+    private IEnumerator ShowPlayerRunSuccessMessage()
     {
         yield return _dialogBox.SetDialogText("You managed to run away...");
 
         FinishBattle(false);
     }
+}
+
+public enum BattleType
+{
+    WildPokymon,
+    PokymonTrainer,
+    GymLeader,
+}
+
+public enum BattleState
+{
+    StartBattle,
+    FinishBattle,
+    PlayerSelectAction,
+    PlayerSelectMove,
+    PlayerSelectParty,
+    PlayerSelectInventory,
+    PlayerSelectForgetMove,
+    PerformEnemyMove,
+    PerformPlayerMove,
+    Busy,
 }
