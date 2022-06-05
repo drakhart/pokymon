@@ -98975,8 +98975,8 @@ MonoBehaviour:
   _pokyballEscapeSFX: {fileID: 8300000, guid: 2a6bdf3d02357204c9f6aee612cb8796, type: 3}
   _pokyballShakeSFX: {fileID: 8300000, guid: a9ff8c96bf320334eab14c3a64f8abe1, type: 3}
   _pokyballThrowSFX: {fileID: 8300000, guid: 6ae97a4e61c75cb4a9ee20e80f52a52c, type: 3}
-  _statusMoveNegative: {fileID: 8300000, guid: e42b6bc1b82cdee41a8a13070752af65, type: 3}
-  _statusMovePositive: {fileID: 8300000, guid: a287e9ba513d1ed46b3003d5ee7daa03, type: 3}
+  _decreaseStat: {fileID: 8300000, guid: e42b6bc1b82cdee41a8a13070752af65, type: 3}
+  _increaseStat: {fileID: 8300000, guid: a287e9ba513d1ed46b3003d5ee7daa03, type: 3}
   _uiCancelSFX: {fileID: 8300000, guid: d6ab00b89f55bcd4c9da9bc22537c593, type: 3}
   _uiMoveSFX: {fileID: 8300000, guid: 08558cf5ff414e7408c392dc8fd55877, type: 3}
   _uiSubmitSFX: {fileID: 8300000, guid: a1185608519089a4b95901059365c3de, type: 3}

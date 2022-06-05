@@ -26,8 +26,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private AudioClip _pokyballEscapeSFX;
     [SerializeField] private AudioClip _pokyballShakeSFX;
     [SerializeField] private AudioClip _pokyballThrowSFX;
-    [SerializeField] private AudioClip _statusMoveNegative;
-    [SerializeField] private AudioClip _statusMovePositive;
+    [SerializeField] private AudioClip _decreaseStat;
+    [SerializeField] private AudioClip _increaseStat;
     [SerializeField] private AudioClip _uiCancelSFX;
     [SerializeField] private AudioClip _uiMoveSFX;
     [SerializeField] private AudioClip _uiSubmitSFX;
@@ -430,13 +430,19 @@ public class BattleManager : MonoBehaviour
 
         yield return _dialogBox.SetDialogText($"{sourceUnit.Pokymon.Name} used {move.Base.Name}.");
 
-        if (move.IsStatusMove)
-        {
-            yield return PerformStatusMove(move, sourceUnit, targetUnit);
-        }
-        else
+        if (move.IsPhysicalMove || move.IsSpecialMove)
         {
             yield return PerformPhysicalMove(move, sourceUnit, targetUnit);
+        }
+
+        if (move.HasStatModifierEffects)
+        {
+            yield return ApplyStatMofidierEffects(move, sourceUnit, targetUnit);
+        }
+
+        if (move.HasStatusConditionEffects)
+        {
+            yield return ApplyStatusConditionEffects(move, sourceUnit, targetUnit);
         }
 
         if (targetUnit.Pokymon.IsKnockedOut)
@@ -464,6 +470,57 @@ public class BattleManager : MonoBehaviour
         yield return ShowDamageDescription(damageDesc);
     }
 
+    private IEnumerator ApplyStatusConditionEffects(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
+    {
+        // TODO: apply actual status condition effects
+        yield return null;
+    }
+
+    private IEnumerator ApplyStatMofidierEffects(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
+    {
+        var modifiedStatQueue = new Queue<string>();
+
+        foreach (var effect in move.Base.StatModifierEffectList)
+        {
+            BattleUnit effectTarget = null;
+
+            // TODO: check if move ID has a custom effect (i.e. 18, 46, 47, 48, 50, 54, 73, 77, 78, 79, 86, 92, 95, 100, 102, 105, 109, 113, 114, 115, 116, 118, 182, 186, 235, 240, 388...)
+            sourceUnit.PlayStatusMoveAnimation();
+
+            AudioManager.SharedInstance.PlaySFX(effect.Modifier > 0
+                ? _increaseStat
+                : _decreaseStat);
+
+            switch (effect.Target)
+            {
+                case EffectTarget.Self:
+                    effectTarget = sourceUnit;
+                    break;
+
+                case EffectTarget.Foe:
+                    effectTarget = targetUnit;
+                    break;
+
+                case EffectTarget.Ally:
+                    break;
+            }
+
+            var incOrDec = effect.Modifier > 0 ? "increased" : "decreased";
+            var modified = effectTarget.Pokymon.ModifyStatStage(effect.Stat, effect.Modifier);
+
+            if (!modified)
+            {
+                incOrDec = effect.Modifier > 0 ? "already at its maximum" : "already at its minimum";
+            }
+
+            modifiedStatQueue.Enqueue($"{effectTarget.Pokymon.Name} {effect.Stat.ToString()} was {incOrDec}.");
+
+            yield return effectTarget.PlayReceiveStatModifierEffectAnimation(move.Base.Type);
+        }
+
+        yield return ShowMessageQueue(modifiedStatQueue);
+    }
+
     private IEnumerator ShowDamageDescription(DamageDescription desc)
     {
         if (desc.Critical > 1f)
@@ -481,54 +538,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private IEnumerator PerformStatusMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
-    {
-        var modifiedStatQueue = new Queue<string>();
-
-        foreach (var statusMoveEffect in move.Base.StatusMoveEffectList)
-        {
-            BattleUnit effectTarget = null;
-            var stat = statusMoveEffect.Stat;
-            var modifier = statusMoveEffect.StageModifier;
-
-            // TODO: check if move ID has a custom effect (i.e. 18, 46, 47, 48, 50, 54, 73, 77, 78, 79, 86, 92, 95, 100, 102, 105, 109, 113, 114, 115, 116, 118, 182, 186, 235, 240, 388...)
-            sourceUnit.PlayStatusMoveAnimation();
-
-            AudioManager.SharedInstance.PlaySFX(modifier > 0
-                ? _statusMovePositive
-                : _statusMoveNegative);
-
-            switch (statusMoveEffect.Target)
-            {
-                case StatusMoveTarget.Self:
-                    effectTarget = sourceUnit;
-                    break;
-
-                case StatusMoveTarget.Foe:
-                    effectTarget = targetUnit;
-                    break;
-
-                case StatusMoveTarget.Ally:
-                    break;
-            }
-
-            var incOrDec = modifier > 0 ? "increased" : "decreased";
-            var modified = effectTarget.Pokymon.ModifyStatStage(stat, modifier);
-
-            if (!modified)
-            {
-                incOrDec = modifier > 0 ? "already at its maximum" : "already at its minimum";
-            }
-
-            modifiedStatQueue.Enqueue($"{effectTarget.Pokymon.Name} {stat.ToString()} was {incOrDec}.");
-
-            yield return effectTarget.PlayReceiveStatusMoveAnimation(move.Base.Type);
-        }
-
-        yield return ShowStatusMoveEffectMessages(modifiedStatQueue);
-    }
-
-    private IEnumerator ShowStatusMoveEffectMessages(Queue<string> messages)
+    private IEnumerator ShowMessageQueue(Queue<string> messages)
     {
         while (messages.Count > 0)
         {

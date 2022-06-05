@@ -36,4 +36,8 @@ public class Move
     public bool IsSpecialMove => _base.Category == MoveCategory.Special;
 
     public bool IsStatusMove => _base.Category == MoveCategory.Status;
+
+    public bool HasStatModifierEffects => _base.StatModifierEffectList.Count > 0;
+
+    public bool HasStatusConditionEffects => _base.StatusConditionEffectList.Count > 0;
 }

@@ -22,8 +22,11 @@ public class MoveBase : ScriptableObject
     [SerializeField] private MoveCategory _category = MoveCategory.Physical;
     public MoveCategory Category => _category;
 
-    [SerializeField] private List<StatusMoveEffect> _statusMoveEffectList;
-    public List<StatusMoveEffect> StatusMoveEffectList => _statusMoveEffectList;
+    [SerializeField] private List<StatModifierEffect> _statModifierEffectList;
+    public List<StatModifierEffect> StatModifierEffectList => _statModifierEffectList;
+
+    [SerializeField] private List<StatusConditionEffect> _statusConditionEffectList;
+    public List<StatusConditionEffect> StatusConditionEffectList => _statusConditionEffectList;
 
     [SerializeField] private int _pp;
     public int PP => _pp;
@@ -41,21 +44,34 @@ public enum MoveCategory {
     Status,
 }
 
-public enum StatusMoveTarget {
+public enum EffectTarget {
     Ally,
     Foe,
     Self,
 }
 
 [Serializable]
-public class StatusMoveEffect
+public class StatModifierEffect
 {
-    [SerializeField] private StatusMoveTarget _target = StatusMoveTarget.Foe;
-    public StatusMoveTarget Target => _target;
+    [SerializeField] private EffectTarget _target = EffectTarget.Foe;
+    public EffectTarget Target => _target;
 
     [SerializeField] private PokymonStat _stat;
     public PokymonStat Stat => _stat;
 
-    [SerializeField] private int _stageModifier = -1;
-    public int StageModifier => _stageModifier;
+    [SerializeField] private int _modifier = -1;
+    public int Modifier => _modifier;
+}
+
+[Serializable]
+public class StatusConditionEffect
+{
+    [SerializeField] private EffectTarget _target = EffectTarget.Foe;
+    public EffectTarget Target => _target;
+
+    [SerializeField] private StatusConditionID _condition;
+    public StatusConditionID Condition => _condition;
+
+    [SerializeField] private int _probability = 100;
+    public int Probability => _probability;
 }

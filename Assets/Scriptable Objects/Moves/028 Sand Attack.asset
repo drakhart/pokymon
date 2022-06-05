@@ -17,10 +17,10 @@ MonoBehaviour:
   _description: Sand is hurled in the target's face, reducing its accuracy.
   _type: 10
   _category: 2
-  _statusMoveEffectList:
+  _statModifierEffectList:
   - _target: 1
     _stat: 0
-    _stageModifier: -1
+    _modifier: -1
   _pp: 15
   _power: 0
   _accuracy: 100

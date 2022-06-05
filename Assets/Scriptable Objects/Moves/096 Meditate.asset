@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
   _id: 96
   _name: Meditate
-  _description: 
+  _description:
   _type: 15
   _category: 2
-  _statusMoveEffectList:
+  _statModifierEffectList:
   - _target: 2
     _stat: 1
-    _stageModifier: 1
+    _modifier: 1
   _pp: 40
   _power: 0
   _accuracy: 0

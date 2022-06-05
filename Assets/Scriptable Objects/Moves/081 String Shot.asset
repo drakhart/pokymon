@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
   _id: 81
   _name: String Shot
-  _description: 
+  _description:
   _type: 0
   _category: 2
-  _statusMoveEffectList:
+  _statModifierEffectList:
   - _target: 1
     _stat: 6
-    _stageModifier: -2
+    _modifier: -2
   _pp: 40
   _power: 0
   _accuracy: 95

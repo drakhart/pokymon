@@ -76,7 +76,7 @@ public class BattleUnit : MonoBehaviour
         _image.transform.DOPunchScale(new Vector3(0, 0.1f), 1.2f);
     }
 
-    public YieldInstruction PlayReceiveStatusMoveAnimation(PokymonType moveType)
+    public YieldInstruction PlayReceiveStatModifierEffectAnimation(PokymonType moveType)
     {
         var delay = 0.3f;
         var seq = DOTween.Sequence();
