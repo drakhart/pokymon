@@ -309,6 +309,8 @@ public class BattleManager : MonoBehaviour
     {
         _battleState = BattleState.FinishBattle;
 
+        _playerParty.PokymonList.ForEach(p => p.OnBattleFinish());
+
         OnBattleFinish(hasPlayerWon);
     }
 
@@ -418,7 +420,7 @@ public class BattleManager : MonoBehaviour
     {
         _battleState = BattleState.PerformEnemyMove;
 
-        yield return PerformMove(_enemyUnit, _playerUnit, move);
+        yield return PerformMove(move, _enemyUnit, _playerUnit);
 
         if (_battleState == BattleState.PerformEnemyMove)
         {
@@ -430,7 +432,7 @@ public class BattleManager : MonoBehaviour
     {
         _battleState = BattleState.PerformPlayerMove;
 
-        yield return PerformMove(_playerUnit, _enemyUnit, move);
+        yield return PerformMove(move, _playerUnit, _enemyUnit);
 
         if (_battleState == BattleState.PerformPlayerMove)
         {
@@ -438,72 +440,109 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator PerformMove(BattleUnit source, BattleUnit target, Move move)
+    IEnumerator PerformMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
         move.PP--;
 
-        yield return _dialogBox.SetDialogText($"{source.Pokymon.Name} used {move.Base.Name}.");
+        yield return _dialogBox.SetDialogText($"{sourceUnit.Pokymon.Name} used {move.Base.Name}.");
 
         if (move.IsStatusMove)
         {
-            yield return PerformStatusMove(source, target, move);
+            yield return PerformStatusMove(move, sourceUnit, targetUnit);
         }
         else
         {
-            yield return PerformPhysicalMove(source, target, move);
+            yield return PerformPhysicalMove(move, sourceUnit, targetUnit);
         }
 
-        if (target.Pokymon.IsKnockedOut)
+        if (targetUnit.Pokymon.IsKnockedOut)
         {
-            yield return PerformKnockOut(target);
+            yield return PerformKnockOut(targetUnit);
         } else {
             yield return null;
         }
     }
 
-    IEnumerator PerformPhysicalMove(BattleUnit source, BattleUnit target, Move move)
+    IEnumerator PerformPhysicalMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
         AudioManager.SharedInstance.PlaySFX(_physicalMoveSFX);
 
-        source.PlayPhysicalMoveAnimation();
-        yield return target.PlayReceivePhysicalMoveAnimation(move.Base.Type);
+        sourceUnit.PlayPhysicalMoveAnimation();
+        yield return targetUnit.PlayReceivePhysicalMoveAnimation(move.Base.Type);
 
         AudioManager.SharedInstance.PlaySFX(_damageSFX);
 
-        var damageDesc = target.Pokymon.CalculateDamage(source.Pokymon, move);
-        target.HUD.UpdateHPTextAnimated(target.Pokymon.HP + damageDesc.HP);
-        target.HUD.UpdateHPBarAnimated();
+        var damageDesc = targetUnit.Pokymon.CalculateDamage(sourceUnit.Pokymon, move);
+        targetUnit.HUD.UpdateHPTextAnimated(targetUnit.Pokymon.HP + damageDesc.HP);
+        targetUnit.HUD.UpdateHPBarAnimated();
 
-        yield return _dialogBox.SetDialogText($"{target.Pokymon.Name} took {damageDesc.HP} HP damage.");
+        yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} took {damageDesc.HP} HP damage.");
         yield return ShowDamageDescription(damageDesc);
     }
 
-    IEnumerator PerformStatusMove(BattleUnit source, BattleUnit target, Move move)
+    IEnumerator ShowDamageDescription(DamageDescription desc)
     {
+        if (desc.Critical > 1f)
+        {
+            yield return _dialogBox.SetDialogText("Critical hit!");
+        }
+
+        if (desc.Type > 1f)
+        {
+            yield return _dialogBox.SetDialogText("It's super effective!");
+        }
+        else if (desc.Type < 1f)
+        {
+            yield return _dialogBox.SetDialogText("It's not very effective...");
+        }
+    }
+
+    IEnumerator PerformStatusMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
+    {
+        var modifiedStatQueue = new Queue<string>();
+
         foreach (var statusMoveEffect in move.Base.StatusMoveEffectList)
         {
-            // TODO: check if move ID has a custom effect (i.e. 18, 46, 47, 48, 50, 54, 73, 77, 78, 79, 86, 92, 95, 100, 102, 105, 109, 113, 114, 115, 116, 118, 182, 186, 235, 240, 388...)
-            source.PlayStatusMoveAnimation();
+            BattleUnit effectTarget = null;
+            var stat = statusMoveEffect.Stat;
+            var modifier = statusMoveEffect.StageModifier;
 
-            AudioManager.SharedInstance.PlaySFX(statusMoveEffect.StageModifier > 0
+            // TODO: check if move ID has a custom effect (i.e. 18, 46, 47, 48, 50, 54, 73, 77, 78, 79, 86, 92, 95, 100, 102, 105, 109, 113, 114, 115, 116, 118, 182, 186, 235, 240, 388...)
+            sourceUnit.PlayStatusMoveAnimation();
+
+            AudioManager.SharedInstance.PlaySFX(modifier > 0
                 ? _statusMovePositive
                 : _statusMoveNegative);
 
             switch (statusMoveEffect.Target)
             {
                 case StatusMoveTarget.Self:
-                    source.Pokymon.ModifyStatStage(statusMoveEffect.Stat, statusMoveEffect.StageModifier);
-                    yield return source.PlayReceiveStatusMoveAnimation(move.Base.Type);
+                    effectTarget = sourceUnit;
                     break;
 
                 case StatusMoveTarget.Foe:
-                    target.Pokymon.ModifyStatStage(statusMoveEffect.Stat, statusMoveEffect.StageModifier);
-                    yield return target.PlayReceiveStatusMoveAnimation(move.Base.Type);
+                    effectTarget = targetUnit;
                     break;
 
                 case StatusMoveTarget.Ally:
                     break;
             }
+
+            effectTarget.Pokymon.ModifyStatStage(stat, modifier);
+            modifiedStatQueue.Enqueue($"{effectTarget.Pokymon.Name} {stat.ToString()} was modified to {effectTarget.Pokymon.GetStatStage(stat)}.");
+            yield return effectTarget.PlayReceiveStatusMoveAnimation(move.Base.Type);
+        }
+
+        yield return ShowStatusMoveEffectMessages(modifiedStatQueue);
+    }
+
+    IEnumerator ShowStatusMoveEffectMessages(Queue<string> messages)
+    {
+        while (messages.Count > 0)
+        {
+            var message = messages.Dequeue();
+
+            yield return _dialogBox.SetDialogText(message);
         }
     }
 
@@ -720,23 +759,6 @@ public class BattleManager : MonoBehaviour
 
         _learnableMove = null;
         _battleState = BattleState.PerformPlayerMove;
-    }
-
-    IEnumerator ShowDamageDescription(DamageDescription desc)
-    {
-        if (desc.Critical > 1f)
-        {
-            yield return _dialogBox.SetDialogText("Critical hit!");
-        }
-
-        if (desc.Type > 1f)
-        {
-            yield return _dialogBox.SetDialogText("It's super effective!");
-        }
-        else if (desc.Type < 1f)
-        {
-            yield return _dialogBox.SetDialogText("It's not very effective...");
-        }
     }
 
     IEnumerator ShowLostTurnMessage(string message)

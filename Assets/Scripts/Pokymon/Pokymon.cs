@@ -214,6 +214,16 @@ public class Pokymon
         };
     }
 
+    private bool IsDamageCritical()
+    {
+        if (Random.Range(0f, 100f) < Constants.CRITICAL_HIT_ODDS)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public int CalculateLevelExperience(int level)
     {
         switch (_base.GrowthRate)
@@ -290,22 +300,17 @@ public class Pokymon
         return statStage >= 0 ? (int)(statBase * multiplier) : (int)(statBase / multiplier);
     }
 
+    public int GetStatStage(PokymonStat stat)
+    {
+        return _statStageList[stat];
+    }
+
     public void ModifyStatStage(PokymonStat stat, int stageModifier)
     {
         _statStageList[stat] = Mathf.Clamp(_statStageList[stat] + stageModifier,
             Constants.MIN_STAT_STAGE,
             Constants.MAX_STAT_STAGE
         );
-    }
-
-    private bool IsDamageCritical()
-    {
-        if (Random.Range(0f, 100f) < Constants.CRITICAL_HIT_ODDS)
-        {
-            return true;
-        }
-
-        return false;
     }
 
     public bool LevelUp()
@@ -335,5 +340,10 @@ public class Pokymon
         _moveList.Add(new Move(learnableMove.Base));
 
         return true;
+    }
+
+    public void OnBattleFinish()
+    {
+        InitStatStages();
     }
 }

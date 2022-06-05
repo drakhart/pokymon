@@ -20,7 +20,7 @@ MonoBehaviour:
   _statusMoveEffectList:
   - _target: 1
     _stat: 0
-    _stageModifier: 0
+    _stageModifier: -1
   _pp: 20
   _power: 0
   _accuracy: 100
