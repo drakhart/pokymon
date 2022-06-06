@@ -14,11 +14,15 @@ public class BattleUnitHUD : MonoBehaviour
 
     private Pokymon _pokymon;
 
+    private int _prevHP;
+
     public void SetPokymonData(Pokymon pokymon)
     {
         _pokymon = pokymon;
+        _prevHP = pokymon.HP;
 
         _pokymonNameText.text = _pokymon.Name;
+
         UpdateLevelText();
         UpdateExpBar();
         UpdateHPBar();
@@ -61,13 +65,14 @@ public class BattleUnitHUD : MonoBehaviour
     public void UpdateHPText()
     {
         _hpText.text = $"{_pokymon.HP}/{_pokymon.MaxHP}";
+        _prevHP = _pokymon.HP;
     }
 
-    public YieldInstruction UpdateHPTextAnimated(int prevHP)
+    public YieldInstruction UpdateHPTextAnimated()
     {
-        return DOTween.To(() => prevHP, x => prevHP = x, _pokymon.HP, 1f)
+        return DOTween.To(() => _prevHP, x => _prevHP = x, _pokymon.HP, 1f)
             .OnUpdate(() => {
-                _hpText.text = $"{prevHP}/{_pokymon.MaxHP}";
+                _hpText.text = $"{_prevHP}/{_pokymon.MaxHP}";
             })
             .WaitForCompletion();
     }

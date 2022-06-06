@@ -449,6 +449,36 @@ public class BattleManager : MonoBehaviour
                 yield return ApplyStatusConditionEffects(move, sourceUnit, targetUnit);
             }
         }
+
+        yield return InvokeFinishTurnEffects(sourceUnit);
+    }
+
+    private IEnumerator InvokeFinishTurnEffects(BattleUnit turnUnit)
+    {
+        if (turnUnit.Pokymon.HasFinishTurnStatusConditions)
+        {
+            yield return InvokeStatusConditionEffects(turnUnit);
+        }
+    }
+
+    private IEnumerator InvokeStatusConditionEffects(BattleUnit turnUnit)
+    {
+        foreach (var statusCondition in turnUnit.Pokymon.FinishTurnStatusConditionList)
+        {
+            statusCondition.OnFinishTurn(turnUnit.Pokymon);
+
+            turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.Color);
+            turnUnit.HUD.UpdateHPTextAnimated();
+            turnUnit.HUD.UpdateHPBarAnimated();
+
+            yield return _dialogBox.SetDialogText($"{turnUnit.Pokymon.Name} suffered the effect of {statusCondition.Name}!");
+
+            if (turnUnit.Pokymon.IsKnockedOut)
+            {
+                yield return PerformKnockOut(turnUnit);
+                yield break;
+            }
+        }
     }
 
     private IEnumerator PerformPhysicalMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
@@ -461,62 +491,15 @@ public class BattleManager : MonoBehaviour
         AudioManager.SharedInstance.PlaySFX(_damageSFX);
 
         var damageDesc = targetUnit.Pokymon.CalculateDamage(sourceUnit.Pokymon, move);
-        targetUnit.HUD.UpdateHPTextAnimated(targetUnit.Pokymon.HP + damageDesc.HP);
+        targetUnit.HUD.UpdateHPTextAnimated();
         targetUnit.HUD.UpdateHPBarAnimated();
 
         yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} took {damageDesc.HP} HP damage.");
         yield return ShowDamageDescription(damageDesc);
     }
 
-    private IEnumerator ApplyStatusConditionEffects(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
-    {
-        var addedStatusConditionQueue = new Queue<string>();
-
-        foreach (var effect in move.Base.StatusConditionEffectList)
-        {
-            if (StatusConditionFactory.StatusConditionList.ContainsKey(effect.ConditionID))
-            {
-                if (Random.Range(0f, 100f) < effect.Probability)
-                {
-                    BattleUnit effectTarget = null;
-
-                    switch (effect.Target)
-                    {
-                        case EffectTarget.Self:
-                            effectTarget = sourceUnit;
-                            break;
-
-                        case EffectTarget.Foe:
-                            effectTarget = targetUnit;
-                            break;
-
-                        case EffectTarget.Ally:
-                            // TODO: implement allies
-                            continue;
-                    }
-
-                    var statusCondition = StatusConditionFactory.StatusConditionList[effect.ConditionID];
-                    var isConditionAdded = targetUnit.Pokymon.AddStatusCondition(statusCondition);
-
-                    if (isConditionAdded)
-                    {
-                        addedStatusConditionQueue.Enqueue($"{effectTarget.Pokymon.Name} {statusCondition.StartMessage}");
-                    }
-                }
-            }
-            else
-            {
-                Debug.Log($"Status condition not implemented: {effect.ConditionID}");
-            }
-        }
-
-        yield return ShowMessageQueue(addedStatusConditionQueue);
-    }
-
     private IEnumerator ApplyStatMofidierEffects(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
-        var modifiedStatQueue = new Queue<string>();
-
         foreach (var effect in move.Base.StatModifierEffectList)
         {
             BattleUnit effectTarget = null;
@@ -551,12 +534,52 @@ public class BattleManager : MonoBehaviour
                 incOrDec = effect.Modifier > 0 ? "already at its maximum" : "already at its minimum";
             }
 
-            modifiedStatQueue.Enqueue($"{effectTarget.Pokymon.Name} {effect.Stat.ToString()} was {incOrDec}.");
+            effectTarget.PlayReceiveStatModifierEffectAnimation(move.Base.Type);
 
-            yield return effectTarget.PlayReceiveStatModifierEffectAnimation(move.Base.Type);
+            yield return _dialogBox.SetDialogText($"{effectTarget.Pokymon.Name} {effect.Stat.ToString()} was {incOrDec}.");
         }
+    }
 
-        yield return ShowMessageQueue(modifiedStatQueue);
+    private IEnumerator ApplyStatusConditionEffects(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
+    {
+        foreach (var effect in move.Base.StatusConditionEffectList)
+        {
+            if (StatusConditionFactory.StatusConditionList.ContainsKey(effect.ConditionID))
+            {
+                if (Random.Range(0f, 100f) < effect.Probability)
+                {
+                    BattleUnit effectTarget = null;
+
+                    switch (effect.Target)
+                    {
+                        case EffectTarget.Self:
+                            effectTarget = sourceUnit;
+                            break;
+
+                        case EffectTarget.Foe:
+                            effectTarget = targetUnit;
+                            break;
+
+                        case EffectTarget.Ally:
+                            // TODO: implement allies
+                            continue;
+                    }
+
+                    var statusCondition = StatusConditionFactory.StatusConditionList[effect.ConditionID];
+                    var isConditionAdded = targetUnit.Pokymon.AddStatusCondition(statusCondition);
+
+                    if (isConditionAdded)
+                    {
+                        targetUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.Color);
+                        yield return _dialogBox.SetDialogText($"{effectTarget.Pokymon.Name} {statusCondition.StartMessage}");
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log($"Status condition not implemented: {effect.ConditionID}");
+            }
+        }
     }
 
     private IEnumerator ShowDamageDescription(DamageDescription desc)
@@ -576,16 +599,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowMessageQueue(Queue<string> messages)
-    {
-        while (messages.Count > 0)
-        {
-            var message = messages.Dequeue();
-
-            yield return _dialogBox.SetDialogText(message);
-        }
-    }
-
     private IEnumerator PerformKnockOut(BattleUnit battleUnit)
     {
         AudioManager.SharedInstance.PlaySFX(_knockOutSFX);
@@ -601,10 +614,9 @@ public class BattleManager : MonoBehaviour
 
         if (!battleUnit.IsPlayer)
         {
-            var prevHp = _playerUnit.Pokymon.HP;
             var earnedExp = battleUnit.Pokymon.KnockOutExp;
 
-            _playerUnit.Pokymon.Exp += earnedExp;
+            _playerUnit.Pokymon.EarnExp(earnedExp);
             _playerUnit.HUD.UpdateExpBarAnimated();
 
             yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} earned {earnedExp} EXP.");
@@ -614,7 +626,7 @@ public class BattleManager : MonoBehaviour
                 AudioManager.SharedInstance.PlaySFX(_levelUpSFX);
 
                 _playerUnit.HUD.UpdateExpBarAnimated(true);
-                _playerUnit.HUD.UpdateHPTextAnimated(prevHp);
+                _playerUnit.HUD.UpdateHPTextAnimated();
                 _playerUnit.HUD.UpdateHPBarAnimated();
                 _playerUnit.HUD.UpdateLevelText();
 
@@ -642,8 +654,6 @@ public class BattleManager : MonoBehaviour
                         yield return new WaitUntil(() => _battleState != BattleState.PlayerSelectForgetMove);
                     }
                 }
-
-                prevHp = _playerUnit.Pokymon.HP;
             }
         }
 

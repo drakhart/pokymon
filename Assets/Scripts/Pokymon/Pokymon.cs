@@ -29,24 +29,13 @@ public class Pokymon
     public int Level => _level;
 
     private int _exp;
-    public int Exp
-    {
-        get => _exp;
-        set => _exp = value;
-    }
+    public int Exp => _exp;
 
     private int _hp;
-    public int HP
-    {
-        get => _hp;
-        set => _hp = Mathf.Clamp(value, 0, MaxHP);
-    }
+    public int HP => _hp;
 
     private List<Move> _moveList;
-    public List<Move> MoveList{
-        get => _moveList;
-        set => _moveList = value;
-    }
+    public List<Move> MoveList => _moveList;
 
     private bool _isWild;
     public bool IsWild
@@ -98,7 +87,11 @@ public class Pokymon
 
     public bool HasNonVolatileStatusCondition => _statusConditionList.Count((sc => sc.IsNonVolatile == true)) > 0;
 
-    public StatusCondition NonVolatileStatusCondition => _statusConditionList.Where((sc => sc != null && sc.IsNonVolatile)).FirstOrDefault();
+    public StatusCondition NonVolatileStatusCondition => _statusConditionList.Where((sc => sc.IsNonVolatile)).FirstOrDefault();
+
+    public bool HasFinishTurnStatusConditions => _statusConditionList.Count((sc => sc.OnFinishTurn != null)) > 0;
+
+    public List<StatusCondition> FinishTurnStatusConditionList => _statusConditionList.Where((sc => sc.OnFinishTurn != null)).ToList();
 
     public Pokymon(PokymonBase pBase, int pLevel, bool isWild)
     {
@@ -211,7 +204,7 @@ public class Pokymon
         int totalDamage = (int)(baseDamage * criticalMultiplier * randomMultiplier * typeEffectivenessMultiplier);
         totalDamage = Mathf.Min(totalDamage, HP);
 
-        HP -= totalDamage;
+        ReceiveDamage(totalDamage);
 
         return new DamageDescription()
         {
@@ -220,6 +213,11 @@ public class Pokymon
             IsKnockedOut = IsKnockedOut,
             Type = typeEffectivenessMultiplier,
         };
+    }
+
+    public void ReceiveDamage(int damage)
+    {
+        _hp = Mathf.Max(_hp - damage, 0);
     }
 
     private bool IsDamageCritical()
@@ -282,6 +280,11 @@ public class Pokymon
         }
 
         return -1;
+    }
+
+    public void EarnExp(int earnedExp)
+    {
+        _exp += earnedExp;
     }
 
     public Move GetRandomAvailableMove()

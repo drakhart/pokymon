@@ -29,7 +29,7 @@ public class ColorManager : MonoBehaviour
     [SerializeField] private Color _lowPP;
     public Color LowPP => _lowPP;
 
-    private Color[] _typeColors =
+    static Color[] _typeColors =
     {
         /* BUG */ new Color32(0xb7, 0xc5, 0x58, 0xff),
         /* DAR */ new Color32(0x8c, 0x6f, 0x62, 0xff),

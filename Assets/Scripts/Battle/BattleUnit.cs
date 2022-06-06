@@ -71,14 +71,9 @@ public class BattleUnit : MonoBehaviour
         return seq.Play().WaitForCompletion();
     }
 
-    public void PlayStatusMoveAnimation()
-    {
-        _image.transform.DOPunchScale(new Vector3(0, 0.1f), 1.2f);
-    }
-
     public YieldInstruction PlayReceiveStatModifierEffectAnimation(PokymonType moveType)
     {
-        var delay = 0.3f;
+        var delay = 0.25f;
         var seq = DOTween.Sequence();
 
         for (var i = 0; i < 2; i++)
@@ -86,6 +81,22 @@ public class BattleUnit : MonoBehaviour
             seq.Append(_image.DOColor(ColorManager.SharedInstance.PokymonType(moveType), delay));
             seq.Append(_image.DOColor(_originalColor, delay));
         }
+
+        return seq.Play().WaitForCompletion();
+    }
+
+    public void PlayStatusMoveAnimation()
+    {
+        _image.transform.DOPunchScale(new Vector3(0, 0.1f), 1.2f);
+    }
+
+    public YieldInstruction PlayReceiveStatusConditionEffectAnimation(Color effectColor)
+    {
+        var delay = 0.5f;
+        var seq = DOTween.Sequence();
+
+        seq.Append(_image.DOColor(effectColor, delay));
+        seq.Append(_image.DOColor(_originalColor, delay));
 
         return seq.Play().WaitForCompletion();
     }

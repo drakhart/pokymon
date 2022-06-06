@@ -17,6 +17,7 @@ public class StatusConditionFactory
                     Color = new Color32(0xef, 0x81, 0x3c, 0xff),
                     Type = StatusConditionType.NonVolatile,
                     StartMessage = "was burned!",
+                    OnFinishTurn = (Pokymon pokymon) => BurnEffect(pokymon),
                 }
             },
             {
@@ -29,9 +30,20 @@ public class StatusConditionFactory
                     Color = new Color32(0x9f, 0x41, 0x9d, 0xff),
                     Type = StatusConditionType.NonVolatile,
                     StartMessage = "was poisoned!",
+                    OnFinishTurn = (Pokymon pokymon) => PoisonEffect(pokymon),
                 }
             },
         };
+
+    private static void BurnEffect(Pokymon pokymon)
+    {
+        pokymon.ReceiveDamage(pokymon.MaxHP / 8);
+    }
+
+    private static void PoisonEffect(Pokymon pokymon)
+    {
+        pokymon.ReceiveDamage(pokymon.MaxHP / 8);
+    }
 }
 
 public enum StatusConditionID
