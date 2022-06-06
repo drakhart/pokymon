@@ -8,6 +8,18 @@ public class StatusConditionFactory
         new Dictionary<StatusConditionID, StatusCondition>()
         {
             {
+                StatusConditionID.Burn,
+                new StatusCondition()
+                {
+                    Name = "Burn",
+                    Description = "The burn condition inflicts damage every turn and halves damage dealt by a Pokémon's physical moves (except Pokémon with the Guts ability).",
+                    Tag = "BRN",
+                    Color = new Color32(0xef, 0x81, 0x3c, 0xff),
+                    Type = StatusConditionType.NonVolatile,
+                    StartMessage = "was burned!",
+                }
+            },
+            {
                 StatusConditionID.Poison,
                 new StatusCondition()
                 {
@@ -18,7 +30,7 @@ public class StatusConditionFactory
                     Type = StatusConditionType.NonVolatile,
                     StartMessage = "was poisoned!",
                 }
-            }
+            },
         };
 }
 

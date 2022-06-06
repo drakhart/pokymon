@@ -435,21 +435,19 @@ public class BattleManager : MonoBehaviour
             yield return PerformPhysicalMove(move, sourceUnit, targetUnit);
         }
 
-        if (move.HasStatModifierEffects)
-        {
-            yield return ApplyStatMofidierEffects(move, sourceUnit, targetUnit);
-        }
-
-        if (move.HasStatusConditionEffects)
-        {
-            yield return ApplyStatusConditionEffects(move, sourceUnit, targetUnit);
-        }
-
         if (targetUnit.Pokymon.IsKnockedOut)
         {
             yield return PerformKnockOut(targetUnit);
         } else {
-            yield return null;
+            if (move.HasStatModifierEffects)
+            {
+                yield return ApplyStatMofidierEffects(move, sourceUnit, targetUnit);
+            }
+
+            if (move.HasStatusConditionEffects)
+            {
+                yield return ApplyStatusConditionEffects(move, sourceUnit, targetUnit);
+            }
         }
     }
 
@@ -472,8 +470,47 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator ApplyStatusConditionEffects(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
-        // TODO: apply actual status condition effects
-        yield return null;
+        var addedStatusConditionQueue = new Queue<string>();
+
+        foreach (var effect in move.Base.StatusConditionEffectList)
+        {
+            if (StatusConditionFactory.StatusConditionList.ContainsKey(effect.ConditionID))
+            {
+                if (Random.Range(0f, 100f) < effect.Probability)
+                {
+                    BattleUnit effectTarget = null;
+
+                    switch (effect.Target)
+                    {
+                        case EffectTarget.Self:
+                            effectTarget = sourceUnit;
+                            break;
+
+                        case EffectTarget.Foe:
+                            effectTarget = targetUnit;
+                            break;
+
+                        case EffectTarget.Ally:
+                            // TODO: implement allies
+                            continue;
+                    }
+
+                    var statusCondition = StatusConditionFactory.StatusConditionList[effect.ConditionID];
+                    var isConditionAdded = targetUnit.Pokymon.AddStatusCondition(statusCondition);
+
+                    if (isConditionAdded)
+                    {
+                        addedStatusConditionQueue.Enqueue($"{effectTarget.Pokymon.Name} {statusCondition.StartMessage}");
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log($"Status condition not implemented: {effect.ConditionID}");
+            }
+        }
+
+        yield return ShowMessageQueue(addedStatusConditionQueue);
     }
 
     private IEnumerator ApplyStatMofidierEffects(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
@@ -493,22 +530,23 @@ public class BattleManager : MonoBehaviour
 
             switch (effect.Target)
             {
-                case EffectTarget.Self:
-                    effectTarget = sourceUnit;
-                    break;
+                case EffectTarget.Ally:
+                    // TODO: implement allies
+                    continue;
 
                 case EffectTarget.Foe:
                     effectTarget = targetUnit;
                     break;
 
-                case EffectTarget.Ally:
+                case EffectTarget.Self:
+                    effectTarget = sourceUnit;
                     break;
             }
 
             var incOrDec = effect.Modifier > 0 ? "increased" : "decreased";
-            var modified = effectTarget.Pokymon.ModifyStatStage(effect.Stat, effect.Modifier);
+            var isStatModified = effectTarget.Pokymon.ModifyStatStage(effect.Stat, effect.Modifier);
 
-            if (!modified)
+            if (!isStatModified)
             {
                 incOrDec = effect.Modifier > 0 ? "already at its maximum" : "already at its minimum";
             }

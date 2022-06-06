@@ -61,6 +61,9 @@ public class Pokymon
     private Dictionary<PokymonStat, int> _statStageList;
     public Dictionary<PokymonStat, int> StatStageList => _statStageList;
 
+    private List<StatusCondition> _statusConditionList;
+    public List<StatusCondition> StatusConditionList => _statusConditionList;
+
     public string Name => _isWild ? $"Wild {_base.Name}" : _base.Name;
 
     public int CurrentLevelExp => CalculateLevelExperience(_level);
@@ -93,6 +96,10 @@ public class Pokymon
 
     public LearnableMove LearnableMove => _base.LearnableMoves.Where(lm => lm.Level == _level).FirstOrDefault();
 
+    public bool HasNonVolatileStatusCondition => _statusConditionList.Count((sc => sc.IsNonVolatile == true)) > 0;
+
+    public StatusCondition NonVolatileStatusCondition => _statusConditionList.Where((sc => sc != null && sc.IsNonVolatile)).FirstOrDefault();
+
     public Pokymon(PokymonBase pBase, int pLevel, bool isWild)
     {
         _base = pBase;
@@ -107,6 +114,7 @@ public class Pokymon
         _hp = MaxHP;
         _exp = CurrentLevelExp;
         _moveList = new List<Move>();
+        _statusConditionList = new List<StatusCondition>();
 
         InitStatStages();
         InitStats();
@@ -315,6 +323,18 @@ public class Pokymon
         );
 
         return _statStageList[stat] != prevStage ? true : false;
+    }
+
+    public bool AddStatusCondition(StatusCondition statusCondition)
+    {
+        if (statusCondition.IsNonVolatile && HasNonVolatileStatusCondition)
+        {
+            return false;
+        }
+
+        _statusConditionList.Add(statusCondition);
+
+        return true;
     }
 
     public bool LevelUp()

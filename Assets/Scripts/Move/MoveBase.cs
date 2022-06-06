@@ -69,8 +69,8 @@ public class StatusConditionEffect
     [SerializeField] private EffectTarget _target = EffectTarget.Foe;
     public EffectTarget Target => _target;
 
-    [SerializeField] private StatusConditionID _condition;
-    public StatusConditionID Condition => _condition;
+    [SerializeField] private StatusConditionID _conditionID;
+    public StatusConditionID ConditionID => _conditionID;
 
     [SerializeField] private int _probability = 100;
     public int Probability => _probability;
