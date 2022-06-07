@@ -37,7 +37,7 @@ public class PartySelection : MonoBehaviour
 
             _currSelection = Mathf.Clamp(_currSelection, 0, _pokymonParty.PokymonCount - 1);
 
-            SelectPokymon(_currSelection);
+            SelectPokymon();
         }
 
         if (Input.GetButtonDown("Submit"))
@@ -85,13 +85,15 @@ public class PartySelection : MonoBehaviour
                 _partyMemberHUDList[i].gameObject.SetActive(false);
             }
         }
+
+        SelectPokymon();
     }
 
-    public void SelectPokymon(int selectedPokymon)
+    public void SelectPokymon()
     {
         for (var i = 0; i < _pokymonParty.PokymonCount; i++)
         {
-            _partyMemberHUDList[i].SetSelectedPokymon(i == selectedPokymon);
+            _partyMemberHUDList[i].SetSelectedPokymon(i == _currSelection);
         }
     }
 

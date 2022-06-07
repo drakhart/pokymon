@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,38 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] private float _highPPThreshold = 0.5f;
     [SerializeField] private float _lowPPThreshold = 0.20f;
 
+    private int _currSelection;
     private Tween _dialogTextTween;
+    private List<Move> _moveList;
+
+    public void HandlePlayerMoveSelection(Action<Move> OnSelected)
+    {
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+                _currSelection = (_currSelection + 1) % 2 + (_currSelection >= 2 ? 2 : 0);
+            }
+            else
+            {
+                _currSelection = (_currSelection + 2) % Constants.MAX_POKYMON_MOVE_COUNT;
+            }
+
+            _currSelection = Mathf.Clamp(_currSelection, 0, _moveList.Count - 1);
+
+            SelectMove();
+        }
+
+        if (Input.GetButtonDown("Submit"))
+        {
+            OnSelected?.Invoke(_moveList[_currSelection]);
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            OnSelected?.Invoke(null);
+        }
+    }
 
     public void SelectAction(int selectedAction)
     {
@@ -34,14 +66,16 @@ public class BattleDialogBox : MonoBehaviour
         }
     }
 
-    public void SelectMove(int selectedMove)
+    public void SelectMove()
     {
         for (int i = 0; i < _moveTexts.Count; i++)
         {
-            _moveTexts[i].color = i == selectedMove
+            _moveTexts[i].color = i == _currSelection
                 ? ColorManager.SharedInstance.SelectedText
                 : ColorManager.SharedInstance.DefaultText;
         }
+
+        SetMoveDetails();
     }
 
     public Coroutine SetDialogText(string message)
@@ -51,20 +85,27 @@ public class BattleDialogBox : MonoBehaviour
         return StartCoroutine(AnimateDialogText(message));
     }
 
-    public void SetMoveDetails(Move move)
+    public void SetMoveDetails()
     {
+        var move = _moveList[_currSelection];
+
         _ppText.color = PPColor(move.NormalizedPP);
         _ppText.text = $"PP {move.PP}/{move.MaxPP}";
         _typeText.text = move.Base.Type.ToString();
         _typeText.color = ColorManager.SharedInstance.ByPokymonType(move.Base.Type);
     }
 
-    public void SetMoveTexts(List<Move> moves)
+    public void UpdateMoveData(List<Move> moveList)
     {
+        _moveList = moveList;
+        _currSelection = 0;
+
         for (int i = 0; i < _moveTexts.Count; i++)
         {
-            _moveTexts[i].text = i < moves.Count ? moves[i].Base.Name : "---";
+            _moveTexts[i].text = i < moveList.Count ? moveList[i].Base.Name : "---";
         }
+
+        SelectMove();
     }
 
     public void ToggleActionSelector(bool active)
