@@ -25,13 +25,17 @@ public class BattleUnitHUD : MonoBehaviour
 
         _pokymonNameText.text = _pokymon.Name;
 
-        UpdateLevelText();
         UpdateExpBar();
         UpdateHPBar();
         UpdateHPText();
+        UpdateLevelText();
         UpdateStatusCondition();
 
-        _pokymon.OnChangeStatusConditions += UpdateStatusCondition;
+        _pokymon.OnChangeExp += UpdateExpBarAnimated;
+        _pokymon.OnChangeHP += UpdateHPBarAnimated;
+        _pokymon.OnChangeHP += UpdateHPTextAnimated;
+        _pokymon.OnChangeLevel += UpdateLevelText;
+        _pokymon.OnChangeStatusConditionList += UpdateStatusCondition;
     }
 
     public void UpdateExpBar()
@@ -42,7 +46,7 @@ public class BattleUnitHUD : MonoBehaviour
         }
     }
 
-    public YieldInstruction UpdateExpBarAnimated(bool startFromZero = false)
+    public void UpdateExpBarAnimated(bool startFromZero = false)
     {
         if (_expBar != null)
         {
@@ -51,10 +55,8 @@ public class BattleUnitHUD : MonoBehaviour
                 _expBar.SetScale(0f);
             }
 
-            return _expBar.SetScaleAnimated(_pokymon.NormalizedExp);
+            _expBar.SetScaleAnimated(_pokymon.NormalizedExp);
         }
-
-        return new YieldInstruction();
     }
 
     public void UpdateHPBar()
@@ -62,9 +64,9 @@ public class BattleUnitHUD : MonoBehaviour
         _hpBar.SetScale(_pokymon.NormalizedHP);
     }
 
-    public YieldInstruction UpdateHPBarAnimated()
+    public void UpdateHPBarAnimated()
     {
-        return _hpBar.SetScaleAnimated(_pokymon.NormalizedHP);
+        _hpBar.SetScaleAnimated(_pokymon.NormalizedHP);
     }
 
     public void UpdateHPText()
@@ -73,13 +75,12 @@ public class BattleUnitHUD : MonoBehaviour
         _prevHP = _pokymon.HP;
     }
 
-    public YieldInstruction UpdateHPTextAnimated()
+    public void UpdateHPTextAnimated()
     {
-        return DOTween.To(() => _prevHP, x => _prevHP = x, _pokymon.HP, 1f)
+        DOTween.To(() => _prevHP, x => _prevHP = x, _pokymon.HP, 1f)
             .OnUpdate(() => {
                 _hpText.text = $"{_prevHP}/{_pokymon.MaxHP}";
-            })
-            .WaitForCompletion();
+            });
     }
 
     public void UpdateLevelText()

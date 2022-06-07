@@ -29,7 +29,7 @@ public class StatusConditionFactory
                 {
                     pokymon.ReceiveDamage(Mathf.Max(pokymon.MaxHP / 16, 1));
 
-                    return (true, $"{pokymon.Name} is hurt by its burn!");
+                    return $"{pokymon.Name} is hurt by its burn!";
                 },
             }
         },
@@ -88,7 +88,7 @@ public class StatusConditionFactory
                 {
                     pokymon.ReceiveDamage(Mathf.Max(pokymon.MaxHP / 8, 1));
 
-                    return (true, $"{pokymon.Name} is hurt by poison!");
+                    return $"{pokymon.Name} is hurt by poison!";
                 }
             }
         },

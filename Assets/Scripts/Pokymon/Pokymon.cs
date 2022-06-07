@@ -53,7 +53,10 @@ public class Pokymon
     private List<StatusCondition> _statusConditionList;
     public List<StatusCondition> StatusConditionList => _statusConditionList;
 
-    public Action OnChangeStatusConditions;
+    public Action OnChangeHP;
+    public Action OnChangeStatusConditionList;
+    public Action<bool> OnChangeExp;
+    public Action OnChangeLevel;
 
     public string Name => _isWild ? $"Wild {_base.Name}" : _base.Name;
 
@@ -224,6 +227,8 @@ public class Pokymon
     public void ReceiveDamage(int damage)
     {
         _hp = Mathf.Max(_hp - damage, 0);
+
+        OnChangeHP();
     }
 
     private bool IsDamageCritical()
@@ -291,6 +296,8 @@ public class Pokymon
     public void EarnExp(int earnedExp)
     {
         _exp += earnedExp;
+
+        OnChangeExp(false);
     }
 
     public Move GetRandomAvailableMove()
@@ -357,7 +364,7 @@ public class Pokymon
             statusCondition.OnApply(this);
         }
 
-        OnChangeStatusConditions();
+        OnChangeStatusConditionList();
 
         return statusCondition;
     }
@@ -371,7 +378,7 @@ public class Pokymon
     {
         _statusConditionList.RemoveAll(sc => sc.ID == statusConditionID);
 
-        OnChangeStatusConditions();
+        OnChangeStatusConditionList();
     }
 
     public bool LevelUp()
@@ -383,6 +390,9 @@ public class Pokymon
             _level++;
             _hp += MaxHP - prevMaxHp;
 
+            OnChangeExp(true);
+            OnChangeHP();
+            OnChangeLevel();
             InitStats();
 
             return true;

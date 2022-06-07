@@ -519,13 +519,7 @@ public class BattleManager : MonoBehaviour
         {
             turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.ID);
 
-            var (causedDamage, message) = statusCondition.OnFinishTurn(turnUnit.Pokymon);
-
-            if (causedDamage)
-            {
-                turnUnit.HUD.UpdateHPTextAnimated();
-                turnUnit.HUD.UpdateHPBarAnimated();
-            }
+            var message = statusCondition.OnFinishTurn(turnUnit.Pokymon);
 
             if (message != null)
             {
@@ -550,8 +544,6 @@ public class BattleManager : MonoBehaviour
         AudioManager.SharedInstance.PlaySFX(_damageSFX);
 
         var damageDesc = targetUnit.Pokymon.CalculateDamage(sourceUnit.Pokymon, move);
-        targetUnit.HUD.UpdateHPTextAnimated();
-        targetUnit.HUD.UpdateHPBarAnimated();
 
         yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} took {damageDesc.HP} HP damage.");
         yield return ShowDamageDescription(damageDesc);
@@ -658,36 +650,30 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private IEnumerator PerformKnockOut(BattleUnit battleUnit)
+    private IEnumerator PerformKnockOut(BattleUnit targetUnit)
     {
         AudioManager.SharedInstance.PlaySFX(_knockOutSFX);
 
-        battleUnit.PlayKnockedOutAnimation();
+        targetUnit.PlayKnockedOutAnimation();
 
-        yield return _dialogBox.SetDialogText($"{battleUnit.Pokymon.Name} got knocked out!");
+        yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} got knocked out!");
 
-        if (battleUnit.IsPlayer)
+        if (targetUnit.IsPlayer)
         {
             yield return new WaitForSecondsRealtime(1f);
         }
 
-        if (!battleUnit.IsPlayer)
+        if (!targetUnit.IsPlayer)
         {
-            var earnedExp = battleUnit.Pokymon.KnockOutExp;
+            var earnedExp = targetUnit.Pokymon.KnockOutExp;
 
             _playerUnit.Pokymon.EarnExp(earnedExp);
-            _playerUnit.HUD.UpdateExpBarAnimated();
 
             yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} earned {earnedExp} EXP.");
 
             while (_playerUnit.Pokymon.LevelUp())
             {
                 AudioManager.SharedInstance.PlaySFX(_levelUpSFX);
-
-                _playerUnit.HUD.UpdateExpBarAnimated(true);
-                _playerUnit.HUD.UpdateHPTextAnimated();
-                _playerUnit.HUD.UpdateHPBarAnimated();
-                _playerUnit.HUD.UpdateLevelText();
 
                 yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} leveled up!");
 
@@ -716,7 +702,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        CheckForBattleFinish(battleUnit);
+        CheckForBattleFinish(targetUnit);
     }
 
     private IEnumerator PerformPokymonSwitch(Pokymon nextPlayerPokymon)

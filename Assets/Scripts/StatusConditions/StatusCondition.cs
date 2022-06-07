@@ -21,7 +21,7 @@ public class StatusCondition
 
     public string OnApplyMessage { get; set; }
 
-    public Func<Pokymon, (bool, string)> OnFinishTurn { get; set; }
+    public Func<Pokymon, string> OnFinishTurn { get; set; }
 
     public Func<Pokymon, (bool, string)> OnStartTurn { get; set; }
 
