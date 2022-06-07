@@ -336,6 +336,13 @@ public class Pokymon
     {
         var statusCondition = StatusConditionFactory.StatusConditionList[statusConditionID];
 
+        // Status conditions cannot be repeated
+        if (GetStatusCondition(statusConditionID) != null)
+        {
+            return null;
+        }
+
+        // There can only be one non volatile status condition
         if (statusCondition.IsNonVolatile && HasNonVolatileStatusCondition)
         {
             return null;
