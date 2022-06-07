@@ -12,24 +12,24 @@ public class PartySelection : MonoBehaviour
 
     private Tween _dialogTextTween;
     private PartyMemberHUD[] _partyMemberHUDList;
-    private List<Pokymon> _pokymonList;
+    private PokymonParty _pokymonParty;
 
     public void SetupPartySelection()
     {
         _partyMemberHUDList = GetComponentsInChildren<PartyMemberHUD>(true);
     }
 
-    public void UpdatePartyData(List<Pokymon> pokymonList)
+    public void UpdatePartyData(PokymonParty pokymonParty)
     {
-        _pokymonList = pokymonList;
+        _pokymonParty = pokymonParty;
 
         SetDialogText("Choose a Pokymon.");
 
         for (var i = 0; i < _partyMemberHUDList.Length; i++)
         {
-            if (i < pokymonList.Count)
+            if (i < _pokymonParty.PokymonCount)
             {
-                _partyMemberHUDList[i].SetPokymonData(pokymonList[i]);
+                _partyMemberHUDList[i].SetPokymonData(_pokymonParty.PokymonList[i]);
                 _partyMemberHUDList[i].gameObject.SetActive(true);
             }
             else
@@ -41,7 +41,7 @@ public class PartySelection : MonoBehaviour
 
     public void SelectPokymon(int selectedPokymon)
     {
-        for (var i = 0; i < _pokymonList.Count; i++)
+        for (var i = 0; i < _pokymonParty.PokymonCount; i++)
         {
             _partyMemberHUDList[i].SetSelectedPokymon(i == selectedPokymon);
         }

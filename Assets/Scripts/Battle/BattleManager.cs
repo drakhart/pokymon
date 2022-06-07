@@ -329,7 +329,7 @@ public class BattleManager : MonoBehaviour
         _currSelectedPokymon = 0;
 
         _partySelection.gameObject.SetActive(true);
-        _partySelection.UpdatePartyData(_playerParty.PokymonList);
+        _partySelection.UpdatePartyData(_playerParty);
         _partySelection.SelectPokymon(_currSelectedPokymon);
     }
 
