@@ -85,17 +85,17 @@ public class Pokymon
 
     public LearnableMove LearnableMove => _base.LearnableMoves.Where(lm => lm.Level == _level).FirstOrDefault();
 
-    public bool HasNonVolatileStatusCondition => _statusConditionList.Count((sc => sc.IsNonVolatile == true)) > 0;
+    public bool HasNonVolatileStatusCondition => _statusConditionList.Count(sc => sc.IsNonVolatile == true) > 0;
 
-    public StatusCondition NonVolatileStatusCondition => _statusConditionList.Where((sc => sc.IsNonVolatile)).FirstOrDefault();
+    public StatusCondition NonVolatileStatusCondition => _statusConditionList.Where(sc => sc.IsNonVolatile).FirstOrDefault();
 
-    public bool HasFinishTurnStatusConditions => _statusConditionList.Count((sc => sc.OnFinishTurn != null)) > 0;
+    public bool HasFinishTurnStatusConditions => _statusConditionList.Count(sc => sc.OnFinishTurn != null) > 0;
 
-    public List<StatusCondition> FinishTurnStatusConditionList => _statusConditionList.Where((sc => sc.OnFinishTurn != null)).ToList();
+    public List<StatusCondition> FinishTurnStatusConditionList => _statusConditionList.Where(sc => sc.OnFinishTurn != null).ToList();
 
-    public bool HasStartTurnStatusConditions => _statusConditionList.Count((sc => sc.OnStartTurn != null)) > 0;
+    public bool HasStartTurnStatusConditions => _statusConditionList.Count(sc => sc.OnStartTurn != null) > 0;
 
-    public List<StatusCondition> StartTurnStatusConditionList => _statusConditionList.Where((sc => sc.OnStartTurn != null)).ToList();
+    public List<StatusCondition> StartTurnStatusConditionList => _statusConditionList.Where(sc => sc.OnStartTurn != null).ToList();
 
     public Pokymon(PokymonBase pBase, int pLevel, bool isWild)
     {
@@ -342,6 +342,11 @@ public class Pokymon
         _statusConditionList.Add(statusCondition);
 
         return true;
+    }
+
+    public void RemoveStatusCondition(StatusConditionID statusConditionID)
+    {
+        _statusConditionList.RemoveAll(sc => sc.ID == statusConditionID);
     }
 
     public bool LevelUp()

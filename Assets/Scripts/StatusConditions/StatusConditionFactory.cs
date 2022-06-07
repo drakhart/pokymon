@@ -12,6 +12,7 @@ public class StatusConditionFactory
                 StatusConditionID.Burn,
                 new StatusCondition()
                 {
+                    ID = StatusConditionID.Burn,
                     Name = "Burn",
                     Description = "The burn condition inflicts (BRN) damage every turn and halves damage dealt by a Pokémon's physical moves (except Pokémon with the Guts ability).",
                     Tag = "BRN",
@@ -23,9 +24,25 @@ public class StatusConditionFactory
                 }
             },
             {
+                StatusConditionID.Freeze,
+                new StatusCondition()
+                {
+                    ID = StatusConditionID.Freeze,
+                    Name = "Freeze",
+                    Description = "The freeze condition (FRZ) causes a Pokémon to be unable to make a move.",
+                    Tag = "FRZ",
+                    Color = new Color32(0x99, 0xd8, 0xd8, 0xff),
+                    Type = StatusConditionType.NonVolatile,
+                    ConditionMessage = "%pokymon.name% was frozen solid!",
+                    OnStartTurn = (Pokymon pokymon) => FreezeEffect(pokymon),
+                    OnStartTurnMessage = "%pokymon.name% is frozen! It can't move!",
+                }
+            },
+            {
                 StatusConditionID.Paralysis,
                 new StatusCondition()
                 {
+                    ID = StatusConditionID.Paralysis,
                     Name = "Paralysis",
                     Description = "The paralysis condition (PAR) reduces the Pokémon's Speed stat and causes it to have a 25% chance of being unable to use a move (\"fully paralyzed\") when trying to use one.",
                     Tag = "PAR",
@@ -40,6 +57,7 @@ public class StatusConditionFactory
                 StatusConditionID.Poison,
                 new StatusCondition()
                 {
+                    ID = StatusConditionID.Poison,
                     Name = "Poison",
                     Description = "The poison condition (PSN) inflicts damage every turn.",
                     Tag = "PSN",
@@ -55,6 +73,18 @@ public class StatusConditionFactory
     private static void BurnEffect(Pokymon pokymon)
     {
         pokymon.ReceiveDamage(Mathf.Max(pokymon.MaxHP / 16, 1));
+    }
+
+    private static bool FreezeEffect(Pokymon pokymon)
+    {
+        if (Random.Range(0, 100) < 25)
+        {
+            pokymon.RemoveStatusCondition(StatusConditionID.Freeze);
+
+            return false;
+        }
+
+        return true;
     }
 
     private static bool ParalysisEffect(Pokymon pokymon)

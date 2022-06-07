@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class StatusCondition
 {
+    public StatusConditionID ID { get; set; }
+
     public string Name { get; set; }
 
     public string Description { get; set; }
