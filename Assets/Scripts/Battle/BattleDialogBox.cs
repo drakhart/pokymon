@@ -23,9 +23,36 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] private float _highPPThreshold = 0.5f;
     [SerializeField] private float _lowPPThreshold = 0.20f;
 
-    private int _currSelection;
+    private int _currActionSelection;
+    private int _currMoveSelection;
     private Tween _dialogTextTween;
     private List<Move> _moveList;
+
+    private void Start() {
+        _currActionSelection = 0;
+    }
+
+    public void HandlePlayerActionSelection(Action<int> OnSelected)
+    {
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+                _currActionSelection = (_currActionSelection + 1) % 2 + (_currActionSelection >= 2 ? 2 : 0);
+            }
+            else
+            {
+                _currActionSelection = (_currActionSelection + 2) % 4;
+            }
+
+            SelectAction();
+        }
+
+        if (Input.GetButtonDown("Submit"))
+        {
+            OnSelected?.Invoke(_currActionSelection);
+        }
+    }
 
     public void HandlePlayerMoveSelection(Action<Move> OnSelected)
     {
@@ -33,21 +60,21 @@ public class BattleDialogBox : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") != 0)
             {
-                _currSelection = (_currSelection + 1) % 2 + (_currSelection >= 2 ? 2 : 0);
+                _currMoveSelection = (_currMoveSelection + 1) % 2 + (_currMoveSelection >= 2 ? 2 : 0);
             }
             else
             {
-                _currSelection = (_currSelection + 2) % Constants.MAX_POKYMON_MOVE_COUNT;
+                _currMoveSelection = (_currMoveSelection + 2) % Constants.MAX_POKYMON_MOVE_COUNT;
             }
 
-            _currSelection = Mathf.Clamp(_currSelection, 0, _moveList.Count - 1);
+            _currMoveSelection = Mathf.Clamp(_currMoveSelection, 0, _moveList.Count - 1);
 
             SelectMove();
         }
 
         if (Input.GetButtonDown("Submit"))
         {
-            OnSelected?.Invoke(_moveList[_currSelection]);
+            OnSelected?.Invoke(_moveList[_currMoveSelection]);
         }
 
         if (Input.GetButtonDown("Cancel"))
@@ -56,11 +83,11 @@ public class BattleDialogBox : MonoBehaviour
         }
     }
 
-    public void SelectAction(int selectedAction)
+    public void SelectAction()
     {
         for (int i = 0; i < _actionTexts.Count; i++)
         {
-            _actionTexts[i].color = i == selectedAction
+            _actionTexts[i].color = i == _currActionSelection
                 ? ColorManager.SharedInstance.SelectedText
                 : ColorManager.SharedInstance.DefaultText;
         }
@@ -70,7 +97,7 @@ public class BattleDialogBox : MonoBehaviour
     {
         for (int i = 0; i < _moveTexts.Count; i++)
         {
-            _moveTexts[i].color = i == _currSelection
+            _moveTexts[i].color = i == _currMoveSelection
                 ? ColorManager.SharedInstance.SelectedText
                 : ColorManager.SharedInstance.DefaultText;
         }
@@ -87,7 +114,7 @@ public class BattleDialogBox : MonoBehaviour
 
     public void SetMoveDetails()
     {
-        var move = _moveList[_currSelection];
+        var move = _moveList[_currMoveSelection];
 
         _ppText.color = PPColor(move.NormalizedPP);
         _ppText.text = $"PP {move.PP}/{move.MaxPP}";
@@ -98,7 +125,7 @@ public class BattleDialogBox : MonoBehaviour
     public void UpdateMoveData(List<Move> moveList)
     {
         _moveList = moveList;
-        _currSelection = 0;
+        _currMoveSelection = 0;
 
         for (int i = 0; i < _moveTexts.Count; i++)
         {
@@ -110,6 +137,8 @@ public class BattleDialogBox : MonoBehaviour
 
     public void ToggleActionSelector(bool active)
     {
+        SelectAction();
+
         _actionSelector.SetActive(active);
     }
 
