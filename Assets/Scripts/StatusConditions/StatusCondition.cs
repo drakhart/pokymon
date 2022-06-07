@@ -15,9 +15,15 @@ public class StatusCondition
 
     public StatusConditionType Type { get; set; }
 
-    public string StartMessage { get; set; }
+    public string ConditionMessage { get; set; }
 
     public Action<Pokymon> OnFinishTurn { get; set; }
+
+    public string OnFinishTurnMessage { get; set; }
+
+    public Func<Pokymon, bool> OnStartTurn { get; set; }
+
+    public string OnStartTurnMessage { get; set; }
 
     public bool IsNonVolatile => Type == StatusConditionType.NonVolatile;
 }

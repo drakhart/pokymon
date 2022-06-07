@@ -93,6 +93,10 @@ public class Pokymon
 
     public List<StatusCondition> FinishTurnStatusConditionList => _statusConditionList.Where((sc => sc.OnFinishTurn != null)).ToList();
 
+    public bool HasStartTurnStatusConditions => _statusConditionList.Count((sc => sc.OnStartTurn != null)) > 0;
+
+    public List<StatusCondition> StartTurnStatusConditionList => _statusConditionList.Where((sc => sc.OnStartTurn != null)).ToList();
+
     public Pokymon(PokymonBase pBase, int pLevel, bool isWild)
     {
         _base = pBase;
@@ -222,7 +226,7 @@ public class Pokymon
 
     private bool IsDamageCritical()
     {
-        if (Random.Range(0f, 100f) < Constants.CRITICAL_HIT_ODDS)
+        if (Random.Range(0, 100) < Constants.CRITICAL_HIT_ODDS)
         {
             return true;
         }
