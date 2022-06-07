@@ -37,12 +37,12 @@ public class StatusConditionFactory
 
     private static void BurnEffect(Pokymon pokymon)
     {
-        pokymon.ReceiveDamage(pokymon.MaxHP / 8);
+        pokymon.ReceiveDamage(Mathf.Max(pokymon.MaxHP / 16, 1));
     }
 
     private static void PoisonEffect(Pokymon pokymon)
     {
-        pokymon.ReceiveDamage(pokymon.MaxHP / 8);
+        pokymon.ReceiveDamage(Mathf.Max(pokymon.MaxHP / 8, 1));
     }
 }
 
