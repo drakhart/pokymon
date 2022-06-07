@@ -17,13 +17,15 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
+        StatusConditionFactory.InitFactory();
+
+        _playerController.OnEncounterPokymon += StartWildPokymonBattle;
+        _battleManager.OnBattleFinish += FinishPokymonBattle;
+
         if (_gameState == GameState.World)
         {
             AudioManager.SharedInstance.PlayMusic(_worldMusic);
         }
-
-        _playerController.OnPokymonEncountered += StartWildPokymonBattle;
-        _battleManager.OnBattleFinish += FinishPokymonBattle;
     }
 
     private void Update() {

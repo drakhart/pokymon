@@ -11,6 +11,8 @@ public class BattleUnitHUD : MonoBehaviour
     [SerializeField] private Text _hpText;
     [SerializeField] private Text _pokymonLevelText;
     [SerializeField] private Text _pokymonNameText;
+    [SerializeField] private Image _statusConditionImage;
+    [SerializeField] private Text _statusConditionText;
 
     private Pokymon _pokymon;
 
@@ -27,6 +29,9 @@ public class BattleUnitHUD : MonoBehaviour
         UpdateExpBar();
         UpdateHPBar();
         UpdateHPText();
+        UpdateStatusCondition();
+
+        _pokymon.OnChangeStatusConditions += UpdateStatusCondition;
     }
 
     public void UpdateExpBar()
@@ -80,5 +85,21 @@ public class BattleUnitHUD : MonoBehaviour
     public void UpdateLevelText()
     {
         _pokymonLevelText.text = $"Lvl {_pokymon.Level}";
+    }
+
+    public void UpdateStatusCondition()
+    {
+        var statusCondition = _pokymon.NonVolatileStatusCondition;
+
+        if (statusCondition != null)
+        {
+            _statusConditionText.text = statusCondition.Tag;
+            _statusConditionImage.color = statusCondition.Color;
+            _statusConditionImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            _statusConditionImage.gameObject.SetActive(false);
+        }
     }
 }

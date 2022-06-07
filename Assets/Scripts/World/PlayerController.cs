@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _input;
     private bool _isMoving;
 
-    public event Action OnPokymonEncountered;
+    public event Action OnEncounterPokymon;
 
     private void Awake() {
         _animator = GetComponent<Animator>();
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
         if (IsPokymonEncountered())
         {
-            OnPokymonEncountered();
+            OnEncounterPokymon();
         }
     }
 }

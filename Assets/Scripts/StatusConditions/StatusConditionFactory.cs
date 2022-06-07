@@ -6,13 +6,20 @@ using Random = UnityEngine.Random;
 
 public class StatusConditionFactory
 {
+    public static void InitFactory()
+    {
+        foreach (var statusCondition in StatusConditionList)
+        {
+            statusCondition.Value.ID = statusCondition.Key;
+        }
+    }
+
     public static Dictionary<StatusConditionID, StatusCondition> StatusConditionList { get; set; } = new Dictionary<StatusConditionID, StatusCondition>()
     {
         {
             StatusConditionID.Burn,
             new StatusCondition()
             {
-                ID = StatusConditionID.Burn,
                 Name = "Burn",
                 Description = "The burn condition inflicts (BRN) damage every turn and halves damage dealt by a Pokémon's physical moves (except Pokémon with the Guts ability).",
                 Tag = "BRN",
@@ -31,7 +38,6 @@ public class StatusConditionFactory
             StatusConditionID.Freeze,
             new StatusCondition()
             {
-                ID = StatusConditionID.Freeze,
                 Name = "Freeze",
                 Description = "The freeze condition (FRZ) causes a Pokémon to be unable to make a move.",
                 Tag = "FRZ",
@@ -55,7 +61,6 @@ public class StatusConditionFactory
             StatusConditionID.Paralysis,
             new StatusCondition()
             {
-                ID = StatusConditionID.Paralysis,
                 Name = "Paralysis",
                 Description = "The paralysis condition (PAR) reduces the Pokémon's Speed stat and causes it to have a 25% chance of being unable to use a move (\"fully paralyzed\") when trying to use one.",
                 Tag = "PAR",
@@ -77,7 +82,6 @@ public class StatusConditionFactory
             StatusConditionID.Poison,
             new StatusCondition()
             {
-                ID = StatusConditionID.Poison,
                 Name = "Poison",
                 Description = "The poison condition (PSN) inflicts damage every turn.",
                 Tag = "PSN",
@@ -96,7 +100,6 @@ public class StatusConditionFactory
             StatusConditionID.Sleep,
             new StatusCondition()
             {
-                ID = StatusConditionID.Sleep,
                 Name = "Sleep",
                 Description = "The sleep condition (SLP) causes a Pokémon to be unable to use moves, except Snore and Sleep Talk. Sleep lasts for a randomly chosen duration of 1 to 5 turns.",
                 Tag = "SLP",

@@ -53,6 +53,8 @@ public class Pokymon
     private List<StatusCondition> _statusConditionList;
     public List<StatusCondition> StatusConditionList => _statusConditionList;
 
+    public Action OnChangeStatusConditions;
+
     public string Name => _isWild ? $"Wild {_base.Name}" : _base.Name;
 
     public int CurrentLevelExp => CalculateLevelExperience(_level);
@@ -355,6 +357,8 @@ public class Pokymon
             statusCondition.OnApply(this);
         }
 
+        OnChangeStatusConditions();
+
         return statusCondition;
     }
 
@@ -366,6 +370,8 @@ public class Pokymon
     public void RemoveStatusCondition(StatusConditionID statusConditionID)
     {
         _statusConditionList.RemoveAll(sc => sc.ID == statusConditionID);
+
+        OnChangeStatusConditions();
     }
 
     public bool LevelUp()
