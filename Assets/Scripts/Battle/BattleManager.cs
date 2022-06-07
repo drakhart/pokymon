@@ -98,7 +98,18 @@ public class BattleManager : MonoBehaviour
                         break;
 
                     case BattleState.PlayerSelectParty:
-                        HandlePartySelection();
+                        _partySelection.HandlePartySelection(_playerUnit.Pokymon, (selectedPokymon) => {
+                            _partySelection.gameObject.SetActive(false);
+
+                            if (selectedPokymon == null)
+                            {
+                                PlayerSelectAction();
+                            }
+                            else
+                            {
+                                StartCoroutine(PerformPokymonSwitch(selectedPokymon));
+                            }
+                        });
                         break;
 
                     case BattleState.PlayerSelectForgetMove:
@@ -188,51 +199,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void HandlePartySelection()
-    {
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-        {
-            if (Input.GetAxis("Horizontal") != 0)
-            {
-                _currSelectedPokymon = (_currSelectedPokymon + 1) % 2 + 2 * (int)(_currSelectedPokymon / 2);
-            }
-            else
-            {
-                _currSelectedPokymon = (_currSelectedPokymon + (Input.GetAxis("Vertical") < 0 ? 2 : _playerParty.PokymonCount - 2 + _playerParty.PokymonCount % 2))
-                    % (_playerParty.PokymonCount % 2 == 0 ? _playerParty.PokymonCount : _playerParty.PokymonCount + 1);
-            }
-
-            _currSelectedPokymon = Mathf.Clamp(_currSelectedPokymon, 0, _playerParty.PokymonCount - 1);
-
-            _partySelection.SelectPokymon(_currSelectedPokymon);
-        }
-
-        if (Input.GetButtonDown("Submit"))
-        {
-            var nextPlayerPokymon = _playerParty.PokymonList[_currSelectedPokymon];
-
-            if (nextPlayerPokymon.IsKnockedOut)
-            {
-                _partySelection.SetDialogText("You can't choose a knocked out Pokymon.");
-
-                return;
-            }
-            else if (nextPlayerPokymon == _playerUnit.Pokymon)
-            {
-                _partySelection.SetDialogText("You can't choose the Pokymon currently in battle.");
-
-                return;
-            }
-
-            StartCoroutine(PerformPokymonSwitch(nextPlayerPokymon));
-        }
-
-        if (Input.GetButtonDown("Cancel"))
-        {
-            PlayerSelectAction();
-        }
-    }
-
     private IEnumerator SetupBattle()
     {
         if (_battleType == BattleType.WildPokymon)
@@ -303,7 +269,6 @@ public class BattleManager : MonoBehaviour
         _battleState = BattleState.PlayerSelectAction;
         _currSelectedAction = 0;
 
-        _partySelection.gameObject.SetActive(false);
         _dialogBox.ToggleMoveSelector(false);
         _dialogBox.SetDialogText($"What will {_playerUnit.Pokymon.Name} do?");
         _dialogBox.ToggleDialogText(true);
@@ -326,7 +291,6 @@ public class BattleManager : MonoBehaviour
     private void PlayerSelectParty()
     {
         _battleState = BattleState.PlayerSelectParty;
-        _currSelectedPokymon = 0;
 
         _partySelection.gameObject.SetActive(true);
         _partySelection.UpdatePartyData(_playerParty);
@@ -709,7 +673,6 @@ public class BattleManager : MonoBehaviour
     {
         _battleState = BattleState.Busy;
 
-        _partySelection.gameObject.SetActive(false);
         _dialogBox.ToggleActionSelector(false);
         _dialogBox.ToggleDialogText(true);
 

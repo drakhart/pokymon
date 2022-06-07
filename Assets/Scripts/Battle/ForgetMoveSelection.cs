@@ -3,17 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class ForgetMoveSelection : MonoBehaviour
 {
     [SerializeField] private Text[] _moveTextList;
 
-    private int _currSelectedMove;
+    private int _currSelection;
 
     public void SetMoveTexts(List<Move> moveList, LearnableMove learnableMove)
     {
-        _currSelectedMove = 0;
+        _currSelection = 0;
 
         for (var i = 0; i < moveList.Count; i++)
         {
@@ -29,7 +28,7 @@ public class ForgetMoveSelection : MonoBehaviour
     {
         if (Input.GetAxis("Vertical") != 0)
         {
-            _currSelectedMove = (_currSelectedMove + (Input.GetAxis("Vertical") < 0 ? 1 : Constants.MAX_POKYMON_MOVE_COUNT))
+            _currSelection = (_currSelection + (Input.GetAxis("Vertical") < 0 ? 1 : Constants.MAX_POKYMON_MOVE_COUNT))
                 % (Constants.MAX_POKYMON_MOVE_COUNT + 1);
 
             UpdateSelectedMove();
@@ -37,7 +36,7 @@ public class ForgetMoveSelection : MonoBehaviour
 
         if (Input.GetButtonDown("Submit"))
         {
-            OnSelected?.Invoke(_currSelectedMove);
+            OnSelected?.Invoke(_currSelection);
         }
     }
 
@@ -45,7 +44,7 @@ public class ForgetMoveSelection : MonoBehaviour
     {
         for (var i = 0; i < _moveTextList.Length; i++)
         {
-            _moveTextList[i].color = i == _currSelectedMove
+            _moveTextList[i].color = i == _currSelection
                 ? ColorManager.SharedInstance.SelectedText
                 : ColorManager.SharedInstance.DefaultText;
         }
