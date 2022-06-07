@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hasFixedColor: 0
   _highThreshold: 0.5
-  _lowThreshold: 0.15
+  _lowThreshold: 0.2
 --- !u!1 &190757721102543738
 GameObject:
   m_ObjectHideFlags: 0

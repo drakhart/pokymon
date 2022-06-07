@@ -22,7 +22,6 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] private float _highPPThreshold = 0.5f;
     [SerializeField] private float _lowPPThreshold = 0.20f;
 
-
     private Tween _dialogTextTween;
 
     public void SelectAction(int selectedAction)
@@ -57,7 +56,7 @@ public class BattleDialogBox : MonoBehaviour
         _ppText.color = PPColor(move.NormalizedPP);
         _ppText.text = $"PP {move.PP}/{move.MaxPP}";
         _typeText.text = move.Base.Type.ToString();
-        _typeText.color = ColorManager.SharedInstance.PokymonType(move.Base.Type);
+        _typeText.color = ColorManager.SharedInstance.ByPokymonType(move.Base.Type);
     }
 
     public void SetMoveTexts(List<Move> moves)

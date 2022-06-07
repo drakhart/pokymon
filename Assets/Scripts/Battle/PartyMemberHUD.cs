@@ -26,7 +26,7 @@ public class PartyMemberHUD : MonoBehaviour
         _pokymonNameText.text = _pokymon.Name;
         _pokymonLevelText.text = $"Lvl {_pokymon.Level}";
         _pokymonPrimaryTypeText.text = _pokymon.Base.PrimaryType.ToString();
-        _pokymonPrimaryTypeText.color = ColorManager.SharedInstance.PokymonType(_pokymon.Base.PrimaryType);
+        _pokymonPrimaryTypeText.color = ColorManager.SharedInstance.ByPokymonType(_pokymon.Base.PrimaryType);
         _expBar.SetScale(_pokymon.NormalizedExp);
         _hpBar.SetScale(_pokymon.NormalizedHP);
         _hpText.text = $"{_pokymon.HP}/{_pokymon.MaxHP}";
@@ -48,6 +48,6 @@ public class PartyMemberHUD : MonoBehaviour
         var active = _pokymon.Base.SecondaryType != PokymonType.None;
         _pokymonSecondaryTypeText.gameObject.SetActive(active);
         _pokymonSecondaryTypeText.text = _pokymon.Base.SecondaryType.ToString();
-        _pokymonSecondaryTypeText.color = ColorManager.SharedInstance.PokymonType(_pokymon.Base.SecondaryType);
+        _pokymonSecondaryTypeText.color = ColorManager.SharedInstance.ByPokymonType(_pokymon.Base.SecondaryType);
     }
 }

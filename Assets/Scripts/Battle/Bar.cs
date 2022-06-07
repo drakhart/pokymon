@@ -8,7 +8,7 @@ public class Bar : MonoBehaviour
 {
     [SerializeField] private bool _hasFixedColor = false;
     [SerializeField] private float _highThreshold = 0.5f;
-    [SerializeField] private float _lowThreshold = 0.15f;
+    [SerializeField] private float _lowThreshold = 0.20f;
 
     private Image _image;
 

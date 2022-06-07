@@ -392,7 +392,7 @@ public class BattleManager : MonoBehaviour
 
             if (skipTurn)
             {
-                turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.Color);
+                turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.ID);
 
                 yield return SkipTurn(turnUnit, message);
                 yield break;
@@ -517,7 +517,7 @@ public class BattleManager : MonoBehaviour
     {
         foreach (var statusCondition in turnUnit.Pokymon.FinishTurnStatusConditionList)
         {
-            turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.Color);
+            turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.ID);
 
             var (causedDamage, message) = statusCondition.OnFinishTurn(turnUnit.Pokymon);
 
@@ -628,7 +628,7 @@ public class BattleManager : MonoBehaviour
 
                     if (statusCondition != null)
                     {
-                        targetUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.Color);
+                        targetUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.ID);
 
                         yield return _dialogBox.SetDialogText(statusCondition.OnApplyMessage.Replace("%pokymon.name%", effectTarget.Pokymon.Name));
                     }

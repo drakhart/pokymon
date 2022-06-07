@@ -23,7 +23,6 @@ public class StatusConditionFactory
                 Name = "Burn",
                 Description = "The burn condition inflicts (BRN) damage every turn and halves damage dealt by a Pokémon's physical moves (except Pokémon with the Guts ability).",
                 Tag = "BRN",
-                Color = new Color32(0xef, 0x81, 0x3c, 0xff),
                 Type = StatusConditionType.NonVolatile,
                 OnApplyMessage = "%pokymon.name% was burned!",
                 OnFinishTurn = (Pokymon pokymon) =>
@@ -41,7 +40,6 @@ public class StatusConditionFactory
                 Name = "Freeze",
                 Description = "The freeze condition (FRZ) causes a Pokémon to be unable to make a move.",
                 Tag = "FRZ",
-                Color = new Color32(0x99, 0xd8, 0xd8, 0xff),
                 Type = StatusConditionType.NonVolatile,
                 OnApplyMessage = "%pokymon.name% was frozen solid!",
                 OnStartTurn = (Pokymon pokymon) =>
@@ -64,7 +62,6 @@ public class StatusConditionFactory
                 Name = "Paralysis",
                 Description = "The paralysis condition (PAR) reduces the Pokémon's Speed stat and causes it to have a 25% chance of being unable to use a move (\"fully paralyzed\") when trying to use one.",
                 Tag = "PAR",
-                Color = new Color32(0xf8, 0xd0, 0x49, 0xff),
                 Type = StatusConditionType.NonVolatile,
                 OnApplyMessage = "%pokymon.name% was paralyzed!",
                 OnStartTurn = (Pokymon pokymon) =>
@@ -85,7 +82,6 @@ public class StatusConditionFactory
                 Name = "Poison",
                 Description = "The poison condition (PSN) inflicts damage every turn.",
                 Tag = "PSN",
-                Color = new Color32(0x9f, 0x41, 0x9d, 0xff),
                 Type = StatusConditionType.NonVolatile,
                 OnApplyMessage = "%pokymon.name% was poisoned!",
                 OnFinishTurn = (Pokymon pokymon) =>
@@ -103,7 +99,6 @@ public class StatusConditionFactory
                 Name = "Sleep",
                 Description = "The sleep condition (SLP) causes a Pokémon to be unable to use moves, except Snore and Sleep Talk. Sleep lasts for a randomly chosen duration of 1 to 5 turns.",
                 Tag = "SLP",
-                Color = new Color32(0xa8, 0x90, 0xec, 0xff),
                 Type = StatusConditionType.NonVolatile,
                 OnApply = (Pokymon pokymon) => pokymon.GetStatusCondition(StatusConditionID.Sleep).RemainingTurns = Random.Range(1, 6),
                 OnApplyMessage = "%pokymon.name% was fast asleep!",
@@ -121,57 +116,4 @@ public class StatusConditionFactory
             }
         },
     };
-}
-
-public enum StatusConditionID
-{
-    // Non volatile
-    Burn,
-    Freeze,
-    Paralysis,
-    Poison,
-    BadlyPoisoned,
-    Sleep,
-    Frostbite,
-
-    // Volatile
-    Bound,
-    CantEscape,
-    Confusion,
-    Curse,
-    Drowsy,
-    Embargo,
-    Encore,
-    Flinch,
-    HealBlock,
-    Identified,
-    Infatuation,
-    LeechSeed,
-    Nightmare,
-    PerishSong,
-    Taunt,
-    Telekinesis,
-    Torment,
-    TypeChange,
-
-    // Volatile Battle
-    AquaRing,
-    Bracing,
-    ChargingTurn,
-    CenterOfAttention,
-    DefenseCurl,
-    Rooting,
-    MagicCoat,
-    MagneticLevitation,
-    Mimic,
-    Minimize,
-    Protection,
-    Recharging,
-    SemiInvulnerableTurn,
-    Substitute,
-    TakingAim,
-    Thrashing,
-    Transformed,
-    Fixated,
-    Primed,
 }

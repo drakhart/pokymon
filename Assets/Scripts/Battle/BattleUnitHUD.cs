@@ -91,10 +91,10 @@ public class BattleUnitHUD : MonoBehaviour
     {
         var statusCondition = _pokymon.NonVolatileStatusCondition;
 
-        if (statusCondition != null)
+        if (statusCondition?.Tag != null)
         {
             _statusConditionText.text = statusCondition.Tag;
-            _statusConditionImage.color = statusCondition.Color;
+            _statusConditionImage.color = ColorManager.SharedInstance.ByStatusCondition(statusCondition.ID);
             _statusConditionImage.gameObject.SetActive(true);
         }
         else

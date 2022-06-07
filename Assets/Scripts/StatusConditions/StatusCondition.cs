@@ -13,8 +13,6 @@ public class StatusCondition
 
     public string Tag { get; set; }
 
-    public Color Color { get; set; }
-
     public StatusConditionType Type { get; set; }
 
     public int RemainingTurns { get; set; }
@@ -35,4 +33,57 @@ public enum StatusConditionType
     NonVolatile,
     Volatile,
     VolatileBattle,
+}
+
+public enum StatusConditionID
+{
+    // Non volatile
+    Burn,
+    Freeze,
+    Paralysis,
+    Poison,
+    BadlyPoisoned,
+    Sleep,
+    Frostbite,
+
+    // Volatile
+    Bound,
+    CantEscape,
+    Confusion,
+    Curse,
+    Drowsy,
+    Embargo,
+    Encore,
+    Flinch,
+    HealBlock,
+    Identified,
+    Infatuation,
+    LeechSeed,
+    Nightmare,
+    PerishSong,
+    Taunt,
+    Telekinesis,
+    Torment,
+    TypeChange,
+
+    // Volatile Battle
+    AquaRing,
+    Bracing,
+    ChargingTurn,
+    CenterOfAttention,
+    DefenseCurl,
+    Rooting,
+    MagicCoat,
+    MagneticLevitation,
+    Mimic,
+    Minimize,
+    Protection,
+    Recharging,
+    SemiInvulnerableTurn,
+    Substitute,
+    TakingAim,
+    Thrashing,
+    Transformed,
+    Fixated,
+    Primed,
 }
