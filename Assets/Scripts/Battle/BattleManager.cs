@@ -388,14 +388,16 @@ public class BattleManager : MonoBehaviour
     {
         foreach (var statusCondition in turnUnit.Pokymon.StartTurnStatusConditionList)
         {
-            var skipTurn = statusCondition.OnStartTurn(turnUnit.Pokymon);
+            var (skipTurn, message) = statusCondition.OnStartTurn(turnUnit.Pokymon);
 
             if (skipTurn)
             {
                 turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.Color);
 
-                yield return SkipTurn(turnUnit, statusCondition.OnStartTurnMessage.Replace("%pokymon.name%", turnUnit.Pokymon.Name));
+                yield return SkipTurn(turnUnit, message);
                 yield break;
+            } else if (message != null) {
+                yield return _dialogBox.SetDialogText(message);
             }
         }
     }
@@ -515,13 +517,20 @@ public class BattleManager : MonoBehaviour
     {
         foreach (var statusCondition in turnUnit.Pokymon.FinishTurnStatusConditionList)
         {
-            statusCondition.OnFinishTurn(turnUnit.Pokymon);
-
             turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.Color);
-            turnUnit.HUD.UpdateHPTextAnimated();
-            turnUnit.HUD.UpdateHPBarAnimated();
 
-            yield return _dialogBox.SetDialogText(statusCondition.OnFinishTurnMessage.Replace("%pokymon.name%", turnUnit.Pokymon.Name));
+            var (causedDamage, message) = statusCondition.OnFinishTurn(turnUnit.Pokymon);
+
+            if (causedDamage)
+            {
+                turnUnit.HUD.UpdateHPTextAnimated();
+                turnUnit.HUD.UpdateHPBarAnimated();
+            }
+
+            if (message != null)
+            {
+                yield return _dialogBox.SetDialogText(message);
+            }
 
             if (turnUnit.Pokymon.IsKnockedOut)
             {
@@ -615,13 +624,13 @@ public class BattleManager : MonoBehaviour
                             continue;
                     }
 
-                    var statusCondition = StatusConditionFactory.StatusConditionList[effect.ConditionID];
-                    var isConditionAdded = targetUnit.Pokymon.AddStatusCondition(statusCondition);
+                    var statusCondition = targetUnit.Pokymon.ApplyStatusCondition(effect.ConditionID);
 
-                    if (isConditionAdded)
+                    if (statusCondition != null)
                     {
                         targetUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.Color);
-                        yield return _dialogBox.SetDialogText(statusCondition.ConditionMessage.Replace("%pokymon.name%", effectTarget.Pokymon.Name));
+
+                        yield return _dialogBox.SetDialogText(statusCondition.OnApplyMessage.Replace("%pokymon.name%", effectTarget.Pokymon.Name));
                     }
                 }
             }

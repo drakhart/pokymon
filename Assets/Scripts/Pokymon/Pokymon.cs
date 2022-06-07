@@ -332,16 +332,28 @@ public class Pokymon
         return _statStageList[stat] != prevStage ? true : false;
     }
 
-    public bool AddStatusCondition(StatusCondition statusCondition)
+    public StatusCondition ApplyStatusCondition(StatusConditionID statusConditionID)
     {
+        var statusCondition = StatusConditionFactory.StatusConditionList[statusConditionID];
+
         if (statusCondition.IsNonVolatile && HasNonVolatileStatusCondition)
         {
-            return false;
+            return null;
         }
 
         _statusConditionList.Add(statusCondition);
 
-        return true;
+        if (statusCondition.OnApply != null)
+        {
+            statusCondition.OnApply(this);
+        }
+
+        return statusCondition;
+    }
+
+    public StatusCondition GetStatusCondition(StatusConditionID statusConditionID)
+    {
+        return _statusConditionList.Where(sc => sc.ID == statusConditionID).FirstOrDefault();
     }
 
     public void RemoveStatusCondition(StatusConditionID statusConditionID)
