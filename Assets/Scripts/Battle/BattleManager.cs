@@ -16,7 +16,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private GameObject _pokyball;
 
     [SerializeField] private AudioClip _battleStartSFX;
-    [SerializeField] private AudioClip _damageSFX;
+    [SerializeField] private AudioClip _evadeMoveSFX;
     [SerializeField] private AudioClip _forgetMoveSFX;
     [SerializeField] private AudioClip _knockOutSFX;
     [SerializeField] private AudioClip _learnMoveSFX;
@@ -26,8 +26,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private AudioClip _pokyballEscapeSFX;
     [SerializeField] private AudioClip _pokyballShakeSFX;
     [SerializeField] private AudioClip _pokyballThrowSFX;
-    [SerializeField] private AudioClip _decreaseStat;
-    [SerializeField] private AudioClip _increaseStat;
+    [SerializeField] private AudioClip _statusConditionSFX;
+    [SerializeField] private AudioClip _decreaseStatSFX;
+    [SerializeField] private AudioClip _increaseStatSFX;
     [SerializeField] private AudioClip _uiCancelSFX;
     [SerializeField] private AudioClip _uiMoveSFX;
     [SerializeField] private AudioClip _uiSubmitSFX;
@@ -311,7 +312,6 @@ public class BattleManager : MonoBehaviour
     {
         _battleState = BattleState.ConfirmEnemyMove;
 
-
         yield return InvokeStartMoveEffects(_enemyUnit);
 
         if (_battleState == BattleState.ConfirmEnemyMove)
@@ -355,6 +355,8 @@ public class BattleManager : MonoBehaviour
 
         foreach (var statusCondition in turnUnit.Pokymon.StartMoveStatusConditionList)
         {
+            AudioManager.SharedInstance.PlaySFX(_statusConditionSFX);
+
             turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.ID);
 
             var (skipTurnEffect, message) = statusCondition.OnStartMove(turnUnit.Pokymon);
@@ -432,6 +434,8 @@ public class BattleManager : MonoBehaviour
     {
         foreach (var statusCondition in turnUnit.Pokymon.FinishTurnStatusConditionList)
         {
+            AudioManager.SharedInstance.PlaySFX(_statusConditionSFX);
+
             turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.ID);
 
             var message = statusCondition.OnFinishTurn(turnUnit.Pokymon);
@@ -449,19 +453,19 @@ public class BattleManager : MonoBehaviour
     {
         var damageDesc = targetUnit.Pokymon.ReceivePhysicalMove(move, sourceUnit.Pokymon);
 
-        AudioManager.SharedInstance.PlaySFX(_physicalMoveSFX);
-
         sourceUnit.PlayPhysicalMoveAnimation();
 
         if (damageDesc.IsEvaded)
         {
+            AudioManager.SharedInstance.PlaySFX(_evadeMoveSFX);
+
             targetUnit.PlayEvadeMoveAnimation();
 
             yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} evaded the attack!");
         }
         else
         {
-            AudioManager.SharedInstance.PlaySFX(_damageSFX);
+            AudioManager.SharedInstance.PlaySFX(_physicalMoveSFX);
 
             yield return targetUnit.PlayReceivePhysicalMoveAnimation(move.Base.Type);
             yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} took {damageDesc.HP} HP damage.");
@@ -478,6 +482,8 @@ public class BattleManager : MonoBehaviour
     {
         if (targetUnit.Pokymon.CanEvadeMove(move, sourceUnit.Pokymon))
         {
+            AudioManager.SharedInstance.PlaySFX(_evadeMoveSFX);
+
             sourceUnit.PlayStatusMoveAnimation();
             targetUnit.PlayEvadeMoveAnimation();
 
@@ -500,8 +506,8 @@ public class BattleManager : MonoBehaviour
             sourceUnit.PlayStatusMoveAnimation();
 
             AudioManager.SharedInstance.PlaySFX(effect.Modifier > 0
-                ? _increaseStat
-                : _decreaseStat);
+                ? _increaseStatSFX
+                : _decreaseStatSFX);
 
             switch (effect.Target)
             {
@@ -561,6 +567,8 @@ public class BattleManager : MonoBehaviour
 
                     if (statusCondition != null)
                     {
+                        AudioManager.SharedInstance.PlaySFX(_statusConditionSFX);
+
                         targetUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.ID);
 
                         yield return _dialogBox.SetDialogText(statusCondition.OnApplyMessage.Replace("%pokymon.name%", effectTarget.Pokymon.Name));
