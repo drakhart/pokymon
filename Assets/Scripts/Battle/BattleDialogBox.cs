@@ -116,8 +116,8 @@ public class BattleDialogBox : MonoBehaviour
     {
         var move = _moveList[_currMoveSelection];
 
-        _ppText.color = PPColor(move.NormalizedPP);
         _ppText.text = $"PP {move.PP}/{move.MaxPP}";
+        _ppText.color = PPColor(move.NormalizedPP);
         _typeText.text = move.Base.Type.ToString();
         _typeText.color = ColorManager.SharedInstance.ByPokymonType(move.Base.Type);
     }
@@ -153,6 +153,11 @@ public class BattleDialogBox : MonoBehaviour
 
     public void ToggleMoveSelector(bool active)
     {
+        if (active)
+        {
+            SetMoveDetails();
+        }
+
         _moveSelector.SetActive(active);
         _moveDetails.SetActive(active);
     }
