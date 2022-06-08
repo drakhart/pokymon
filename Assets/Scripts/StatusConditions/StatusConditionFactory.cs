@@ -34,6 +34,35 @@ public class StatusConditionFactory
             }
         },
         {
+            StatusConditionID.Confusion,
+            new StatusCondition()
+            {
+                Name = "Confusion",
+                Description = "The confused condition causes a Pokémon to sometimes hurt itself in its confusion instead of executing a selected move.",
+                Type = StatusConditionType.Volatile,
+                OnApply = (Pokymon pokymon) => pokymon.GetStatusCondition(StatusConditionID.Confusion).RemainingTurns = Random.Range(2, 6),
+                OnApplyMessage = "%pokymon.name% was confused!",
+                OnStartMove = (Pokymon pokymon) =>
+                {
+                    if (pokymon.GetStatusCondition(StatusConditionID.Confusion).RemainingTurns-- <= 0)
+                    {
+                        pokymon.RemoveStatusCondition(StatusConditionID.Confusion);
+
+                        return (false, $"{pokymon.Name} is no longer confused!");
+                    }
+
+                    if (Random.Range(0, 100) < 50)
+                    {
+                        pokymon.ReceiveDamage(Mathf.Max(pokymon.MaxHP / 6, 1));
+
+                        return (true, $"{pokymon.Name} hurt itself in its confusion!");
+                    }
+
+                    return (false, null);
+                },
+            }
+        },
+        {
             StatusConditionID.Freeze,
             new StatusCondition()
             {
@@ -42,7 +71,7 @@ public class StatusConditionFactory
                 Tag = "FRZ",
                 Type = StatusConditionType.NonVolatile,
                 OnApplyMessage = "%pokymon.name% was frozen solid!",
-                OnStartTurn = (Pokymon pokymon) =>
+                OnStartMove = (Pokymon pokymon) =>
                 {
                     if (Random.Range(0, 100) < 25)
                     {
@@ -64,7 +93,7 @@ public class StatusConditionFactory
                 Tag = "PAR",
                 Type = StatusConditionType.NonVolatile,
                 OnApplyMessage = "%pokymon.name% was paralyzed!",
-                OnStartTurn = (Pokymon pokymon) =>
+                OnStartMove = (Pokymon pokymon) =>
                 {
                     if (Random.Range(0, 100) >= 25)
                     {
@@ -102,13 +131,13 @@ public class StatusConditionFactory
                 Type = StatusConditionType.NonVolatile,
                 OnApply = (Pokymon pokymon) => pokymon.GetStatusCondition(StatusConditionID.Sleep).RemainingTurns = Random.Range(1, 6),
                 OnApplyMessage = "%pokymon.name% was fast asleep!",
-                OnStartTurn = (Pokymon pokymon) =>
+                OnStartMove = (Pokymon pokymon) =>
                 {
                     if (pokymon.GetStatusCondition(StatusConditionID.Sleep).RemainingTurns-- <= 0)
                     {
                         pokymon.RemoveStatusCondition(StatusConditionID.Sleep);
 
-                        return (false, $"Beep Beep! {pokymon.Name} woke up!");
+                        return (false, $"Beep Beep! {pokymon.Name} wakes up!");
                     }
 
                     return (true, $"{pokymon.Name} is sleeping! It can't move!");

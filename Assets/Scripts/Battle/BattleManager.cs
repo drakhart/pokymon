@@ -227,7 +227,6 @@ public class BattleManager : MonoBehaviour
 
         _dialogBox.ToggleMoveSelector(false);
         _dialogBox.SetDialogText($"What will {_playerUnit.Pokymon.Name} do?");
-        _dialogBox.ToggleDialogText(true);
         _dialogBox.ToggleActionSelector(true);
     }
 
@@ -291,35 +290,14 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private IEnumerator InvokeStartTurnEffects(BattleUnit turnUnit)
-    {
-        if (turnUnit.Pokymon.HasStartTurnStatusConditions)
-        {
-            yield return InvokeStartTurnStatusConditionEffects(turnUnit);
-        }
-    }
-
-    private IEnumerator InvokeStartTurnStatusConditionEffects(BattleUnit turnUnit)
-    {
-        foreach (var statusCondition in turnUnit.Pokymon.StartTurnStatusConditionList)
-        {
-            var (skipTurn, message) = statusCondition.OnStartTurn(turnUnit.Pokymon);
-
-            if (skipTurn)
-            {
-                turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.ID);
-
-                yield return SkipTurn(turnUnit, message);
-                yield break;
-            } else if (message != null) {
-                yield return _dialogBox.SetDialogText(message);
-            }
-        }
-    }
-
     private IEnumerator SkipTurn(BattleUnit turnUnit, string reason)
     {
-        yield return _dialogBox.SetDialogText(reason);
+        if (reason != null)
+        {
+            yield return _dialogBox.SetDialogText(reason);
+        }
+
+        yield return InvokeFinishTurnEffects(turnUnit);
 
         if (turnUnit.IsPlayer)
         {
@@ -333,9 +311,8 @@ public class BattleManager : MonoBehaviour
     {
         _battleState = BattleState.ConfirmEnemyMove;
 
-        _dialogBox.ToggleDialogText(true);
 
-        yield return InvokeStartTurnEffects(_enemyUnit);
+        yield return InvokeStartMoveEffects(_enemyUnit);
 
         if (_battleState == BattleState.ConfirmEnemyMove)
         {
@@ -350,9 +327,8 @@ public class BattleManager : MonoBehaviour
         _battleState = BattleState.ConfirmPlayerMove;
 
         _dialogBox.ToggleMoveSelector(false);
-        _dialogBox.ToggleDialogText(true);
 
-        yield return InvokeStartTurnEffects(_playerUnit);
+        yield return InvokeStartMoveEffects(_playerUnit);
 
         if (_battleState == BattleState.ConfirmPlayerMove)
         {
@@ -362,6 +338,42 @@ public class BattleManager : MonoBehaviour
             }
 
             yield return PerformPlayerMove(move);
+        }
+    }
+
+    private IEnumerator InvokeStartMoveEffects(BattleUnit turnUnit)
+    {
+        if (turnUnit.Pokymon.HasStartMoveStatusConditions)
+        {
+            yield return InvokeStartMoveStatusConditionEffects(turnUnit);
+        }
+    }
+
+    private IEnumerator InvokeStartMoveStatusConditionEffects(BattleUnit turnUnit)
+    {
+        var skipTurn = false;
+
+        foreach (var statusCondition in turnUnit.Pokymon.StartMoveStatusConditionList)
+        {
+            turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.ID);
+
+            var (skipTurnEffect, message) = statusCondition.OnStartMove(turnUnit.Pokymon);
+
+            if (message != null) {
+                yield return _dialogBox.SetDialogText(message);
+            }
+
+            yield return CheckKnockOut(turnUnit);
+
+            if (skipTurnEffect)
+            {
+                skipTurn = true;
+            }
+        }
+
+        if (skipTurn)
+        {
+            yield return SkipTurn(turnUnit, null);
         }
     }
 
@@ -400,19 +412,16 @@ public class BattleManager : MonoBehaviour
             yield return PerformPhysicalMove(move, sourceUnit, targetUnit);
         }
 
-        if (targetUnit.Pokymon.IsKnockedOut)
-        {
-            yield return PerformKnockOut(targetUnit);
-        } else {
-            if (move.HasStatModifierEffects)
-            {
-                yield return ApplyStatMofidierEffects(move, sourceUnit, targetUnit);
-            }
+        yield return CheckKnockOut(targetUnit);
 
-            if (move.HasStatusConditionEffects)
-            {
-                yield return ApplyStatusConditionEffects(move, sourceUnit, targetUnit);
-            }
+        if (move.HasStatModifierEffects)
+        {
+            yield return ApplyStatMofidierEffects(move, sourceUnit, targetUnit);
+        }
+
+        if (move.HasStatusConditionEffects)
+        {
+            yield return ApplyStatusConditionEffects(move, sourceUnit, targetUnit);
         }
 
         yield return InvokeFinishTurnEffects(sourceUnit);
@@ -439,11 +448,7 @@ public class BattleManager : MonoBehaviour
                 yield return _dialogBox.SetDialogText(message);
             }
 
-            if (turnUnit.Pokymon.IsKnockedOut)
-            {
-                yield return PerformKnockOut(turnUnit);
-                yield break;
-            }
+            yield return CheckKnockOut(turnUnit);
         }
     }
 
@@ -456,7 +461,7 @@ public class BattleManager : MonoBehaviour
 
         AudioManager.SharedInstance.PlaySFX(_damageSFX);
 
-        var damageDesc = targetUnit.Pokymon.CalculateDamage(sourceUnit.Pokymon, move);
+        var damageDesc = targetUnit.Pokymon.ReceivePhysicalMove(sourceUnit.Pokymon, move);
 
         yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} took {damageDesc.HP} HP damage.");
         yield return ShowDamageDescription(damageDesc);
@@ -563,6 +568,14 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    private IEnumerator CheckKnockOut(BattleUnit targetUnit)
+    {
+        if (targetUnit.Pokymon.IsKnockedOut)
+        {
+            yield return PerformKnockOut(targetUnit);
+        }
+    }
+
     private IEnumerator PerformKnockOut(BattleUnit targetUnit)
     {
         AudioManager.SharedInstance.PlaySFX(_knockOutSFX);
@@ -650,7 +663,6 @@ public class BattleManager : MonoBehaviour
         _battleState = BattleState.Busy;
 
         _dialogBox.ToggleActionSelector(false);
-        _dialogBox.ToggleDialogText(true);
 
         var isCurrentPokymonKnockedOut = true;
 
@@ -750,6 +762,7 @@ public class BattleManager : MonoBehaviour
 
             Destroy(pokyballInstance);
 
+            yield return InvokeFinishTurnEffects(_playerUnit);
             yield return EnemyMove();
         }
     }
@@ -778,6 +791,8 @@ public class BattleManager : MonoBehaviour
             else
             {
                 yield return SkipTurn(_playerUnit, "You couldn't run away!");
+
+                yield return InvokeFinishTurnEffects(_playerUnit);
             }
         }
     }

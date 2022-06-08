@@ -23,7 +23,7 @@ public class StatusCondition
 
     public Func<Pokymon, string> OnFinishTurn { get; set; }
 
-    public Func<Pokymon, (bool, string)> OnStartTurn { get; set; }
+    public Func<Pokymon, (bool, string)> OnStartMove { get; set; }
 
     public bool IsNonVolatile => Type == StatusConditionType.NonVolatile;
 }
@@ -37,53 +37,48 @@ public enum StatusConditionType
 
 public enum StatusConditionID
 {
-    // Non volatile
-    Burn,
-    Freeze,
-    Paralysis,
-    Poison,
+    AquaRing,
     BadlyPoisoned,
-    Sleep,
-    Frostbite,
-
-    // Volatile
     Bound,
+    Bracing,
+    Burn,
     CantEscape,
+    CenterOfAttention,
+    ChargingTurn,
     Confusion,
     Curse,
+    DefenseCurl,
     Drowsy,
     Embargo,
     Encore,
+    Fixated,
     Flinch,
+    Freeze,
+    Frostbite,
     HealBlock,
     Identified,
     Infatuation,
     LeechSeed,
-    Nightmare,
-    PerishSong,
-    Taunt,
-    Telekinesis,
-    Torment,
-    TypeChange,
-
-    // Volatile Battle
-    AquaRing,
-    Bracing,
-    ChargingTurn,
-    CenterOfAttention,
-    DefenseCurl,
-    Rooting,
     MagicCoat,
     MagneticLevitation,
     Mimic,
     Minimize,
+    Nightmare,
+    Paralysis,
+    PerishSong,
+    Poison,
+    Primed,
     Protection,
     Recharging,
+    Rooting,
     SemiInvulnerableTurn,
+    Sleep,
     Substitute,
     TakingAim,
+    Taunt,
+    Telekinesis,
     Thrashing,
+    Torment,
     Transformed,
-    Fixated,
-    Primed,
+    TypeChange,
 }

@@ -144,6 +144,10 @@ public class BattleDialogBox : MonoBehaviour
 
     public void ToggleDialogText(bool active)
     {
+        if (!active) {
+            _dialogTextTween.Kill();
+        }
+
         _dialogText.enabled = active;
     }
 
@@ -172,6 +176,8 @@ public class BattleDialogBox : MonoBehaviour
     private IEnumerator AnimateDialogText(string message)
     {
         var lastSoundTime = Time.time;
+
+        ToggleDialogText(true);
 
         _dialogText.text = "";
         _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)

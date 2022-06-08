@@ -90,7 +90,7 @@ public class Pokymon
 
     public LearnableMove LearnableMove => _base.LearnableMoves.Where(lm => lm.Level == _level).FirstOrDefault();
 
-    public bool HasNonVolatileStatusCondition => _statusConditionList.Count(sc => sc.IsNonVolatile == true) > 0;
+    public bool HasNonVolatileStatusCondition => _statusConditionList.Count(sc => sc.IsNonVolatile) > 0;
 
     public StatusCondition NonVolatileStatusCondition => _statusConditionList.Where(sc => sc.IsNonVolatile).FirstOrDefault();
 
@@ -98,9 +98,9 @@ public class Pokymon
 
     public List<StatusCondition> FinishTurnStatusConditionList => _statusConditionList.Where(sc => sc.OnFinishTurn != null).ToList();
 
-    public bool HasStartTurnStatusConditions => _statusConditionList.Count(sc => sc.OnStartTurn != null) > 0;
+    public bool HasStartMoveStatusConditions => _statusConditionList.Count(sc => sc.OnStartMove != null) > 0;
 
-    public List<StatusCondition> StartTurnStatusConditionList => _statusConditionList.Where(sc => sc.OnStartTurn != null).ToList();
+    public List<StatusCondition> StartMoveStatusConditionList => _statusConditionList.Where(sc => sc.OnStartMove != null).ToList();
 
     public Pokymon(PokymonBase pBase, int pLevel, bool isWild)
     {
@@ -198,7 +198,7 @@ public class Pokymon
         };
     }
 
-    public DamageDescription CalculateDamage(Pokymon attacker, Move move)
+    public DamageDescription ReceivePhysicalMove(Pokymon attacker, Move move)
     {
         int attack = move.IsSpecialMove ? attacker.SpAttack : attacker.Attack;
         int defense = move.IsSpecialMove ? SpDefense : Defense;
@@ -228,7 +228,7 @@ public class Pokymon
     {
         _hp = Mathf.Max(_hp - damage, 0);
 
-        OnChangeHP();
+        OnChangeHP?.Invoke();
     }
 
     private bool IsDamageCritical()
@@ -297,7 +297,7 @@ public class Pokymon
     {
         _exp += earnedExp;
 
-        OnChangeExp(false);
+        OnChangeExp?.Invoke(false);
     }
 
     public Move GetRandomAvailableMove()
@@ -364,7 +364,7 @@ public class Pokymon
             statusCondition.OnApply(this);
         }
 
-        OnChangeStatusConditionList();
+        OnChangeStatusConditionList?.Invoke();
 
         return statusCondition;
     }
@@ -378,7 +378,15 @@ public class Pokymon
     {
         _statusConditionList.RemoveAll(sc => sc.ID == statusConditionID);
 
-        OnChangeStatusConditionList();
+        OnChangeStatusConditionList?.Invoke();
+    }
+
+    public void RemoveVolatileStatusConditions()
+    {
+        _statusConditionList.RemoveAll(sc => sc.Type == StatusConditionType.Volatile
+            || sc.Type == StatusConditionType.VolatileBattle);
+
+        OnChangeStatusConditionList?.Invoke();
     }
 
     public bool LevelUp()
@@ -390,9 +398,10 @@ public class Pokymon
             _level++;
             _hp += MaxHP - prevMaxHp;
 
-            OnChangeExp(true);
-            OnChangeHP();
-            OnChangeLevel();
+            OnChangeExp?.Invoke(true);
+            OnChangeHP?.Invoke();
+            OnChangeLevel?.Invoke();
+
             InitStats();
 
             return true;
@@ -415,6 +424,7 @@ public class Pokymon
 
     public void OnBattleFinish()
     {
+        RemoveVolatileStatusConditions();
         InitStatStages();
     }
 }

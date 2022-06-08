@@ -31,11 +31,12 @@ public class ColorManager : MonoBehaviour
 
     private static Dictionary<StatusConditionID, Color32> _statusConditionColorList = new Dictionary<StatusConditionID, Color32>()
     {
+        { StatusConditionID.BadlyPoisoned, new Color32(0x9f, 0x41, 0x9d, 0xff) },
         { StatusConditionID.Burn,          new Color32(0xef, 0x81, 0x3c, 0xff) },
+        { StatusConditionID.Confusion,     new Color32(0xf7, 0x5a, 0x88, 0xff) },
         { StatusConditionID.Freeze,        new Color32(0x99, 0xd8, 0xd8, 0xff) },
         { StatusConditionID.Paralysis,     new Color32(0xf8, 0xd0, 0x49, 0xff) },
         { StatusConditionID.Poison,        new Color32(0x9f, 0x41, 0x9d, 0xff) },
-        { StatusConditionID.BadlyPoisoned, new Color32(0x9f, 0x41, 0x9d, 0xff) },
         { StatusConditionID.Sleep,         new Color32(0xa8, 0x90, 0xec, 0xff) },
     };
 
