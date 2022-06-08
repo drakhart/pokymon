@@ -455,6 +455,8 @@ public class BattleManager : MonoBehaviour
 
         if (damageDesc.IsEvaded)
         {
+            targetUnit.PlayEvadeMoveAnimation();
+
             yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} evaded the attack!");
         }
         else
@@ -476,6 +478,9 @@ public class BattleManager : MonoBehaviour
     {
         if (targetUnit.Pokymon.CanEvadeMove(move, sourceUnit.Pokymon))
         {
+            sourceUnit.PlayStatusMoveAnimation();
+            targetUnit.PlayEvadeMoveAnimation();
+
             yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} evaded the attack!");
         }
         else

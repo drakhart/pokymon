@@ -53,6 +53,22 @@ public class BattleUnit : MonoBehaviour
         seq.Play();
     }
 
+    public void PlayStatusMoveAnimation()
+    {
+        _image.transform.DOPunchScale(new Vector3(0, 0.1f), 1f);
+    }
+
+    public void PlayEvadeMoveAnimation()
+    {
+        var delay = 0.2f;
+        var seq = DOTween.Sequence();
+
+        seq.Append(_image.transform.DOLocalMoveY(_originalPosition.y + (IsPlayer ? -1 : 1) * 100, delay));
+        seq.Append(_image.transform.DOLocalMoveY(_originalPosition.y, delay).SetEase(Ease.InQuad));
+
+        seq.Play();
+    }
+
     public YieldInstruction PlayReceivePhysicalMoveAnimation(PokymonType moveType)
     {
         var delay = 0.1f;
@@ -83,11 +99,6 @@ public class BattleUnit : MonoBehaviour
         }
 
         return seq.Play().WaitForCompletion();
-    }
-
-    public void PlayStatusMoveAnimation()
-    {
-        _image.transform.DOPunchScale(new Vector3(0, 0.1f), 1.2f);
     }
 
     public YieldInstruction PlayReceiveStatusConditionEffectAnimation(StatusConditionID statusConditionID)
