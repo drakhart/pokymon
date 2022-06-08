@@ -15,6 +15,7 @@ public struct DamageDescription
 {
     public float Critical { get; set; }
     public int HP { get; set; }
+    public bool IsEvaded { get; set; }
     public bool IsKnockedOut { get; set; }
     public float Type { get; set; }
 }
@@ -198,8 +199,26 @@ public class Pokymon
         };
     }
 
-    public DamageDescription ReceivePhysicalMove(Pokymon attacker, Move move)
+    public bool CanEvadeMove(Move move, Pokymon attacker)
     {
+        if (move.IsStatusMove && move.Base.Accuracy == 0)
+        {
+            return false;
+        }
+
+        return Random.Range(0, 100) >= move.Base.Accuracy;
+    }
+
+    public DamageDescription ReceivePhysicalMove(Move move, Pokymon attacker)
+    {
+        if (CanEvadeMove(move, attacker))
+        {
+            return new DamageDescription()
+            {
+                IsEvaded = true,
+            };
+        }
+
         int attack = move.IsSpecialMove ? attacker.SpAttack : attacker.Attack;
         int defense = move.IsSpecialMove ? SpDefense : Defense;
         float baseDamage = ((2 * attacker.Level / 5f + 2) * move.Base.Power * (attack / (float)defense)) / 50f + 2;
@@ -219,6 +238,7 @@ public class Pokymon
         {
             Critical = criticalMultiplier,
             HP = totalDamage,
+            IsEvaded = false,
             IsKnockedOut = IsKnockedOut,
             Type = typeEffectivenessMultiplier,
         };

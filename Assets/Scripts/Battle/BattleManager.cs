@@ -411,19 +411,12 @@ public class BattleManager : MonoBehaviour
         {
             yield return PerformPhysicalMove(move, sourceUnit, targetUnit);
         }
+        else if (move.IsStatusMove)
+        {
+            yield return PerformStatusMove(move, sourceUnit, targetUnit);
+        }
 
         yield return CheckKnockOut(targetUnit);
-
-        if (move.HasStatModifierEffects)
-        {
-            yield return ApplyStatMofidierEffects(move, sourceUnit, targetUnit);
-        }
-
-        if (move.HasStatusConditionEffects)
-        {
-            yield return ApplyStatusConditionEffects(move, sourceUnit, targetUnit);
-        }
-
         yield return InvokeFinishTurnEffects(sourceUnit);
     }
 
@@ -454,17 +447,42 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator PerformPhysicalMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
+        var damageDesc = targetUnit.Pokymon.ReceivePhysicalMove(move, sourceUnit.Pokymon);
+
         AudioManager.SharedInstance.PlaySFX(_physicalMoveSFX);
 
         sourceUnit.PlayPhysicalMoveAnimation();
-        yield return targetUnit.PlayReceivePhysicalMoveAnimation(move.Base.Type);
 
-        AudioManager.SharedInstance.PlaySFX(_damageSFX);
+        if (damageDesc.IsEvaded)
+        {
+            yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} evaded the attack!");
+        }
+        else
+        {
+            AudioManager.SharedInstance.PlaySFX(_damageSFX);
 
-        var damageDesc = targetUnit.Pokymon.ReceivePhysicalMove(sourceUnit.Pokymon, move);
+            yield return targetUnit.PlayReceivePhysicalMoveAnimation(move.Base.Type);
+            yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} took {damageDesc.HP} HP damage.");
 
-        yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} took {damageDesc.HP} HP damage.");
-        yield return ShowDamageDescription(damageDesc);
+            yield return ShowDamageDescription(damageDesc);
+            yield return CheckKnockOut(targetUnit);
+
+            yield return ApplyStatMofidierEffects(move, sourceUnit, targetUnit);
+            yield return ApplyStatusConditionEffects(move, sourceUnit, targetUnit);
+        }
+    }
+
+    private IEnumerator PerformStatusMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
+    {
+        if (targetUnit.Pokymon.CanEvadeMove(move, sourceUnit.Pokymon))
+        {
+            yield return _dialogBox.SetDialogText($"{targetUnit.Pokymon.Name} evaded the attack!");
+        }
+        else
+        {
+            yield return ApplyStatMofidierEffects(move, sourceUnit, targetUnit);
+            yield return ApplyStatusConditionEffects(move, sourceUnit, targetUnit);
+        }
     }
 
     private IEnumerator ApplyStatMofidierEffects(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
