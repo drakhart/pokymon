@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
   _id: 47
   _name: Sing
-  _description:
+  _description: 
   _type: 13
   _category: 2
+  _statModifierEffectList: []
+  _statusConditionEffectList:
+  - _target: 1
+    _conditionID: 35
+    _probability: 100
   _pp: 15
   _power: 0
   _accuracy: 55

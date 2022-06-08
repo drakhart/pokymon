@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
   _id: 109
   _name: Confuse Ray
-  _description:
+  _description: 
   _type: 8
   _category: 2
+  _statModifierEffectList: []
+  _statusConditionEffectList:
+  - _target: 1
+    _conditionID: 8
+    _probability: 100
   _pp: 10
   _power: 0
   _accuracy: 100

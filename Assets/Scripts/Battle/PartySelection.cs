@@ -107,7 +107,8 @@ public class PartySelection : MonoBehaviour
         _dialogText.text = "";
         _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)
             .SetEase(Ease.Linear)
-            .OnUpdate(() => {
+            .OnUpdate(() =>
+            {
                 if (Time.time > lastSoundTime + _dialogSFX.length)
                 {
                     AudioManager.SharedInstance.PlaySFX(_dialogSFX);

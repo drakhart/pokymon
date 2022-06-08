@@ -502,7 +502,6 @@ public class BattleManager : MonoBehaviour
         {
             BattleUnit effectTarget = null;
 
-            // TODO: check if move ID has a custom effect (i.e. 18, 46, 47, 48, 50, 54, 73, 77, 78, 79, 86, 92, 95, 100, 102, 105, 109, 113, 114, 115, 116, 118, 182, 186, 235, 240, 388...)
             sourceUnit.PlayStatusMoveAnimation();
 
             AudioManager.SharedInstance.PlaySFX(effect.Modifier > 0

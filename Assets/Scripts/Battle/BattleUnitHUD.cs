@@ -78,7 +78,8 @@ public class BattleUnitHUD : MonoBehaviour
     public void UpdateHPTextAnimated()
     {
         DOTween.To(() => _prevHP, x => _prevHP = x, _pokymon.HP, 1f)
-            .OnUpdate(() => {
+            .OnUpdate(() =>
+            {
                 _hpText.text = $"{_prevHP}/{_pokymon.MaxHP}";
             });
     }

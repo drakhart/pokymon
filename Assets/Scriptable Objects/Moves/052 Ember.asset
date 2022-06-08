@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
   _id: 52
   _name: Ember
-  _description:
+  _description: 
   _type: 6
   _category: 1
+  _statModifierEffectList: []
+  _statusConditionEffectList:
+  - _target: 1
+    _conditionID: 4
+    _probability: 10
   _pp: 25
   _power: 40
   _accuracy: 100

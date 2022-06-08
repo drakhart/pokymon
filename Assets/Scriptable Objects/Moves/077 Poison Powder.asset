@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
   _id: 77
   _name: Poison Powder
-  _description:
+  _description: 
   _type: 14
   _category: 2
+  _statModifierEffectList: []
+  _statusConditionEffectList:
+  - _target: 1
+    _conditionID: 29
+    _probability: 100
   _pp: 35
   _power: 0
   _accuracy: 75

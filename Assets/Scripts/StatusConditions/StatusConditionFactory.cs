@@ -16,6 +16,7 @@ public class StatusConditionFactory
 
     public static Dictionary<StatusConditionID, StatusCondition> StatusConditionList { get; set; } = new Dictionary<StatusConditionID, StatusCondition>()
     {
+        // TODO: add status conditions of these existing moves: 18, 46, 50, 54, 73, 92, 100, 102, 105, 113, 114, 115, 116, 118, 182, 235, 240 and 388
         {
             StatusConditionID.Burn,
             new StatusCondition()

@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
   _id: 86
   _name: Thunder Wave
-  _description:
+  _description: 
   _type: 3
   _category: 2
+  _statModifierEffectList: []
+  _statusConditionEffectList:
+  - _target: 1
+    _conditionID: 27
+    _probability: 100
   _pp: 20
   _power: 0
   _accuracy: 90
