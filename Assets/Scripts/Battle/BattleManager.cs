@@ -591,44 +591,49 @@ public class BattleManager : MonoBehaviour
 
         if (!targetUnit.IsPlayer)
         {
-            var earnedExp = targetUnit.Pokymon.KnockOutExp;
-
-            _playerUnit.Pokymon.EarnExp(earnedExp);
-
-            yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} earned {earnedExp} EXP.");
-
-            while (_playerUnit.Pokymon.LevelUp())
-            {
-                AudioManager.SharedInstance.PlaySFX(_levelUpSFX);
-
-                yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} leveled up!");
-
-                _learnableMove = _playerUnit.Pokymon.LearnableMove;
-
-                if (_learnableMove != null)
-                {
-                    if (_playerUnit.Pokymon.HasFreeMoveSlot)
-                    {
-                        _playerUnit.Pokymon.LearnMove(_learnableMove);
-                        _dialogBox.UpdateMoveData(_playerUnit.Pokymon.MoveList);
-
-                        AudioManager.SharedInstance.PlaySFX(_learnMoveSFX);
-
-                        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} learned {_learnableMove.Base.Name}!");
-                    }
-                    else
-                    {
-                        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} tried to learn {_learnableMove.Base.Name}, but it can't learn more than {Constants.MAX_POKYMON_MOVE_COUNT} moves!");
-
-                        PlayerSelectForgetMove();
-
-                        yield return new WaitUntil(() => _battleState != BattleState.PlayerSelectForgetMove);
-                    }
-                }
-            }
+            yield return PerformEarnExp();
         }
 
         CheckForBattleFinish(targetUnit);
+    }
+
+    private IEnumerator PerformEarnExp()
+    {
+        var earnedExp = _enemyUnit.Pokymon.KnockOutExp;
+
+        _playerUnit.Pokymon.EarnExp(earnedExp);
+
+        yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} earned {earnedExp} EXP.");
+
+        while (_playerUnit.Pokymon.LevelUp())
+        {
+            AudioManager.SharedInstance.PlaySFX(_levelUpSFX);
+
+            yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} leveled up!");
+
+            _learnableMove = _playerUnit.Pokymon.LearnableMove;
+
+            if (_learnableMove != null)
+            {
+                if (_playerUnit.Pokymon.HasFreeMoveSlot)
+                {
+                    _playerUnit.Pokymon.LearnMove(_learnableMove);
+                    _dialogBox.UpdateMoveData(_playerUnit.Pokymon.MoveList);
+
+                    AudioManager.SharedInstance.PlaySFX(_learnMoveSFX);
+
+                    yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} learned {_learnableMove.Base.Name}!");
+                }
+                else
+                {
+                    yield return _dialogBox.SetDialogText($"{_playerUnit.Pokymon.Name} tried to learn {_learnableMove.Base.Name}, but it can't learn more than {Constants.MAX_POKYMON_MOVE_COUNT} moves!");
+
+                    PlayerSelectForgetMove();
+
+                    yield return new WaitUntil(() => _battleState != BattleState.PlayerSelectForgetMove);
+                }
+            }
+        }
     }
 
     private IEnumerator PerformForgetMove(int selectedMove)
@@ -733,8 +738,11 @@ public class BattleManager : MonoBehaviour
         {
             AudioManager.SharedInstance.PlaySFX(_pokyballCaptureSFX);
 
+            pokyballSprite.DOFade(0, 1f);
+
             yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} caught!");
-            yield return pokyballSprite.DOFade(0, 1f).WaitForCompletion();
+
+            Destroy(pokyballInstance);
 
             if (_playerParty.AddPokymon(_enemyUnit.Pokymon))
             {
@@ -745,7 +753,8 @@ public class BattleManager : MonoBehaviour
                 yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} sent to Bill's PC.");
             }
 
-            Destroy(pokyballInstance);
+            yield return PerformEarnExp();
+
             FinishBattle(true);
         }
         else
@@ -757,10 +766,10 @@ public class BattleManager : MonoBehaviour
             destroySeq.Join(pokyballSprite.transform.DOLocalJump(_enemyUnit.transform.position + new Vector3(4f, -2.15f), 1.5f, 3, 1.5f));
             yield return destroySeq.Play();
 
+            Destroy(pokyballInstance);
+
             yield return _enemyUnit.PlayEscapeAnimation();
             yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} escaped!");
-
-            Destroy(pokyballInstance);
 
             yield return InvokeFinishTurnEffects(_playerUnit);
             yield return EnemyMove();
