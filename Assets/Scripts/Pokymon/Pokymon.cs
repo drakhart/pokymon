@@ -139,10 +139,10 @@ public class Pokymon
     private void InitStats()
     {
         _statList = new Dictionary<PokymonStat, int>();
-        _statList.Add(PokymonStat.Accuracy, 1); // TODO: calculate actual accuracy
+        _statList.Add(PokymonStat.Accuracy, 100);
         _statList.Add(PokymonStat.Attack, (int)(2 * _base.Attack * _level / 100) + _level + 5);
         _statList.Add(PokymonStat.Defense, (int)(2 * _base.Defense * _level / 100) + _level + 5);
-        _statList.Add(PokymonStat.Evasion, 1); // TODO: calculate actual evasion
+        _statList.Add(PokymonStat.Evasion, 100);
         _statList.Add(PokymonStat.SpAttack, (int)(2 * _base.SpAttack * _level / 100) + _level + 5);
         _statList.Add(PokymonStat.SpDefense, (int)(2 * _base.SpDefense * _level / 100) + _level + 5);
         _statList.Add(PokymonStat.Speed, (int)(2 * _base.Speed * _level / 100) + _level + 5);
@@ -201,12 +201,17 @@ public class Pokymon
 
     public bool CanEvadeMove(Move move, Pokymon attacker)
     {
+        // Always hit move
         if (move.IsStatusMove && move.Base.Accuracy == 0)
         {
             return false;
         }
 
-        return Random.Range(0, 100) >= move.Base.Accuracy;
+        var accuracy = attacker.GetStat(PokymonStat.Accuracy);
+        var evasion = GetStat(PokymonStat.Evasion);
+        var finalAccuracy = move.Base.Accuracy * accuracy / evasion;
+
+        return Random.Range(0, 100) >= finalAccuracy;
     }
 
     public DamageDescription ReceivePhysicalMove(Move move, Pokymon attacker)
@@ -339,7 +344,9 @@ public class Pokymon
     {
         int statBase = _statList[stat];
         int statStage = _statStageList[stat];
-        float multiplier = 1 + Math.Abs(statStage) / 2.0f;
+
+        float divider = stat == PokymonStat.Accuracy || stat == PokymonStat.Evasion ? 3f : 2f;
+        float multiplier = 1 + Math.Abs(statStage) / divider;
 
         return statStage >= 0 ? (int)(statBase * multiplier) : (int)(statBase / multiplier);
     }
