@@ -97,6 +97,7 @@ public class PartySelection : MonoBehaviour
         }
     }
 
+    // TODO: merge this logic with main battle dialog box
     public void SetDialogText(string message)
     {
         var lastSoundTime = Time.time;

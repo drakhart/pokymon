@@ -773,8 +773,6 @@ public class BattleManager : MonoBehaviour
 
             yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} caught!");
 
-            Destroy(pokyballInstance);
-
             if (_playerParty.AddPokymon(_enemyUnit.Pokymon))
             {
                 yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} added to party.");
@@ -783,6 +781,8 @@ public class BattleManager : MonoBehaviour
             {
                 yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} sent to Bill's PC.");
             }
+
+            Destroy(pokyballInstance);
 
             yield return PerformEarnExp();
 
@@ -797,10 +797,10 @@ public class BattleManager : MonoBehaviour
             destroySeq.Join(pokyballSprite.transform.DOLocalJump(_enemyUnit.transform.position + new Vector3(4f, -2.15f), 1.5f, 3, 1.5f));
             yield return destroySeq.Play();
 
-            Destroy(pokyballInstance);
-
             yield return _enemyUnit.PlayEscapeAnimation();
             yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} escaped!");
+
+            Destroy(pokyballInstance);
 
             yield return InvokeFinishTurnEffects(_playerUnit);
             yield return EnemyMove();
