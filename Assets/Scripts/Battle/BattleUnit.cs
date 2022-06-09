@@ -19,6 +19,9 @@ public class BattleUnit : MonoBehaviour
 
     public Pokymon Pokymon;
 
+    public bool CanMove { get; set; }
+    public Move NextMove { get; set; }
+
     private void Awake() {
         _image = GetComponent<Image>();
         _originalColor = _image.color;
@@ -32,6 +35,8 @@ public class BattleUnit : MonoBehaviour
         _image.transform.localScale = new Vector3(1f, 1f, 1f);
 
         _hud.SetPokymonData(Pokymon);
+
+        CanMove = true;
 
         PlaySetupAnimation();
     }

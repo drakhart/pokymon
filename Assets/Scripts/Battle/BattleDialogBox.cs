@@ -74,7 +74,12 @@ public class BattleDialogBox : MonoBehaviour
 
         if (Input.GetButtonDown("Submit"))
         {
-            OnSelected?.Invoke(_moveList[_currMoveSelection]);
+            var selectedMove = _moveList[_currMoveSelection];
+
+            if (selectedMove.HasAvailablePP)
+            {
+                OnSelected?.Invoke(selectedMove);
+            }
         }
 
         if (Input.GetButtonDown("Cancel"))

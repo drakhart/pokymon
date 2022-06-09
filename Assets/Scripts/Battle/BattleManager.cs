@@ -120,7 +120,9 @@ public class BattleManager : MonoBehaviour
                             }
                             else
                             {
-                                StartCoroutine(PlayerMove(selectedMove));
+                                _playerUnit.NextMove = selectedMove;
+
+                                StartCoroutine(TriggerMoves());
                             }
                         });
                         break;
@@ -164,7 +166,7 @@ public class BattleManager : MonoBehaviour
             yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} appears!");
         }
 
-        yield return ChooseNextTurn();
+        PlayerSelectAction();
     }
 
     private void SetupPlayerPokymon(Pokymon playerPokymon)
@@ -175,19 +177,6 @@ public class BattleManager : MonoBehaviour
         _dialogBox.UpdateMoveData(_playerUnit.Pokymon.MoveList);
     }
 
-    private IEnumerator ChooseNextTurn()
-    {
-        if (_playerUnit.Pokymon.Speed < _enemyUnit.Pokymon.Speed)
-        {
-            yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} is faster!");
-
-            yield return EnemyMove();
-        }
-        else
-        {
-            PlayerSelectAction();
-        }
-    }
 
     private void CheckForBattleFinish(BattleUnit knockedOutUnit)
     {
@@ -201,6 +190,7 @@ public class BattleManager : MonoBehaviour
                 }
                 else
                 {
+                    // TODO: fix moves running in background while selecting new pokymon
                     PlayerSelectParty();
                 }
             }
@@ -219,7 +209,7 @@ public class BattleManager : MonoBehaviour
 
         _playerParty.PokymonList.ForEach(p => p.OnBattleFinish());
 
-        OnBattleFinish(hasPlayerWon);
+        OnBattleFinish?.Invoke(hasPlayerWon);
     }
 
     private void PlayerSelectAction()
@@ -261,7 +251,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(SkipTurn(_playerUnit, "You can't catch a trained Pokymon!"));
+            StartCoroutine(SkipPlayerTurn("You can't catch a trained Pokymon!"));
         }
     }
 
@@ -287,58 +277,66 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(SkipTurn(_playerUnit, "You can't run away from a duel!"));
+            StartCoroutine(SkipPlayerTurn("You can't run away from a duel!"));
         }
     }
 
-    private IEnumerator SkipTurn(BattleUnit turnUnit, string reason)
+    private IEnumerator SkipPlayerTurn(string reason = null)
     {
+        _playerUnit.CanMove = false;
+
         if (reason != null)
         {
             yield return _dialogBox.SetDialogText(reason);
         }
 
-        yield return InvokeFinishTurnEffects(turnUnit);
-
-        if (turnUnit.IsPlayer)
-        {
-            yield return EnemyMove();
-        } else {
-            PlayerSelectAction();
-        }
+        yield return TriggerMoves();
     }
 
-    private IEnumerator EnemyMove()
+    private IEnumerator TriggerMoves()
     {
-        _battleState = BattleState.ConfirmEnemyMove;
-
-        yield return InvokeStartMoveEffects(_enemyUnit);
-
-        if (_battleState == BattleState.ConfirmEnemyMove)
-        {
-            var move = _enemyUnit.Pokymon.GetRandomAvailableMove();
-
-            yield return PerformEnemyMove(move);
-        }
-    }
-
-    private IEnumerator PlayerMove(Move move)
-    {
-        _battleState = BattleState.ConfirmPlayerMove;
+        _battleState = BattleState.PerformMove;
 
         _dialogBox.ToggleMoveSelector(false);
 
-        yield return InvokeStartMoveEffects(_playerUnit);
+        _enemyUnit.NextMove = _enemyUnit.Pokymon.GetRandomAvailableMove();
 
-        if (_battleState == BattleState.ConfirmPlayerMove)
+        var playerMovesFirst = _playerUnit.Pokymon.Speed >= _enemyUnit.Pokymon.Speed;
+
+        if (_playerUnit.CanMove && !playerMovesFirst)
         {
-            if (!move.HasAvailablePP)
+            yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} is faster!");
+        }
+
+        for (var i = 0; i < 2; i++)
+        {
+            BattleUnit sourceUnit = null;
+            BattleUnit targetUnit = null;
+
+            if ((i == 0 && playerMovesFirst) || (i == 1 && !playerMovesFirst))
             {
-                yield return null;
+                sourceUnit = _playerUnit;
+                targetUnit = _enemyUnit;
+            }
+            else
+            {
+                sourceUnit = _enemyUnit;
+                targetUnit = _playerUnit;
             }
 
-            yield return PerformPlayerMove(move);
+            yield return InvokeStartMoveEffects(sourceUnit);
+
+            if (sourceUnit.CanMove)
+            {
+                yield return PerformMove(sourceUnit.NextMove, sourceUnit, targetUnit);
+            }
+
+            yield return InvokeFinishTurnEffects(sourceUnit);
+
+            sourceUnit.CanMove = true;
         }
+
+        PlayerSelectAction();
     }
 
     private IEnumerator InvokeStartMoveEffects(BattleUnit turnUnit)
@@ -351,15 +349,13 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator InvokeStartMoveStatusConditionEffects(BattleUnit turnUnit)
     {
-        var skipTurn = false;
-
         foreach (var statusCondition in turnUnit.Pokymon.StartMoveStatusConditionList)
         {
             AudioManager.SharedInstance.PlaySFX(_statusConditionSFX);
 
             turnUnit.PlayReceiveStatusConditionEffectAnimation(statusCondition.ID);
 
-            var (skipTurnEffect, message) = statusCondition.OnStartMove(turnUnit.Pokymon);
+            var (skipMove, message) = statusCondition.OnStartMove(turnUnit.Pokymon);
 
             if (message != null) {
                 yield return _dialogBox.SetDialogText(message);
@@ -367,44 +363,17 @@ public class BattleManager : MonoBehaviour
 
             yield return CheckKnockOut(turnUnit);
 
-            if (skipTurnEffect)
+            if (skipMove)
             {
-                skipTurn = true;
+                turnUnit.CanMove = false;
             }
-        }
-
-        if (skipTurn)
-        {
-            yield return SkipTurn(turnUnit, null);
-        }
-    }
-
-    private IEnumerator PerformEnemyMove(Move move)
-    {
-        _battleState = BattleState.PerformEnemyMove;
-
-        yield return PerformMove(move, _enemyUnit, _playerUnit);
-
-        if (_battleState == BattleState.PerformEnemyMove)
-        {
-            PlayerSelectAction();
-        }
-    }
-
-    private IEnumerator PerformPlayerMove(Move move)
-    {
-        _battleState = BattleState.PerformPlayerMove;
-
-        yield return PerformMove(move, _playerUnit, _enemyUnit);
-
-        if (_battleState == BattleState.PerformPlayerMove)
-        {
-            yield return EnemyMove();
         }
     }
 
     private IEnumerator PerformMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
+        _battleState = BattleState.PerformMove;
+
         move.PP--;
 
         yield return _dialogBox.SetDialogText($"{sourceUnit.Pokymon.Name} used {move.Base.Name}.");
@@ -417,9 +386,6 @@ public class BattleManager : MonoBehaviour
         {
             yield return PerformStatusMove(move, sourceUnit, targetUnit);
         }
-
-        yield return CheckKnockOut(targetUnit);
-        yield return InvokeFinishTurnEffects(sourceUnit);
     }
 
     private IEnumerator InvokeFinishTurnEffects(BattleUnit turnUnit)
@@ -690,7 +656,7 @@ public class BattleManager : MonoBehaviour
         }
 
         _learnableMove = null;
-        _battleState = BattleState.PerformPlayerMove;
+        _battleState = BattleState.Busy;
     }
 
     private IEnumerator PerformPokymonSwitch(Pokymon nextPlayerPokymon)
@@ -719,11 +685,11 @@ public class BattleManager : MonoBehaviour
 
         if (isCurrentPokymonKnockedOut)
         {
-            yield return ChooseNextTurn();
+            PlayerSelectAction();
         }
         else
         {
-            yield return EnemyMove();
+            yield return SkipPlayerTurn();
         }
     }
 
@@ -802,7 +768,8 @@ public class BattleManager : MonoBehaviour
             Destroy(pokyballInstance);
 
             yield return InvokeFinishTurnEffects(_playerUnit);
-            yield return EnemyMove();
+
+            PlayerSelectAction();
         }
     }
 
@@ -829,7 +796,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                yield return SkipTurn(_playerUnit, "You couldn't run away!");
+                yield return SkipPlayerTurn("You couldn't run away!");
 
                 yield return InvokeFinishTurnEffects(_playerUnit);
             }
@@ -860,9 +827,6 @@ public enum BattleState
     PlayerSelectParty,
     PlayerSelectInventory,
     PlayerSelectForgetMove,
-    ConfirmEnemyMove,
-    ConfirmPlayerMove,
-    PerformEnemyMove,
-    PerformPlayerMove,
+    PerformMove,
     Busy,
 }
