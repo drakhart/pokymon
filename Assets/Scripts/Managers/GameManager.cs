@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     private GameState _gameState;
 
     private void Awake() {
+        Screen.SetResolution(1440, 1080, true);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         _gameState = GameState.World;
     }
 
