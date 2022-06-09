@@ -52,8 +52,10 @@ public class StatusConditionFactory
                         return (false, $"{pokymon.Name} is no longer confused!");
                     }
 
-                    if (Random.Range(0, 100) < 50)
+                    if (Random.Range(0, 100) < 33)
                     {
+                        // TODO: implement the actual damage as described in https://bulbapedia.bulbagarden.net/wiki/Status_condition#Confusion
+                        // "The damage is done as if the Pokémon attacked itself with a 40-power typeless physical attack (without the possibility of a critical hit)."
                         pokymon.ReceiveDamage(Mathf.Max(pokymon.MaxHP / 6, 1));
 
                         return (true, $"{pokymon.Name} hurt itself in its confusion!");
