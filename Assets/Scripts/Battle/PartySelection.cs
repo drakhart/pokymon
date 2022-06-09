@@ -102,7 +102,7 @@ public class PartySelection : MonoBehaviour
     {
         var lastSoundTime = Time.time;
 
-        _dialogTextTween.Kill();
+        StopDialogText();
 
         _dialogText.text = "";
         _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, message.Length / _dialogSpeed)
@@ -115,5 +115,10 @@ public class PartySelection : MonoBehaviour
                     lastSoundTime = Time.time;
                 }
             });
+    }
+
+    public void StopDialogText()
+    {
+        _dialogTextTween.Kill();
     }
 }

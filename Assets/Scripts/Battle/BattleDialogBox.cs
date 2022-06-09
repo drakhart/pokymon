@@ -112,9 +112,14 @@ public class BattleDialogBox : MonoBehaviour
 
     public Coroutine SetDialogText(string message)
     {
-        _dialogTextTween.Kill();
+        StopDialogText();
 
         return StartCoroutine(AnimateDialogText(message));
+    }
+
+    public void StopDialogText()
+    {
+        _dialogTextTween.Kill();
     }
 
     public void SetMoveDetails()

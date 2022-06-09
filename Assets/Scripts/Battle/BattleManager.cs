@@ -90,6 +90,8 @@ public class BattleManager : MonoBehaviour
                     case BattleState.PlayerSelectAction:
                         _dialogBox.HandlePlayerActionSelection((selectedAction) =>
                         {
+                            _dialogBox.StopDialogText();
+
                             switch (selectedAction)
                             {
                                 case 0: // Fight
@@ -131,6 +133,7 @@ public class BattleManager : MonoBehaviour
                         _partySelection.HandlePartySelection(_playerUnit.Pokymon, (selectedPokymon) =>
                         {
                             _partySelection.gameObject.SetActive(false);
+                            _partySelection.StopDialogText();
 
                             if (selectedPokymon == null)
                             {
@@ -190,7 +193,6 @@ public class BattleManager : MonoBehaviour
                 }
                 else
                 {
-                    // TODO: fix moves running in background while selecting new pokymon
                     PlayerSelectParty();
                 }
             }
@@ -205,6 +207,8 @@ public class BattleManager : MonoBehaviour
 
     private void FinishBattle(bool hasPlayerWon)
     {
+        StopAllCoroutines();
+
         _battleState = BattleState.FinishBattle;
 
         _playerParty.PokymonList.ForEach(p => p.OnBattleFinish());
@@ -214,6 +218,8 @@ public class BattleManager : MonoBehaviour
 
     private void PlayerSelectAction()
     {
+        StopAllCoroutines();
+
         _battleState = BattleState.PlayerSelectAction;
 
         _dialogBox.ToggleMoveSelector(false);
@@ -232,6 +238,8 @@ public class BattleManager : MonoBehaviour
 
     private void PlayerSelectParty()
     {
+        StopAllCoroutines();
+
         _battleState = BattleState.PlayerSelectParty;
 
         _partySelection.gameObject.SetActive(true);
