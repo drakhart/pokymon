@@ -187,6 +187,8 @@ public class BattleManager : MonoBehaviour
         {
             if (_playerParty.HasAnyPokymonAvailable)
             {
+                StopAllCoroutines();
+
                 if (_playerParty.AvailablePokymonCount == 1)
                 {
                     StartCoroutine(PerformPokymonSwitch(_playerParty.FirstAvailablePokymon));
@@ -218,8 +220,6 @@ public class BattleManager : MonoBehaviour
 
     private void PlayerSelectAction()
     {
-        StopAllCoroutines();
-
         _battleState = BattleState.PlayerSelectAction;
 
         _dialogBox.ToggleMoveSelector(false);
@@ -238,8 +238,6 @@ public class BattleManager : MonoBehaviour
 
     private void PlayerSelectParty()
     {
-        StopAllCoroutines();
-
         _battleState = BattleState.PlayerSelectParty;
 
         _partySelection.gameObject.SetActive(true);
@@ -318,19 +316,8 @@ public class BattleManager : MonoBehaviour
 
         for (var i = 0; i < 2; i++)
         {
-            BattleUnit sourceUnit = null;
-            BattleUnit targetUnit = null;
-
-            if ((i == 0 && playerMovesFirst) || (i == 1 && !playerMovesFirst))
-            {
-                sourceUnit = _playerUnit;
-                targetUnit = _enemyUnit;
-            }
-            else
-            {
-                sourceUnit = _enemyUnit;
-                targetUnit = _playerUnit;
-            }
+            var sourceUnit = (i == 0 && playerMovesFirst) || (i == 1 && !playerMovesFirst) ? _playerUnit : _enemyUnit;
+            var targetUnit = sourceUnit == _playerUnit ? _enemyUnit : _playerUnit;
 
             yield return InvokeStartMoveEffects(sourceUnit);
 
