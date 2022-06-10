@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private BattleManager _battleManager;
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private Camera _worldCamera;
-    [SerializeField] private AudioClip _battleMusic;
     [SerializeField] private AudioClip _worldMusic;
+    [SerializeField] private Image _transitionPanel;
 
     private GameState _gameState;
 
@@ -17,8 +19,6 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        _gameState = GameState.World;
     }
 
     private void Start() {
@@ -27,39 +27,22 @@ public class GameManager : MonoBehaviour
         _playerController.OnEncounterPokymon += StartWildPokymonBattle;
         _battleManager.OnBattleFinish += FinishPokymonBattle;
 
-        if (_gameState == GameState.World)
-        {
-            AudioManager.SharedInstance.PlayMusic(_worldMusic);
-        }
+        _transitionPanel.color = new Color32(0x00, 0x00, 0x00, 0xff);
+
+        StartCoroutine(FadeToWorld());
     }
 
     private void Update() {
-        if (_gameState == GameState.World)
+        switch(_gameState)
         {
-            _playerController.HandleUpdate();
-        } else if (_gameState == GameState.Battle)
-        {
-            _battleManager.HandleUpdate();
+            case GameState.World:
+                _playerController.HandleUpdate();
+                break;
+
+            case GameState.Battle:
+                _battleManager.HandleUpdate();
+                break;
         }
-    }
-
-    private void FinishPokymonBattle(bool hasPlayerWon)
-    {
-        _gameState = GameState.World;
-
-        _battleManager.gameObject.SetActive(false);
-        _worldCamera.gameObject.SetActive(true);
-
-        if (hasPlayerWon)
-        {
-            // TODO: handle player victory
-        }
-        else
-        {
-            // TODO: handle player defeat
-        }
-
-        AudioManager.SharedInstance.PlayMusic(_worldMusic);
     }
 
     private void StartWildPokymonBattle()
@@ -77,13 +60,48 @@ public class GameManager : MonoBehaviour
         var wildPokymon = FindObjectOfType<PokymonArea>().GetComponent<PokymonArea>().GetRandomWildPokymon();
         var wildPokymonCopy = new Pokymon(wildPokymon.Base, wildPokymon.Level, true);
 
+        StartCoroutine(FadeToBattle(BattleType.WildPokymon, playerParty, wildPokymonCopy));
+    }
+
+    private void FinishPokymonBattle(bool hasPlayerWon)
+    {
+        if (hasPlayerWon)
+        {
+            // TODO: handle player victory
+        }
+        else
+        {
+            // TODO: handle player defeat
+        }
+
+        StartCoroutine(FadeToWorld());
+    }
+
+    private IEnumerator FadeToBattle(BattleType battleType, PokymonParty playerParty, Pokymon enemyPokymon)
+    {
         _gameState = GameState.Battle;
+
+        yield return _transitionPanel.DOFade(1, 0.4f).WaitForCompletion();
 
         _worldCamera.gameObject.SetActive(false);
         _battleManager.gameObject.SetActive(true);
-        _battleManager.HandleStart(BattleType.WildPokymon, playerParty, wildPokymonCopy);
+        _battleManager.HandleStart(battleType, playerParty, enemyPokymon);
 
-        AudioManager.SharedInstance.PlayMusic(_battleMusic);
+        yield return _transitionPanel.DOFade(0, 0.4f).WaitForCompletion();
+    }
+
+    private IEnumerator FadeToWorld()
+    {
+        _gameState = GameState.World;
+
+        yield return _transitionPanel.DOFade(1, 0.4f).WaitForCompletion();
+
+        _battleManager.gameObject.SetActive(false);
+        _worldCamera.gameObject.SetActive(true);
+
+        AudioManager.SharedInstance.PlayMusic(_worldMusic);
+
+        yield return _transitionPanel.DOFade(0, 0.4f).WaitForCompletion();
     }
 }
 

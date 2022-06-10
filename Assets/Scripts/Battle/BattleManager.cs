@@ -15,6 +15,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private BattleUnit _playerUnit;
     [SerializeField] private GameObject _pokyball;
 
+    [SerializeField] private AudioClip _battleMusic;
     [SerializeField] private AudioClip _battleStartSFX;
     [SerializeField] private AudioClip _evadeMoveSFX;
     [SerializeField] private AudioClip _forgetMoveSFX;
@@ -55,6 +56,7 @@ public class BattleManager : MonoBehaviour
         _enemyUnit.Pokymon = enemyPokymon;
         _enemyUnit.SetupPokymon();
 
+        AudioManager.SharedInstance.PlayMusic(_battleMusic);
         AudioManager.SharedInstance.PlaySFX(_battleStartSFX);
 
         StartCoroutine(SetupBattle());
