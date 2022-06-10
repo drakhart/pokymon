@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private LayerMask _pokymonAreaLayers;
     [SerializeField] private LayerMask _solidObjectsLayers;
+    [SerializeField] private LayerMask _interactableLayers;
 
     [SerializeField] private float _speed;
 
@@ -49,6 +50,11 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(MoveTowards(target));
                 }
             }
+
+            if (Input.GetButtonDown("Submit"))
+            {
+                Interact();
+            }
         }
     }
 
@@ -71,12 +77,27 @@ public class PlayerController : MonoBehaviour
 
     private bool IsTargetWalkable(Vector3 target)
     {
-        if (Physics2D.OverlapCircle(target, 0.25f, _solidObjectsLayers) != null)
+        if (Physics2D.OverlapCircle(target, 0.25f, _solidObjectsLayers | _interactableLayers) != null)
         {
             return false;
         }
 
         return true;
+    }
+
+    private void Interact()
+    {
+        var facingDirection = new Vector3(_animator.GetFloat("Move X"), _animator.GetFloat("Move Y"));
+        var interactPosition = transform.position + facingDirection;
+
+        Debug.DrawLine(transform.position, interactPosition, Color.magenta, 1.0f);
+
+        var collider = Physics2D.OverlapCircle(interactPosition, 0.25f, _interactableLayers);
+
+        if (collider != null)
+        {
+            collider.GetComponent<Interactable>()?.Interact();
+        }
     }
 
     private IEnumerator MoveTowards(Vector3 destination)

@@ -40,23 +40,17 @@ public class BattleUnitHUD : MonoBehaviour
 
     public void UpdateExpBar()
     {
-        if (_expBar != null)
-        {
-            _expBar.SetScale(_pokymon.NormalizedExp);
-        }
+        _expBar?.SetScale(_pokymon.NormalizedExp);
     }
 
     public void UpdateExpBarAnimated(bool startFromZero = false)
     {
-        if (_expBar != null)
+        if (startFromZero)
         {
-            if (startFromZero)
-            {
-                _expBar.SetScale(0f);
-            }
-
-            _expBar.SetScaleAnimated(_pokymon.NormalizedExp);
+            _expBar?.SetScale(0f);
         }
+
+        _expBar?.SetScaleAnimated(_pokymon.NormalizedExp);
     }
 
     public void UpdateHPBar()

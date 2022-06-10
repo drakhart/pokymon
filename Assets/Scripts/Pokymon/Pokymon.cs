@@ -386,10 +386,7 @@ public class Pokymon
 
         _statusConditionList.Add(statusCondition);
 
-        if (statusCondition.OnApply != null)
-        {
-            statusCondition.OnApply(this);
-        }
+        statusCondition.OnApply?.Invoke(this);
 
         OnChangeStatusConditionList?.Invoke();
 
