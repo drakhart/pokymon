@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackBase
   _id: 98
   _name: Quick Attack
-  _description:
+  _description: 
   _type: 13
   _category: 0
+  _statModifierEffectList: []
+  _statusConditionEffectList: []
   _pp: 30
+  _priority: 1
   _power: 40
   _accuracy: 100

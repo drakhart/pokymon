@@ -31,6 +31,9 @@ public class MoveBase : ScriptableObject
     [SerializeField] private int _pp;
     public int PP => _pp;
 
+    [SerializeField] private int _priority;
+    public int Priority => _priority;
+
     [SerializeField] private int _power;
     public int Power => _power;
 

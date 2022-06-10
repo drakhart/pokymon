@@ -187,6 +187,7 @@ public class BattleManager : MonoBehaviour
         {
             if (_playerParty.HasAnyPokymonAvailable)
             {
+                // TODO: fix this, since it prevents after turn effects from being applied
                 StopAllCoroutines();
 
                 if (_playerParty.AvailablePokymonCount == 1)
@@ -307,7 +308,8 @@ public class BattleManager : MonoBehaviour
 
         _enemyUnit.NextMove = _enemyUnit.Pokymon.GetRandomAvailableMove();
 
-        var playerMovesFirst = _playerUnit.Pokymon.Speed >= _enemyUnit.Pokymon.Speed;
+        var playerMovesFirst = _playerUnit.NextMove.Base.Priority > _enemyUnit.NextMove.Base.Priority
+            || (_playerUnit.NextMove.Base.Priority == _enemyUnit.NextMove.Base.Priority && _playerUnit.Pokymon.Speed >= _enemyUnit.Pokymon.Speed);
 
         if (_playerUnit.CanMove && !playerMovesFirst)
         {
