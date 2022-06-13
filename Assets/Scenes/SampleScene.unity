@@ -3427,6 +3427,11 @@ MonoBehaviour:
     - Hi! I'm a newbie pokymon trainer like you!
     - Have you tried walking in the tall grass west from here? You may find many
       new pokymon to catch!
+  _frameList:
+  - {fileID: -1831433805183957264, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: -3847041761250970575, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: 1804227150290174767, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: 8329585912765984557, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
 --- !u!1 &721775775
 GameObject:
   m_ObjectHideFlags: 0
@@ -4229,8 +4234,8 @@ GameObject:
   - component: {fileID: 1017574659}
   - component: {fileID: 1017574658}
   - component: {fileID: 1017574660}
-  - component: {fileID: 1017574661}
   - component: {fileID: 1017574662}
+  - component: {fileID: 1017574663}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4328,25 +4333,6 @@ MonoBehaviour:
     m_Bits: 256
   _speed: 3
   _stepsSFX: {fileID: 8300000, guid: 5f05378e07420df4783f739b9f4829f4, type: 3}
---- !u!95 &1017574661
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017574657}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d5b28f86fc9fad44689330a334c94d79, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1017574662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4368,6 +4354,49 @@ MonoBehaviour:
     _level: 7
   - _base: {fileID: 11400000, guid: afbd1f28943050a4db3cdb437398f144, type: 2}
     _level: 7
+--- !u!114 &1017574663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017574657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b41ec88ab9e0a478cf6868a79c3a64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _idleUpFrameList:
+  - {fileID: 1778907897293836937, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  _idleDownFrameList:
+  - {fileID: 3427114271967980436, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  _idleRightFrameList:
+  - {fileID: -2450611445237265277, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  _idleLeftFrameList:
+  - {fileID: 1189803590093747582, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  _moveUpFrameList:
+  - {fileID: 347220952276385629, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: 4391028426531969339, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: -8641010753147894659, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: 1778907897293836937, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  _moveDownFrameList:
+  - {fileID: 8158605244509288230, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: 6184959299203262911, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: 2495864320845663737, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: 3427114271967980436, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  _moveRightFrameList:
+  - {fileID: 6770007078955632491, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: -8123166618883925514, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: 1737412558246731724, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: -2450611445237265277, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  _moveLeftFrameList:
+  - {fileID: -8333661607700831351, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: 2659286222826444281, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: 5935550125356212616, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  - {fileID: 1189803590093747582, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  MoveX: 0
+  MoveY: 0
+  IsMoving: 0
 --- !u!1 &1032696414
 GameObject:
   m_ObjectHideFlags: 0

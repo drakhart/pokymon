@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(CharacterAnimator))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private LayerMask _pokymonAreaLayers;
@@ -15,14 +15,14 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private AudioClip _stepsSFX;
 
-    private Animator _animator;
+    private CharacterAnimator _animator;
     private Vector2 _input;
     private bool _isMoving;
 
     public event Action OnEncounterPokymon;
 
     private void Awake() {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponent<CharacterAnimator>();
     }
 
     public void HandleUpdate() {
@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour
 
             if (_input != Vector2.zero)
             {
-                _animator.SetFloat("Move X", _input.x);
-                _animator.SetFloat("Move Y", _input.y);
+                _animator.MoveX = _input.x;
+                _animator.MoveY = _input.y;
 
                 var target = transform.position;
                 target.x += _input.x;
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void LateUpdate() {
-        _animator.SetBool("Is Moving", _isMoving);
+        _animator.IsMoving = _isMoving;
     }
 
     private bool IsPokymonEncountered()
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
     private void Interact()
     {
-        var facingDirection = new Vector3(_animator.GetFloat("Move X"), _animator.GetFloat("Move Y"));
+        var facingDirection = new Vector3(_animator.MoveX, _animator.MoveY);
         var interactPosition = transform.position + facingDirection;
 
         Debug.DrawLine(transform.position, interactPosition, Color.magenta, 1.0f);
