@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
         _playerController.OnEncounterPokymon += StartWildPokymonBattle;
         _battleManager.OnBattleFinish += FinishPokymonBattle;
 
+        DialogManager.SharedInstance.OnDialogStart += () => _gameState = GameState.Dialog;
+        DialogManager.SharedInstance.OnDialogFinish += () => _gameState = GameState.Travel;
+
         _transitionPanel.color = new Color32(0x00, 0x00, 0x00, 0xff);
 
         StartCoroutine(FadeToWorld());
@@ -35,12 +38,16 @@ public class GameManager : MonoBehaviour
     private void Update() {
         switch(_gameState)
         {
-            case GameState.World:
-                _playerController.HandleUpdate();
-                break;
-
             case GameState.Battle:
                 _battleManager.HandleUpdate();
+                break;
+
+            case GameState.Dialog:
+                DialogManager.SharedInstance.HandleUpdate();
+                break;
+
+            case GameState.Travel:
+                _playerController.HandleUpdate();
                 break;
         }
     }
@@ -92,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator FadeToWorld()
     {
-        _gameState = GameState.World;
+        _gameState = GameState.Travel;
 
         yield return _transitionPanel.DOFade(1, 0.4f).WaitForCompletion();
 
@@ -107,6 +114,7 @@ public class GameManager : MonoBehaviour
 
 public enum GameState
 {
-    World,
     Battle,
+    Dialog,
+    Travel,
 }

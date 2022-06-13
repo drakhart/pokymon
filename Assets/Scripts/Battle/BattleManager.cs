@@ -63,6 +63,7 @@ public class BattleManager : MonoBehaviour
     }
 
     public void HandleUpdate() {
+        // TODO: Apply delay only for axes, not button down
         if (Time.time < _lastInputTime + Constants.INPUT_DELAY_SECS)
         {
             return;
