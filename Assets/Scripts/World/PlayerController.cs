@@ -4,29 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(CharacterAnimator))]
+[RequireComponent(typeof(Character))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private LayerMask _pokymonAreaLayers;
-    [SerializeField] private LayerMask _solidObjectsLayers;
-    [SerializeField] private LayerMask _interactableLayers;
-
-    [SerializeField] private float _speed;
-
-    [SerializeField] private AudioClip _stepsSFX;
-
-    private CharacterAnimator _animator;
+    private Character _character;
     private Vector2 _input;
-    private bool _isMoving;
 
     public event Action OnEncounterPokymon;
 
     private void Awake() {
-        _animator = GetComponent<CharacterAnimator>();
+        _character = GetComponent<Character>();
     }
 
     public void HandleUpdate() {
-        if (!_isMoving)
+        if (!_character.IsMoving)
         {
             _input.x = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
             _input.y = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
@@ -38,17 +29,12 @@ public class PlayerController : MonoBehaviour
 
             if (_input != Vector2.zero)
             {
-                _animator.MoveX = _input.x;
-                _animator.MoveY = _input.y;
-
-                var target = transform.position;
-                target.x += _input.x;
-                target.y += _input.y;
-
-                if (IsTargetWalkable(target))
-                {
-                    StartCoroutine(MoveTowards(target));
-                }
+                StartCoroutine(_character.MoveTowards(_input, () => {
+                    if (IsPokymonEncountered())
+                    {
+                        OnEncounterPokymon?.Invoke();
+                    }
+                }));
             }
 
             if (Input.GetButtonDown("Submit"))
@@ -56,15 +42,13 @@ public class PlayerController : MonoBehaviour
                 Interact();
             }
         }
-    }
 
-    private void LateUpdate() {
-        _animator.IsMoving = _isMoving;
+        _character.HandleUpdate();
     }
 
     private bool IsPokymonEncountered()
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.25f, _pokymonAreaLayers) != null)
+        if (Physics2D.OverlapCircle(transform.position, 0.25f, LayerManager.SharedInstance.PokymonAreaLayers) != null)
         {
             if (Random.Range(0, 100) < Constants.POKYMON_ENCOUNTER_ODDS)
             {
@@ -75,50 +59,18 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    private bool IsTargetWalkable(Vector3 target)
-    {
-        if (Physics2D.OverlapCircle(target, 0.25f, _solidObjectsLayers | _interactableLayers) != null)
-        {
-            return false;
-        }
-
-        return true;
-    }
-
     private void Interact()
     {
-        var facingDirection = new Vector3(_animator.MoveX, _animator.MoveY);
+        var facingDirection = new Vector3(_character.Animator.MoveX, _character.Animator.MoveY);
         var interactPosition = transform.position + facingDirection;
 
         Debug.DrawLine(transform.position, interactPosition, Color.magenta, 1.0f);
 
-        var collider = Physics2D.OverlapCircle(interactPosition, 0.25f, _interactableLayers);
+        var collider = Physics2D.OverlapCircle(interactPosition, 0.25f, LayerManager.SharedInstance.InteractableLayers);
 
         if (collider != null)
         {
             collider.GetComponent<Interactable>()?.Interact();
-        }
-    }
-
-    private IEnumerator MoveTowards(Vector3 destination)
-    {
-        _isMoving = true;
-
-        AudioManager.SharedInstance.PlaySFX(_stepsSFX);
-
-        while (Vector3.Distance(transform.position, destination) > Mathf.Epsilon)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, destination, _speed * Time.deltaTime);
-
-            yield return null;
-        }
-
-        transform.position = destination;
-        _isMoving = false;
-
-        if (IsPokymonEncountered())
-        {
-            OnEncounterPokymon();
         }
     }
 }
