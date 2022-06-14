@@ -22,11 +22,6 @@ public class PlayerController : MonoBehaviour
             _input.x = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
             _input.y = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
 
-            if (_input.x != 0)
-            {
-                _input.y = 0;
-            }
-
             if (_input != Vector2.zero)
             {
                 StartCoroutine(_character.MoveTowards(_input, () => {

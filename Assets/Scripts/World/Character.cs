@@ -20,8 +20,13 @@ public class Character : MonoBehaviour
 
     public IEnumerator MoveTowards(Vector2 moveVector, Action onMoveFinish = null)
     {
-        _animator.MoveX = moveVector.x;
-        _animator.MoveY = moveVector.y;
+        if (moveVector.x != 0)
+        {
+            moveVector.y = 0;
+        }
+
+        _animator.MoveX = Mathf.Clamp(moveVector.x, -1, 1);
+        _animator.MoveY = Mathf.Clamp(moveVector.y, -1, 1);
 
         var targetPosition = transform.position;
         targetPosition.x += moveVector.x;

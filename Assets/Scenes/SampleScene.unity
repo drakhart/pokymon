@@ -3290,6 +3290,8 @@ GameObject:
   - component: {fileID: 666292282}
   - component: {fileID: 666292281}
   - component: {fileID: 666292283}
+  - component: {fileID: 666292285}
+  - component: {fileID: 666292284}
   m_Layer: 8
   m_Name: Blonde Guy
   m_TagString: Untagged
@@ -3357,7 +3359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666292278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.5, y: -6.5, z: 0}
+  m_LocalPosition: {x: 18.5, y: -6.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 998207002}
@@ -3427,11 +3429,69 @@ MonoBehaviour:
     - Hi! I'm a newbie pokymon trainer like you!
     - Have you tried walking in the tall grass west from here? You may find many
       new pokymon to catch!
-  _frameList:
+  _patrolDelay: 2
+  _patrolMovements:
+  - {x: -6, y: 0}
+  - {x: 0, y: -6}
+  - {x: 6, y: 0}
+  - {x: 0, y: 6}
+--- !u!114 &666292284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666292278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c865d383caed44c9c9b7c71c522f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 4
+  _stepsSFX: {fileID: 8300000, guid: 5f05378e07420df4783f739b9f4829f4, type: 3}
+--- !u!114 &666292285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666292278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b41ec88ab9e0a478cf6868a79c3a64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _idleUpFrameList:
+  - {fileID: -1591920223810236535, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  _idleDownFrameList:
   - {fileID: -1831433805183957264, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  _idleRightFrameList:
+  - {fileID: 6347885754583224525, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  _idleLeftFrameList:
+  - {fileID: 2183738454419167198, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  _moveUpFrameList:
+  - {fileID: -1870895426299867134, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: 3790641153775557007, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: 2489847195850577781, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: -1591920223810236535, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  _moveDownFrameList:
   - {fileID: -3847041761250970575, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
   - {fileID: 1804227150290174767, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
   - {fileID: 8329585912765984557, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: -1831433805183957264, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  _moveRightFrameList:
+  - {fileID: -2321880768761666037, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: -4632268233747231213, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: -1733455354470612982, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: 6347885754583224525, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  _moveLeftFrameList:
+  - {fileID: 531052721157206234, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: 3359872099405869294, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: 2198402656217611991, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  - {fileID: 2183738454419167198, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  MoveX: 0
+  MoveY: 0
+  IsMoving: 0
 --- !u!1 &721775775
 GameObject:
   m_ObjectHideFlags: 0
