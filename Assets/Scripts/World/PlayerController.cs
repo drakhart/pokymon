@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Character))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private AudioClip _stepsSFX;
+
     private Character _character;
     private Vector2 _input;
 
@@ -24,12 +26,19 @@ public class PlayerController : MonoBehaviour
 
             if (_input != Vector2.zero)
             {
-                StartCoroutine(_character.MoveTowards(_input, () => {
-                    if (IsPokymonEncountered())
+                StartCoroutine(_character.MoveTowards(_input,
+                    () =>
                     {
-                        OnEncounterPokymon?.Invoke();
+                        AudioManager.SharedInstance.PlaySFX(_stepsSFX);
+                    },
+                    () =>
+                    {
+                        if (IsPokymonEncountered())
+                        {
+                            OnEncounterPokymon?.Invoke();
+                        }
                     }
-                }));
+                ));
             }
 
             if (Input.GetButtonDown("Submit"))

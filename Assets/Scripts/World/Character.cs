@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(CharacterAnimator))]
 public class Character : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private AudioClip _stepsSFX;
 
     private CharacterAnimator _animator;
     public CharacterAnimator Animator => _animator;
@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
         _animator = GetComponent<CharacterAnimator>();
     }
 
-    public IEnumerator MoveTowards(Vector2 moveVector, Action onMoveFinish = null, Action onMoveStart = null)
+    public IEnumerator MoveTowards(Vector2 moveVector, Action onMoveStart = null, Action onMoveFinish = null)
     {
         if (moveVector.x != 0)
         {
@@ -37,24 +37,19 @@ public class Character : MonoBehaviour
             yield break;
         }
 
-        onMoveStart?.Invoke();
-
-        IsMoving = true;
-
-        AudioManager.SharedInstance.PlaySFX(_stepsSFX);
-
-        while (Vector3.Distance(transform.position, targetPosition) > Mathf.Epsilon)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, _speed * Time.deltaTime);
-
-            yield return null;
-        }
-
-        transform.position = targetPosition;
-
-        IsMoving = false;
-
-        onMoveFinish?.Invoke();
+        yield return transform.DOMove(targetPosition, Math.Max(Math.Abs(moveVector.x), Math.Abs(moveVector.y)) / _speed)
+            .SetEase(Ease.Linear)
+            .OnStart(() =>
+            {
+                IsMoving = true;
+                onMoveStart?.Invoke();
+            })
+            .OnComplete(() =>
+            {
+                IsMoving = false;
+                onMoveFinish?.Invoke();
+            })
+            .WaitForCompletion();
     }
 
     public void HandleUpdate()

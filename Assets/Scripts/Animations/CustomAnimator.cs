@@ -11,7 +11,7 @@ public class CustomAnimator
     private int _currentFrame;
     private float _timer;
 
-    public CustomAnimator(SpriteRenderer renderer, List<Sprite> frameList, float frameRate = 0.082f)
+    public CustomAnimator(SpriteRenderer renderer, List<Sprite> frameList, float frameRate = 0.0625f)
     {
         _renderer = renderer;
         _frameList = frameList;

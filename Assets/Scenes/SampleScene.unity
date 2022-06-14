@@ -3448,7 +3448,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _stepsSFX: {fileID: 8300000, guid: 5f05378e07420df4783f739b9f4829f4, type: 3}
 --- !u!114 &666292285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4385,6 +4384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7450f65d9d81b9a449d236e4082bcb6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stepsSFX: {fileID: 8300000, guid: 5f05378e07420df4783f739b9f4829f4, type: 3}
 --- !u!114 &1017574661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4398,7 +4398,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _stepsSFX: {fileID: 8300000, guid: 5f05378e07420df4783f739b9f4829f4, type: 3}
 --- !u!114 &1017574662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96611,7 +96610,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

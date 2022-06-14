@@ -106,7 +106,8 @@ public class DialogManager : MonoBehaviour
                     lastSoundTime = Time.time;
                 }
             })
-            .OnComplete(() => {
+            .OnComplete(() =>
+            {
                 _dialogTextTween = null;
                 _dialogText.text = $"{_dialogText.text} ⇩";
             });

@@ -30,6 +30,12 @@ public class NpcController : MonoBehaviour, Interactable
         _character.HandleUpdate();
     }
 
+    private void Idle()
+    {
+        _state = NPCState.Idle;
+        _idleTime = 0;
+    }
+
     public void Interact()
     {
         if (_state != NPCState.Idle)
@@ -37,15 +43,9 @@ public class NpcController : MonoBehaviour, Interactable
             return;
         }
 
-        _state = NPCState.Talking;
+        _state = NPCState.Interacting;
 
         DialogManager.SharedInstance.StartDialog(_dialog, () => Idle());
-    }
-
-    private void Idle()
-    {
-        _state = NPCState.Idle;
-        _idleTime = 0;
     }
 
     private void Patrol()
@@ -55,13 +55,13 @@ public class NpcController : MonoBehaviour, Interactable
         if (_idleTime > _patrolDelay)
         {
             StartCoroutine(_character.MoveTowards(_patrolMovements[_currentPatrolMovement],
+                () => _state = NPCState.Moving,
                 () =>
                 {
                     _currentPatrolMovement = (_currentPatrolMovement + 1) % _patrolMovements.Count;
 
                     Idle();
-                },
-                () => _state = NPCState.Moving
+                }
             ));
         }
     }
@@ -70,6 +70,6 @@ public class NpcController : MonoBehaviour, Interactable
 public enum NPCState
 {
     Idle,
+    Interacting,
     Moving,
-    Talking,
 }
