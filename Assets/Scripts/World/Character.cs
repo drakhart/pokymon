@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
         targetPosition.x += moveVector.x;
         targetPosition.y += moveVector.y;
 
-        if (!IsTargetWalkable(targetPosition))
+        if (!IsPathWalkable(targetPosition))
         {
             yield break;
         }
@@ -60,13 +60,12 @@ public class Character : MonoBehaviour
         _animator.IsMoving = IsMoving;
     }
 
-    private bool IsTargetWalkable(Vector3 target)
+    private bool IsPathWalkable(Vector3 target)
     {
-        if (Physics2D.OverlapCircle(target, 0.25f, LayerManager.SharedInstance.SolidObjectsLayers | LayerManager.SharedInstance.InteractableLayers) != null)
-        {
-            return false;
-        }
+        var path = target - transform.position;
+        var direction = path.normalized;
 
-        return true;
+        return !Physics2D.BoxCast(transform.position + direction, new Vector2(0.25f, 0.25f), 0, direction, path.magnitude - 1,
+            LayerManager.SharedInstance.SolidObjectsLayers | LayerManager.SharedInstance.InteractableLayers);
     }
 }
