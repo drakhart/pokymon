@@ -30,7 +30,7 @@ public class NpcController : MonoBehaviour, Interactable
         }
         else if (HasFinishedMoving)
         {
-            _state = NPCState.Idle;
+            Idle();
         }
 
         _character.HandleUpdate();
@@ -38,14 +38,20 @@ public class NpcController : MonoBehaviour, Interactable
 
     public void Interact()
     {
+        if (_state != NPCState.Idle)
+        {
+            return;
+        }
+
         _state = NPCState.Talking;
 
-        DialogManager.SharedInstance.StartDialog(_dialog);
+        DialogManager.SharedInstance.StartDialog(_dialog, () => Idle());
+    }
 
-        DialogManager.SharedInstance.OnDialogFinish += () =>
-        {
-            _state = NPCState.Idle;
-        };
+    private void Idle()
+    {
+        _state = NPCState.Idle;
+        _idleTime = 0;
     }
 
     private void Patrol()

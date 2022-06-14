@@ -15,6 +15,7 @@ public class DialogManager : MonoBehaviour
     private int _currentDialogLine;
     private Text _dialogText;
     private Tween _dialogTextTween;
+    private Action _onCurrentDialogFinish;
 
     public event Action OnDialogStart;
     public event Action OnDialogFinish;
@@ -62,13 +63,15 @@ public class DialogManager : MonoBehaviour
                 ToggleDialogBox(false);
 
                 OnDialogFinish?.Invoke();
+                _onCurrentDialogFinish?.Invoke();
             }
         }
     }
 
-    public void StartDialog(Dialog dialog)
+    public void StartDialog(Dialog dialog, Action onNPCDialogFinish)
     {
         _currentDialog = dialog;
+        _onCurrentDialogFinish = onNPCDialogFinish;
         _currentDialogLine = 0;
 
         ShowCurrentDialogLine();
