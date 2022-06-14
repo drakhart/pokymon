@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
         _animator = GetComponent<CharacterAnimator>();
     }
 
-    public IEnumerator MoveTowards(Vector2 moveVector, Action onMoveFinish = null)
+    public IEnumerator MoveTowards(Vector2 moveVector, Action onMoveFinish = null, Action onMoveStart = null)
     {
         if (moveVector.x != 0)
         {
@@ -36,6 +36,8 @@ public class Character : MonoBehaviour
         {
             yield break;
         }
+
+        onMoveStart?.Invoke();
 
         IsMoving = true;
 
@@ -66,6 +68,6 @@ public class Character : MonoBehaviour
         var direction = path.normalized;
 
         return !Physics2D.BoxCast(transform.position + direction, new Vector2(0.25f, 0.25f), 0, direction, path.magnitude - 1,
-            LayerManager.SharedInstance.SolidObjectsLayers | LayerManager.SharedInstance.InteractableLayers);
+            LayerManager.SharedInstance.CollisionLayers);
     }
 }

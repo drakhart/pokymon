@@ -17,8 +17,6 @@ public class NpcController : MonoBehaviour, Interactable
 
     public bool CanPatrol => _state == NPCState.Idle && _patrolMovements.Count > 0;
 
-    public bool HasFinishedMoving => _state == NPCState.Moving && !_character.IsMoving;
-
     private void Awake() {
         _character = GetComponent<Character>();
     }
@@ -27,10 +25,6 @@ public class NpcController : MonoBehaviour, Interactable
         if (CanPatrol)
         {
             Patrol();
-        }
-        else if (HasFinishedMoving)
-        {
-            Idle();
         }
 
         _character.HandleUpdate();
@@ -60,12 +54,15 @@ public class NpcController : MonoBehaviour, Interactable
 
         if (_idleTime > _patrolDelay)
         {
-            _state = NPCState.Moving;
+            StartCoroutine(_character.MoveTowards(_patrolMovements[_currentPatrolMovement],
+                () =>
+                {
+                    _currentPatrolMovement = (_currentPatrolMovement + 1) % _patrolMovements.Count;
 
-            StartCoroutine(_character.MoveTowards(_patrolMovements[_currentPatrolMovement]));
-
-            _currentPatrolMovement = (_currentPatrolMovement + 1) % _patrolMovements.Count;
-            _idleTime = 0;
+                    Idle();
+                },
+                () => _state = NPCState.Moving
+            ));
         }
     }
 }
