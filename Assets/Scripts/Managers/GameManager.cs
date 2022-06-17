@@ -24,7 +24,11 @@ public class GameManager : MonoBehaviour
     private void Start() {
         StatusConditionFactory.InitFactory();
 
-        _playerController.OnEncounterPokymon += StartWildPokymonBattle;
+        _playerController.OnPokymonEncounter += StartWildPokymonBattle;
+        _playerController.OnTrainerEncounter += (TrainerController trainer) =>
+        {
+            StartCoroutine(trainer.TriggerTrainerBattle(_playerController));
+        };
         _battleManager.OnBattleFinish += FinishPokymonBattle;
 
         DialogManager.SharedInstance.OnDialogStart += () => _gameState = GameState.Dialog;

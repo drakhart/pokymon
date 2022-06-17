@@ -68,10 +68,10 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    public void StartDialog(Dialog dialog, Action onNPCDialogFinish)
+    public void StartDialog(Dialog dialog, Action onNpcDialogFinish)
     {
         _currentDialog = dialog;
-        _onCurrentDialogFinish = onNPCDialogFinish;
+        _onCurrentDialogFinish = onNpcDialogFinish;
         _currentDialogLine = 0;
 
         ShowCurrentDialogLine();

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LayerManager : MonoBehaviour
 {
+    [SerializeField] private LayerMask _fovLayers;
+    public LayerMask FoVLayers => _fovLayers;
+
     [SerializeField] private LayerMask _interactableLayers;
     public LayerMask InteractableLayers => _interactableLayers;
 

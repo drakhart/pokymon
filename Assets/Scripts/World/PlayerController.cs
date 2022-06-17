@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     private Character _character;
     private Vector2 _input;
 
-    public event Action OnEncounterPokymon;
+    public event Action OnPokymonEncounter;
+    public event Action<TrainerController> OnTrainerEncounter;
 
     private void Awake() {
         _character = GetComponent<Character>();
@@ -27,17 +28,8 @@ public class PlayerController : MonoBehaviour
             if (_input != Vector2.zero)
             {
                 StartCoroutine(_character.MoveTowards(_input,
-                    () =>
-                    {
-                        AudioManager.SharedInstance.PlaySFX(_stepsSFX);
-                    },
-                    () =>
-                    {
-                        if (IsPokymonEncountered())
-                        {
-                            OnEncounterPokymon?.Invoke();
-                        }
-                    }
+                    () => AudioManager.SharedInstance.PlaySFX(_stepsSFX),
+                    () => OnMoveFinish()
                 ));
             }
 
@@ -50,17 +42,33 @@ public class PlayerController : MonoBehaviour
         _character.HandleUpdate();
     }
 
-    private bool IsPokymonEncountered()
+    private void OnMoveFinish()
+    {
+        CheckForPokymon();
+        CheckForTrainer();
+    }
+
+    private void CheckForPokymon()
     {
         if (Physics2D.OverlapCircle(transform.position, 0.25f, LayerManager.SharedInstance.PokymonAreaLayers) != null)
         {
             if (Random.Range(0, 100) < Constants.POKYMON_ENCOUNTER_ODDS)
             {
-                return true;
+                OnPokymonEncounter?.Invoke();
             }
         }
+    }
 
-        return false;
+    private void CheckForTrainer()
+    {
+        var collider = Physics2D.OverlapCircle(transform.position, 0.25f, LayerManager.SharedInstance.FoVLayers);
+
+        if (collider != null)
+        {
+            var trainer = collider.GetComponentInParent<TrainerController>();
+
+            OnTrainerEncounter?.Invoke(trainer);
+        }
     }
 
     private void Interact()
@@ -74,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
         if (collider != null)
         {
-            collider.GetComponent<Interactable>()?.Interact();
+            collider.GetComponent<Interactable>()?.Interact(transform.position);
         }
     }
 }

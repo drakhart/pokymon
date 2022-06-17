@@ -13,9 +13,9 @@ public class NpcController : MonoBehaviour, Interactable
     private Character _character;
     private int _currentPatrolMovement;
     private float _idleTime;
-    private NPCState _state;
+    private NpcState _state;
 
-    public bool CanPatrol => _state == NPCState.Idle && _patrolMovements.Count > 0;
+    public bool CanPatrol => _state == NpcState.Idle && _patrolMovements.Count > 0;
 
     private void Awake() {
         _character = GetComponent<Character>();
@@ -32,18 +32,20 @@ public class NpcController : MonoBehaviour, Interactable
 
     private void Idle()
     {
-        _state = NPCState.Idle;
+        _state = NpcState.Idle;
         _idleTime = 0;
     }
 
-    public void Interact()
+    public void Interact(Vector3 source)
     {
-        if (_state != NPCState.Idle)
+        if (_state != NpcState.Idle)
         {
             return;
         }
 
-        _state = NPCState.Interacting;
+        _state = NpcState.Interacting;
+
+        _character.LookTowards(source);
 
         DialogManager.SharedInstance.StartDialog(_dialog, () => Idle());
     }
@@ -55,7 +57,7 @@ public class NpcController : MonoBehaviour, Interactable
         if (_idleTime > _patrolDelay)
         {
             StartCoroutine(_character.MoveTowards(_patrolMovements[_currentPatrolMovement],
-                () => _state = NPCState.Moving,
+                () => _state = NpcState.Moving,
                 () =>
                 {
                     _currentPatrolMovement = (_currentPatrolMovement + 1) % _patrolMovements.Count;
@@ -67,7 +69,7 @@ public class NpcController : MonoBehaviour, Interactable
     }
 }
 
-public enum NPCState
+public enum NpcState
 {
     Idle,
     Interacting,

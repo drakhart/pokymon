@@ -18,6 +18,19 @@ public class Character : MonoBehaviour
         _animator = GetComponent<CharacterAnimator>();
     }
 
+    public void LookTowards(Vector3 source)
+    {
+        var diff = source - transform.position;
+        var diffX = Mathf.FloorToInt(diff.x);
+        var diffY = Mathf.FloorToInt(diff.y);
+
+        if (diffX == 0 || diffY == 0)
+        {
+            _animator.MoveX = Mathf.Clamp(diffX, -1, 1);
+            _animator.MoveY = Mathf.Clamp(diffY, -1, 1);
+        }
+    }
+
     public IEnumerator MoveTowards(Vector2 moveVector, Action onMoveStart = null, Action onMoveFinish = null)
     {
         if (moveVector.x != 0)
