@@ -5,8 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Character))]
 public class TrainerController : MonoBehaviour
 {
-    [SerializeField] private GameObject _exclamationMark;
     [SerializeField] private Dialog _dialog;
+    [SerializeField] private GameObject _exclamationMark;
+    [SerializeField] private GameObject _fov;
 
     private Character _character;
 
@@ -16,6 +17,8 @@ public class TrainerController : MonoBehaviour
 
     private void Update() {
         _character.HandleUpdate();
+
+        SetFovDirection(_character.Animator.CurrentFacingDirection);
     }
 
     public IEnumerator TriggerTrainerBattle(PlayerController player)
@@ -43,5 +46,25 @@ public class TrainerController : MonoBehaviour
     private void ToggleExclamationMark(bool active)
     {
         _exclamationMark.SetActive(active);
+    }
+
+    public void SetFovDirection(FacingDirection facingDirection)
+    {
+        float angle = 0f;
+
+        if (facingDirection == FacingDirection.Right)
+        {
+            angle = 90f;
+        }
+        else if (facingDirection == FacingDirection.Up)
+        {
+            angle = 180f;
+        }
+        else if (facingDirection == FacingDirection.Left)
+        {
+            angle = 270f;
+        }
+
+        _fov.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 }

@@ -293,6 +293,7 @@ MonoBehaviour:
   - {fileID: 3359872099405869294, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
   - {fileID: 2198402656217611991, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
   - {fileID: 2183738454419167198, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  _defaultFacingDirection: 1
   MoveX: 0
   MoveY: 0
   IsMoving: 0
@@ -407,10 +408,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab5c047fa702174f8323d705266b6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _exclamationMark: {fileID: 663431959}
   _dialog:
     _lines:
     - Hey! I bet my pokymon are better than yours!
+  _exclamationMark: {fileID: 663431959}
+  _fov: {fileID: 910198279}
 --- !u!1 &124842936
 GameObject:
   m_ObjectHideFlags: 0
@@ -3780,6 +3782,7 @@ MonoBehaviour:
   - {fileID: 3359872099405869294, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
   - {fileID: 2198402656217611991, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
   - {fileID: 2183738454419167198, guid: ebf2cf18b4b6ac34da96445029748a33, type: 3}
+  _defaultFacingDirection: 0
   MoveX: 0
   MoveY: 0
   IsMoving: 0
@@ -4809,6 +4812,7 @@ MonoBehaviour:
   - {fileID: 2659286222826444281, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
   - {fileID: 5935550125356212616, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
   - {fileID: 1189803590093747582, guid: 679b9c0015829594592a40f28e444dd2, type: 3}
+  _defaultFacingDirection: 0
   MoveX: 0
   MoveY: 0
   IsMoving: 0

@@ -44,16 +44,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnMoveFinish()
     {
-        CheckForPokymon();
+        CheckForWildPokymon();
         CheckForTrainer();
     }
 
-    private void CheckForPokymon()
+    private void CheckForWildPokymon()
     {
         if (Physics2D.OverlapCircle(transform.position, 0.25f, LayerManager.SharedInstance.PokymonAreaLayers) != null)
         {
             if (Random.Range(0, 100) < Constants.POKYMON_ENCOUNTER_ODDS)
             {
+                _character.Animator.IsMoving = false;
+
                 OnPokymonEncounter?.Invoke();
             }
         }
@@ -67,7 +69,12 @@ public class PlayerController : MonoBehaviour
         {
             var trainer = collider.GetComponentInParent<TrainerController>();
 
-            OnTrainerEncounter?.Invoke(trainer);
+            if (trainer != null)
+            {
+                _character.Animator.IsMoving = false;
+
+                OnTrainerEncounter?.Invoke(trainer);
+            }
         }
     }
 

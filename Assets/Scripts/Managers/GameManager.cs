@@ -25,10 +25,7 @@ public class GameManager : MonoBehaviour
         StatusConditionFactory.InitFactory();
 
         _playerController.OnPokymonEncounter += StartWildPokymonBattle;
-        _playerController.OnTrainerEncounter += (TrainerController trainer) =>
-        {
-            StartCoroutine(trainer.TriggerTrainerBattle(_playerController));
-        };
+        _playerController.OnTrainerEncounter += (TrainerController trainer) => StartTrainerBattle(trainer);
         _battleManager.OnBattleFinish += FinishPokymonBattle;
 
         DialogManager.SharedInstance.OnDialogStart += () => _gameState = GameState.Dialog;
@@ -54,6 +51,13 @@ public class GameManager : MonoBehaviour
                 _playerController.HandleUpdate();
                 break;
         }
+    }
+
+    private void StartTrainerBattle(TrainerController trainer)
+    {
+        _gameState = GameState.CutScene;
+
+        StartCoroutine(trainer.TriggerTrainerBattle(_playerController));
     }
 
     private void StartWildPokymonBattle()
@@ -119,6 +123,7 @@ public class GameManager : MonoBehaviour
 public enum GameState
 {
     Battle,
+    CutScene,
     Dialog,
     Travel,
 }

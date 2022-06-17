@@ -7,12 +7,16 @@ public class CharacterAnimator : MonoBehaviour
 {
     [SerializeField] private List<Sprite> _idleUpFrameList, _idleDownFrameList, _idleRightFrameList, _idleLeftFrameList;
     [SerializeField] private List<Sprite> _moveUpFrameList, _moveDownFrameList, _moveRightFrameList, _moveLeftFrameList;
+    [SerializeField] private FacingDirection _defaultFacingDirection = FacingDirection.Down;
 
     private CustomAnimator _idleUpAnimator, _idleDownAnimator, _idleRightAnimator, _idleLeftAnimator;
     private CustomAnimator _moveUpAnimator, _moveDownAnimator, _moveRightAnimator, _moveLeftAnimator;
 
     private SpriteRenderer _renderer;
     private CustomAnimator _currentAnimator;
+
+    private FacingDirection _currentFacingDirection;
+    public FacingDirection CurrentFacingDirection => _currentFacingDirection;
 
     public float MoveX, MoveY;
     public bool IsMoving;
@@ -28,27 +32,27 @@ public class CharacterAnimator : MonoBehaviour
         _moveRightAnimator = new CustomAnimator(_renderer, _moveRightFrameList);
         _moveLeftAnimator = new CustomAnimator(_renderer, _moveLeftFrameList);
 
-        _currentAnimator = _idleDownAnimator;
+        SetCurrentFacingDirection(_defaultFacingDirection);
     }
 
     private void Update() {
         var previousAnimator = _currentAnimator;
 
-        if (MoveX > 0)
+        if (MoveY > 0)
         {
-            _currentAnimator = IsMoving ? _moveRightAnimator : _idleRightAnimator;
-        }
-        else if (MoveX < 0)
-        {
-            _currentAnimator = IsMoving ? _moveLeftAnimator : _idleLeftAnimator;
-        }
-        else if (MoveY > 0)
-        {
-            _currentAnimator = IsMoving ? _moveUpAnimator : _idleUpAnimator;
+            SetCurrentFacingDirection(FacingDirection.Up);
         }
         else if (MoveY < 0)
         {
-            _currentAnimator = IsMoving ? _moveDownAnimator : _idleDownAnimator;
+            SetCurrentFacingDirection(FacingDirection.Down);
+        }
+        else if (MoveX > 0)
+        {
+            SetCurrentFacingDirection(FacingDirection.Right);
+        }
+        else if (MoveX < 0)
+        {
+            SetCurrentFacingDirection(FacingDirection.Left);
         }
 
         if (_currentAnimator != previousAnimator)
@@ -58,4 +62,36 @@ public class CharacterAnimator : MonoBehaviour
             _currentAnimator.Update();
         }
     }
+
+    private void SetCurrentFacingDirection(FacingDirection facingDirection)
+    {
+        _currentFacingDirection = facingDirection;
+
+        switch (_currentFacingDirection)
+        {
+            case FacingDirection.Up:
+                _currentAnimator = IsMoving ? _moveUpAnimator : _idleUpAnimator;
+                break;
+
+            case FacingDirection.Down:
+                _currentAnimator = IsMoving ? _moveDownAnimator : _idleDownAnimator;
+                break;
+
+            case FacingDirection.Right:
+                _currentAnimator = IsMoving ? _moveRightAnimator : _idleRightAnimator;
+                break;
+
+            case FacingDirection.Left:
+                _currentAnimator = IsMoving ? _moveLeftAnimator : _idleLeftAnimator;
+                break;
+        }
+    }
+}
+
+public enum FacingDirection
+{
+    Down,
+    Left,
+    Right,
+    Up,
 }
