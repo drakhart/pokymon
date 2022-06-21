@@ -20,6 +20,7 @@ public class PokymonParty : MonoBehaviour
         foreach (var pokymon in _pokymonList)
         {
             pokymon.InitPokymon();
+            pokymon.IsWild = false;
         }
     }
 

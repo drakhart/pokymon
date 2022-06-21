@@ -1,0 +1,1242 @@
+fileFormatVersion: 2
+guid: 87bbb39a9551dcb488591f3d8c5985f2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3427114271967980436
+    second: Player_0
+  - first:
+      213: 8158605244509288230
+    second: Player_1
+  - first:
+      213: 6184959299203262911
+    second: Player_2
+  - first:
+      213: 2495864320845663737
+    second: Player_3
+  - first:
+      213: 6480803066212409350
+    second: Player_4
+  - first:
+      213: 801598655983992016
+    second: Player_5
+  - first:
+      213: -4188724102742562465
+    second: Player_6
+  - first:
+      213: -7635366936938300408
+    second: Player_7
+  - first:
+      213: 3663873800218158768
+    second: Player_8
+  - first:
+      213: 1879468920936531165
+    second: Player_9
+  - first:
+      213: 40843185749886244
+    second: Player_10
+  - first:
+      213: -5329091641981806550
+    second: Player_11
+  - first:
+      213: -8425070257221301162
+    second: Player_12
+  - first:
+      213: -2450611445237265277
+    second: Player_13
+  - first:
+      213: 6770007078955632491
+    second: Player_14
+  - first:
+      213: -8123166618883925514
+    second: Player_15
+  - first:
+      213: 1737412558246731724
+    second: Player_16
+  - first:
+      213: -7904700090360122693
+    second: Player_17
+  - first:
+      213: 2250609068651981613
+    second: Player_18
+  - first:
+      213: -366569187799383193
+    second: Player_19
+  - first:
+      213: 6378490070600606727
+    second: Player_20
+  - first:
+      213: 1760990019816550413
+    second: Player_21
+  - first:
+      213: 5920403861974754022
+    second: Player_22
+  - first:
+      213: -3892527970579685584
+    second: Player_23
+  - first:
+      213: 1778907897293836937
+    second: Player_24
+  - first:
+      213: 347220952276385629
+    second: Player_25
+  - first:
+      213: 4391028426531969339
+    second: Player_26
+  - first:
+      213: -8641010753147894659
+    second: Player_27
+  - first:
+      213: 2251730768788326449
+    second: Player_28
+  - first:
+      213: 162719226863317155
+    second: Player_29
+  - first:
+      213: 487846217701087288
+    second: Player_30
+  - first:
+      213: 6297648057743630840
+    second: Player_31
+  - first:
+      213: 7743511202351542354
+    second: Player_32
+  - first:
+      213: 7855441300368428973
+    second: Player_33
+  - first:
+      213: 7867689754177196569
+    second: Player_34
+  - first:
+      213: 1189803590093747582
+    second: Player_35
+  - first:
+      213: -8333661607700831351
+    second: Player_36
+  - first:
+      213: 2659286222826444281
+    second: Player_37
+  - first:
+      213: 5935550125356212616
+    second: Player_38
+  - first:
+      213: -1503538595970970554
+    second: Player_39
+  - first:
+      213: -3307022154664666310
+    second: Player_40
+  - first:
+      213: -1968986044435119741
+    second: Player_41
+  - first:
+      213: 3933308948476326474
+    second: Player_42
+  - first:
+      213: 8668715722736629152
+    second: Player_43
+  - first:
+      213: 5997594283234826320
+    second: Player_44
+  - first:
+      213: -8159883496149072352
+    second: Player_45
+  - first:
+      213: 82426061317422427
+    second: Player_46
+  - first:
+      213: -6694658725094661539
+    second: Player_47
+  - first:
+      213: -9137712581799548032
+    second: Player_48
+  - first:
+      213: -1307106858290793205
+    second: Player_49
+  - first:
+      213: 4695645784227870110
+    second: Player_50
+  - first:
+      213: -4940984025561564272
+    second: Player_51
+  - first:
+      213: 5087130816270920412
+    second: Player_52
+  - first:
+      213: 592665941263346177
+    second: Player_53
+  - first:
+      213: 8202781100932666147
+    second: Player_54
+  - first:
+      213: -7157023754435722467
+    second: Player_55
+  - first:
+      213: 7869888866612967700
+    second: Player_56
+  - first:
+      213: 7177795627376806753
+    second: Player_57
+  - first:
+      213: -7807264891306347090
+    second: Player_58
+  - first:
+      213: 926094217002892508
+    second: Player_59
+  - first:
+      213: 7939121506629780653
+    second: Player_60
+  - first:
+      213: -154006226611386810
+    second: Player_61
+  - first:
+      213: -5638898302856167017
+    second: Player_62
+  - first:
+      213: -5537005245035792594
+    second: Player_63
+  - first:
+      213: -8458992777402084725
+    second: Player_64
+  - first:
+      213: 1956400101269269636
+    second: Player_65
+  - first:
+      213: -5030506231620389267
+    second: Player_66
+  - first:
+      213: -7779911554219097908
+    second: Player_67
+  - first:
+      213: -1663632512765135929
+    second: Player_68
+  - first:
+      213: 1371756691838402362
+    second: Player_69
+  - first:
+      213: 419509880357639424
+    second: Player_70
+  - first:
+      213: 8902023644142279924
+    second: Player_71
+  - first:
+      213: 1103652861032467509
+    second: Player_72
+  - first:
+      213: 4413641000073982676
+    second: Player_73
+  - first:
+      213: -8814439084809767835
+    second: Player_74
+  - first:
+      213: 2742643712698888491
+    second: Player_75
+  - first:
+      213: 7257821030688514551
+    second: Player_76
+  - first:
+      213: -1219955350355662014
+    second: Player_77
+  - first:
+      213: 5885618117751780383
+    second: Player_78
+  - first:
+      213: -1578094982924671736
+    second: Player_79
+  - first:
+      213: -1653447138538129410
+    second: Player_80
+  - first:
+      213: -1191495049462634876
+    second: Player_81
+  - first:
+      213: 543949736723389990
+    second: Player_82
+  - first:
+      213: 914160092285659262
+    second: Player_83
+  - first:
+      213: -7349660160571454996
+    second: Player_84
+  - first:
+      213: -3037908039922366334
+    second: Player_85
+  - first:
+      213: -7020746948491566630
+    second: Player_86
+  - first:
+      213: 107471506012319882
+    second: Player_87
+  - first:
+      213: 6312303127202949528
+    second: Player_88
+  - first:
+      213: 7287807371754233222
+    second: Player_89
+  - first:
+      213: -5311864634216876214
+    second: Player_90
+  - first:
+      213: -3014046580532964220
+    second: Player_91
+  - first:
+      213: 7861278318105530111
+    second: Player_92
+  - first:
+      213: 4916060161558577318
+    second: Player_93
+  - first:
+      213: -5228588673256174458
+    second: Player_94
+  - first:
+      213: -906466027370003211
+    second: Player_95
+  - first:
+      213: 7767476932167453652
+    second: Player_96
+  - first:
+      213: -5031253088990302192
+    second: Player_97
+  - first:
+      213: -8888475588482354621
+    second: Player_98
+  - first:
+      213: -4688166783993219354
+    second: Player_99
+  - first:
+      213: -1232404555996819827
+    second: Player_100
+  - first:
+      213: -902266065881139535
+    second: Player_101
+  - first:
+      213: -7767188801148333810
+    second: Player_102
+  - first:
+      213: -5690888670728291003
+    second: Player_103
+  - first:
+      213: 2260266568740184110
+    second: Player_104
+  - first:
+      213: -8849676663682810812
+    second: Player_105
+  - first:
+      213: 4520020578314756455
+    second: Player_106
+  - first:
+      213: 8842459503257729354
+    second: Player_107
+  - first:
+      213: 6701526335761069014
+    second: Player_108
+  - first:
+      213: -2396936274652715399
+    second: Player_109
+  - first:
+      213: -3074817132469694575
+    second: Player_110
+  - first:
+      213: -3408153332988238210
+    second: Player_111
+  - first:
+      213: -8295850295116987513
+    second: Player_112
+  - first:
+      213: 2217404005931304823
+    second: Player_113
+  - first:
+      213: -818993087269440205
+    second: Player_114
+  - first:
+      213: -8641402302343707307
+    second: Player_115
+  - first:
+      213: 2233618323466640304
+    second: Player_116
+  - first:
+      213: 6415102952215452482
+    second: Player_117
+  - first:
+      213: 484338839693864500
+    second: Player_118
+  - first:
+      213: -7435893481081949353
+    second: Player_119
+  - first:
+      213: 9016780763483858900
+    second: Player_120
+  - first:
+      213: -3565599871860662066
+    second: Player_121
+  - first:
+      213: -2839429051668164929
+    second: Player_122
+  - first:
+      213: 4322507322739231712
+    second: Player_123
+  - first:
+      213: 1228063507525174715
+    second: Player_124
+  - first:
+      213: -6324538733279760066
+    second: Player_125
+  - first:
+      213: 6080704163894060323
+    second: Player_126
+  - first:
+      213: 1835710647440411114
+    second: Player_127
+  - first:
+      213: 2503547658142621307
+    second: Player_128
+  - first:
+      213: 2130607774519369459
+    second: Player_129
+  - first:
+      213: 7768883755651876925
+    second: Player_130
+  - first:
+      213: -129840693822575698
+    second: Player_131
+  - first:
+      213: 4453675792167459771
+    second: Player_132
+  - first:
+      213: -4092413289829415728
+    second: Player_133
+  - first:
+      213: -7717253102332659865
+    second: Player_134
+  - first:
+      213: 3484644583456302474
+    second: Player_135
+  - first:
+      213: -2312062140090020890
+    second: Player_136
+  - first:
+      213: -5899667210987286951
+    second: Player_137
+  - first:
+      213: -1653864171556418201
+    second: Player_138
+  - first:
+      213: -8199051414864844061
+    second: Player_139
+  - first:
+      213: -1468295782209400785
+    second: Player_140
+  - first:
+      213: 6121956673712062368
+    second: Player_141
+  - first:
+      213: -1019802208932950227
+    second: Player_142
+  - first:
+      213: 7005334362047346769
+    second: Player_143
+  - first:
+      213: -1366422057158192623
+    second: Player_144
+  - first:
+      213: -8845602116347062216
+    second: Player_145
+  - first:
+      213: -1957217854970477307
+    second: Player_146
+  - first:
+      213: -3433841316062820268
+    second: Player_147
+  - first:
+      213: -8225042480154349364
+    second: Player_148
+  - first:
+      213: 2102494899737326164
+    second: Player_149
+  - first:
+      213: 5260491608527446971
+    second: Player_150
+  - first:
+      213: -14002500265199704
+    second: Player_151
+  - first:
+      213: 1933284815922325251
+    second: Player_152
+  - first:
+      213: 6022009804708691238
+    second: Player_153
+  - first:
+      213: -3642180849480867177
+    second: Player_154
+  - first:
+      213: 4623100486664989912
+    second: Player_155
+  - first:
+      213: -1940738496428130850
+    second: NPC_0
+  - first:
+      213: -6131185593638097393
+    second: NPC_1
+  - first:
+      213: 5084661014962647745
+    second: NPC_2
+  - first:
+      213: -4896452150530583312
+    second: NPC_3
+  - first:
+      213: -158646377427028231
+    second: NPC_4
+  - first:
+      213: -6800826857180800239
+    second: NPC_5
+  - first:
+      213: 3690989536998896953
+    second: NPC_6
+  - first:
+      213: -2330748939010558292
+    second: NPC_7
+  - first:
+      213: 5727701227653830284
+    second: NPC_8
+  - first:
+      213: 7643970770318654025
+    second: NPC_9
+  - first:
+      213: -1934056534888814118
+    second: NPC_10
+  - first:
+      213: -2560980113577806444
+    second: NPC_11
+  - first:
+      213: -7597873162570248193
+    second: NPC_12
+  - first:
+      213: -6753226443446098073
+    second: NPC_13
+  - first:
+      213: 4211058871086783136
+    second: NPC_14
+  - first:
+      213: 3095087282350418139
+    second: NPC_15
+  - first:
+      213: 7149497670107563988
+    second: NPC_16
+  - first:
+      213: -2121612950466890601
+    second: NPC_17
+  - first:
+      213: 1417495405002353819
+    second: NPC_18
+  - first:
+      213: 3132665106625492407
+    second: NPC_19
+  - first:
+      213: 8018424148801600465
+    second: NPC_20
+  - first:
+      213: -2649244119447913936
+    second: NPC_21
+  - first:
+      213: -1183136022171934525
+    second: NPC_22
+  - first:
+      213: -2979099726925538942
+    second: NPC_23
+  - first:
+      213: -8508389530324915854
+    second: NPC_24
+  - first:
+      213: -5117321761263670360
+    second: NPC_25
+  - first:
+      213: 5052215583158898953
+    second: NPC_26
+  - first:
+      213: 6296034175947401203
+    second: NPC_27
+  - first:
+      213: 4341062788280307238
+    second: NPC_28
+  - first:
+      213: -5521963042201966392
+    second: NPC_29
+  - first:
+      213: 2842994937316849109
+    second: NPC_30
+  - first:
+      213: 7194398838354807316
+    second: NPC_31
+  - first:
+      213: -1215416811962233960
+    second: NPC_32
+  - first:
+      213: 2831542491188068147
+    second: NPC_33
+  - first:
+      213: 2395963244261341206
+    second: NPC_34
+  - first:
+      213: 7076137261441912326
+    second: NPC_35
+  - first:
+      213: -8850683947818087690
+    second: NPC_36
+  - first:
+      213: 1099702494395327606
+    second: NPC_37
+  - first:
+      213: -3319345390362481911
+    second: NPC_38
+  - first:
+      213: -14372500958714863
+    second: NPC_39
+  - first:
+      213: 4565983722927598543
+    second: NPC_40
+  - first:
+      213: 578545117210888579
+    second: NPC_41
+  - first:
+      213: -4677405159120299026
+    second: NPC_42
+  - first:
+      213: -7199558690010714483
+    second: NPC_43
+  - first:
+      213: -6997876317670942859
+    second: NPC_44
+  - first:
+      213: -5866395162554972029
+    second: NPC_45
+  - first:
+      213: 4024133999630305931
+    second: NPC_46
+  - first:
+      213: 310481462196123467
+    second: NPC_47
+  - first:
+      213: 7636152248386751105
+    second: NPC_48
+  - first:
+      213: -3336406371628382878
+    second: NPC_49
+  - first:
+      213: -1899190665920707739
+    second: NPC_50
+  - first:
+      213: 4149642010111309877
+    second: NPC_51
+  - first:
+      213: 2364881090159730131
+    second: NPC_52
+  - first:
+      213: -3892395621338374418
+    second: NPC_53
+  - first:
+      213: -507529934794546649
+    second: NPC_54
+  - first:
+      213: 8580101824737340809
+    second: NPC_55
+  - first:
+      213: -8969910021562893698
+    second: NPC_56
+  - first:
+      213: -1197035769350909894
+    second: NPC_57
+  - first:
+      213: 6923525529922091665
+    second: NPC_58
+  - first:
+      213: -7693486790903788805
+    second: NPC_59
+  - first:
+      213: 2600460929758345255
+    second: NPC_60
+  - first:
+      213: 2061318881567120210
+    second: NPC_61
+  - first:
+      213: -724663186916405478
+    second: NPC_62
+  - first:
+      213: -1918465780098591443
+    second: NPC_63
+  - first:
+      213: 4928849044836976004
+    second: NPC_64
+  - first:
+      213: -1490491863270006581
+    second: NPC_65
+  - first:
+      213: 2464058816575526638
+    second: NPC_66
+  - first:
+      213: 6760641214280161088
+    second: NPC_67
+  - first:
+      213: -8757240222342463338
+    second: NPC_68
+  - first:
+      213: -8443814535926291052
+    second: NPC_69
+  - first:
+      213: -3643397803920527326
+    second: NPC_70
+  - first:
+      213: 7527815381125332850
+    second: NPC_71
+  - first:
+      213: 2311761505350358729
+    second: NPC_72
+  - first:
+      213: -2694751334151615330
+    second: NPC_73
+  - first:
+      213: -8666827661146929860
+    second: NPC_74
+  - first:
+      213: -4830224301849263770
+    second: NPC_75
+  - first:
+      213: 2880112505608679170
+    second: NPC_76
+  - first:
+      213: -3869784756260318056
+    second: NPC_77
+  - first:
+      213: -1831433805183957264
+    second: NPC 1_0
+  - first:
+      213: -3847041761250970575
+    second: NPC 1_1
+  - first:
+      213: 1804227150290174767
+    second: NPC 1_2
+  - first:
+      213: 8329585912765984557
+    second: NPC 1_3
+  - first:
+      213: 6347885754583224525
+    second: NPC 1_4
+  - first:
+      213: -2321880768761666037
+    second: NPC 1_5
+  - first:
+      213: -4632268233747231213
+    second: NPC 1_6
+  - first:
+      213: -1733455354470612982
+    second: NPC 1_7
+  - first:
+      213: -1591920223810236535
+    second: NPC 1_8
+  - first:
+      213: -1870895426299867134
+    second: NPC 1_9
+  - first:
+      213: 3790641153775557007
+    second: NPC 1_10
+  - first:
+      213: 2489847195850577781
+    second: NPC 1_11
+  - first:
+      213: 2183738454419167198
+    second: NPC 1_12
+  - first:
+      213: 531052721157206234
+    second: NPC 1_13
+  - first:
+      213: 3359872099405869294
+    second: NPC 1_14
+  - first:
+      213: 2198402656217611991
+    second: NPC 1_15
+  - first:
+      213: 8138883598024870251
+    second: Pokymon Trainer 1_0
+  - first:
+      213: 118936651561294719
+    second: Pokymon Trainer 1_1
+  - first:
+      213: -1657510441246024229
+    second: Pokymon Trainer 1_2
+  - first:
+      213: -704939551865409998
+    second: Pokymon Trainer 1_3
+  - first:
+      213: 3228158057032017848
+    second: Pokymon Trainer 1_4
+  - first:
+      213: -6057682388500091942
+    second: Pokymon Trainer 1_5
+  - first:
+      213: 4248543849054454918
+    second: Pokymon Trainer 1_6
+  - first:
+      213: -8138444767123431091
+    second: Pokymon Trainer 1_7
+  - first:
+      213: -1870501587889964503
+    second: Pokymon Trainer 1_8
+  - first:
+      213: -3034637110607376923
+    second: Pokymon Trainer 1_9
+  - first:
+      213: -2675245521353856910
+    second: Pokymon Trainer 1_10
+  - first:
+      213: -1117256682967818944
+    second: Pokymon Trainer 1_11
+  - first:
+      213: -8764511162603899209
+    second: Pokymon Trainer 1_12
+  - first:
+      213: 2484586187045648385
+    second: Pokymon Trainer 1_13
+  - first:
+      213: 7584339335002445019
+    second: Pokymon Trainer 1_14
+  - first:
+      213: -8627800956669298072
+    second: Pokymon Trainer 1_15
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b698680c28f13f070800000000000000
+      internalID: 8138883598024870251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7bd513214c86a100800000000000000
+      internalID: 118936651561294719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdd970a19075ff8e0800000000000000
+      internalID: -1657510441246024229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23e60f6663d8736f0800000000000000
+      internalID: -704939551865409998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b7653c36a8bccc20800000000000000
+      internalID: 3228158057032017848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adbef4f66f9ceeba0800000000000000
+      internalID: -6057682388500091942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 684cf87fe1cd5fa30800000000000000
+      internalID: 4248543849054454918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d41a8778a9f6e0f80800000000000000
+      internalID: -8138444767123431091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92ab30657b4aa06e0800000000000000
+      internalID: -1870501587889964503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_9
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ed870840adc2e5d0800000000000000
+      internalID: -3034637110607376923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 278afb45f5e9fdad0800000000000000
+      internalID: -2675245521353856910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04d95c067f4be70f0800000000000000
+      internalID: -1117256682967818944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b67c03b8833e5680800000000000000
+      internalID: -8764511162603899209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 108b2b429f50b7220800000000000000
+      internalID: 2484586187045648385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd4d7de017cf04960800000000000000
+      internalID: 7584339335002445019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pokymon Trainer 1_15
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86a73f0fdb4e34880800000000000000
+      internalID: -8627800956669298072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using Random = UnityEngine.Random;
 
@@ -10,6 +11,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private BattleDialogBox _dialogBox;
     [SerializeField] private PartySelection _partySelection;
     [SerializeField] private ForgetMoveSelection _forgetMoveSelection;
+
+    [SerializeField] private Image _playerAvatar;
+    [SerializeField] private Image _trainerAvatar;
 
     [SerializeField] private BattleUnit _enemyUnit;
     [SerializeField] private BattleUnit _playerUnit;
@@ -36,25 +40,37 @@ public class BattleManager : MonoBehaviour
 
     private BattleState _battleState;
     private BattleType _battleType;
-    private PokymonParty _playerParty;
+    private int _escapeAttempts;
     private float _lastInputTime;
     private LearnableMove _learnableMove;
-    private int _escapeAttempts;
+    private PlayerController _player;
+    private PokymonParty _playerParty;
+    private TrainerController _trainer;
+    private PokymonParty _trainerParty;
+
 
     public event Action<bool> OnBattleFinish;
 
-    public void HandleStart(BattleType type, PokymonParty playerParty, Pokymon enemyPokymon) {
+    public bool IsTrainerBattle => _battleType == BattleType.Trainer || _battleType == BattleType.GymLeader;
+    public bool IsWildPokymonBattle => _battleType == BattleType.WildPokymon;
+
+    public void HandleStart(BattleType type, PokymonParty playerParty, Pokymon enemyPokymon, PokymonParty trainerParty = null) {
         _battleType = type;
         _playerParty = playerParty;
+        _player = playerParty.GetComponent<PlayerController>();
 
         _battleState = BattleState.StartBattle;
         _escapeAttempts = 0;
 
         _partySelection.SetupPartySelection();
-        SetupPlayerPokymon(_playerParty.FirstAvailablePokymon);
 
         _enemyUnit.Pokymon = enemyPokymon;
-        _enemyUnit.SetupPokymon();
+
+        if (trainerParty != null)
+        {
+            _trainerParty = trainerParty;
+            _trainer = trainerParty.GetComponent<TrainerController>();
+        }
 
         AudioManager.SharedInstance.PlayMusic(_battleMusic);
         AudioManager.SharedInstance.PlaySFX(_battleStartSFX);
@@ -167,9 +183,28 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator SetupBattle()
     {
-        if (_battleType == BattleType.WildPokymon)
+        _playerUnit.Toggle(false);
+        _enemyUnit.Toggle(false);
+
+        if (IsWildPokymonBattle)
         {
+            SetupPlayerPokymon(_playerParty.FirstAvailablePokymon);
+            _enemyUnit.SetupPokymon();
+
             yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} appears!");
+        }
+        else
+        {
+            _playerAvatar.sprite = _player.Avatar;
+            _trainerAvatar.sprite = _trainer.Avatar;
+
+            ToggleAvatars(true);
+
+            yield return _dialogBox.SetDialogText($"{_trainer.Name} wants to fight!");
+
+            ToggleAvatars(false);
+            SetupPlayerPokymon(_playerParty.FirstAvailablePokymon);
+            _enemyUnit.SetupPokymon();
         }
 
         PlayerSelectAction();
@@ -183,6 +218,11 @@ public class BattleManager : MonoBehaviour
         _dialogBox.UpdateMoveData(_playerUnit.Pokymon.MoveList);
     }
 
+    private void ToggleAvatars(bool active)
+    {
+        _playerAvatar.gameObject.SetActive(active);
+        _trainerAvatar.gameObject.SetActive(active);
+    }
 
     private void CheckForBattleFinish(BattleUnit knockedOutUnit)
     {
@@ -311,8 +351,9 @@ public class BattleManager : MonoBehaviour
 
         _enemyUnit.NextMove = _enemyUnit.Pokymon.GetRandomAvailableMove();
 
-        var playerMovesFirst = _playerUnit.NextMove.Base.Priority > _enemyUnit.NextMove.Base.Priority
-            || (_playerUnit.NextMove.Base.Priority == _enemyUnit.NextMove.Base.Priority && _playerUnit.Pokymon.Speed >= _enemyUnit.Pokymon.Speed);
+        var playerMovesFirst = _playerUnit.CanMove &&
+            ((_playerUnit.NextMove.Base.Priority == _enemyUnit.NextMove.Base.Priority && _playerUnit.Pokymon.Speed >= _enemyUnit.Pokymon.Speed)
+                || _playerUnit.NextMove.Base.Priority > _enemyUnit.NextMove.Base.Priority);
 
         if (_playerUnit.CanMove && !playerMovesFirst)
         {
@@ -814,7 +855,7 @@ public class BattleManager : MonoBehaviour
 public enum BattleType
 {
     WildPokymon,
-    PokymonTrainer,
+    Trainer,
     GymLeader,
 }
 

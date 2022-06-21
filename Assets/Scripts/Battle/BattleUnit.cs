@@ -38,6 +38,7 @@ public class BattleUnit : MonoBehaviour
 
         CanMove = true;
 
+        Toggle(true);
         PlaySetupAnimation();
     }
 
@@ -152,5 +153,17 @@ public class BattleUnit : MonoBehaviour
         seq.Join(_image.transform.DOLocalJump(_originalPosition, 50f, 1, delay));
 
         return seq.Play().WaitForCompletion();
+    }
+
+    public void Toggle(bool active)
+    {
+        gameObject.SetActive(active);
+
+        ToggleHUD(active);
+    }
+
+    public void ToggleHUD(bool active)
+    {
+        _hud.gameObject.SetActive(active);
     }
 }

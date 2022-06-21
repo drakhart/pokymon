@@ -1,13 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Character))]
+[RequireComponent(typeof(PokymonParty))]
 public class TrainerController : MonoBehaviour
 {
     [SerializeField] private Dialog _dialog;
     [SerializeField] private GameObject _exclamationMark;
     [SerializeField] private GameObject _fov;
+
+    [SerializeField] private Sprite _avatar;
+    public Sprite Avatar => _avatar;
+
+    [SerializeField] private string _name;
+    public string Name => _name;
 
     private Character _character;
 
@@ -21,7 +29,7 @@ public class TrainerController : MonoBehaviour
         SetFovDirection(_character.Animator.CurrentFacingDirection);
     }
 
-    public IEnumerator TriggerTrainerBattle(PlayerController player)
+    public IEnumerator TriggerTrainerBattle(PlayerController player, Action startBattle)
     {
         ToggleExclamationMark(true);
 
@@ -33,13 +41,11 @@ public class TrainerController : MonoBehaviour
         var moveTarget = distanceToPlayer - distanceToPlayer.normalized;
         moveTarget = new Vector3(Mathf.RoundToInt(moveTarget.x), Mathf.RoundToInt(moveTarget.y));
 
-        Debug.Log(moveTarget);
-
         yield return _character.MoveTowards(moveTarget);
 
         DialogManager.SharedInstance.StartDialog(_dialog, () =>
         {
-            // TODO: Start trainer battle
+            startBattle();
         });
     }
 

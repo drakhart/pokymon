@@ -55,9 +55,25 @@ public class GameManager : MonoBehaviour
 
     private void StartTrainerBattle(TrainerController trainer)
     {
+        var playerParty = _playerController.GetComponent<PokymonParty>();
+
+        if (!playerParty.HasAnyPokymonAvailable)
+        {
+            // TODO: implement no available pokymon behavior
+            print("There are no pokymon left to fight the enemy!");
+
+            return;
+        }
+
         _gameState = GameState.CutScene;
 
-        StartCoroutine(trainer.TriggerTrainerBattle(_playerController));
+        var trainerParty = trainer.GetComponentInParent<PokymonParty>();
+        var trainerPokymon = trainerParty.FirstAvailablePokymon;
+
+        StartCoroutine(trainer.TriggerTrainerBattle(
+            _playerController,
+            () => StartCoroutine(FadeToBattle(BattleType.Trainer, playerParty, trainerPokymon, trainerParty))
+        ));
     }
 
     private void StartWildPokymonBattle()
@@ -92,7 +108,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeToWorld());
     }
 
-    private IEnumerator FadeToBattle(BattleType battleType, PokymonParty playerParty, Pokymon enemyPokymon)
+    private IEnumerator FadeToBattle(BattleType battleType, PokymonParty playerParty, Pokymon enemyPokymon, PokymonParty trainerParty = null)
     {
         _gameState = GameState.Battle;
 
@@ -100,7 +116,7 @@ public class GameManager : MonoBehaviour
 
         _worldCamera.gameObject.SetActive(false);
         _battleManager.gameObject.SetActive(true);
-        _battleManager.HandleStart(battleType, playerParty, enemyPokymon);
+        _battleManager.HandleStart(battleType, playerParty, enemyPokymon, trainerParty);
 
         yield return _transitionPanel.DOFade(0, 0.4f).WaitForCompletion();
     }

@@ -9,6 +9,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private AudioClip _stepsSFX;
 
+    [SerializeField] private Sprite _avatar;
+    public Sprite Avatar => _avatar;
+
+    [SerializeField] private string _name;
+    public string Name => _name;
+
     private Character _character;
     private Vector2 _input;
 
