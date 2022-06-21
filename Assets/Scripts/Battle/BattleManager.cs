@@ -57,14 +57,13 @@ public class BattleManager : MonoBehaviour
     public void HandleStart(BattleType type, PokymonParty playerParty, Pokymon enemyPokymon, PokymonParty trainerParty = null) {
         _battleType = type;
         _playerParty = playerParty;
+        _enemyUnit.Pokymon = enemyPokymon;
         _player = playerParty.GetComponent<PlayerController>();
 
         _battleState = BattleState.StartBattle;
         _escapeAttempts = 0;
 
         _partySelection.SetupPartySelection();
-
-        _enemyUnit.Pokymon = enemyPokymon;
 
         if (trainerParty != null)
         {
@@ -188,9 +187,7 @@ public class BattleManager : MonoBehaviour
 
         if (IsWildPokymonBattle)
         {
-            SetupPlayerPokymon(_playerParty.FirstAvailablePokymon);
             _enemyUnit.SetupPokymon();
-
             yield return _dialogBox.SetDialogText($"{_enemyUnit.Pokymon.Name} appears!");
         }
         else
@@ -203,9 +200,13 @@ public class BattleManager : MonoBehaviour
             yield return _dialogBox.SetDialogText($"{_trainer.Name} wants to fight!");
 
             ToggleAvatars(false);
-            SetupPlayerPokymon(_playerParty.FirstAvailablePokymon);
+
             _enemyUnit.SetupPokymon();
+            yield return _dialogBox.SetDialogText($"{_trainer.Name} sends {_enemyUnit.Pokymon.Name}!");
         }
+
+        SetupPlayerPokymon(_playerParty.FirstAvailablePokymon);
+        yield return _dialogBox.SetDialogText($"Go {_playerUnit.Pokymon.Name}!");
 
         PlayerSelectAction();
     }
@@ -216,6 +217,18 @@ public class BattleManager : MonoBehaviour
         _playerUnit.SetupPokymon();
 
         _dialogBox.UpdateMoveData(_playerUnit.Pokymon.MoveList);
+    }
+
+    private IEnumerator SetupNextTrainerPokymon()
+    {
+        _battleState = BattleState.Busy;
+
+        _enemyUnit.Pokymon = _trainerParty.FirstAvailablePokymon;
+        _enemyUnit.SetupPokymon();
+
+        yield return _dialogBox.SetDialogText($"{_trainer.Name} sends {_enemyUnit.Pokymon.Name}!");
+
+        PlayerSelectAction();
     }
 
     private void ToggleAvatars(bool active)
@@ -247,7 +260,15 @@ public class BattleManager : MonoBehaviour
                 FinishBattle(false);
             }
         } else {
-            FinishBattle(true);
+            if (IsWildPokymonBattle || !_trainerParty.HasAnyPokymonAvailable)
+            {
+                FinishBattle(true);
+            }
+            else
+            {
+                StopAllCoroutines();
+                StartCoroutine(SetupNextTrainerPokymon());
+            }
         }
     }
 

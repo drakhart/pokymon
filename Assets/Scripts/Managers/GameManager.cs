@@ -88,10 +88,10 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        var wildPokymon = FindObjectOfType<PokymonArea>().GetComponent<PokymonArea>().GetRandomWildPokymon();
-        var wildPokymonCopy = new Pokymon(wildPokymon.Base, wildPokymon.Level, true);
+        var wildPokymonTemplate = FindObjectOfType<PokymonArea>().GetComponent<PokymonArea>().GetRandomWildPokymon();
+        var wildPokymon = new Pokymon(wildPokymonTemplate.Base, wildPokymonTemplate.Level, true);
 
-        StartCoroutine(FadeToBattle(BattleType.WildPokymon, playerParty, wildPokymonCopy));
+        StartCoroutine(FadeToBattle(BattleType.WildPokymon, playerParty, wildPokymon));
     }
 
     private void FinishPokymonBattle(bool hasPlayerWon)
