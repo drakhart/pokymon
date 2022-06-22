@@ -190,6 +190,8 @@ public class BattleDialogBox : MonoBehaviour
 
     private IEnumerator AnimateDialogText(string message)
     {
+        Input.ResetInputAxes();
+
         var lastSoundTime = Time.time;
 
         ToggleDialogText(true);
@@ -210,8 +212,7 @@ public class BattleDialogBox : MonoBehaviour
 
         yield return _dialogTextTween.WaitForCompletion();
 
-        var counter = 0;
-        _dialogTextTween = DOTween.To(() => counter, x => counter = x, 1, 1)
+        _dialogTextTween = DOTween.To(() => _dialogText.text, x => _dialogText.text = x, message, _dialogPauseSecs)
             .OnUpdate(() =>
             {
                 if (Input.anyKeyDown) _dialogTextTween.Complete();
