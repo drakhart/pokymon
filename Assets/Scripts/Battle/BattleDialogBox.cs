@@ -204,9 +204,19 @@ public class BattleDialogBox : MonoBehaviour
                     AudioManager.SharedInstance.PlaySFX(_dialogSFX);
                     lastSoundTime = Time.time;
                 }
+
+                if (Input.anyKeyDown) _dialogTextTween.Complete();
             });
 
         yield return _dialogTextTween.WaitForCompletion();
-        yield return new WaitForSecondsRealtime(_dialogPauseSecs);
+
+        var counter = 0;
+        _dialogTextTween = DOTween.To(() => counter, x => counter = x, 1, 1)
+            .OnUpdate(() =>
+            {
+                if (Input.anyKeyDown) _dialogTextTween.Complete();
+            });
+
+        yield return _dialogTextTween.WaitForCompletion();
     }
 }
