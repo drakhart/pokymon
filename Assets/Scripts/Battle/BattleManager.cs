@@ -78,104 +78,105 @@ public class BattleManager : MonoBehaviour
     }
 
     public void HandleUpdate() {
-        // TODO: Apply delay only for axes, not button down
-        if (Time.time < _lastInputTime + Constants.INPUT_DELAY_SECS)
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
-            return;
+            if (Time.time < _lastInputTime + Constants.INPUT_DELAY_SECS)
+            {
+                return;
+            }
+            else
+            {
+                _lastInputTime = Time.time;
+            }
         }
 
-        if (Input.anyKey || Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        if (_battleState == BattleState.PlayerSelectAction || _battleState == BattleState.PlayerSelectMove || _battleState == BattleState.PlayerSelectParty || _battleState == BattleState.PlayerSelectForgetMove)
         {
-            _lastInputTime = Time.time;
-
-            if (_battleState == BattleState.PlayerSelectAction || _battleState == BattleState.PlayerSelectMove || _battleState == BattleState.PlayerSelectParty || _battleState == BattleState.PlayerSelectForgetMove)
+            if (Input.GetButtonDown("Submit"))
             {
-                if (Input.GetButtonDown("Submit"))
-                {
-                    AudioManager.SharedInstance.PlaySFX(_uiSubmitSFX);
-                }
-                else if (Input.GetButtonDown("Cancel"))
-                {
-                    AudioManager.SharedInstance.PlaySFX(_uiCancelSFX);
-                }
-                else if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-                {
-                    AudioManager.SharedInstance.PlaySFX(_uiMoveSFX);
-                }
+                AudioManager.SharedInstance.PlaySFX(_uiSubmitSFX);
+            }
+            else if (Input.GetButtonDown("Cancel"))
+            {
+                AudioManager.SharedInstance.PlaySFX(_uiCancelSFX);
+            }
+            else if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+            {
+                AudioManager.SharedInstance.PlaySFX(_uiMoveSFX);
+            }
 
-                switch (_battleState)
-                {
-                    case BattleState.PlayerSelectAction:
-                        _dialogBox.HandlePlayerActionSelection((selectedAction) =>
+            switch (_battleState)
+            {
+                case BattleState.PlayerSelectAction:
+                    _dialogBox.HandlePlayerActionSelection((selectedAction) =>
+                    {
+                        _dialogBox.StopDialogText();
+
+                        switch (selectedAction)
                         {
-                            _dialogBox.StopDialogText();
+                            case 0: // Fight
+                                PlayerSelectMove();
+                                break;
 
-                            switch (selectedAction)
-                            {
-                                case 0: // Fight
-                                    PlayerSelectMove();
-                                    break;
+                            case 1: // Pokymon selection
+                                PlayerSelectParty();
+                                break;
 
-                                case 1: // Pokymon selection
-                                    PlayerSelectParty();
-                                    break;
+                            case 2: // Bag
+                                PlayerSelectInventory();
+                                break;
 
-                                case 2: // Bag
-                                    PlayerSelectInventory();
-                                    break;
+                            case 3: // Run
+                                PlayerRun();
+                                break;
+                        }
+                    });
+                    break;
 
-                                case 3: // Run
-                                    PlayerRun();
-                                    break;
-                            }
-                        });
-                        break;
-
-                    case BattleState.PlayerSelectMove:
-                        _dialogBox.HandlePlayerMoveSelection((selectedMove) =>
+                case BattleState.PlayerSelectMove:
+                    _dialogBox.HandlePlayerMoveSelection((selectedMove) =>
+                    {
+                        if (selectedMove == null)
                         {
-                            if (selectedMove == null)
-                            {
-                                PlayerSelectAction();
-                            }
-                            else
-                            {
-                                _playerUnit.NextMove = selectedMove;
-
-                                StartCoroutine(TriggerMoves());
-                            }
-                        });
-                        break;
-
-                    case BattleState.PlayerSelectParty:
-                        _partySelection.HandlePartySelection(_playerUnit.Pokymon, (selectedPokymon) =>
+                            PlayerSelectAction();
+                        }
+                        else
                         {
-                            _partySelection.gameObject.SetActive(false);
-                            _partySelection.StopDialogText();
+                            _playerUnit.NextMove = selectedMove;
 
-                            if (selectedPokymon == null)
-                            {
-                                PlayerSelectAction();
-                            }
-                            else
-                            {
-                                StartCoroutine(PerformPokymonSwitch(selectedPokymon));
-                            }
-                        });
-                        break;
+                            StartCoroutine(TriggerMoves());
+                        }
+                    });
+                    break;
 
-                    case BattleState.PlayerSelectForgetMove:
-                        _forgetMoveSelection.HandlePlayerSelectForgetMove((selectedMove) =>
+                case BattleState.PlayerSelectParty:
+                    _partySelection.HandlePartySelection(_playerUnit.Pokymon, (selectedPokymon) =>
+                    {
+                        _partySelection.gameObject.SetActive(false);
+                        _partySelection.StopDialogText();
+
+                        if (selectedPokymon == null)
                         {
-                            _forgetMoveSelection.gameObject.SetActive(false);
+                            PlayerSelectAction();
+                        }
+                        else
+                        {
+                            StartCoroutine(PerformPokymonSwitch(selectedPokymon));
+                        }
+                    });
+                    break;
 
-                            StartCoroutine(PerformForgetMove(selectedMove));
-                        });
-                        break;
+                case BattleState.PlayerSelectForgetMove:
+                    _forgetMoveSelection.HandlePlayerSelectForgetMove((selectedMove) =>
+                    {
+                        _forgetMoveSelection.gameObject.SetActive(false);
 
-                    default:
-                        break;
-                }
+                        StartCoroutine(PerformForgetMove(selectedMove));
+                    });
+                    break;
+
+                default:
+                    break;
             }
         }
     }
