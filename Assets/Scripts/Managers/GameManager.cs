@@ -14,7 +14,22 @@ public class GameManager : MonoBehaviour
 
     private GameState _gameState;
 
+    public static GameManager SharedInstance;
+
     private void Awake() {
+        if (SharedInstance == null)
+        {
+            SharedInstance = this;
+        }
+        else
+        {
+            print("There's more than one GameManager instance!");
+
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+
         Screen.SetResolution(1440, 1080, true);
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -53,7 +68,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void StartTrainerBattle(TrainerController trainer)
+    public void StartTrainerBattle(TrainerController trainer)
     {
         var playerParty = _playerController.GetComponent<PokymonParty>();
 

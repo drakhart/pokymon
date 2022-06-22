@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Character))]
 [RequireComponent(typeof(PokymonParty))]
-public class TrainerController : MonoBehaviour
+public class TrainerController : MonoBehaviour, Interactable
 {
     [SerializeField] private Dialog _dialog;
     [SerializeField] private GameObject _exclamationMark;
@@ -72,5 +72,12 @@ public class TrainerController : MonoBehaviour
         }
 
         _fov.transform.eulerAngles = new Vector3(0, 0, angle);
+    }
+
+    public void Interact(Vector3 source)
+    {
+        _character.LookTowards(source);
+
+        GameManager.SharedInstance.StartTrainerBattle(this);
     }
 }
