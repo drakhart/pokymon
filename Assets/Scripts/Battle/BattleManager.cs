@@ -195,17 +195,33 @@ public class BattleManager : MonoBehaviour
             _playerAvatar.sprite = _player.Avatar;
             _trainerAvatar.sprite = _trainer.Avatar;
 
-            ToggleAvatars(true);
+            var playerAvatarInitialPosition = _playerAvatar.transform.localPosition;
+            _playerAvatar.transform.localPosition = playerAvatarInitialPosition - new Vector3(400, 0, 0);
+            _playerAvatar.transform.DOLocalMoveX(playerAvatarInitialPosition.x, 1);
+            _playerAvatar.gameObject.SetActive(true);
+
+            var trainerAvatarInitialPosition = _trainerAvatar.transform.localPosition;
+            _trainerAvatar.transform.localPosition = trainerAvatarInitialPosition + new Vector3(400, 0, 0);
+            _trainerAvatar.transform.DOLocalMoveX(trainerAvatarInitialPosition.x, 1);
+            _trainerAvatar.gameObject.SetActive(true);
 
             yield return _dialogBox.SetDialogText($"{_trainer.Name} wants to fight!");
+            yield return _trainerAvatar.transform.DOLocalMoveX(trainerAvatarInitialPosition.x + 400, 1).WaitForCompletion();
 
-            ToggleAvatars(false);
+            _trainerAvatar.gameObject.SetActive(false);
+            _trainerAvatar.transform.localPosition = trainerAvatarInitialPosition;
 
             _enemyUnit.SetupPokymon();
+
             yield return _dialogBox.SetDialogText($"{_trainer.Name} sends {_enemyUnit.Pokymon.Name}!");
+            yield return _playerAvatar.transform.DOLocalMoveX(playerAvatarInitialPosition.x - 400, 1).WaitForCompletion();
+
+            _playerAvatar.gameObject.SetActive(false);
+            _playerAvatar.transform.localPosition = playerAvatarInitialPosition;
         }
 
         SetupPlayerPokymon(_playerParty.FirstAvailablePokymon);
+
         yield return _dialogBox.SetDialogText($"Go {_playerUnit.Pokymon.Name}!");
 
         PlayerSelectAction();
@@ -229,12 +245,6 @@ public class BattleManager : MonoBehaviour
         yield return _dialogBox.SetDialogText($"{_trainer.Name} sends {_enemyUnit.Pokymon.Name}!");
 
         PlayerSelectAction();
-    }
-
-    private void ToggleAvatars(bool active)
-    {
-        _playerAvatar.gameObject.SetActive(active);
-        _trainerAvatar.gameObject.SetActive(active);
     }
 
     private void CheckForBattleFinish(BattleUnit knockedOutUnit)
