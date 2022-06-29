@@ -429,6 +429,9 @@ MonoBehaviour:
   _dialog:
     _lines:
     - Hey! I bet my pokymon are better than yours!
+  _lostBattleDialog:
+    _lines:
+    - I'll train my pokymon harder for the next time!
   _exclamationMark: {fileID: 663431959}
   _fov: {fileID: 910198279}
   _avatar: {fileID: 21300000, guid: a0f54a24d7ce3224b9598837b98b35f1, type: 3}
