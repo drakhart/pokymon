@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     private GameState _gameState;
 
+    private TrainerController _trainer;
+
     public static GameManager SharedInstance;
 
     private void Awake() {
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
 
         _playerController.OnPokymonEncounter += StartWildPokymonBattle;
         _playerController.OnTrainerEncounter += (TrainerController trainer) => StartTrainerBattle(trainer);
-        _battleManager.OnBattleFinish += FinishPokymonBattle;
+        _battleManager.OnBattleFinish += FinishBattle;
 
         DialogManager.SharedInstance.OnDialogStart += () => _gameState = GameState.Dialog;
         DialogManager.SharedInstance.OnDialogFinish += () => _gameState = GameState.Travel;
@@ -70,6 +72,8 @@ public class GameManager : MonoBehaviour
 
     public void StartTrainerBattle(TrainerController trainer)
     {
+        _trainer = trainer;
+
         var playerParty = _playerController.GetComponent<PokymonParty>();
 
         if (!playerParty.HasAnyPokymonAvailable)
@@ -109,16 +113,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeToBattle(BattleType.WildPokymon, playerParty, wildPokymon));
     }
 
-    private void FinishPokymonBattle(bool hasPlayerWon)
+    private void FinishBattle(bool hasPlayerWon)
     {
-        if (hasPlayerWon)
+        if (hasPlayerWon && _trainer != null)
         {
-            // TODO: handle player victory
+            _trainer.AfterTrainerLostBattle();
         }
-        else
-        {
-            // TODO: handle player defeat
-        }
+
+        _trainer = null;
 
         StartCoroutine(FadeToWorld());
     }

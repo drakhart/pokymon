@@ -8,6 +8,7 @@ using UnityEngine;
 public class TrainerController : MonoBehaviour, Interactable
 {
     [SerializeField] private Dialog _dialog;
+    [SerializeField] private Dialog _lostBattleDialog;
     [SerializeField] private GameObject _exclamationMark;
     [SerializeField] private GameObject _fov;
 
@@ -18,6 +19,8 @@ public class TrainerController : MonoBehaviour, Interactable
     public string Name => _name;
 
     private Character _character;
+
+    private bool _trainerLostBattle = false;
 
     private void Awake() {
         _character = GetComponent<Character>();
@@ -78,6 +81,17 @@ public class TrainerController : MonoBehaviour, Interactable
     {
         _character.LookTowards(source);
 
-        GameManager.SharedInstance.StartTrainerBattle(this);
+        if (_trainerLostBattle)
+        {
+            DialogManager.SharedInstance.StartDialog(_lostBattleDialog);
+        } else {
+            GameManager.SharedInstance.StartTrainerBattle(this);
+        }
+    }
+
+    public void AfterTrainerLostBattle()
+    {
+        _trainerLostBattle = true;
+        _fov.gameObject.SetActive(false);
     }
 }

@@ -68,7 +68,7 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    public void StartDialog(Dialog dialog, Action onNpcDialogFinish)
+    public void StartDialog(Dialog dialog, Action onNpcDialogFinish = null)
     {
         _currentDialog = dialog;
         _onCurrentDialogFinish = onNpcDialogFinish;
