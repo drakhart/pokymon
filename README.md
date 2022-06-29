@@ -19,6 +19,8 @@ Pokymon is a Pokémon-like RPG videogame developed while taking [this Unity cour
 - **World tilesets & character sprites:** Armando Montero AKA ArMM1998 @ https://opengameart.org/content/zelda-like-tilesets-and-sprites
 - **Pokémon sprites:** Lexy Munroe AKA eevee @ https://veekun.com/dex/downloads
 - **Pokéball sprites:** Daniel AKA Earcl01 @ https://www.deviantart.com/earcl01/art/pokeballs-sprites-215842166
+- **Trainer battle sprites:** Rubire4 @ https://whackahack.com/foro/threads/mega-aporte-todos-los-trainer-sprites-de-dppt-adaptados-para-gba.54957/
+- **Player battle sprites:** NunnyGold @ https://whackahack.com/foro/threads/fr-cambia-de-backsprite-de-entrenador-dentro-del-juego.49393/
 - **Battle backgrounds:** Professor Valley @ https://www.spriters-resource.com/ds_dsi/pokemonplatinum/sheet/18502
 - **Battle dialog boxes:** Unknown @ http://clipart-library.com/clipart/8ixrMpdBT.htm
 - **Font:** Ingo Zimmermann AKA ingoFonts @ https://www.dafont.com/es/depixel.font
