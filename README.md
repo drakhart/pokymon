@@ -8,6 +8,10 @@ Pokymon is a Pokémon-like RPG videogame developed while taking [this Unity cour
 
 > Pokémon and Pokémon character images & names are trademarks of Nintendo. No copyright or trademark infringement is intended.
 
+## Video (with sound)
+
+https://user-images.githubusercontent.com/14996002/178304247-499f13ce-0290-4a93-824c-be9dfa04e726.mp4
+
 ## Screenshots
 ![World](Screenshots/world.png) &nbsp; ![Dialog](Screenshots/dialog.png)
 
